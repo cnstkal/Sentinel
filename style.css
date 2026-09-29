@@ -727,3 +727,48 @@ button,input,select,textarea{font-family:inherit;}
  .map-svg svg{min-height:465px;width:100%;height:465px}
  .map-labels text{font-size:10px}
 }
+
+/* Quick services: clean numbered layout */
+.quick-icon,
+.quick:nth-child(1) .quick-icon::before,
+.quick:nth-child(2) .quick-icon::before,
+.quick:nth-child(3) .quick-icon::before,
+.quick:nth-child(4) .quick-icon::before,
+.quick:nth-child(5) .quick-icon::before,
+.quick:nth-child(6) .quick-icon::before{ 
+  border:0 !important;
+  box-shadow:none !important;
+  transform:none !important;
+  background:none !important;
+}
+.quick-icon::before{display:none !important;content:none !important}
+.quick-icon{
+  width:auto;
+  height:auto;
+  min-height:0;
+  display:block;
+  margin:0 0 12px;
+  align-self:flex-start;
+  color:#73869a;
+  font-size:14px;
+  line-height:1;
+  font-weight:700;
+}
+.quick{
+  min-height:0;
+  height:145px;
+  padding:22px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:flex-start;
+}
+.quick b{font-size:16px;line-height:1.35}
+.quick>span:last-child{font-size:12px;line-height:1.45;margin-top:5px;color:#738294}
+@media(max-width:700px){
+  .quick-services .container{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quick{height:145px;min-height:0;padding:20px 28px}
+  .quick-icon{margin-bottom:11px;font-size:13px}
+  .quick b{font-size:15px}
+  .quick>span:last-child{font-size:11px}
+}
