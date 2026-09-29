@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07111f">
+<title>SENTINEL | 국가 센티넬·가이드 관리 포털</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div class="brand"><span class="mark">S</span><div><b>SENTINEL</b><small>국가 센티넬·가이드 관리 포털</small></div></div>
+  <div class="top-status"><span class="dot"></span> 국가 시스템 정상 <span class="sep">|</span> 2026.09.30 02:01 KST</div>
+  <button class="menu" id="menuBtn">☰</button>
+</header>
+
+<nav class="nav" id="nav">
+  <button class="active" data-page="dashboard">통합현황</button>
+  <button data-page="register">등록·조회</button>
+  <button data-page="matching">매칭 관리</button>
+  <button data-page="alerts">재난·긴급</button>
+  <button data-page="guide">제도 안내</button>
+</nav>
+
+<main>
+<section class="page active" id="dashboard">
+  <div class="hero">
+    <div><span class="eyebrow">NATIONAL SENTINEL NETWORK / LIVE</span><h1>국가 센티넬 관리<br><em>통합현황</em></h1><p>전국에 등록된 센티넬 및 가이드의 현황과 안정도, 긴급 대응 상태를 실시간으로 확인합니다.</p></div>
+    <div class="seal"><span>대한민국</span><b>◈</b><small>초능력자<br>관리청</small></div>
+  </div>
+
+  <div class="notice"><span class="notice-tag">긴급공지</span><b>2026-09-30 01:42</b><span>인천권 고위험 센티넬 반응 감지. 해당 권역 가이드 대기자에게 1차 알림이 발송되었습니다.</span><button data-page="alerts">상세 →</button></div>
+
+  <div class="stats">
+    <article><span>등록 센티넬</span><strong>48,291</strong><small>전일 대비 <i>+27</i></small></article>
+    <article><span>등록 가이드</span><strong>31,804</strong><small>전일 대비 <i>+19</i></small></article>
+    <article><span>현재 동조 중</span><strong>6,482</strong><small>안정 동조율 <i>96.8%</i></small></article>
+    <article><span>위험 감시 대상</span><strong class="danger">214</strong><small>24시간 내 <i class="red">+8</i></small></article>
+  </div>
+
+  <div class="grid2">
+    <article class="panel">
+      <div class="panel-head"><div><span class="eyebrow">NATIONAL DISTRIBUTION</span><h2>지역별 등록 현황</h2></div><button class="ghost">전체 보기</button></div>
+      <div class="bars">
+        <div><label>서울 <b>14,820</b></label><i><span style="width:92%"></span></i></div>
+        <div><label>경기 <b>11,394</b></label><i><span style="width:78%"></span></i></div>
+        <div><label>인천 <b>4,218</b></label><i><span style="width:45%"></span></i></div>
+        <div><label>부산 <b>3,901</b></label><i><span style="width:41%"></span></i></div>
+        <div><label>대전 <b>2,188</b></label><i><span style="width:27%"></span></i></div>
+      </div>
+    </article>
+    <article class="panel">
+      <div class="panel-head"><div><span class="eyebrow">ABILITY DISTRIBUTION</span><h2>센티넬 등급 분포</h2></div></div>
+      <div class="rank-list">
+        <div><b>S</b><span><i style="width:6%"></i></span><strong>1,204</strong></div>
+        <div><b>A</b><span><i style="width:22%"></i></span><strong>4,862</strong></div>
+        <div><b>B</b><span><i style="width:51%"></i></span><strong>18,492</strong></div>
+        <div><b>C</b><span><i style="width:72%"></i></span><strong>23,733</strong></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="grid3">
+    <article class="panel compact"><span class="eyebrow">SYSTEM STATUS</span><h3>국가 등록 시스템</h3><div class="system"><span class="ok"></span> 정상 운영 <b>99.98%</b></div></article>
+    <article class="panel compact"><span class="eyebrow">GUIDE CAPACITY</span><h3>가이드 대기율</h3><div class="bigline">12.4% <small>전국 평균</small></div></article>
+    <article class="panel compact"><span class="eyebrow">EMERGENCY RESPONSE</span><h3>평균 대응시간</h3><div class="bigline">04:18 <small>목표 05:00</small></div></article>
+  </div>
+</section>
+
+<section class="page" id="register">
+ <div class="page-title"><span class="eyebrow">IDENTITY / REGISTRATION</span><h1>등록·조회</h1><p>국가 센티넬·가이드 등록번호를 조회하고 공개 가능한 상태 정보를 확인합니다.</p></div>
+ <div class="searchbox"><input id="search" placeholder="등록번호 또는 이름을 입력하세요  ·  예: SN-26018492"><button id="searchBtn">조회</button></div>
+ <div id="searchResult"></div>
+ <div class="table panel"><div class="panel-head"><h2>최근 등록·갱신</h2><span class="muted">개인식별정보는 표시되지 않습니다.</span></div>
+ <table><thead><tr><th>등록번호</th><th>구분</th><th>등급</th><th>상태</th><th>최종 갱신</th></tr></thead>
+ <tbody><tr><td>SN-26018492</td><td>센티넬</td><td><b class="rank s">S</b></td><td><span class="pill green">정상</span></td><td>2026.09.29</td></tr><tr><td>GD-26088317</td><td>가이드</td><td>—</td><td><span class="pill green">정상</span></td><td>2026.09.28</td></tr><tr><td>SN-26017421</td><td>센티넬</td><td><b class="rank a">A</b></td><td><span class="pill yellow">관찰</span></td><td>2026.09.30</td></tr><tr><td>SN-26016008</td><td>센티넬</td><td><b class="rank b">B</b></td><td><span class="pill green">정상</span></td><td>2026.09.27</td></tr></tbody></table></div>
+</section>
+
+<section class="page" id="matching">
+ <div class="page-title"><span class="eyebrow">SYNC / MATCHING</span><h1>매칭 관리</h1><p>센티넬과 가이드의 동조 상태 및 국가 관리기관 매칭 현황입니다.</p></div>
+ <div class="match-banner"><div><span class="eyebrow">ACTIVE SYNCHRONIZATION</span><strong>6,482</strong><span>쌍이 현재 동조 중입니다.</span></div><div class="sync-ring">96.8%<small>평균 안정도</small></div></div>
+ <div class="match-grid"><article class="panel"><div class="panel-head"><h2>최근 동조 기록</h2></div><div class="feed"><div><b>SN-26018492 × GD-26088317</b><span>서울중앙관리국 · 안정</span><time>02:00</time></div><div><b>SN-26017421 × GD-26077104</b><span>인천관리국 · 관찰</span><time>01:54</time></div><div><b>SN-26016008 × GD-26066281</b><span>경기남부관리국 · 안정</span><time>01:49</time></div></div></article><article class="panel"><span class="eyebrow">PROTOCOL</span><h2>동조 프로토콜</h2><p class="muted">국가 관리기관은 강제 매칭을 원칙으로 하지 않으며, 긴급 상황에서는 임시 보호·지원 절차가 우선 적용됩니다.</p><button class="outline">프로토콜 전문 보기</button></article></div>
+</section>
+
+<section class="page" id="alerts">
+ <div class="page-title"><span class="eyebrow">NATIONAL EMERGENCY NETWORK</span><h1>재난·긴급</h1><p>센티넬 폭주, 대규모 능력 반응 및 관리구역 이상 징후에 대한 국가 대응 현황입니다.</p></div>
+ <div class="alert-level"><span class="pulse"></span><div><b>관심 단계</b><small>전국 기준 / 2026.09.30 02:01 KST</small></div><strong>LEVEL 2</strong></div>
+ <div class="alerts-list"><article class="alert-item high"><span>HIGH</span><div><b>인천권 고위험 반응 감지</b><p>01:42 · 인천광역시 제물포구 일대. 현장관리국에서 안정화 절차 진행 중.</p></div><button>상세</button></article><article class="alert-item"><span>NOTICE</span><div><b>서울 서부권 정기 능력 반응 측정</b><p>오늘 09:00~12:00 · 등록 센티넬 대상 정기 점검.</p></div><button>상세</button></article><article class="alert-item"><span>NOTICE</span><div><b>가이드 긴급지원센터 운영시간 변경</b><p>10월 1일부터 24시간 상담 체계로 전환됩니다.</p></div><button>상세</button></article></div>
+</section>
+
+<section class="page" id="guide">
+ <div class="page-title"><span class="eyebrow">PUBLIC INFORMATION</span><h1>제도 안내</h1><p>센티넬·가이드 등록제와 국가 지원 체계를 안내합니다.</p></div>
+ <div class="info-grid"><article class="info-card"><span>01</span><h2>센티넬 등록제</h2><p>각성 확인 후 국가 등록번호를 부여받고 능력 유형, 출력 등급, 안정도 등을 정기적으로 관리합니다.</p><button>자세히 보기 →</button></article><article class="info-card"><span>02</span><h2>가이드 보호제도</h2><p>가이드의 신원과 동조 기록을 보호하고 국가 지원센터를 통해 의료·심리·생활 지원을 제공합니다.</p><button>자세히 보기 →</button></article><article class="info-card"><span>03</span><h2>동조권 보호</h2><p>모든 동조는 당사자의 동의를 원칙으로 하며, 비동의 강제 동조는 국가 관리법에 의해 제한됩니다.</p><button>자세히 보기 →</button></article><article class="info-card"><span>04</span><h2>긴급 대응</h2><p>폭주 또는 대규모 재난 발생 시 지역 관리국과 가이드 지원팀이 현장 안정화 절차를 시행합니다.</p><button>자세히 보기 →</button></article></div>
+</section>
+</main>
+<footer><b>SENTINEL</b><span>국가 센티넬·가이드 관리 포털</span><span>본 사이트는 가상 세계관을 위한 인터페이스 시뮬레이션입니다.</span></footer>
+</div>
+<script src="app.js"></script>
+</body></html>
