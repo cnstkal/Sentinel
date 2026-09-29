@@ -2,12 +2,12 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#256ef4">
 <meta name="description" content="센티넬안전관리청 공식 누리집">
 <title>센티넬안전관리청</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
 :root{--blue:#256ef4;--blue-dark:#174a9e;--navy:#17263a;--text:#263648;--sub:#596979;--muted:#718091;--line:#d9e0e7;--line2:#e8edf2;--bg:#f5f7f9;--red:#d43c3c;--orange:#e87922;--yellow:#c99700;--focus:#111}
 *{box-sizing:border-box}
 html{font-family:Pretendard,"Noto Sans KR","Malgun Gothic",sans-serif;color:var(--text);font-size:16px;letter-spacing:-.02em;scroll-behavior:smooth}
@@ -1261,12 +1261,110 @@ button,input,select,textarea{font-family:inherit;}
 @media(max-width:900px){.quick-services .container{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.quick-services .container{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
+
+/* ===== Design upgrade layer ===== */
+:root{--navy:#0f2a52;--navy2:#0a1f3f;--blue:#1f5fd6;--blue-dark:#123f91;--gold:#e0b64a;--line:#d5dce5;--line2:#e6ebf1;--bg:#f4f6f9;--r:6px;--sh:0 2px 10px rgba(15,42,82,.08)}
+html{font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased}
+body{background:var(--bg)}
+.site-main{background:#fff}
+/* 공식 배너 */
+.govbar{background:#fff;border-bottom:1px solid var(--line2)}
+.govbar .container{min-height:36px;font-size:12px}
+.korea-icon{border-color:var(--navy);color:var(--navy)}
+/* 헤더 */
+.header-top .container{height:84px}
+.emblem{width:50px;height:50px;color:var(--navy)}
+.brand-title{font-size:24px;letter-spacing:-.04em}
+.brand-en{letter-spacing:.1em;text-transform:uppercase;font-size:10px}
+.util{font-size:12px;margin-top:0;align-self:center}
+.font-control button,.contrast-btn{border-radius:3px;padding:3px 8px}
+.header-search{background:#f0f4f9;border-bottom:1px solid var(--line)}
+.header-search .container{height:68px}
+.search-form{height:44px;border:2px solid var(--blue);border-radius:var(--r);background:#fff;overflow:hidden;margin:0}
+.search-form button{background:var(--blue);width:54px}
+.popular{display:flex;align-items:center;gap:6px}
+.popular a{margin:0;padding:4px 11px;background:#fff;border:1px solid var(--line);border-radius:99px;font-size:12px}
+.popular a:hover{border-color:var(--blue);text-decoration:none}
+/* 주메뉴 */
+.main-nav{background:var(--navy);border-bottom:0}
+.nav-trigger{background:transparent;color:#fff;height:56px;font-size:15px;position:relative}
+.nav-trigger:hover,.nav-trigger[aria-expanded=true],.nav-item:hover .nav-trigger{color:#fff;background:rgba(255,255,255,.1)}
+.nav-item:hover .nav-trigger::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:3px;background:var(--gold)}
+.all-menu{background:transparent;color:#fff;border-left:1px solid rgba(255,255,255,.2)}
+.mega{top:56px;border-top:0;box-shadow:0 14px 28px rgba(10,31,63,.18)}
+.mega-title{font-size:20px;padding-top:4px}
+.mega-links a{border-radius:3px}
+/* 히어로 */
+.home-hero{background:linear-gradient(115deg,#0a1f3f 0%,#123f91 100%);border:0;position:relative;overflow:hidden}
+.home-hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 80px),radial-gradient(circle at 78% 20%,rgba(255,255,255,.14),transparent 45%)}
+.hero-inner{position:relative;min-height:300px;gap:50px;padding-bottom:36px}
+.hero-kicker{color:var(--gold);letter-spacing:.14em;font-size:12px}
+.hero-copy h1{color:#fff;font-size:40px;line-height:1.3;margin:12px 0 14px}
+.hero-copy p{color:#c9d7ee}
+.hero-notice{background:#fff;border:0;border-top:5px solid var(--gold);border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.25);padding:22px 26px}
+.hero-notice strong{color:var(--navy);font-size:30px}
+/* 바로가기 카드 */
+.quick-services{background:transparent;border:0;margin-top:-34px;position:relative;z-index:2}
+.quick-services .container{gap:12px}
+.quick{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);min-height:120px;transition:.18s}
+.quick:last-child{border-right:1px solid var(--line)}
+.quick:hover{transform:translateY(-3px);border-color:var(--blue);background:#fff;box-shadow:0 8px 20px rgba(31,95,214,.18)}
+.quick-icon{background:#e8f0fe;border:0;border-radius:8px;width:36px;height:36px}
+.quick b{font-size:15px}
+/* 섹션 */
+.home-content{padding-top:48px}
+.section-head{height:52px}
+.section-head h2{font-size:22px;font-weight:800;padding-left:12px;border-left:5px solid var(--blue);line-height:1}
+.section-more{border:1px solid var(--line);border-radius:99px;padding:3px 12px}
+.section-more:hover{border-color:var(--blue);color:var(--blue)}
+.board-row{min-height:58px;padding:0 6px}
+.board-row:hover{background:#f6f9fe}
+.board-no{font-size:12px}
+.notice-badge{background:var(--blue);color:#fff;border-radius:3px}
+.press-list article:hover b{color:var(--blue)}
+.map-box{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.map-legend{background:#f8fafc}
+/* 하위 페이지 */
+.breadcrumb{background:#fff}
+.page-layout{padding-top:36px}
+.side-nav{border-top:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;align-self:start}
+.side-nav h2{background:var(--navy);color:#fff;font-size:19px;padding:20px 18px}
+.side-nav a{padding:14px 18px;border-left:3px solid transparent}
+.side-nav a:hover,.side-nav a.active{border-left-color:var(--blue);background:#f2f7ff}
+.content-head{border-bottom:1px solid var(--line);position:relative;padding-bottom:24px}
+.content-head::after{content:"";position:absolute;left:0;bottom:-1px;width:72px;height:3px;background:var(--blue)}
+.content-head h1{font-size:32px;font-weight:800}
+.data-table{border-top:2px solid var(--navy)}
+.data-table th{background:#eef3f9;color:var(--navy)}
+.data-table tbody tr:nth-child(even) td{background:#fafcfe}
+.badge{border-radius:99px;padding:3px 10px}
+.type-card{border-radius:var(--r);border-top:3px solid var(--navy);transition:.18s}
+.type-card:hover{border-top-color:var(--blue);box-shadow:var(--sh);transform:translateY(-2px)}
+.notice-area{border-radius:var(--r);border-left:4px solid var(--blue)}
+.submit,.popup-primary{border-radius:var(--r)}
+input,select,textarea{border-radius:4px}
+/* 푸터 */
+footer{background:var(--navy2);border-top:4px solid var(--blue)}
+.footer-main .container{padding:36px 0}
+.footer-info{line-height:1.9;color:#a9b8cf;font-size:13px}
+.footer-brand .emblem{color:#fff}
+@media(max-width:900px){
+ .hero-inner{gap:0;padding-bottom:20px}.hero-copy h1{font-size:28px}
+ .nav-trigger{color:#fff}.header-search{padding:8px 0}.popular{display:none}
+}
+@media(max-width:700px){.quick-services{margin-top:-20px}.brand-title{font-size:20px}.hero-copy{padding:30px 0 10px}}
+
+/* 모바일: 히어로 좌우 여백 제거(전체 폭) */
+@media(max-width:900px){
+ #home{padding-left:0;padding-right:0}
+ .home-hero{padding-left:0!important;padding-right:0!important}
+ .home-hero .container.hero-inner{padding-left:20px;padding-right:20px;box-sizing:border-box}
+}
+@media(max-width:700px){.home-hero .container.hero-inner{padding-left:16px;padding-right:16px}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
-
-</div>
 <header>
  <div class="header-top">
   <div class="container">
@@ -1921,8 +2019,9 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
  });
 })();
 </script>
-</body>
-</html><div class="entry-popups" id="entryPopups" hidden>
+<div class="entry-popups" id="entryPopups" hidden>
 <div class="entry-popups-inner">
 <div class="entry-popup"><div class="popup-head"><span>설문조사</span><button type="button" class="popup-x" data-close-popup>×</button></div><div class="popup-body"><strong>누리집 이용자 설문조사</strong><p>누리집 이용 경험을 확인하기 위한 짧은 설문입니다.</p><div class="popup-actions"><button type="button" class="popup-secondary" data-hide-day>오늘 하루 보지 않기</button><a class="popup-primary" href="#survey">설문 참여하기</a></div></div>
-
+</div></div></div>
+</body>
+</html>
