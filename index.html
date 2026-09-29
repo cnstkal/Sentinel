@@ -514,7 +514,30 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
 
 <section class="page" id="report">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">신고·민원</a><span>›</span><strong>활동 신고</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a class="active" href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#minwon">국민신문고 연계</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside><div><div class="content-head"><h1>활동 신고</h1><p>돌연변이 활동 또는 공공안전 자율대응장치의 이상징후를 신고할 수 있음.</p></div><div class="content-body"><div class="notice-area"><strong>긴급신고</strong> · 생명 또는 신체에 즉각적인 위험이 있는 경우 119·112를 이용하시기 바랍니다. 본 신고창구는 행정상 안전확인 및 현장 안정화 요청을 위한 것임.</div><div class="type-grid"><div class="type-card"><span class="type-no">01</span><h3>돌연변이 활동 신고</h3><p>비정상적인 능력 사용, 대규모 능력 반응 등 확인이 필요한 상황을 신고함.</p><button class="submit">온라인 신고 →</button></div><div class="type-card"><span class="type-no">02</span><h3>ARU 오작동 신고</h3><p>공공안전 자율대응장치의 오작동·시설 이상을 신고함.</p><button class="submit">온라인 신고 →</button></div><div class="type-card"><span class="type-no">03</span><h3>안전확인 요청</h3><p>현장 상황의 확인이 필요한 경우 지역관리국에 안전확인을 요청함.</p><button class="submit">요청 방법 →</button></div></div><div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-000-0000</span><span>최종 수정일: 2026.09.30.</span></div></div></div></div>
+ <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a class="active" href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#minwon">국민신문고 연계</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside>
+ <div><div class="content-head"><h1>활동 신고</h1><p>돌연변이 활동 또는 공공안전 자율대응장치의 이상징후를 신고할 수 있음.</p></div><div class="content-body">
+  <div class="notice-area"><strong>긴급신고</strong> · 생명 또는 신체에 즉각적인 위험이 있는 경우 119·112를 이용하시기 바랍니다. 본 신고창구는 행정상 안전확인 및 현장 안정화 요청을 위한 것임.</div>
+  <div class="type-grid">
+   <div class="type-card"><span class="type-no">01</span><h3>돌연변이 활동 신고</h3><p>비정상적인 능력 사용, 대규모 능력 반응 등 확인이 필요한 상황을 신고함.</p><button class="submit" type="button" data-report-type="돌연변이 활동">온라인 신고 →</button></div>
+   <div class="type-card"><span class="type-no">02</span><h3>ARU 오작동 신고</h3><p>공공안전 자율대응장치의 오작동·시설 이상을 신고함.</p><button class="submit" type="button" data-report-type="ARU 오작동">온라인 신고 →</button></div>
+   <div class="type-card"><span class="type-no">03</span><h3>안전확인 요청</h3><p>현장 상황의 확인이 필요한 경우 지역관리국에 안전확인을 요청함.</p><button class="submit" type="button" data-report-type="안전확인">요청 방법 →</button></div>
+  </div>
+  <div class="report-form-wrap" id="reportFormWrap" hidden>
+   <div class="form-title"><span>온라인 신고</span><b id="reportTypeTitle">돌연변이 활동</b></div>
+   <form id="activityReportForm">
+    <div class="form-grid">
+     <label>발생 지역 <select id="reportRegion" required><option value="">선택</option><option>서울특별시</option><option>인천광역시</option><option>경기도</option><option>강원특별자치도</option><option>대전광역시</option><option>충청권</option><option>광주광역시</option><option>전북특별자치도</option><option>부산광역시</option><option>대구광역시</option><option>울산광역시</option><option>경상권</option><option>제주특별자치도</option></select></label>
+     <label>발생 시각 <input id="reportTime" type="datetime-local" required></label>
+    </div>
+    <label class="form-full">상황 설명 <textarea id="reportDescription" required minlength="10" placeholder="확인한 상황을 가능한 범위에서 구체적으로 작성해 주세요."></textarea></label>
+    <div class="form-grid"><label>신고자 연락처 <input id="reportContact" type="text" placeholder="선택사항"></label><label>추가 위치정보 <input id="reportPlace" type="text" placeholder="건물명·역명 등 선택사항"></label></div>
+    <label class="check-line"><input id="reportAgree" type="checkbox" required> 신고 내용의 사실 확인 및 안전확인을 위한 개인정보 처리에 동의합니다.</label>
+    <div class="form-actions"><button type="button" class="secondary" id="reportCancel">취소</button><button class="submit" type="submit">신고 접수하기</button></div>
+   </form>
+   <div class="report-result" id="reportResult" hidden></div>
+  </div>
+  <div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-000-0000</span><span>최종 수정일: 2026.09.30.</span></div>
+ </div></div></div>
 </section>
 
 <section class="page" id="searchPage">
@@ -634,6 +657,28 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
  }
  nav?.addEventListener('click',e=>{const b=e.target.closest('button[data-p]');if(b)page(+b.dataset.p)});
  page(1);
+})();
+</script>
+<script>
+(function(){
+ const wrap=document.getElementById('reportFormWrap'), form=document.getElementById('activityReportForm'), result=document.getElementById('reportResult'), title=document.getElementById('reportTypeTitle');
+ let selectedType='돌연변이 활동';
+ document.querySelectorAll('[data-report-type]').forEach(btn=>btn.addEventListener('click',()=>{
+   selectedType=btn.dataset.reportType; title.textContent=selectedType+' 신고';
+   wrap.hidden=false; result.hidden=true; form.hidden=false;
+   wrap.scrollIntoView({behavior:'smooth',block:'start'});
+ }));
+ document.getElementById('reportCancel')?.addEventListener('click',()=>{wrap.hidden=true;form.reset();result.hidden=true});
+ form?.addEventListener('submit',e=>{
+   e.preventDefault();
+   const no='SSA-2026-'+String(Math.floor(100000+Math.random()*899999));
+   const region=document.getElementById('reportRegion').value;
+   const time=document.getElementById('reportTime').value.replace('T',' ');
+   form.hidden=true; result.hidden=false;
+   result.innerHTML='<div class="result-head"><span>접수완료</span><b>신고가 정상적으로 접수되었습니다.</b></div><dl><div><dt>접수번호</dt><dd>'+no+'</dd></div><div><dt>신고유형</dt><dd>'+selectedType+'</dd></div><div><dt>발생지역</dt><dd>'+region+'</dd></div><div><dt>발생시각</dt><dd>'+time+'</dd></div></dl><p>접수된 내용은 관할 지역관리국에 전달되어 신고 내용 확인 및 필요한 안전확인 절차가 진행됩니다.</p><button type="button" class="submit" id="newReport">새 신고 작성</button>';
+   document.getElementById('newReport').onclick=()=>{form.reset();form.hidden=false;result.hidden=true};
+   result.scrollIntoView({behavior:'smooth',block:'start'});
+ });
 })();
 </script>
 </body>
