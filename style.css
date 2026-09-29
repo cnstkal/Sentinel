@@ -578,3 +578,32 @@ img,svg,video,iframe{max-width:100%}
     display:none!important;
   }
 }
+
+/* ===== Mobile compact gutter ===== */
+@media(max-width:700px){
+  main > *,
+  .home-hero,
+  .home-content,
+  .map-section,
+  .slider,
+  .related,
+  .quick-services{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .home-hero .hero-inner,
+  .home-content .container,
+  .map-section .container,
+  .slider .container,
+  .related .container,
+  .quick-services .container{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .main-nav .nav-inner{
+    padding-left:14px;
+    padding-right:14px;
+  }
+}
