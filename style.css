@@ -537,3 +537,44 @@ img,svg,video,iframe{max-width:100%}
     word-break:keep-all;
   }
 }
+
+/* ===== Mobile navigation: show complete menu control only ===== */
+@media(max-width:700px){
+  .main-nav .nav-inner{
+    width:100%;
+    max-width:100%;
+    padding:0 16px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+  }
+  .main-nav .nav-item{
+    display:none!important;
+  }
+  .main-nav .all-menu{
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    width:auto;
+    min-width:0;
+    height:52px;
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:0;
+  }
+  .main-nav .all-menu::before{
+    content:"전체메뉴";
+    font-size:14px;
+    font-weight:700;
+    margin-right:8px;
+  }
+  .main-nav .all-menu::after{
+    content:"☰";
+    font-size:24px;
+    line-height:1;
+  }
+  .main-nav .mobile-menu{
+    display:none!important;
+  }
+}
