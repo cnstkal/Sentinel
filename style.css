@@ -789,3 +789,34 @@ button,input,select,textarea{font-family:inherit;}
  .notice-article-body{padding:25px 0;font-size:15px;line-height:1.9}
  .notice-article-footer{flex-direction:column;gap:5px}
 }
+
+/* Compact mobile crisis map: less canvas, larger map */
+@media(max-width:700px){
+  .map-box{display:block}
+  .map-svg{
+    min-height:0 !important;
+    height:330px;
+    padding:0 !important;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .map-svg svg{
+    width:100%;
+    height:330px !important;
+    min-height:0 !important;
+    display:block;
+    transform:scale(1.45);
+    transform-origin:center center;
+  }
+  .map-scale{
+    left:50%;
+    bottom:14px;
+    transform:translateX(-50%);
+    white-space:nowrap;
+  }
+  .map-legend{
+    padding:22px 24px;
+  }
+}
