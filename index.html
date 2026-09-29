@@ -1361,6 +1361,25 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
  .home-hero .container.hero-inner{padding-left:20px;padding-right:20px;box-sizing:border-box}
 }
 @media(max-width:700px){.home-hero .container.hero-inner{padding-left:16px;padding-right:16px}}
+
+/* 센티넬 목록 */
+.sentinel-list{border-top:2px solid var(--navy)}
+.sentinel-row{display:flex;gap:24px;align-items:center;padding:18px 14px;border-bottom:1px solid var(--line);min-height:150px}
+.sentinel-row:hover{background:#fafcff}
+.sentinel-photo{width:92px;height:116px;flex:none;border:1px solid #cfd7df;background:#f3f5f7;display:flex;align-items:center;justify-content:center;color:#7b8793;font-size:11px}
+.sentinel-info{flex:1;min-width:0}
+.sentinel-info>strong{display:block;font-size:19px;color:var(--navy);margin-bottom:12px}
+.sentinel-info dl{display:flex;gap:34px;margin:0}
+.sentinel-info dl div{display:flex;gap:9px;align-items:baseline}
+.sentinel-info dt{font-size:12px;color:#718091;font-weight:700}
+.sentinel-info dd{margin:0;font-size:13px;color:var(--text)}
+@media(max-width:700px){
+ .sentinel-row{gap:16px;padding:16px 8px;min-height:132px}
+ .sentinel-photo{width:72px;height:92px}
+ .sentinel-info>strong{font-size:17px;margin-bottom:8px}
+ .sentinel-info dl{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}
+ .sentinel-info dl div:last-child{grid-column:1/-1}
+}
 </style>
 </head>
 <body>
@@ -1390,7 +1409,7 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
  <nav class="main-nav" id="nav" aria-label="주메뉴">
   <div class="container nav-inner">
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">청 소개</button><div class="mega"><div class="mega-inner"><div class="mega-title">청 소개<small>ABOUT SSA</small></div><div class="mega-links"><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치 및 오시는 길</a></div></div></div></div>
-   <div class="nav-item"><button class="nav-trigger" aria-expanded="false">센티넬 운용</button><div class="mega"><div class="mega-inner"><div class="mega-title">센티넬 운용<small>ARU OPERATION</small></div><div class="mega-links"><a href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></div></div></div></div>
+   <div class="nav-item"><button class="nav-trigger" aria-expanded="false">센티넬 운용</button><div class="mega"><div class="mega-inner"><div class="mega-title">센티넬 운용<small>ARU OPERATION</small></div><div class="mega-links"><a href="#models">기종 안내</a><a href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">돌연변이 분류·관리</button><div class="mega"><div class="mega-inner"><div class="mega-title">돌연변이 분류·관리<small>CLASSIFICATION</small></div><div class="mega-links"><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">국민안전 안내</button><div class="mega"><div class="mega-inner"><div class="mega-title">국민안전 안내<small>PUBLIC SAFETY</small></div><div class="mega-links"><a href="#guidance">행동요령</a><a href="#alerts-history">재난문자 이력</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">신고·민원</button><div class="mega"><div class="mega-inner"><div class="mega-title">신고·민원<small>REPORT & CIVIL</small></div><div class="mega-links"><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></div></div></div>
@@ -1404,7 +1423,7 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
  <div class="mobile-panel-head"><b>전체메뉴</b><button type="button" id="closeMobilePanel" aria-label="전체메뉴 닫기">×</button></div>
  <div class="mobile-panel-list">
   <details><summary>청 소개</summary><div><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치 및 오시는 길</a></div></details>
-  <details><summary>센티넬 운용</summary><div><a href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></div></details>
+  <details><summary>센티넬 운용</summary><div><a href="#models">기종 안내</a><a href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></div></details>
   <details><summary>돌연변이 분류·관리</summary><div><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></div></details>
   <details><summary>국민안전 안내</summary><div><a href="#guidance">행동요령</a><a href="#alerts-history">재난문자 이력</a></div></details>
   <details><summary>신고·민원</summary><div><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></details>
@@ -1829,6 +1848,26 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
 </section>
 
 <section class="page" id="org"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>조직도</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a class="active" href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a></aside><div><div class="content-head"><h1>조직도</h1><p>청장 아래 5개 본부 및 지역관리국 체계로 구성됨.</p></div><div class="content-body"><div class="type-grid"><div class="type-card"><span class="type-no">01</span><h3>기획조정관</h3><p>정책기획과 · 예산법무과 · 홍보담당관</p></div><div class="type-card"><span class="type-no">02</span><h3>등록관리본부</h3><p>등록관리과 · 등급판정과 · 교육운영과</p></div><div class="type-card"><span class="type-no">03</span><h3>동조지원본부</h3><p>동조지원과 · 가이드보호과 · 회복지원과</p></div><div class="type-card"><span class="type-no">04</span><h3>재난대응본부</h3><p>상황총괄과 · 현장대응과 · ARU운용과</p></div><div class="type-card"><span class="type-no">05</span><h3>권익보호본부</h3><p>인권보호과 · 정보보호과 · 민원지원과</p></div><div class="type-card"><span class="type-no">06</span><h3>지역관리국</h3><p>전국 15개 지역관리국 및 6개 권역지원센터 운영</p></div></div></div></div></div></section>
+
+<section class="page" id="sentinels">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>센티넬 목록</strong></div></div>
+ <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
+ <div><div class="content-head"><h1>센티넬 목록</h1><p>등록·운용 중인 센티넬의 공개 가능한 기본정보를 확인할 수 있음.</p></div><div class="content-body">
+  <div class="sentinel-list">
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>김도윤</strong><dl><div><dt>나이</dt><dd>28세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>이서윤</strong><dl><div><dt>나이</dt><dd>24세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>박준혁</strong><dl><div><dt>나이</dt><dd>31세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>최하은</strong><dl><div><dt>나이</dt><dd>22세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>충청권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>정우진</strong><dl><div><dt>나이</dt><dd>35세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>강원권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>한지민</strong><dl><div><dt>나이</dt><dd>27세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>오현석</strong><dl><div><dt>나이</dt><dd>29세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>영남·제주권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>윤채원</strong><dl><div><dt>나이</dt><dd>26세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>호남권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>강민재</strong><dl><div><dt>나이</dt><dd>33세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row"><div class="sentinel-photo" aria-label="증명사진"><span>증명사진</span></div><div class="sentinel-info"><strong>서예린</strong><dl><div><dt>나이</dt><dd>21세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+  </div>
+  <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
+ </div></div></div>
+</section>
 
 <section class="page" id="deployment"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>지역별 배치현황</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside><div><div class="content-head"><h1>지역별 배치현황</h1><p>공개 가능한 범위의 지역별 공공안전 자율대응장치 운용 현황임.</p></div><div class="content-body"><table class="data-table"><thead><tr><th>권역</th><th>관리국</th><th>4~6형</th><th>프라임</th><th>상태</th></tr></thead><tbody><tr><td>서울</td><td>서울중앙·서부</td><td>428</td><td>18</td><td><span class="badge b-on">정상</span></td></tr><tr><td>인천·경기</td><td>인천·경기남부·북부</td><td>602</td><td>24</td><td><span class="badge b-limit">주의</span></td></tr><tr><td>충청</td><td>대전·충북·충남</td><td>341</td><td>14</td><td><span class="badge b-on">정상</span></td></tr><tr><td>영남</td><td>부산·대구·경북·경남</td><td>516</td><td>21</td><td><span class="badge b-on">정상</span></td></tr><tr><td>호남·제주</td><td>광주·전북·전남·제주</td><td>372</td><td>16</td><td><span class="badge b-on">정상</span></td></tr></tbody></table><p style="font-size:11px;color:#68798b">※ 시설 안전을 위해 개별 장치의 정확한 위치·운용시간·대응능력은 공개하지 않음.</p></div></div></div></section>
 
