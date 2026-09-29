@@ -226,14 +226,7 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
 
-<div class="govbar">
- <div class="container">
-  
-  <span>행정안전부 소속기관 · 센티넬안전관리청</span>
-  <button class="gov-check" id="govCheck" aria-expanded="false" aria-controls="govDetail">공식 누리집 여부 확인⌄</button>
- </div>
 </div>
-<div class="gov-detail" id="govDetail"><div class="container"><b>공식 누리집 확인 안내</b> · 대한민국 정부기관 누리집은 원칙적으로 <b>.go.kr</b> 도메인을 사용함. 개인정보 입력 및 민원 처리 시 주소창의 <b>HTTPS 보안 접속</b> 여부를 확인하시기 바랍니다.</div></div>
 
 <div class="crisis" role="status">
  <div class="container"><span>돌연변이 활동 위기경보</span><span class="level">주의</span><span>(관심·주의·경계·심각 중 2단계)</span><time>발령 2026.09.30. 01:42</time><a href="#crisis">자세히 보기</a></div>
@@ -274,7 +267,19 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
    <button class="all-menu" id="allMenu" aria-label="전체메뉴">☰</button>
   </div>
   <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><span>전체메뉴</span><span>☰</span></button>
- </nav>
+ </nav><div class="mobile-panel" id="mobilePanel" hidden aria-label="전체메뉴">
+ <div class="mobile-panel-head"><b>전체메뉴</b><button type="button" id="closeMobilePanel" aria-label="전체메뉴 닫기">×</button></div>
+ <div class="mobile-panel-list">
+  <details><summary>청 소개</summary><div><a href="#about">인사말</a><a href="#about">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치 및 오시는 길</a><a href="#budget">예산·결산 공개</a></div></details>
+  <details><summary>센티넬 운용</summary><div><a href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></div></details>
+  <details><summary>돌연변이 분류·관리</summary><div><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></div></details>
+  <details><summary>국민안전 안내</summary><div><a href="#guidance">행동요령</a><a href="#alerts-history">재난문자 이력</a><a href="#school">어린이·학교 안전</a><a href="#foreigner">외국인 안내</a></div></details>
+  <details><summary>신고·민원</summary><div><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#minwon">국민신문고 연계</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></details>
+  <details><summary>법령·감독</summary><div><a href="#law">소관 법령</a><a href="#rules">행정규칙</a><a href="#assembly">국회 보고</a><a href="#audit">감사 결과</a><a href="#rights">인권위 권고 이행현황</a></div></details>
+  <details><summary>알림마당</summary><div><a href="#notice">공지사항</a><a href="#press">보도자료</a><a href="#cardnews">카드뉴스</a><a href="#video">영상</a><a href="#legislation">입법예고</a></div></details>
+  <details><summary>정보공개·참여</summary><div><a href="#open">정보공개 청구</a><a href="#preopen">사전정보공표</a><a href="#participate">국민참여</a><a href="#clean">청렴 신고</a></div></details>
+ </div>
+</div>
 </header>
 
 <main id="main" class="site-main">
@@ -464,8 +469,6 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  const navTriggers=[...document.querySelectorAll('.nav-trigger')];
  const mobile=document.getElementById('mobileMenu');
  const all=document.getElementById('allMenu');
- const govCheck=document.getElementById('govCheck');
- const govDetail=document.getElementById('govDetail');
  function show(hash){
    let id=(hash||'#home').replace('#','').split('?')[0];
    if(!document.getElementById(id)) id='home';
@@ -480,13 +483,15 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
    const id=h.replace('#','').split('?')[0];
    if(document.getElementById(id)){e.preventDefault();location.hash=h;show(h)}
  });
- govCheck.addEventListener('click',()=>{const open=govDetail.classList.toggle('open');govCheck.setAttribute('aria-expanded',open)});
  document.getElementById('fontUp').addEventListener('click',()=>document.body.classList.add('large'));
  document.getElementById('fontDown').addEventListener('click',()=>document.body.classList.remove('large'));
  document.getElementById('contrastBtn').addEventListener('click',()=>document.body.classList.toggle('contrast'));
  navTriggers.forEach(btn=>btn.addEventListener('click',()=>{const x=btn.getAttribute('aria-expanded')==='true';navTriggers.forEach(b=>b.setAttribute('aria-expanded','false'));btn.setAttribute('aria-expanded',String(!x))}));
- all.addEventListener('click',()=>{mobile.click()});
- mobile.addEventListener('click',()=>{const open=mobile.getAttribute('aria-expanded')==='true';mobile.setAttribute('aria-expanded',String(!open));document.querySelector('.nav-inner').style.display=open?'none':'flex'});
+ const panel=document.getElementById('mobilePanel'), closePanel=document.getElementById('closeMobilePanel');
+ function togglePanel(open){panel.hidden=!open;document.body.classList.toggle('menu-open',open);all.setAttribute('aria-expanded',String(open));}
+ all.addEventListener('click',()=>togglePanel(panel.hidden));
+ closePanel.addEventListener('click',()=>togglePanel(false));
+ panel.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)togglePanel(false)});
  const searchForm=document.getElementById('siteSearch'), input=document.getElementById('searchInput');
  searchForm.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;location.hash='searchPage?query='+encodeURIComponent(q);show('#searchPage');renderSearch(q)});
  function renderSearch(q){document.getElementById('searchSummary').textContent='“'+q+'”에 대한 검색 결과입니다.';document.getElementById('searchItems').innerHTML=['등록 확인','기종 안내','위기 단계별 행동요령','정보공개 청구','2026년 하반기 표준대응 장치 안전점검 실시 안내'].map((x,i)=>'<article style="padding:18px 0;border-bottom:1px solid var(--line2)"><a href="'+['#register','#models','#guidance','#open','#notice'][i]+'"><b style="font-size:15px;color:var(--navy)">'+x+'</b><p style="margin:4px 0;color:#718091;font-size:12px">센티넬안전관리청 누리집에서 제공하는 관련 정보입니다.</p></a></article>').join('')};
