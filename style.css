@@ -665,3 +665,12 @@ body.menu-open{overflow:hidden}
  .regional-grid article b{font-size:13px}
  .regional-grid article small{font-size:10px}
 }
+
+/* Apple system typography */
+html,body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;}
+button,input,select,textarea{font-family:inherit;}
+.board-pagination{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:22px}
+.board-pagination button{min-width:34px;height:34px;padding:0 8px;border:1px solid var(--line);background:#fff;color:var(--text);font-size:13px}
+.board-pagination button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.board-pagination span{padding:0 6px;color:var(--sub)}
+@media(max-width:700px){.board-pagination{margin-top:18px}.board-pagination button{min-width:32px;height:32px}}
