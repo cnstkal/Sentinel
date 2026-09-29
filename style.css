@@ -461,3 +461,79 @@ img,svg,video,iframe{max-width:100%}
  /* footer */
  footer,.footer-main,.footer-main .container{width:100%;max-width:100%;min-width:0;overflow:hidden}
 }
+
+/* ===== Mobile content breathing room ===== */
+@media(max-width:700px){
+  /* Main content gets a consistent safe gutter */
+  main > *,
+  .home-hero,
+  .home-content,
+  .map-section,
+  .slider,
+  .related{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  /* Avoid double padding on sections whose inner container already has it */
+  .home-hero .hero-inner,
+  .home-content .container,
+  .map-section .container,
+  .slider .container,
+  .related .container{
+    width:100%;
+    max-width:100%;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .hero-copy{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .hero-copy h1{
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .hero-copy p{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .hero-notice{
+    margin-left:0;
+    margin-right:0;
+  }
+
+  /* Quick service grid keeps the same 20px outer gutter */
+  .quick-services{
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .quick-services .container{
+    width:100%;
+    max-width:100%;
+    padding:0;
+  }
+
+  /* Section headings and lists align to the same gutter */
+  .home-content .section-head,
+  .home-content .board,
+  .home-content .press{
+    width:100%;
+  }
+
+  /* Prevent long text from touching screen edges */
+  .hero-copy h1,
+  .hero-copy p,
+  .section-head h2,
+  .board-row,
+  .press-list{
+    overflow-wrap:anywhere;
+    word-break:keep-all;
+  }
+}
