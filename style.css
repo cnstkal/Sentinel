@@ -211,3 +211,144 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  .feedback{grid-template-columns:1fr}.footer-links .container{flex-wrap:wrap;padding:13px 0}.footer-main .container{flex-direction:column}.footer-right{text-align:left;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slides{transition:none}}
+
+/* ===== Government portal final readability pass ===== */
+:root{--blue:#1f64c8;--blue-dark:#174a8f;--navy:#182b3d;--text:#263747;--sub:#56697b;--muted:#6d7d8d;--line:#d5dde5;--line2:#e8edf2;--bg:#f4f6f8}
+html{font-size:16px;letter-spacing:-.025em}
+body{line-height:1.7;color:var(--text)}
+.container{width:min(1180px,calc(100% - 48px))}
+.govbar .container{min-height:42px;font-size:13px}
+.header-top .container{height:92px}
+.brand{gap:12px}.emblem{width:50px;height:50px}
+.brand-title{font-size:23px;letter-spacing:-.045em}.brand-en{font-size:10px}
+.header-search .container{height:78px}
+.search-form{height:50px;border:1px solid #8e9baa;border-radius:0}
+.search-form:focus-within{border:2px solid var(--blue)}
+.search-form input{font-size:15px}
+.search-form button{width:55px;background:var(--blue)}
+.main-nav{border-top:1px solid var(--navy);border-bottom:1px solid #bfc9d4}
+.nav-trigger{height:56px;padding:0 20px;font-size:15px}
+.nav-trigger:hover,.nav-trigger[aria-expanded=true]{background:#f3f7fc;color:var(--blue)}
+.all-menu{height:56px}
+.home-hero{background:#f7f9fb;border-bottom:1px solid var(--line)}
+.hero-inner{min-height:245px;grid-template-columns:1fr 310px}
+.hero-copy{padding:35px 0}
+.hero-kicker{font-size:11px;color:#53697d;letter-spacing:0}
+.hero-copy h1{font-size:32px;line-height:1.4;letter-spacing:-.055em;margin:5px 0 8px}
+.hero-copy p{font-size:15px;line-height:1.75}
+.hero-notice{border-left:3px solid var(--blue);background:#fff;padding:20px}
+.hero-notice strong{font-size:27px}
+.quick-services{background:#fff}
+.quick-services .container{grid-template-columns:repeat(6,1fr)}
+.quick{min-height:116px;padding:20px 16px}
+.quick-icon{width:auto;height:auto;border:0;margin-bottom:8px;font-size:11px;color:#6a7d90}
+.quick b{font-size:14px}
+.quick span:last-child{font-size:11px;line-height:1.45}
+.home-content{padding-top:40px}
+.home-columns{gap:40px}
+.section-head{height:48px}
+.section-head h2{font-size:20px}
+.section-head small{display:none}
+.board-row{min-height:53px;grid-template-columns:52px minmax(0,1fr) 82px;font-size:13px}
+.board-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.press-list article{padding:14px 0}
+.press-list b{font-size:13px;line-height:1.5}
+.map-section{margin-top:42px}
+.map-box{min-height:340px}
+.map-svg{padding:15px}
+.map-svg svg{height:285px}
+.map-legend{padding:20px}
+.slider{margin-top:42px;border-left:0;border-right:0;background:#f5f7f9}
+.slide{padding:25px 45px;min-height:125px}
+.slide b{font-size:16px}.slide span{font-size:12px}
+.related{margin:42px 0 50px}
+.related-row{grid-template-columns:repeat(5,1fr)}
+.related a{min-height:68px;font-size:13px}
+.page-layout{padding:28px 0 65px;gap:36px}
+.side-nav h2{font-size:17px}
+.side-nav a{font-size:13px;padding:12px 14px}
+.content-head{padding:7px 0 20px}
+.content-head h1{font-size:30px}
+.content-head p{font-size:14px}
+.content-body{padding-top:22px}
+.data-table{font-size:13px}
+.data-table th{font-size:12px}
+.data-table th,.data-table td{padding:12px 10px}
+.info-box,.notice-area{font-size:13px}
+.type-grid{gap:12px}
+.type-card{min-height:155px;padding:18px}
+.type-card h3{font-size:16px}
+.type-card p{font-size:12px;line-height:1.7}
+.feedback{margin-top:35px}
+.meta{font-size:11px}
+footer{margin-top:0}
+
+/* no artificial pill / card appearance */
+.badge,.notice-badge{border-radius:0}
+.quick,.type-card,.panel,.hero-notice,.search-result{border-radius:0}
+
+/* mobile: readable government-site layout */
+@media(max-width:700px){
+ html{font-size:16px}
+ .container{width:calc(100% - 32px)}
+ .govbar .container{min-height:38px}
+ .govbar .container>span{display:none}
+ .gov-official b{font-size:11px}
+ .crisis .container{font-size:11px;line-height:1.45;min-height:48px}
+ .crisis time{display:none}
+ .crisis a{font-size:11px}
+ .header-top .container{height:76px}
+ .brand{gap:9px}.emblem{width:43px;height:43px}
+ .brand-title{font-size:18px}.brand-en{font-size:8px}
+ .header-search .container{height:64px}
+ .search-form{height:43px;width:100%}
+ .main-nav{height:50px}
+ .mobile-menu{height:50px;padding:0 16px;font-size:14px}
+ .mega{top:50px}
+ .hero-inner{display:block;min-height:0}
+ .hero-copy{padding:28px 0 18px}
+ .hero-kicker{font-size:10px}
+ .hero-copy h1{font-size:27px;line-height:1.42;margin:6px 0 10px}
+ .hero-copy p{font-size:14px;line-height:1.7}
+ .hero-notice{margin:0 0 22px;padding:15px 16px}
+ .hero-notice strong{font-size:22px}
+ .quick-services .container{grid-template-columns:1fr 1fr}
+ .quick{min-height:105px;padding:17px 14px;border-bottom:1px solid var(--line2)}
+ .quick:nth-child(odd){border-left:0}
+ .quick b{font-size:13px}
+ .quick span:last-child{display:block;font-size:10px;line-height:1.5}
+ .home-content{padding-top:30px}
+ .home-columns{gap:35px}
+ .section-head{height:45px}
+ .section-head h2{font-size:18px}
+ .board-row{grid-template-columns:42px minmax(0,1fr);min-height:51px;padding:7px 0}
+ .board-date{display:none}
+ .board-title{white-space:normal;line-height:1.45}
+ .notice-badge{font-size:9px;margin-right:4px}
+ .map-section{margin-top:35px}
+ .map-box{display:block}
+ .map-svg{padding:8px}
+ .map-svg svg{height:220px}
+ .map-legend{border-top:1px solid var(--line);padding:16px}
+ .region-list{margin-top:14px}
+ .region-list div{padding:6px 0}
+ .slider{margin-top:35px}
+ .slide{padding:22px 35px 35px;min-height:125px}
+ .slide b{font-size:15px}
+ .slide span{font-size:11px}
+ .slide-controls{right:12px;bottom:9px}
+ .related-row{grid-template-columns:1fr 1fr}
+ .related a{min-height:58px;font-size:12px}
+ .page-layout{display:block;padding-top:18px}
+ .side-nav{display:none}
+ .content-head h1{font-size:27px}
+ .content-head p{font-size:13px;line-height:1.6}
+ .data-table{min-width:680px;font-size:12px}
+ .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+ .flow-step{padding:16px}
+ .feedback{display:block}
+ .footer-links .container{gap:8px 16px;font-size:10px}
+}
+
+/* prevent old dark dashboard rules from visually taking over */
+.topbar,.nav{display:none!important}
