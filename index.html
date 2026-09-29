@@ -333,8 +333,6 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  <g class="map-points"><circle cx="251" cy="70" r="7" class="point p-blue"/><circle cx="338" cy="188" r="7" class="point p-yellow"/><circle cx="480" cy="258" r="7" class="point p-orange"/></g>
  </svg><div class="map-scale"><span>대한민국</span><i></i><span>권역별 현황</span></div></div></div><aside class="map-legend"><h3>지역별 위기경보</h3><div class="legend-row"><i class="dot-level l-blue"></i> 관심</div><div class="legend-row"><i class="dot-level l-yellow"></i> 주의</div><div class="legend-row"><i class="dot-level l-orange"></i> 경계</div><div class="legend-row"><i class="dot-level l-red"></i> 심각</div><div class="region-list"><div><span>서울특별시</span><b>관심</b></div><div><span>인천광역시</span><b>주의</b></div><div><span>경기도</span><b>관심</b></div><div><span>대전광역시</span><b>주의</b></div><div><span>부산광역시</span><b>경계</b></div></div></aside></div>
   </section>
-  <section class="slider" aria-label="정책 바로가기"><div class="slides" id="slides"><a class="slide" href="#policy1"><span class="slide-no">01</span><div><b>동조권 보호 강화</b><span>동조 전 설명의무 및 중단 요청권 확대 · 2026.07 시행</span></div></a><a class="slide" href="#policy2"><span class="slide-no">02</span><div><b>공공안전 자율대응장치 표준화</b><span>4~6형 표준대응 장치의 전국 운용기준 통합</span></div></a><a class="slide" href="#policy3"><span class="slide-no">03</span><div><b>가이드 국가보호제도</b><span>24시간 상담·회복지원·권익보호 체계 확대</span></div></a></div><div class="slide-controls"><button id="prevSlide" aria-label="이전 정책">‹</button><button id="playSlide" aria-label="슬라이드 자동재생 일시정지">Ⅱ</button><button id="nextSlide" aria-label="다음 정책">›</button></div></section>
-  
  </div>
 </section>
 
@@ -601,7 +599,7 @@ function renderPressPage(page=1,filter=''){
 }
 function renderPressDetail(id){
  const x=PRESS_DATA[Number(id)]; if(!x)return;
- document.getElementById('pressArticle').innerHTML='<div class="press-article-meta"><span>보도자료</span><time>'+x[0]+'</time></div><h1>'+x[1]+'</h1><div class="press-article-info"><span>작성부서 '+x[2]+'</span><span>분야 '+x[3]+'</span></div><div class="press-article-body"><p>'+x[4]+'</p><p>'+x[5]+'</p><p>'+x[6]+'</p><div class="press-article-box"><b>주요 내용</b><ul><li>국민이 이해하기 쉬운 안전정보 제공 및 현장 대응체계 개선</li><li>지역관리국·권역지원센터와 관계기관 간 협업 강화</li><li>개인정보 및 동조권 등 관련 권리 보호절차 병행</li></ul></div></div><div class="press-article-footer"><span>담당부서: '+x[2]+'</span><span>대표전화 044-000-0000</span><span>최종 수정일: '+x[0]+'.</span></div><a class="article-back" href="#press">목록으로 돌아가기</a>';
+ document.getElementById('pressArticle').innerHTML='<div class="press-article-meta"><span>보도자료</span><time>'+x[0]+'</time></div><h1>'+x[1]+'</h1><div class="press-article-info"><span>작성부서 '+x[2]+'</span><span>분야 '+x[3]+'</span></div><div class="press-article-body"><p>'+x[4]+'</p><p>'+x[5]+'</p><p>'+x[6]+'</p></div><div class="press-article-footer"><span>담당부서: '+x[2]+'</span><span>대표전화 044-000-0000</span><span>최종 수정일: '+x[0]+'.</span></div><a class="article-back" href="#press">목록으로 돌아가기</a>';
 }
 document.addEventListener('submit',e=>{if(e.target.id==='pressSearch'||e.target.closest('#press')&&e.target.classList.contains('board-search')){e.preventDefault();renderPressPage(1,document.getElementById('pressSearch').value)}});
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#press-view"]');if(a){setTimeout(()=>{const m=a.getAttribute('href').match(/id=(\d+)/);if(m)renderPressDetail(m[1])},0)}});
