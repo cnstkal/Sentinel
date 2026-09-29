@@ -926,3 +926,7 @@ button,input,select,textarea{font-family:inherit;}
  .map-scale{left:12px;bottom:18px;font-size:9px}
  .map-marker{width:10px;height:10px}
 }
+
+
+/* Hero section background fill */
+.home-hero{background:#f5f7f9}
