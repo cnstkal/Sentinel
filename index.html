@@ -380,6 +380,18 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  </div></div></div>
 </section>
 
+<section class="page" id="survey">
+<div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>누리집 이용자 설문</strong></div></div>
+<div class="container page-layout"><aside class="side-nav"><h2>참여</h2><a class="active" href="#survey">누리집 이용자 설문</a></aside><div>
+<div class="content-head"><h1>누리집 이용자 설문</h1><p>센티넬안전관리청 누리집 이용 경험에 관한 짧은 설문입니다.</p></div>
+<div class="content-body"><form id="surveyForm" class="survey-form">
+<fieldset><legend>1. 가장 자주 이용하는 정보는 무엇인가요?</legend><label><input type="radio" name="q1" required> 안전정보</label><label><input type="radio" name="q1"> 공지사항</label><label><input type="radio" name="q1"> 신고·민원</label><label><input type="radio" name="q1"> 등록·등급</label></fieldset>
+<fieldset><legend>2. 필요한 정보를 찾기 쉬웠나요?</legend><label><input type="radio" name="q2" required> 매우 쉬움</label><label><input type="radio" name="q2"> 쉬움</label><label><input type="radio" name="q2"> 보통</label><label><input type="radio" name="q2"> 어려움</label></fieldset>
+<fieldset><legend>3. 가장 개선되었으면 하는 부분은?</legend><label><input type="radio" name="q3" required> 검색</label><label><input type="radio" name="q3"> 모바일 이용</label><label><input type="radio" name="q3"> 정보 구성</label><label><input type="radio" name="q3"> 신고·민원</label></fieldset>
+<label class="survey-comment">추가 의견<textarea maxlength="300" placeholder="의견이 있다면 자유롭게 작성해 주세요."></textarea></label>
+<div class="form-actions"><button type="submit" class="submit">설문 제출</button></div></form><div id="surveyResult" class="report-result" hidden></div></div></div></div>
+</section>
+
 <section class="page" id="notice">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>공지사항</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a class="active" href="#notice">공지사항</a><a href="#press">보도자료</a><a href="#cardnews">카드뉴스</a><a href="#video">영상</a><a href="#legislation">입법예고</a></aside><div><div class="content-head"><h1>공지사항</h1><p>센티넬안전관리청의 주요 행정사항과 국민 안내사항을 제공함.</p></div><div class="content-body">
@@ -682,4 +694,10 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
 })();
 </script>
 </body>
-</html>
+</html<div class="entry-popups" id="entryPopups" hidden>
+<div class="entry-popups-inner">
+<div class="entry-popup"><div class="popup-head"><span>설문조사</span><button type="button" class="popup-x" data-close-popup>×</button></div><div class="popup-body"><strong>누리집 이용자 설문조사</strong><p>누리집 이용 경험을 확인하기 위한 짧은 설문입니다.</p><div class="popup-actions"><button type="button" class="popup-secondary" data-hide-day>오늘 하루 보지 않기</button><a class="popup-primary" href="#survey">설문 참여하기</a></div></div></div>
+<div class="entry-popup"><div class="popup-head alert-head"><span>위기경보 발령</span><button type="button" class="popup-x" data-close-popup>×</button></div><div class="popup-body"><strong>전국 위기경보 「주의」 단계 발령</strong><p>2026.09.30. 01:42부로 전국 위기경보가 2단계인 「주의」로 발령되었습니다. 지역별 상황에 따라 단계가 조정될 수 있습니다.</p><div class="popup-actions"><button type="button" class="popup-secondary" data-hide-day>오늘 하루 보지 않기</button><a class="popup-primary" href="#crisis">위기경보 확인</a></div></div></div>
+</div></div>
+
+>
