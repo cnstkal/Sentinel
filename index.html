@@ -1486,6 +1486,23 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
 /* Final crisis map visibility cleanup */
 .map-svg.actual-map .crisis-map-svg{display:block!important}
 .map-marker,.marker-seoul,.marker-daejeon,.marker-busan{display:none!important}
+
+/* Disaster message history table */
+.alert-history-table{table-layout:fixed;width:100%;font-size:13px}
+.alert-history-table th:nth-child(1),.alert-history-table td:nth-child(1){width:105px}
+.alert-history-table th:nth-child(2),.alert-history-table td:nth-child(2){width:88px}
+.alert-history-table th:nth-child(3),.alert-history-table td:nth-child(3){width:64px;text-align:center}
+.alert-history-table th:nth-child(4),.alert-history-table td:nth-child(4){width:auto;word-break:keep-all;overflow-wrap:anywhere;line-height:1.65}
+.alert-history-table td{vertical-align:middle}
+@media(max-width:700px){
+ .alert-history-table{font-size:12px;table-layout:fixed}
+ .alert-history-table th,.alert-history-table td{padding:13px 9px;line-height:1.55}
+ .alert-history-table th:nth-child(1),.alert-history-table td:nth-child(1){width:82px}
+ .alert-history-table th:nth-child(2),.alert-history-table td:nth-child(2){width:68px}
+ .alert-history-table th:nth-child(3),.alert-history-table td:nth-child(3){width:52px}
+ .alert-history-table th:nth-child(4),.alert-history-table td:nth-child(4){width:auto;font-size:12px;word-break:keep-all;overflow-wrap:anywhere}
+ .alert-history-table .badge{font-size:11px;padding:7px 5px;line-height:1.05;min-width:36px;box-sizing:border-box;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -1880,7 +1897,7 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
  <div class="container page-layout"><aside class="side-nav"><h2>국민안전 안내</h2><a href="#guidance">행동요령</a><a class="active" href="#alerts-history">재난문자 이력</a></aside>
  <div><div class="content-head"><h1>재난문자 이력</h1><p>센티넬안전관리청에서 발송한 돌연변이 활동 관련 재난문자 이력을 공개합니다.</p></div><div class="content-body">
   <div class="notice-area">※ 아래 이력은 누리집 화면 구성을 위한 가상 데이터이며 실제 재난문자 발송 내역과 관계없음.</div>
-  <div class="table-scroll"><table class="data-table"><thead><tr><th>발송일시</th><th>지역</th><th>단계</th><th>문자 내용</th></tr></thead><tbody>
+  <div class="table-scroll"><table class="data-table alert-history-table"><thead><tr><th>발송일시</th><th>지역</th><th>단계</th><th>문자 내용</th></tr></thead><tbody>
    <tr><td>2026.09.30 01:42</td><td>전국</td><td><span class="badge b-limit">주의</span></td><td>전국 위기경보가 주의 단계로 발령되었습니다. 지역별 안내에 따라 불필요한 접근을 자제해 주시기 바랍니다.</td></tr>
    <tr><td>2026.09.29 22:18</td><td>부산광역시</td><td><span class="badge b-review">경계</span></td><td>부산 일부 지역 안전확인 요청이 증가하고 있습니다. 현장 안내에 따라 이동하고 통제구역에 접근하지 마십시오.</td></tr>
    <tr><td>2026.09.28 19:36</td><td>인천광역시</td><td><span class="badge b-limit">주의</span></td><td>인천 지역 능력활동 관련 안전확인이 진행 중입니다. 공식 안내가 있을 때까지 현장 접근을 자제하십시오.</td></tr>
