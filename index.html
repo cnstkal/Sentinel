@@ -1525,6 +1525,12 @@ footer{background:var(--navy2);border-top:0}
  .brand>span{gap:0}
  .brand-en{margin-top:1px}
  .footer-brand .emblem{width:42px;height:42px}
+}.map-section-inner{width:min(1180px,calc(100% - 48px));max-width:100%;margin:0 auto}
+@media(max-width:700px){
+ .map-section{padding-left:0!important;padding-right:0!important}
+ .map-section-inner{width:calc(100% - 28px);max-width:100%;margin:0 auto}
+ .map-section-inner .section-head{width:100%}
+ .map-section-inner .map-box{width:100%}
 }</style>
 </head>
 <body>
@@ -1611,7 +1617,7 @@ footer{background:var(--navy2);border-top:0}
     <article><time>2026.08.28</time><b>권역지원센터 6개소 운영체계 개편</b><span>서울 대표센터를 중심으로 전국 지역관리국 지원체계를 정비함.</span></article>
    </div></section>
   </div>
-  <section class="map-section" id="crisis" aria-labelledby="mapTitle"><div class="section-head"><h2 id="mapTitle">위기경보 현황</h2><small>17개 시·도</small><a class="section-more" href="#alerts-history">재난문자 이력 +</a></div>
+  <section class="map-section" id="crisis" aria-labelledby="mapTitle"><div class="container map-section-inner"><div class="section-head"><h2 id="mapTitle">위기경보 현황</h2><small>17개 시·도</small><a class="section-more" href="#alerts-history">재난문자 이력 +</a></div>
    <div class="map-box">
  <div class="map-svg actual-map">
   <div class="korea-map-image">
@@ -1623,7 +1629,7 @@ footer{background:var(--navy2);border-top:0}
   <div class="legend-row"><i class="dot-level l-blue"></i> 관심</div><div class="legend-row"><i class="dot-level l-yellow"></i> 주의</div><div class="legend-row"><i class="dot-level l-orange"></i> 경계</div><div class="legend-row"><i class="dot-level l-red"></i> 심각</div>
   <div class="region-list"><div><span>서울특별시</span><b>관심</b></div><div><span>인천광역시</span><b>주의</b></div><div><span>경기도</span><b>관심</b></div><div><span>대전광역시</span><b>주의</b></div><div><span>부산광역시</span><b>경계</b></div></div>
  </aside>
-</div></section>
+</div></div></section>
  </div>
 </section>
 
