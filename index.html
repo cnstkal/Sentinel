@@ -1503,6 +1503,17 @@ footer{background:var(--navy2);border-top:0}
  .alert-history-table th:nth-child(4),.alert-history-table td:nth-child(4){width:auto;font-size:12px;word-break:keep-all;overflow-wrap:anywhere}
  .alert-history-table .badge{font-size:11px;padding:7px 5px;line-height:1.05;min-width:36px;box-sizing:border-box;text-align:center}
 }
+
+/* Mobile footer and crisis legend polish */
+.map-legend{border-radius:12px}
+.footer-brand .emblem{display:block;flex:0 0 44px;width:44px;height:44px}
+@media(max-width:700px){
+ .map-legend{border-radius:0 0 12px 12px}
+ .footer-main .container{width:calc(100% - 40px);max-width:none;margin:0 auto;padding:28px 0 34px}
+ .footer-brand{gap:12px;align-items:center}
+ .footer-brand .emblem{display:block;flex:0 0 42px;width:42px;height:42px}
+ .footer-info{padding-left:54px;margin-top:14px;font-size:11px;line-height:1.9;overflow-wrap:anywhere}
+}
 </style>
 </head>
 <body>
