@@ -1541,7 +1541,16 @@ footer{background:var(--navy2);border-top:0}
 
 /* Remove decorative page-header bars */
 .content-head::after{display:none!important;content:none!important}
-</style>
+
+/* Prevent iOS Safari from auto-zooming focused text fields */
+input,select,textarea{font-size:16px}
+@media(max-width:700px){
+  input,select,textarea{font-size:16px!important}
+  .search-form input{font-size:16px!important}
+  .search-result-item{padding:18px 0;border-bottom:1px solid var(--line2)}
+  .search-result-item b{font-size:15px;color:var(--navy);line-height:1.5}
+  .search-result-item p{margin:5px 0 0;color:#718091;font-size:12px;line-height:1.6}
+}</style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
@@ -2121,7 +2130,37 @@ footer{background:var(--navy2);border-top:0}
  panel.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a)togglePanel(false)});
  const searchForm=document.getElementById('siteSearch'), input=document.getElementById('searchInput');
  searchForm.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;location.hash='searchPage?query='+encodeURIComponent(q);show('#searchPage');renderSearch(q)});
- function renderSearch(q){document.getElementById('searchSummary').textContent='“'+q+'”에 대한 검색 결과입니다.';document.getElementById('searchItems').innerHTML=['등록 확인','기종 안내','위기 단계별 행동요령','정보공개 청구','2026년 하반기 표준대응 장치 안전점검 실시 안내'].map((x,i)=>'<article style="padding:18px 0;border-bottom:1px solid var(--line2)"><a href="'+['#register','#models','#guidance','#open','#notice'][i]+'"><b style="font-size:15px;color:var(--navy)">'+x+'</b><p style="margin:4px 0;color:#718091;font-size:12px">센티넬안전관리청 누리집에서 제공하는 관련 정보입니다.</p></a></article>').join('')};
+ function renderSearch(q){
+ const root=document.getElementById('searchItems');
+ const summary=document.getElementById('searchSummary');
+ const query=q.trim().toLowerCase();
+ const norm=s=>String(s||'').toLowerCase().replace(/\\s+/g,' ').trim();
+ const esc=s=>String(s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+ const index=[];
+ document.querySelectorAll('.page:not(#searchPage)').forEach(page=>{
+   const title=page.querySelector('.content-head h1, h1');
+   const desc=page.querySelector('.content-head p');
+   const text=norm(page.innerText);
+   if(title && text) index.push({title:title.textContent.trim(),desc:desc?desc.textContent.trim():'',text,href:'#'+page.id});
+ });
+ if(typeof NOTICE_DATA!=='undefined') NOTICE_DATA.forEach(x=>index.push({title:x[1],desc:x[5]||x[6]||'',text:norm(x.join(' ')),href:'#notice'}));
+ if(typeof PRESS_DATA!=='undefined') PRESS_DATA.forEach(x=>index.push({title:x[1],desc:x[5]||x[4]||'',text:norm(x.join(' ')),href:'#press'}));
+ const tokens=query.split(/\\s+/).filter(Boolean);
+ const results=index.map(item=>{
+   let score=0;
+   if(norm(item.title).includes(query)) score+=100;
+   if(norm(item.desc).includes(query)) score+=35;
+   tokens.forEach(t=>{if(item.text.includes(t)) score+=10});
+   return {...item,score};
+ }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+ summary.textContent='“'+q+'”에 대한 검색 결과 '+results.length+'건입니다.';
+ if(!results.length){root.innerHTML='<div class="notice-area">검색어와 일치하는 정보가 없습니다. 다른 검색어로 다시 검색해 주세요.</div>';return}
+ const unique=new Set();
+ root.innerHTML=results.filter(x=>{const k=x.href+'|'+x.title;if(unique.has(k))return false;unique.add(k);return true}).slice(0,30).map(x=>{
+   const desc=x.desc||'센티넬안전관리청 누리집에서 제공하는 관련 정보입니다.';
+   return '<article class="search-result-item"><a href="'+x.href+'"><b>'+esc(x.title)+'</b><p>'+esc(desc)+'</p></a></article>';
+ }).join('');
+}
  const regForm=document.getElementById('registrationSearch');
  regForm.addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('regNo').value.trim().toUpperCase();const db={'SN-26018492':['SN-26018492','돌연변이','3등급','등록','서울특별시','2026.09.29'],'SN-26017421':['SN-26017421','돌연변이','4등급','관찰','인천광역시','2026.09.30'],'GD-26088317':['GD-26088317','가이드','-','등록','서울특별시','2026.09.28']};const r=db[q], box=document.getElementById('regResult');box.hidden=false;box.innerHTML=r?'<h2>등록정보 확인</h2><dl><dt>등록번호</dt><dd>'+r[0]+'</dd><dt>구분</dt><dd>'+r[1]+'</dd><dt>등급</dt><dd>'+r[2]+'</dd><dt>관리상태</dt><dd>'+r[3]+'</dd><dt>관리지역</dt><dd>'+r[4]+'</dd><dt>최종 갱신</dt><dd>'+r[5]+'</dd></dl>':'<h2>조회 결과가 없습니다.</h2><p>입력하신 등록번호를 확인하시기 바랍니다.</p>'});
  let idx=0,playing=true,timer;const slides=document.getElementById('slides'),count=3;function move(n){idx=(idx+n+count)%count;slides.style.transform='translateX(-'+idx*100+'%)'}function restart(){clearInterval(timer);if(playing)timer=setInterval(()=>move(1),5000)}document.getElementById('prevSlide').onclick=()=>{move(-1);restart()};document.getElementById('nextSlide').onclick=()=>{move(1);restart()};document.getElementById('playSlide').onclick=()=>{playing=!playing;document.getElementById('playSlide').textContent=playing?'Ⅱ':'▶';document.getElementById('playSlide').setAttribute('aria-label',playing?'슬라이드 자동재생 일시정지':'슬라이드 자동재생 재생');restart()};restart();
