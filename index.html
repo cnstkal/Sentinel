@@ -1380,6 +1380,22 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
  .sentinel-info dl{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}
  .sentinel-info dl div:last-child{grid-column:1/-1}
 }
+
+/* 청사 및 찾아오시는 길 */
+.location-summary{display:grid;grid-template-columns:1.5fr 1fr 1fr;border:1px solid var(--line);margin-bottom:22px}
+.location-summary>div{padding:18px 20px;border-right:1px solid var(--line)}.location-summary>div:last-child{border-right:0}
+.location-summary span,.location-summary small{display:block;color:#718091;font-size:11px}.location-summary b{display:block;color:var(--navy);font-size:15px;margin:4px 0}.location-summary small{font-size:11px}
+.location-map-wrap{border:1px solid var(--line);background:#fff;margin-bottom:28px}.location-map-head{min-height:58px;padding:12px 16px;border-bottom:1px solid var(--line2);display:flex;justify-content:space-between;align-items:center}.location-map-head b{display:block;color:var(--navy);font-size:14px}.location-map-head span{font-size:11px;color:#718091}.location-map-note{font-size:10px!important;color:#8995a2!important}
+.location-map{height:340px;position:relative;overflow:hidden;background:#eef2f4;background-image:linear-gradient(rgba(255,255,255,.62) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.62) 1px,transparent 1px);background-size:48px 48px}
+.map-road{position:absolute;background:#fff;border:1px solid #d4dbe0;box-shadow:0 0 0 1px rgba(255,255,255,.4)}.road-h1{left:-5%;right:-5%;top:46%;height:27px;transform:rotate(-3deg)}.road-h2{left:-5%;right:-5%;top:73%;height:12px;transform:rotate(8deg)}.road-v1{top:-10%;bottom:-10%;left:49%;width:25px;transform:rotate(9deg)}.road-v2{top:-10%;bottom:-10%;left:27%;width:12px;transform:rotate(-12deg)}.road-d1{width:145%;height:14px;left:-20%;top:22%;transform:rotate(28deg)}
+.map-block{position:absolute;background:#e3e8eb;border:1px solid #d2d9de}.block-1{width:20%;height:25%;left:7%;top:8%}.block-2{width:17%;height:31%;right:7%;top:9%}.block-3{width:22%;height:24%;left:9%;bottom:9%}.block-4{width:25%;height:20%;right:6%;bottom:12%}
+.map-label{position:absolute;font-size:10px;color:#6c7a87;background:rgba(255,255,255,.75);padding:2px 5px}.label-gov{left:18%;top:38%}.label-square{left:55%;top:31%}.label-city{right:17%;bottom:29%}
+.location-pin{position:absolute;left:50%;top:52%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;filter:drop-shadow(0 2px 2px rgba(0,0,0,.16));z-index:3}.location-pin i{width:18px;height:18px;background:var(--blue);border:4px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:block}.location-pin i:after{content:"";position:absolute;width:5px;height:5px;background:#fff;border-radius:50%;left:3px;top:3px}.location-pin b{margin-top:5px;background:#fff;border:1px solid #cbd4dc;padding:5px 8px;color:var(--navy);font-size:11px;white-space:nowrap}.location-pin span{font-size:9px;color:#718091;background:#fff;padding:0 5px 3px;border:1px solid #cbd4dc;border-top:0}
+.map-scale{position:absolute;left:18px;bottom:15px;color:#68798b;font-size:9px}.map-scale span{display:inline-block;width:55px;border-top:2px solid #718091;margin-right:5px;vertical-align:middle}.map-scale em{font-style:normal}
+.location-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px}.location-info-grid section{border:1px solid var(--line);padding:0 18px 18px}.location-info-grid .location-heading{border-top:0;margin:0 -18px 15px;padding:13px 18px;background:#f5f7f9;border-bottom:1px solid var(--line);font-size:15px}.location-detail b{font-size:14px;color:var(--navy)}.location-detail p{margin:5px 0 0;font-size:11px;color:#68798b}.copy-address{margin-top:12px;border:1px solid #bfcbd6;background:#fff;padding:6px 10px;font-size:11px;color:#435467}.copy-address:hover{border-color:var(--blue);color:var(--blue)}
+.location-heading{font-size:18px;color:var(--navy);margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--blue)}
+.visit-guide{border:1px solid var(--line);background:#f7f9fb;margin-top:20px;padding:15px 18px}.visit-guide strong{display:block;color:var(--navy);font-size:14px;margin-bottom:10px}.visit-guide div{font-size:12px;color:#596979;padding:6px 0;border-top:1px solid #e3e8ed}.visit-guide span{display:inline-block;width:28px;color:var(--blue);font-weight:800}
+@media(max-width:700px){.location-summary{grid-template-columns:1fr}.location-summary>div{border-right:0;border-bottom:1px solid var(--line)}.location-summary>div:last-child{border-bottom:0}.location-map{height:275px}.location-map-head{align-items:flex-start;gap:8px;flex-direction:column}.location-map-note{display:none}.location-info-grid{grid-template-columns:1fr}.location-pin b{font-size:10px}.location-pin{left:52%;top:53%}}
 </style>
 </head>
 <body>
@@ -1833,17 +1849,34 @@ footer{background:var(--navy2);border-top:4px solid var(--blue)}
 <section class="page" id="location">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>청사 및 찾아오시는 길</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a class="active" href="#location">청사 및 찾아오시는 길</a></aside>
- <div><div class="content-head"><h1>청사 및 찾아오시는 길</h1><p>센티넬안전관리청 본원 청사 위치와 대중교통 이용방법을 안내함.</p></div><div class="content-body">
-  <div class="location-summary"><div><span>청사 주소</span><b>세종특별자치시 가상로 101</b></div><div><span>대표전화</span><b>044-201-3001</b></div><div><span>민원 안내</span><b>평일 09:00~18:00</b></div></div>
-  <div class="location-map"><div class="location-map-label"><b>센티넬안전관리청 본원</b><span>세종특별자치시 가상로 101</span></div><div class="location-map-road road-a"></div><div class="location-map-road road-b"></div><div class="location-pin">SSA</div></div>
+ <div><div class="content-head"><h1>청사 및 찾아오시는 길</h1><p>센티넬안전관리청 본원 청사 위치와 방문·교통 정보를 안내함.</p></div><div class="content-body">
+  <div class="location-summary">
+   <div><span>본원</span><b>서울특별시 종로구 세종대로 101</b><small>센티넬안전관리청 본원</small></div>
+   <div><span>대표전화</span><b>02-201-3001</b><small>평일 09:00~18:00</small></div>
+   <div><span>민원 안내</span><b>방문민원 접수</b><small>평일 09:00~17:30</small></div>
+  </div>
+  <div class="location-map-wrap">
+   <div class="location-map-head"><div><b>본원 위치</b><span>서울특별시 종로구 세종대로 101</span></div><span class="location-map-note">지도는 청사 위치 확인을 위한 안내용임</span></div>
+   <div class="location-map">
+    <div class="map-block block-1"></div><div class="map-block block-2"></div><div class="map-block block-3"></div><div class="map-block block-4"></div>
+    <div class="map-road road-h1"></div><div class="map-road road-h2"></div><div class="map-road road-v1"></div><div class="map-road road-v2"></div><div class="map-road road-d1"></div>
+    <div class="map-label label-gov">정부서울청사</div><div class="map-label label-square">광화문광장</div><div class="map-label label-city">종로구청</div>
+    <div class="location-pin"><i></i><b>센티넬안전관리청</b><span>본원</span></div>
+    <div class="map-scale"><span></span><em>200 m</em></div>
+   </div>
+  </div>
+  <div class="location-info-grid">
+   <section><h2 class="location-heading">주소</h2><div class="location-detail"><b>서울특별시 종로구 세종대로 101</b><p>우편번호 03172</p><button type="button" class="copy-address" data-copy="서울특별시 종로구 세종대로 101">주소 복사</button></div></section>
+   <section><h2 class="location-heading">대표 연락처</h2><div class="location-detail"><b>02-201-3001</b><p>민원·방문 안내 평일 09:00~18:00</p><p>방문민원 접수 마감 17:30</p></div></section>
+  </div>
   <h2 class="location-heading">대중교통 이용</h2>
-  <table class="data-table"><thead><tr><th>구분</th><th>이용 방법</th><th>하차·도보</th></tr></thead><tbody>
-   <tr><td><b>버스</b></td><td>정부세종청사 방면 간선·광역버스 이용</td><td>정부세종청사 정류장 하차 후 도보 약 8분</td></tr>
-   <tr><td><b>철도</b></td><td>오송역 하차 후 BRT 또는 연계버스 이용</td><td>오송역에서 약 25~35분</td></tr>
-   <tr><td><b>승용차</b></td><td>정부세종청사 인근 도로를 따라 청사 진입</td><td>방문객 주차장 이용</td></tr>
+  <table class="data-table"><thead><tr><th>구분</th><th>이용 방법</th><th>하차·이동</th></tr></thead><tbody>
+   <tr><td><b>지하철</b></td><td>5호선 광화문역 또는 3호선 경복궁역 이용</td><td>광화문역 2번 출구에서 도보 약 7분</td></tr>
+   <tr><td><b>버스</b></td><td>세종문화회관·정부서울청사 인근 정류장 이용</td><td>정류장 하차 후 도보 약 3~8분</td></tr>
+   <tr><td><b>승용차</b></td><td>세종대로 방면으로 진입 후 청사 방문객 주차구역 이용</td><td>주차공간이 제한되어 대중교통 이용 권장</td></tr>
   </tbody></table>
-  <div class="notice-area"><strong>방문 안내</strong> · 민원·상담 방문 시 신분증을 지참하시기 바랍니다. 부서 방문은 사전 연락 후 이용하시기 바랍니다.</div>
-  <div class="meta"><span>담당부서: 운영지원과</span><span>전화 044-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
+  <div class="visit-guide"><strong>방문 안내</strong><div><span>01</span>부서 방문은 담당 부서에 사전 연락 후 방문하시기 바랍니다.</div><div><span>02</span>방문 시 신분증을 지참하고 1층 안내데스크에서 방문 등록을 진행합니다.</div><div><span>03</span>청사 보안 및 민원 처리 사유에 따라 일부 구역의 출입이 제한될 수 있습니다.</div></div>
+  <div class="meta"><span>담당부서: 운영지원과</span><span>전화 02-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
 
