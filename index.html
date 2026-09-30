@@ -1531,7 +1531,14 @@ footer{background:var(--navy2);border-top:0}
  .map-section-inner{width:calc(100% - 28px);max-width:100%;margin:0 auto}
  .map-section-inner .section-head{width:100%}
  .map-section-inner .map-box{width:100%}
-}</style>
+}
+/* Disaster message text sizing */
+.alert-history-table td:nth-child(4){font-size:13px;line-height:1.65}
+@media(max-width:700px){
+  .alert-history-table td:nth-child(4),
+  .alert-history-table td:nth-child(4) *{font-size:12px;line-height:1.6}
+}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
