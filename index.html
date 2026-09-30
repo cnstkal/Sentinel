@@ -1573,6 +1573,65 @@ input,select,textarea{font-size:16px}
   #mission .data-table th:last-child,
   #mission .data-table td:last-child{width:75%}
 }
+
+/* ===== Subtle interface motion ===== */
+@keyframes pageFadeUp{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.page.active{
+  animation:pageFadeUp .28s ease-out both;
+}
+.hero-copy h1,.hero-notice{
+  animation:pageFadeUp .35s ease-out both;
+}
+.hero-notice{animation-delay:.04s}
+.quick,
+.type-card,
+.panel,
+.search-result-item,
+.notice-area,
+.info-box,
+.submit,
+.popup-primary,
+.back-to-list{
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background-color .18s ease;
+}
+@media(min-width:701px){
+  .quick:hover,
+  .type-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 16px rgba(23,38,58,.07);
+  }
+  .search-result-item:hover{
+    transform:translateX(3px);
+  }
+}
+.search-form button,
+.nav-trigger,
+.all-menu,
+.mobile-menu,
+button,
+a{
+  transition:color .16s ease,background-color .16s ease,border-color .16s ease,opacity .16s ease;
+}
+.crisis-map-svg .region{
+  transition:filter .18s ease,opacity .18s ease;
+}
+@media(min-width:701px){
+  .crisis-map-svg .region:hover{
+    filter:brightness(.97);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .page.active,
+  .hero-copy h1,
+  .hero-notice{animation:none!important}
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}
 </style>
 </head>
 <body>
