@@ -1736,7 +1736,9 @@ img{height:auto}.sentinel-photo img,.apostle-photo img{height:100%}
 .photo-admin .photo-del:not([hidden]){display:block}
 .admin-pill{position:fixed;right:16px;bottom:16px;z-index:99998;border:0;border-radius:999px;background:#d43c3c;color:#fff;padding:10px 16px;font-size:13px;font-weight:700;box-shadow:0 6px 22px rgba(0,0,0,.25);cursor:pointer}
 .photo-admin .admin-pill{display:block}
-.row-actions{display:none}.photo-admin .row-actions{display:flex}
+.row-actions{display:flex}.photo-btn{display:block}.photo-del:not([hidden]){display:block}
+.notice-area:not(:first-child),.info-box:not(:first-child){margin-top:24px}
+.notice-area+.back-to-list,.info-box+.back-to-list,.content-body>*+.back-to-list{margin-top:28px}
 .sentinel-row,.apostle-row{cursor:pointer}
 html{touch-action:manipulation;-webkit-text-size-adjust:100%}
 .foot-admin{margin-left:auto;opacity:.45;font-weight:400!important}
@@ -2686,7 +2688,7 @@ addEventListener('hashchange',render);render();
 ['gesturestart','gesturechange'].forEach(t=>document.addEventListener(t,e=>e.preventDefault()));
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<350)e.preventDefault();lt=n},{passive:false});
 const fl=document.querySelector('.footer-links .container');
-if(fl){const a=document.createElement('a');a.href='#photo-admin';a.className='foot-admin';a.textContent='사진 관리';fl.appendChild(a)}
+
 })();
 </script>
 </body>
