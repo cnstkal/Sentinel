@@ -1604,87 +1604,25 @@ a{
   .mobile-panel details{border-bottom:0!important}
   .mobile-panel details>div{border-top:0!important}
 }
-.apostle-list{border-top:2px solid var(--navy);border-bottom:1px solid var(--line);background:#fff}
-.apostle-row{display:grid;grid-template-columns:1.4fr 1fr auto;align-items:center;gap:20px;padding:18px 16px;border-bottom:1px solid var(--line2)}
+.apostle-list{border:1px solid var(--line);border-top:2px solid var(--navy);background:#fff;overflow:hidden}
+.apostle-row{display:flex;gap:24px;align-items:center;padding:18px 14px;border-bottom:1px solid var(--line);min-height:150px;cursor:pointer}
 .apostle-row:last-child{border-bottom:0}
-.apostle-row strong{display:block;color:var(--navy);font-size:15px}
-.apostle-row span{display:block;margin-top:5px;color:var(--muted);font-size:12px}
-.apostle-row b{display:block;color:var(--blue-dark);font-size:13px}
-.apostle-row small{display:block;margin-top:4px;color:var(--sub);font-size:11px}
-.apostle-row .sentinel-detail-btn{white-space:nowrap}
+.apostle-row:hover{background:#fafcff}
+.apostle-row:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
+.apostle-photo{width:92px;height:116px;flex:none;border:1px solid #cfd7df;border-radius:8px;background:#f3f5f7;display:flex;align-items:center;justify-content:center;color:#7b8793;font-size:11px;overflow:hidden}
+.apostle-info{flex:1;min-width:0}
+.apostle-info>strong{display:block;font-size:19px;color:var(--navy);margin-bottom:12px}
+.apostle-info dl{display:flex;gap:34px;margin:0}
+.apostle-info dl div{display:flex;gap:9px;align-items:baseline}
+.apostle-info dt{font-size:12px;color:#718091;font-weight:700}
+.apostle-info dd{margin:0;font-size:13px;color:var(--text)}
 @media(max-width:700px){
-  .apostle-row{grid-template-columns:1fr auto;gap:10px 14px;padding:15px 12px}
-  .apostle-row>div:nth-child(2){text-align:right}
-  .apostle-row .sentinel-detail-btn{grid-column:1/-1;justify-self:start;margin-top:2px}
-  .apostle-row strong{font-size:13px}
-  .apostle-row span{font-size:11px}
-  .apostle-row b{font-size:12px}
-  .apostle-row small{font-size:10px}
-}
-.sentinel-photo,.apostle-photo{
-  overflow:hidden;
-  background:#f2f5f8;
-  border:1px solid #d7dfe7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#8a98a7;
-}
-.sentinel-photo{position:relative}
-.sentinel-photo img,.apostle-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.apostle-photo{width:58px;height:72px;grid-row:span 2}
-.apostle-photo span{font-size:10px}
-.apostle-row{grid-template-columns:58px 1.4fr 1fr auto}
-@media(max-width:700px){
-  .apostle-row{grid-template-columns:52px 1fr auto;gap:10px 12px}
-  .apostle-photo{width:52px;height:66px;grid-row:span 2}
-  .apostle-row>div:nth-child(3){text-align:right}
-  .apostle-row .sentinel-detail-btn{grid-column:2/-1}
-}
-.apostle-photo img:not([src=""]){display:block!important}.apostle-photo img[src=""]{display:none!important}.apostle-photo:has(img[src=""]){display:flex}
-.apostle-photo img:not([src=""])+span{display:none!important}
-.apostle-row:first-child{
-  grid-template-columns:190px minmax(0,1.4fr) minmax(110px,.7fr) auto;
-  min-height:190px;
-}
-.apostle-row:first-child .apostle-photo{
-  width:190px;
-  height:190px;
-}
-.apostle-row:first-child .apostle-photo img{
-  object-fit:cover;
-}
-@media(max-width:700px){
-  .apostle-row:first-child{
-    grid-template-columns:1fr;
-    gap:14px;
-    padding:18px 14px;
-  }
-  .apostle-row:first-child .apostle-photo{
-    width:100%;
-    max-width:none;
-    height:250px;
-  }
-  .apostle-row:first-child>div:nth-child(2),
-  .apostle-row:first-child>div:nth-child(3){
-    text-align:left;
-  }
-  .apostle-row:first-child .sentinel-detail-btn{
-    grid-column:auto;
-    justify-self:start;
-  }
-}
-.apostle-photo span{display:none!important}
-.apostle-row:first-child{grid-template-columns:250px minmax(0,1.4fr) minmax(110px,.7fr) auto;min-height:250px}
-.apostle-row:first-child .apostle-photo{width:250px;height:250px}
-.apostle-row:first-child .apostle-photo img{width:100%;height:100%;object-fit:cover}
-@media(max-width:700px){
-  .apostle-row:first-child{grid-template-columns:1fr;gap:16px;padding:18px 14px}
-  .apostle-row:first-child .apostle-photo{width:100%;height:auto;aspect-ratio:4/3}
-  .apostle-row:first-child .apostle-photo img{object-fit:cover}
-  .apostle-row:first-child>div:nth-child(2),.apostle-row:first-child>div:nth-child(3){text-align:left}
-}
-</style>
+ .apostle-row{gap:16px;padding:16px 8px;min-height:132px}
+ .apostle-photo{width:72px;height:92px}
+ .apostle-info>strong{font-size:17px;margin-bottom:8px}
+ .apostle-info dl{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}
+ .apostle-info dl div:last-child{grid-column:1/-1}
+}</style>
 <style id="final-polish">
 /* ===== 최종 디자인 보정 / 사진 등록 ===== */
 :root{--r:10px;--sh:0 2px 10px rgba(23,38,58,.06);--sh2:0 6px 22px rgba(23,38,58,.12)}
@@ -1964,325 +1902,15 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
  <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a class="active" href="#apostles">사도 목록</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></aside>
  <div><div class="content-head"><h1>사도 목록</h1><p>등록·관리 중인 사도의 공개 가능한 기본정보를 확인하실 수 있습니다.</p></div><div class="content-body">
   <div class="apostle-list">
-   <article class="apostle-row"><div class="apostle-photo"><img src="data:image/jpeg;base64,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" alt="SA-260104 사도 사진"><span>사진</span></div><div><strong>SA-260104</strong><span>1등급 · 에너지형 · 희귀</span></div><div><b>희귀 관찰</b><small>서울특별시</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=0">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260117</strong><span>2등급 · 인지·감각형</span></div><div><b>등록</b><small>인천광역시</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=1">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260203</strong><span>3등급 · 물리변환형</span></div><div><b>관찰</b><small>경기도</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=2">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260228</strong><span>3등급 · 생체영향형</span></div><div><b>등록</b><small>대전광역시</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=3">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260315</strong><span>4등급 · 환경영향형</span></div><div><b>보호관리</b><small>부산광역시</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=4">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260402</strong><span>2등급 · 공간·이동형</span></div><div><b>등록</b><small>서울특별시</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=5">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260519</strong><span>5등급 · 에너지형</span></div><div><b>관찰</b><small>강원특별자치도</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=6">등록정보</a></article>
-   <article class="apostle-row"><div class="apostle-photo"><img src="" alt="" hidden><span>사진</span></div><div><strong>SA-260601</strong><span>3등급 · 인지·감각형</span></div><div><b>등록</b><small>충청권역</small></div><a class="sentinel-detail-btn" href="#apostle-profile?id=7">등록정보</a></article>
-  </div>
-  <div class="notice-area"><strong>공개 범위 안내</strong><br>개인의 안전과 권익 보호를 위해 성명, 상세 능력 및 개인식별정보는 공개하지 않습니다.</div>
-  <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.10.01.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="register">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#classification">사도 분류·관리</a><span>›</span><strong>등록 확인</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a class="active" href="#register">등록 확인</a></aside><div><div class="content-head"><h1>등록 확인</h1><p>등록번호를 이용하여 공개 가능한 등록 상태를 확인할 수 있습니다.</p></div><div class="content-body">
-  <form class="detail-search" id="registrationSearch"><label class="sr-only" for="regNo">등록번호</label><input id="regNo" placeholder="등록번호 입력 예: SN-26018492"><button>조회</button></form><div id="regResult" class="search-result" hidden></div>
-  <div class="notice-area">개인식별정보 및 상세 능력정보는 본인확인 후 별도 절차를 통해 제공합니다.</div>
-  <div class="table-scroll"><table class="data-table"><thead><tr><th>등록번호</th><th>구분</th><th>등급</th><th>관리 상태</th><th>최종 갱신</th></tr></thead><tbody><tr><td>SN-26018492</td><td>사도</td><td>3등급</td><td><span class="badge b-on">등록</span></td><td>2026.09.29</td></tr><tr><td>SN-26017421</td><td>사도</td><td>4등급</td><td><span class="badge b-review">관찰</span></td><td>2026.09.30</td></tr><tr><td>GD-26088317</td><td>가이드</td><td>-</td><td><span class="badge b-on">등록</span></td><td>2026.09.28</td></tr></tbody></table></div>
-  <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="survey">
-<div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>누리집 이용자 설문</strong></div></div>
-<div class="container page-layout"><aside class="side-nav"><h2>참여</h2><a class="active" href="#survey">누리집 이용자 설문</a></aside><div>
-<div class="content-head"><h1>누리집 이용자 설문</h1><p>센티넬안전관리청 누리집 이용 경험에 관한 짧은 설문입니다.</p></div>
-<div class="content-body"><form id="surveyForm" class="survey-form">
-<fieldset><legend>1. 가장 자주 이용하는 정보는 무엇인가요?</legend><label><input type="radio" name="q1" required> 안전정보</label><label><input type="radio" name="q1"> 공지사항</label><label><input type="radio" name="q1"> 신고·민원</label><label><input type="radio" name="q1"> 등록·등급</label></fieldset>
-<fieldset><legend>2. 필요한 정보를 찾기 쉬웠나요?</legend><label><input type="radio" name="q2" required> 매우 쉬움</label><label><input type="radio" name="q2"> 쉬움</label><label><input type="radio" name="q2"> 보통</label><label><input type="radio" name="q2"> 어려움</label></fieldset>
-<fieldset><legend>3. 가장 개선되었으면 하는 부분은?</legend><label><input type="radio" name="q3" required> 검색</label><label><input type="radio" name="q3"> 모바일 이용</label><label><input type="radio" name="q3"> 정보 구성</label><label><input type="radio" name="q3"> 신고·민원</label></fieldset>
-<label class="survey-comment">추가 의견<textarea maxlength="300" placeholder="의견이 있다면 자유롭게 작성해 주세요."></textarea></label>
-<div class="form-actions"><button type="submit" class="submit">설문 제출</button></div></form><div id="surveyResult" class="report-result" hidden></div></div></div></div>
-</section>
-<section class="page" id="faq">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#report">신고·민원</a><span>›</span><strong>자주 묻는 질문</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a href="#report">활동 신고</a><a href="#faq" class="active">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside>
- <div><div class="content-head"><h1>자주 묻는 질문</h1><p>활동 신고·등록·등급판정 및 공공안전 자율대응장치에 관한 주요 문의를 안내합니다.</p></div><div class="content-body faq-list">
-  <details open><summary>사도 활동 신고는 어디에서 할 수 있나요?</summary><p>누리집의 ‘활동 신고’에서 발생 지역과 상황을 입력해 접수할 수 있습니다. 생명 또는 신체에 즉각적인 위험이 있는 경우에는 119 또는 112를 이용하시기 바랍니다.</p></details>
-  <details><summary>등록번호를 잊어버린 경우 어떻게 하나요?</summary><p>등록관리과 또는 관할 지역관리국에 본인확인 후 등록 상태 확인을 요청할 수 있습니다. 본인확인 없이 개인의 상세 등록정보는 제공하지 않습니다.</p></details>
-  <details><summary>능력등급은 어떤 기준으로 결정되나요?</summary><p>능력의 출력·범위·지속시간과 공공안전에 미치는 영향 가능성 등을 종합하여 판정합니다. 능력 유형 자체만으로 등급이 결정되지는 않습니다.</p></details>
-  <details><summary>등급 판정 결과에 이의가 있으면 어떻게 하나요?</summary><p>판정 결과 통지를 받은 날부터 정해진 기간 내 이의신청을 할 수 있습니다. 구체적인 절차와 제출서류는 판정 결과 통지서에 안내됩니다.</p></details>
-  <details><summary>ARU가 이상하게 작동하는 경우 어떻게 신고하나요?</summary><p>‘활동 신고’에서 ARU 오작동 신고를 선택해 접수할 수 있습니다. 현장 접근으로 인해 위험이 발생할 수 있는 경우 장치에 직접 접근하지 말고 안전거리를 유지하시기 바랍니다.</p></details>
-  <details><summary>재난문자 이력은 어디에서 확인할 수 있나요?</summary><p>‘국민안전 안내 → 재난문자 이력’에서 발송일시·지역·경보단계·문자 내용을 확인할 수 있습니다.</p></details>
-  <div class="meta"><span>담당부서: 민원지원과</span><span>전화 044-201-3407</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="status">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">신고·민원</a><span>›</span><strong>민원 처리 현황</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a class="active" href="#status">민원 처리 현황</a></aside>
- <div><div class="content-head"><h1>민원 처리 현황</h1><p>접수번호와 본인확인 정보를 이용하여 민원의 현재 처리상태를 확인할 수 있습니다.</p></div><div class="content-body">
- <div class="notice-area"><strong>조회 안내</strong> · 접수번호는 민원 신청 완료 시 발급된 번호를 입력하시기 바랍니다. 개인정보 보호를 위해 상세 내용은 본인확인 후 제공됩니다.</div>
- <form class="detail-search" id="civilStatusForm"><label class="sr-only" for="civilNo">접수번호</label><input id="civilNo" required placeholder="접수번호 예: MIN-260930-1842"><button>조회</button></form>
- <div id="civilStatusResult" class="search-result" hidden></div>
- <div class="table-scroll"><table class="data-table"><thead><tr><th>접수번호</th><th>민원유형</th><th>접수일</th><th>현재 단계</th><th>담당기관</th></tr></thead><tbody>
- <tr><td>MIN-260930-1842</td><td>등록정보 정정</td><td>2026.09.30</td><td><span class="badge b-review">검토 중</span></td><td>서울지역관리국</td></tr>
- <tr><td>MIN-260928-0731</td><td>ARU 시설 점검 요청</td><td>2026.09.28</td><td><span class="badge b-on">처리완료</span></td><td>경기남부지역관리국</td></tr>
- <tr><td>MIN-260925-4216</td><td>능력등급 판정 이의신청</td><td>2026.09.25</td><td><span class="badge b-limit">관계부서 검토</span></td><td>등록관리과</td></tr>
- </tbody></table></div>
- <div class="meta"><span>담당부서: 민원지원과</span><span>전화 044-201-3407</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="notice">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>공지사항</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a class="active" href="#notice">공지사항</a><a href="#press">보도자료</a></aside><div><div class="content-head"><h1>공지사항</h1><p>센티넬안전관리청의 주요 행정사항과 국민 안내사항을 제공합니다.</p></div><div class="content-body">
-  <div class="board-tools"><span class="count">전체 36건 · 1 / 4 페이지</span><form class="board-search"><select aria-label="검색조건"><option>제목</option><option>내용</option><option>작성자</option></select><input placeholder="검색어"><button>검색</button></form></div>
-  <div class="table-scroll"><table class="data-table"><thead><tr><th style="width:70px">번호</th><th>제목</th><th style="width:90px">첨부</th><th style="width:120px">작성자</th><th style="width:105px">작성일</th><th style="width:75px">조회수</th></tr></thead><tbody>
-   <tr data-notice-row="0"><td>36</td><td><b class="notice-badge">공지</b><a href="#notice-view?id=0">2026년 하반기 표준대응 장치 정기 안전점검에 따른 일부 시설 운용중지 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>운용기획과</td><td>2026.09.24</td><td>1,482</td></tr>
-   <tr data-notice-row="1"><td>35</td><td><a href="#notice-view?id=1">권역지원센터 야간 상담체계 전환 및 긴급 안전확인 접수 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>권익보호과</td><td>2026.09.18</td><td>923</td></tr>
-   <tr data-notice-row="2"><td>34</td><td><a href="#notice-view?id=2">민간 능력중개업체 등록정보 확인 의무 및 이용자 유의사항 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>감독총괄과</td><td>2026.09.11</td><td>1,104</td></tr>
-   <tr data-notice-row="3"><td>33</td><td><a href="#notice-view?id=3">국가 위기경보 단계 상향에 따른 지역별 안전수칙 준수 안내</a></td><td>-</td><td>홍보담당관</td><td>2026.08.30</td><td>2,314</td></tr>
-   <tr data-notice-row="4"><td>32</td><td><a href="#notice-view?id=4">등록 센티넬 2026년 하반기 정기 안전교육 이수기한 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>교육운영과</td><td>2026.08.21</td><td>1,004</td></tr>
-   <tr data-notice-row="5"><td>31</td><td><a href="#notice-view?id=5">2026년도 능력등급 재판정 신청기간 및 제출서류 안내</a></td><td>-</td><td>등록관리과</td><td>2026.08.13</td><td>687</td></tr>
-   <tr data-notice-row="6"><td>30</td><td><a href="#notice-view?id=6">폭염특보 기간 중 고출력 능력 사용 관련 안전관리 강화 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>재난대응과</td><td>2026.08.05</td><td>1,231</td></tr>
-   <tr data-notice-row="7"><td>29</td><td><a href="#notice-view?id=7">서울권역지원센터 주말 등록업무 시범운영 및 사전예약 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>권역지원과</td><td>2026.07.29</td><td>856</td></tr>
-   <tr data-notice-row="8"><td>28</td><td><a href="#notice-view?id=8">공공시설 ARU 안전점검 결과 공개범위 및 확인방법 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU안전과</td><td>2026.07.22</td><td>744</td></tr>
-   <tr data-notice-row="9"><td>27</td><td><a href="#notice-view?id=9">학교 주변 능력안전구역 운영기준 변경 및 학교 대응절차 안내</a></td><td>-</td><td>생활안전과</td><td>2026.07.15</td><td>1,562</td></tr>
-   <tr data-notice-row="10"><td>26</td><td><a href="#notice-view?id=10">해안 관광지 성수기 특별안전관리기간 운영 및 현장 신고 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>지역대응과</td><td>2026.07.08</td><td>934</td></tr>
-   <tr data-notice-row="11"><td>25</td><td><a href="#notice-view?id=11">가이드 권익보호 상담기록 개인정보 처리기준 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>권익보호과</td><td>2026.06.30</td><td>612</td></tr>
-   <tr data-notice-row="12"><td>24</td><td><a href="#notice-view?id=12">ARU 오작동·이상작동 신고 통합창구 개편 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU안전과</td><td>2026.06.24</td><td>1,047</td></tr>
-   <tr data-notice-row="13"><td>23</td><td><a href="#notice-view?id=13">지역관리국 민원 처리단계 조회서비스 운영방법 안내</a></td><td>-</td><td>민원총괄과</td><td>2026.06.17</td><td>529</td></tr>
-   <tr data-notice-row="14"><td>22</td><td><a href="#notice-view?id=14">대형 공연장 능력안전 관리지침 개정 및 시설관리자 준수사항 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>다중이용시설과</td><td>2026.06.10</td><td>1,386</td></tr>
-   <tr data-notice-row="15"><td>21</td><td><a href="#notice-view?id=15">청소년 능력안전 교육자료 개편에 따른 학교 이용방법 안내</a></td><td>-</td><td>교육운영과</td><td>2026.06.03</td><td>802</td></tr>
-   <tr data-notice-row="16"><td>20</td><td><a href="#notice-view?id=16">산악지역 안전확인 요청 증가에 따른 탐방객 신고요령 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>지역대응과</td><td>2026.05.27</td><td>713</td></tr>
-   <tr data-notice-row="17"><td>19</td><td><a href="#notice-view?id=17">찾아가는 등록상담 대상지역 및 방문상담 신청방법 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>등록관리과</td><td>2026.05.20</td><td>1,119</td></tr>
-   <tr data-notice-row="18"><td>18</td><td><a href="#notice-view?id=18">대학 캠퍼스 능력안전 담당자 지정 및 사고보고 절차 안내</a></td><td>-</td><td>생활안전과</td><td>2026.05.13</td><td>645</td></tr>
-   <tr data-notice-row="19"><td>17</td><td><a href="#notice-view?id=19">공공시설 ARU 야간 운용기준 변경에 따른 이용자 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU안전과</td><td>2026.05.06</td><td>591</td></tr>
-   <tr data-notice-row="20"><td>16</td><td><a href="#notice-view?id=20">공항·항만 능력안전 협력체계 개편 및 해외입국자 안전확인 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>국제협력과</td><td>2026.04.29</td><td>884</td></tr>
-   <tr data-notice-row="21"><td>15</td><td><a href="#notice-view?id=21">능력 관련 허위정보 신고·정정 요청창구 운영기준 안내</a></td><td>-</td><td>홍보담당관</td><td>2026.04.22</td><td>1,307</td></tr>
-   <tr data-notice-row="22"><td>14</td><td><a href="#notice-view?id=22">지역축제 기간 임시 안전안내소 운영지역 및 이용방법 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>지역대응과</td><td>2026.04.15</td><td>756</td></tr>
-   <tr data-notice-row="23"><td>13</td><td><a href="#notice-view?id=23">능력등급 판정 결과 이의신청 접수기간 및 처리절차 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>등록관리과</td><td>2026.04.08</td><td>1,021</td></tr>
-   <tr data-notice-row="24"><td>12</td><td><a href="#notice-view?id=24">서울권역지원센터 방문객 출입동선 변경 및 민원실 이용 안내</a></td><td>-</td><td>서울지역관리국</td><td>2026.04.01</td><td>438</td></tr>
-   <tr data-notice-row="25"><td>11</td><td><a href="#notice-view?id=25">지역관리국 상황실 시스템 전환에 따른 신고접수 처리기준 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>상황총괄과</td><td>2026.03.25</td><td>667</td></tr>
-   <tr data-notice-row="26"><td>10</td><td><a href="#notice-view?id=26">공공시설 ARU 점검정보 시민 확인서비스 운영 확대 안내</a></td><td>-</td><td>ARU안전과</td><td>2026.03.18</td><td>973</td></tr>
-   <tr data-notice-row="27"><td>9</td><td><a href="#notice-view?id=27">한파 이후 ARU 설치시설 특별점검에 따른 일부 시설 이용제한 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>시설점검과</td><td>2026.03.11</td><td>812</td></tr>
-   <tr data-notice-row="28"><td>8</td><td><a href="#notice-view?id=28">능력안전 행정 표준용어 개정에 따른 민원서식 변경 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>정책기획과</td><td>2026.03.04</td><td>1,154</td></tr>
-   <tr data-notice-row="29"><td>7</td><td><a href="#notice-view?id=29">가이드 동조 관련 권익보호 설명자료 개정 및 제공방법 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>권익보호과</td><td>2026.02.25</td><td>1,443</td></tr>
-   <tr data-notice-row="30"><td>6</td><td><a href="#notice-view?id=30">설 연휴 다중이용시설 특별안전관리기간 및 신고체계 안내</a></td><td>-</td><td>재난대응과</td><td>2026.02.11</td><td>1,089</td></tr>
-   <tr data-notice-row="31"><td>5</td><td><a href="#notice-view?id=31">2026년 능력안전 연구지원사업 신청기간 및 지원대상 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>연구지원과</td><td>2026.02.04</td><td>923</td></tr>
-   <tr data-notice-row="32"><td>4</td><td><a href="#notice-view?id=32">상반기 찾아가는 능력안전 이동교육 신청기관 모집 안내</a></td><td><span class="file"><i>HWP</i></span></td><td>교육운영과</td><td>2026.01.21</td><td>702</td></tr>
-   <tr data-notice-row="33"><td>3</td><td><a href="#notice-view?id=33">공공안전 자율대응장치 안전인증 기준 개정안 행정예고 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU안전과</td><td>2026.01.14</td><td>1,265</td></tr>
-   <tr data-notice-row="34"><td>2</td><td><a href="#notice-view?id=34">2026년 지역관리국 정기 안전점검 일정 및 국민 확인방법 안내</a></td><td>-</td><td>상황총괄과</td><td>2026.01.07</td><td>634</td></tr>
-   <tr data-notice-row="35"><td>1</td><td><a href="#notice-view?id=35">2026년 국민 능력안전 정책자료 공개일정 및 의견제출 안내</a></td><td><span class="file"><i>PDF</i></span></td><td>정책기획과</td><td>2025.12.19</td><td>1,018</td></tr>
-  </tbody></table></div>
-  <div class="pagination notice-pagination" id="noticePagination"></div>
-  <div class="meta"><span>담당부서: 홍보담당관</span><span>전화 044-201-3452</span><span>최종 수정일: 2026.09.30.</span></div><div class="cc-by"><span class="cc-mark">공공누리 1유형</span>출처표시 조건에 따라 이용 가능합니다.</div>
- </div></div></div>
-</section>
-<section class="page" id="notice-view">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#notice">알림마당</a><span>›</span><a href="#notice">공지사항</a><span>›</span><strong>공지사항 상세</strong></div></div>
- <div class="container"><div class="notice-article" id="noticeArticle"></div></div>
-</section>
-<section class="page" id="press">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>보도자료</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a href="#notice">공지사항</a><a class="active" href="#press">보도자료</a><a href="#briefing">정책브리핑</a></aside>
- <div><div class="content-head"><h1>보도자료</h1><p>센티넬안전관리청의 주요 정책 추진현황과 행정사항을 안내합니다.</p></div><div class="content-body">
-  <div class="board-tools"><span class="count">총 40건 · 1 / 4 페이지</span><form class="board-search"><select aria-label="검색조건"><option>제목</option><option>내용</option><option>작성자</option></select><input id="pressSearch" placeholder="검색어"><button>검색</button></form></div>
-  <div class="table-scroll"><table class="data-table press-table"><thead><tr><th>번호</th><th>제목</th><th>첨부</th><th>작성부서</th><th>작성일</th><th>조회수</th></tr></thead><tbody><tr><td>40</td><td><a class="press-detail-link" href="#press-view?id=0">센티넬안전관리청, 2026년 하반기 표준대응 장치 안전점검 실시</a></td><td><span class="file"><i>PDF</i></span></td><td>대변인실</td><td>2026.09.29</td><td>684</td></tr><tr><td>39</td><td><a class="press-detail-link" href="#press-view?id=1">전국 권역지원센터 24시간 상담체계로 전환</a></td><td><span class="file"><i>PDF</i></span></td><td>권익보호과</td><td>2026.09.18</td><td>821</td></tr><tr><td>38</td><td><a class="press-detail-link" href="#press-view?id=2">민간 능력중개업체 관리감독 실태점검 결과 발표</a></td><td><span class="file"><i>PDF</i></span></td><td>감독총괄과</td><td>2026.09.11</td><td>958</td></tr><tr><td>37</td><td><a class="press-detail-link" href="#press-view?id=3">동조권 보호 강화안 전국 시행에 따른 현장 대응지침 배포</a></td><td><span class="file"><i>PDF</i></span></td><td>동조지원과</td><td>2026.09.05</td><td>1,095</td></tr><tr><td>36</td><td><a class="press-detail-link" href="#press-view?id=4">서울 대표센터, 주말 등록상담 시범운영 실시</a></td><td><span class="file"><i>PDF</i></span></td><td>서울권역지원센터</td><td>2026.08.29</td><td>1,232</td></tr><tr><td>35</td><td><a class="press-detail-link" href="#press-view?id=5">폭염 속 능력 출력 증가 사례 분석…여름철 안전수칙 공개</a></td><td><span class="file"><i>PDF</i></span></td><td>재난대응과</td><td>2026.08.22</td><td>1,369</td></tr><tr><td>34</td><td><a class="press-detail-link" href="#press-view?id=6">지하철 역사 내 ARU 안전구역 표시체계 전국 표준화</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU운용과</td><td>2026.08.15</td><td>1,506</td></tr><tr><td>33</td><td><a class="press-detail-link" href="#press-view?id=7">사도 등록정보 모바일 조회 서비스 개편</a></td><td><span class="file"><i>PDF</i></span></td><td>등록관리과</td><td>2026.08.07</td><td>1,643</td></tr><tr><td>32</td><td><a class="press-detail-link" href="#press-view?id=8">학교 주변 능력안전구역 시범사업 2단계 추진</a></td><td><span class="file"><i>PDF</i></span></td><td>어린이안전과</td><td>2026.07.31</td><td>1,780</td></tr><tr><td>31</td><td><a class="press-detail-link" href="#press-view?id=9">해안 관광지 성수기 안전확인 지원반 운영</a></td><td><span class="file"><i>PDF</i></span></td><td>현장대응과</td><td>2026.07.24</td><td>1,917</td></tr><tr><td>30</td><td><a class="press-detail-link" href="#press-view?id=10">등록 센티넬 정기 안전교육 온라인 과정 개설</a></td><td><span class="file"><i>PDF</i></span></td><td>교육운영과</td><td>2026.07.17</td><td>2,054</td></tr><tr><td>29</td><td><a class="press-detail-link" href="#press-view?id=11">국가 능력안전 통계 연보 첫 공개…10년간 신고 추이 분석</a></td><td><span class="file"><i>PDF</i></span></td><td>통계기획팀</td><td>2026.07.10</td><td>2,191</td></tr><tr><td>28</td><td><a class="press-detail-link" href="#press-view?id=12">야간 도심 능력활동 신고 증가…여름철 순찰체계 조정</a></td><td><span class="file"><i>PDF</i></span></td><td>상황총괄과</td><td>2026.07.03</td><td>2,328</td></tr><tr><td>27</td><td><a class="press-detail-link" href="#press-view?id=13">가이드 보호지원 프로그램 이용자 1만 명 돌파</a></td><td><span class="file"><i>PDF</i></span></td><td>가이드보호과</td><td>2026.06.26</td><td>2,465</td></tr><tr><td>26</td><td><a class="press-detail-link" href="#press-view?id=14">ARU 오작동 신고 1회 통합창구 개설</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU운용과</td><td>2026.06.19</td><td>2,602</td></tr><tr><td>25</td><td><a class="press-detail-link" href="#press-view?id=15">지역관리국 민원 처리기간 공개 확대</a></td><td><span class="file"><i>PDF</i></span></td><td>민원지원과</td><td>2026.06.12</td><td>2,739</td></tr><tr><td>24</td><td><a class="press-detail-link" href="#press-view?id=16">대형 공연장 능력안전 운영지침 마련</a></td><td><span class="file"><i>PDF</i></span></td><td>다중이용시설안전과</td><td>2026.06.05</td><td>2,876</td></tr><tr><td>23</td><td><a class="press-detail-link" href="#press-view?id=17">센티넬 안전교육 콘텐츠, 청소년 눈높이에 맞춰 전면 개편</a></td><td><span class="file"><i>PDF</i></span></td><td>홍보담당관</td><td>2026.05.29</td><td>3,013</td></tr><tr><td>22</td><td><a class="press-detail-link" href="#press-view?id=18">봄철 산행 증가에 따라 산악지역 안전확인 체계 강화</a></td><td><span class="file"><i>PDF</i></span></td><td>강원지역관리국</td><td>2026.05.22</td><td>3,150</td></tr><tr><td>21</td><td><a class="press-detail-link" href="#press-view?id=19">전국 6개 권역지원센터, 찾아가는 등록상담 운영</a></td><td><span class="file"><i>PDF</i></span></td><td>권역지원센터운영팀</td><td>2026.05.15</td><td>3,287</td></tr><tr><td>20</td><td><a class="press-detail-link" href="#press-view?id=20">능력안전 민원 데이터 분석으로 반복 불편 12건 개선</a></td><td><span class="file"><i>PDF</i></span></td><td>민원지원과</td><td>2026.05.08</td><td>3,424</td></tr><tr><td>19</td><td><a class="press-detail-link" href="#press-view?id=21">전국 대학 캠퍼스 능력안전 담당자 협의체 출범</a></td><td><span class="file"><i>PDF</i></span></td><td>교육협력과</td><td>2026.05.01</td><td>3,561</td></tr><tr><td>18</td><td><a class="press-detail-link" href="#press-view?id=22">ARU 배치시설 야간 소음 민원 감소 위한 운용기준 개선</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU운용과</td><td>2026.04.24</td><td>3,698</td></tr><tr><td>17</td><td><a class="press-detail-link" href="#press-view?id=23">인천·경기권역지원센터, 공항·항만 안전지원 협약</a></td><td><span class="file"><i>PDF</i></span></td><td>인천·경기권역지원센터</td><td>2026.04.17</td><td>3,835</td></tr><tr><td>16</td><td><a class="press-detail-link" href="#press-view?id=24">능력 관련 허위정보 확산 방지 위한 공식 확인창구 운영</a></td><td><span class="file"><i>PDF</i></span></td><td>정보보호과</td><td>2026.04.10</td><td>3,972</td></tr><tr><td>15</td><td><a class="press-detail-link" href="#press-view?id=25">봄철 축제기간 임시 능력안전 안내소 운영</a></td><td><span class="file"><i>PDF</i></span></td><td>지역관리국총괄과</td><td>2026.04.03</td><td>4,109</td></tr><tr><td>14</td><td><a class="press-detail-link" href="#press-view?id=26">사도 등급판정 이의신청 절차 온라인화</a></td><td><span class="file"><i>PDF</i></span></td><td>등급판정과</td><td>2026.03.27</td><td>4,246</td></tr><tr><td>13</td><td><a class="press-detail-link" href="#press-view?id=27">서울센터 주변 보행안전 개선…출입동선 전면 개편</a></td><td><span class="file"><i>PDF</i></span></td><td>서울권역지원센터</td><td>2026.03.20</td><td>4,383</td></tr><tr><td>12</td><td><a class="press-detail-link" href="#press-view?id=28">전국 지역관리국 상황실 공통 운영프로그램 도입</a></td><td><span class="file"><i>PDF</i></span></td><td>상황총괄과</td><td>2026.03.13</td><td>4,520</td></tr><tr><td>11</td><td><a class="press-detail-link" href="#press-view?id=29">공공시설 ARU 점검결과 시민 확인 서비스 시범운영</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU운용과</td><td>2026.03.06</td><td>4,657</td></tr><tr><td>10</td><td><a class="press-detail-link" href="#press-view?id=30">겨울철 한파 이후 능력안전 시설 특별점검 완료</a></td><td><span class="file"><i>PDF</i></span></td><td>재난대응과</td><td>2026.02.27</td><td>4,794</td></tr><tr><td>9</td><td><a class="press-detail-link" href="#press-view?id=31">능력안전 표준용어 48개 정비…국민 안내문부터 적용</a></td><td><span class="file"><i>PDF</i></span></td><td>홍보담당관</td><td>2026.02.20</td><td>4,931</td></tr><tr><td>8</td><td><a class="press-detail-link" href="#press-view?id=32">가이드 동조 전 설명자료, 7개 언어로 확대</a></td><td><span class="file"><i>PDF</i></span></td><td>가이드보호과</td><td>2026.02.13</td><td>5,068</td></tr><tr><td>7</td><td><a class="press-detail-link" href="#press-view?id=33">설 명절 귀성기간 주요 환승시설 안전지원반 운영</a></td><td><span class="file"><i>PDF</i></span></td><td>재난대응과</td><td>2026.02.06</td><td>5,205</td></tr><tr><td>6</td><td><a class="press-detail-link" href="#press-view?id=34">2026년 능력안전 연구지원 과제 18건 선정</a></td><td><span class="file"><i>PDF</i></span></td><td>정책기획과</td><td>2026.01.30</td><td>5,342</td></tr><tr><td>5</td><td><a class="press-detail-link" href="#press-view?id=35">지역별 능력안전 교육격차 해소 위한 이동교육단 출범</a></td><td><span class="file"><i>PDF</i></span></td><td>교육운영과</td><td>2026.01.23</td><td>5,479</td></tr><tr><td>4</td><td><a class="press-detail-link" href="#press-view?id=36">ARU 제조·운용기관 안전인증 기준 개정안 행정예고</a></td><td><span class="file"><i>PDF</i></span></td><td>ARU운용과</td><td>2026.01.16</td><td>5,616</td></tr><tr><td>3</td><td><a class="press-detail-link" href="#press-view?id=37">새해 첫 전국 안전점검회의 개최…지역별 위험요인 공유</a></td><td><span class="file"><i>PDF</i></span></td><td>상황총괄과</td><td>2026.01.09</td><td>5,753</td></tr></tbody></table></div>
-  <div class="pagination press-pagination" id="pressPagination"></div>
- </div></div></div>
-</section>
-<section class="page" id="press-view">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#press">알림마당</a><span>›</span><a href="#press">보도자료</a><span>›</span><strong>보도자료 상세</strong></div></div>
- <div class="container"><div class="press-article" id="pressArticle"></div></div>
-</section>
-<section class="page" id="briefing">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>정책브리핑</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a href="#notice">공지사항</a><a href="#press">보도자료</a><a class="active" href="#briefing">정책브리핑</a></aside>
- <div><div class="content-head"><h1>정책브리핑</h1><p>센티넬안전관리청의 주요 정책과 제도 변화에 대한 설명자료를 제공합니다.</p></div><div class="content-body">
-  <div class="board-tools"><span class="count">총 96건 · 1 / 10 페이지</span><form class="board-search"><select aria-label="검색조건"><option>제목</option><option>내용</option></select><input placeholder="검색어"><button>검색</button></form></div>
-  <div class="table-scroll"><table class="data-table"><thead><tr><th>번호</th><th>제목</th><th>분야</th><th>작성일</th><th>조회수</th></tr></thead><tbody>
-   <tr><td>96</td><td>2026년 하반기 센티넬 안전관리 정책 추진방향</td><td>안전관리</td><td>2026.09.26</td><td>2,104</td></tr>
-   <tr><td>95</td><td>사도 등록·등급판정 제도 개선 안내</td><td>등록관리</td><td>2026.09.12</td><td>1,782</td></tr>
-   <tr><td>94</td><td>권역지원센터 6개소 운영체계 개편</td><td>지역지원</td><td>2026.08.28</td><td>1,326</td></tr>
-   <tr><td>93</td><td>공공안전 자율대응장치 표준운용 기준 개정</td><td>ARU</td><td>2026.08.16</td><td>1,548</td></tr>
-   <tr><td>92</td><td>능력 관련 재난의 현장 안정화 지원체계 안내</td><td>재난대응</td><td>2026.08.03</td><td>1,091</td></tr>
-  </tbody></table></div>
-  <div class="pagination"><button>«</button><button>‹</button><button class="active">1</button><button>2</button><button>3</button><button>›</button><button>»</button></div>
- </div></div></div>
-</section>
-<section class="page" id="about">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>청 소개</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a class="active" href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside><div><div class="content-head"><h1>청 소개</h1><p>센티넬안전관리청의 설립 목적과 주요 기능을 소개함.</p></div><div class="content-body article">
-  <div class="quote">센티넬안전관리청은 능력의 존재 자체를 관리하는 기관이 아니라, 능력으로 인해 발생할 수 있는 공공안전 위험을 예방하고 능력 보유자의 권리를 보호하기 위해 설치된 국가기관임.</div>
-  <h2>주요 임무</h2><ul><li>사도의 안전한 등록·분류 및 정기 확인</li><li>공공안전 자율대응장치(ARU)의 국가 표준 및 안전관리</li><li>능력 관련 재난의 현장 안정화 및 지역 대응체계 지원</li><li>사도 및 가이드의 개인정보·동조권·거부권 보호</li><li>관련 민간사업자에 대한 행정감독 및 안전기준 점검</li></ul>
-  <h2>기관 현황</h2>
-<div class="type-grid">
- <div class="type-card"><span class="type-no">01</span><h3>15개</h3><p>지역관리국</p></div>
- <div class="type-card"><span class="type-no">02</span><h3>6개</h3><p>권역지원센터</p></div>
- <div class="type-card"><span class="type-no">03</span><h3>2009년</h3><p>센티넬안전관리청 설립</p></div>
-</div>
-<div class="regional-list" aria-labelledby="regionalTitle">
- <div class="regional-head"><h3 id="regionalTitle">전국 지역관리국 현황</h3><span>15개 지역관리국 · 6개 권역지원센터</span></div>
- <div class="regional-grid">
- <article><b>01 서울권역지원센터</b><span>서울특별시 · 대표센터</span><small>센티넬안전관리청 본원 연계 대표 지원센터<br>전국 등록·교육·상담 및 권역 간 업무 조정 지원</small></article>
- <article><b>02 인천·경기권역지원센터</b><span>인천광역시 · 수도권 서부 지원</span><small>인천·경기 서부권 등록 상담 및 현장 지원<br>지역관리국 요청에 따른 안전확인 업무 지원</small></article>
- <article><b>03 강원권역지원센터</b><span>강원특별자치도 · 동북권 지원</span><small>강원권 등록·교육·상담 지원<br>산악·관광지역 안전관리 업무 지원</small></article>
- <article><b>04 충청권역지원센터</b><span>대전광역시 · 중부권 지원</span><small>대전·세종·충청권 등록 상담 및 행정지원<br>권역 내 지역관리국 업무 지원</small></article>
- <article><b>05 호남권역지원센터</b><span>광주광역시 · 서남권 지원</span><small>광주·전북·전남권 등록·교육 지원<br>도서·해안지역 안전확인 업무 지원</small></article>
- <article><b>06 영남·제주권역지원센터</b><span>부산광역시 · 동남권·제주 지원</span><small>부산·대구·울산·경북·경남·제주권 지원<br>권역 내 지역관리국 및 현장업무 지원</small></article>
-</div>
-<p class="regional-note">※ 지역관리국은 권역별 등록관리·안전확인·현장 안정화 업무를 수행하며, 권역지원센터는 등록 상담·교육·행정지원 및 지역관리국 업무 지원을 담당합니다. 주소 및 센터 명칭은 가상 설정임.</p>
-</div>
-  <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="mission">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>미션과 비전</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a class="active" href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside>
- <div><div class="content-head"><h1>미션과 비전</h1><p>센티넬안전관리청이 지향하는 공공안전의 원칙과 중장기 방향을 안내합니다.</p></div><div class="content-body article">
-  <div class="mission-grid">
-   <section><span class="type-no">MISSION</span><h2>능력으로부터 국민을 지키고, 국민의 권리를 보호합니다.</h2><p>센티넬안전관리청은 사도와 센티넬을 둘러싼 사회적 위험을 최소화하면서 능력 보유자의 기본권과 일상생활을 함께 보호하는 것을 기관의 기본 임무로 함.</p></section>
-   <section><span class="type-no">VISION</span><h2>안전과 권리가 함께 작동하는 국가 능력안전 체계</h2><p>예방 중심의 안전관리, 현장 대응의 표준화, 투명한 행정과 권익보호를 바탕으로 국민이 안전정책을 이해하고 신뢰할 수 있는 관리체계를 구축함.</p></section>
-  </div>
-  <h2>추진 원칙</h2>
-  <table class="data-table"><thead><tr><th>원칙</th><th>주요 내용</th></tr></thead><tbody>
-   <tr><td><b>국민 안전</b></td><td>능력으로 인한 사고와 2차 피해를 예방하고 지역별 대응 역량을 균일하게 유지함.</td></tr>
-   <tr><td><b>권리 보호</b></td><td>능력 보유 여부를 이유로 한 불필요한 개인정보 수집과 차별적 행정조치를 줄임.</td></tr>
-   <tr><td><b>최소 개입</b></td><td>공공안전에 필요한 범위에서만 행정조치를 시행하고 과도한 제한을 방지함.</td></tr>
-   <tr><td><b>투명한 행정</b></td><td>안전관리 기준과 주요 정책자료를 공개하고 국민 의견을 제도 개선에 반영함.</td></tr>
-  </tbody></table>
-  <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="chief">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>청장 프로필</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a class="active" href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside>
- <div><div class="content-head"><h1>청장 프로필</h1><p>센티넬안전관리청장 주요 경력과 기관 운영방향을 안내합니다.</p></div><div class="content-body">
-  <div class="chief-profile"><div class="chief-mark" aria-hidden="true">SSA</div><div><span class="type-no">SENTINEL SAFETY ADMINISTRATION</span><h2>김도현 <small>센티넬안전관리청장</small></h2><p>제4대 센티넬안전관리청장</p></div></div>
-  <div class="chief-columns">
-   <section><h2>주요 경력</h2><dl class="profile-list"><div><dt>2026</dt><dd>센티넬안전관리청장 취임</dd></div><div><dt>2023~2025</dt><dd>국가안전정책조정실 안전정책관</dd></div><div><dt>2019~2023</dt><dd>행정안전 분야 중앙부처 안전관리과장</dd></div><div><dt>2014~2019</dt><dd>지역재난안전본부 현장대응정책 담당</dd></div></dl></section>
-   <section><h2>취임사</h2><div class="quote">“국민이 능력의 존재를 이유로 불안해하지 않고, 능력을 가진 국민 또한 행정으로부터 불필요한 제약을 받지 않는 안전관리 체계를 만들겠습니다.”</div><p class="chief-note">현장 대응의 일관성을 높이고 안전관리 과정에서 발생하는 권리 침해를 줄이는 것을 주요 운영방향으로 제시함.</p></section>
-  </div>
-  <div class="meta"><span>담당부서: 운영지원과</span><span>전화 044-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="history">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>연혁</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a class="active" href="#history">연혁</a><a href="#location">청사 위치</a></aside>
- <div><div class="content-head"><h1>연혁</h1><p>초상능력의 국가 관리체계 구축과 센티넬안전관리청의 주요 변화 과정을 기록함.</p></div><div class="content-body">
-  <div class="history-list">
-   <article><time>1987</time><div><h2>최초 공식 각성 사례 확인</h2><p>기존 생리학으로 설명하기 어려운 능력 발현 사례 17건이 국가 기록으로 확인됨. 이후 능력 현상을 지속적으로 관찰하기 위한 연구체계 마련이 시작됨.</p></div></article>
-   <article><time>1992</time><div><h2>능력현상 기초조사단 설치</h2><p>정부 차원의 기초조사단을 구성하고 능력 발현 사례의 유형·발생환경·안전사고 기록을 표준화해 수집하기 시작함.</p></div></article>
-   <article><time>1998</time><div><h2>국가 능력관리 연구위원회 출범</h2><p>능력 측정 기준과 안전관리 지침의 초안을 마련하고 의료·재난·행정 분야 전문가가 참여하는 협의체를 운영합니다.</p></div></article>
-   <article><time>2004</time><div><h2>제1차 초상능력 안전기본법 제정</h2><p>능력 보유자의 등록과 긴급상황 대응을 국가의 책무로 규정하고 개인정보 보호 및 행정절차의 기본원칙을 함께 마련함.</p></div></article>
-   <article><time>2009</time><div><h2>센티넬안전관리청 설립</h2><p>등록·연구·재난 대응 업무를 통합하여 중앙 행정기관으로 출범함. 전국 지역 단위 대응체계와 표준 안전관리 절차를 구축함.</p></div></article>
-   <article><time>2012</time><div><h2>공공안전 자율대응장치 시범운영</h2><p>다중이용시설과 주요 공공시설을 중심으로 ARU 시범운영을 시작하고 장치 안전인증 및 비상정지 기준을 마련함.</p></div></article>
-   <article><time>2015</time><div><h2>가이드 국가보호제도 시행</h2><p>동조 기록의 보안기준과 회복지원 체계를 도입하고 동조 과정에서의 설명·동의 및 중단 요청 절차를 행정지침에 반영함.</p></div></article>
-   <article><time>2019</time><div><h2>전국 지역관리국 체계 개편</h2><p>지역별 대응 편차를 줄이기 위해 지역관리국 업무기준을 통합하고 상황실 간 공통 보고체계를 도입함.</p></div></article>
-   <article><time>2023</time><div><h2>권역지원센터 운영체계 도입</h2><p>지역관리국을 지원하는 권역 단위 상담·교육·행정지원 체계를 마련하고 서울 대표센터를 중심으로 시범운영을 시작함.</p></div></article>
-   <article><time>2026</time><div><h2>초상능력관리법 전면 개정</h2><p>동조 거부권과 행정정보 열람권을 확대하고 민간 능력중개업체 감독규정과 ARU 안전관리 기준을 정비함. 권역지원센터 6개소와 지역관리국 15개소의 역할도 재정비함.</p></div></article>
-  </div>
-  <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="law">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>법령·감독</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>법령·감독</h2><a class="active" href="#law">소관 법령</a><a href="#rules">행정규칙</a></aside><div><div class="content-head"><h1>소관 법령</h1><p>센티넬 및 사도의 안전관리와 권익보호에 관한 주요 법령을 제공합니다.</p></div><div class="content-body"><div class="table-scroll"><table class="data-table"><thead><tr><th>구분</th><th>법령명</th><th>공포·발령번호</th><th>시행일</th><th>첨부</th></tr></thead><tbody><tr><td>법률</td><td><b>「사도 관리 및 공공안전에 관한 법률」</b></td><td>법률 제21841호</td><td>2026.07.01</td><td><span class="file"><i>PDF</i> 3.1MB</span></td></tr><tr><td>대통령령</td><td>「센티넬 안전관리 시행령」</td><td>대통령령 제36102호</td><td>2026.03.14</td><td><span class="file"><i>HWP</i> 711KB</span></td></tr><tr><td>청 고시</td><td>「가이드 동조권 보호지침」</td><td>청 고시 제2026-18호</td><td>2026.08.20</td><td><span class="file"><i>PDF</i> 1.2MB</span></td></tr><tr><td>청 고시</td><td>「능력등급 판정기준」</td><td>청 고시 제2026-21호</td><td>2026.09.01</td><td><span class="file"><i>PDF</i> 985KB</span></td></tr></tbody></table></div><div class="quote article">「사도 관리 및 공공안전에 관한 법률」 제4조제2항에 따라 국가는 능력 보유자의 안전과 권리를 균형 있게 보호하고, 공공안전에 필요한 최소한의 관리조치를 시행합니다.</div><div class="meta"><span>담당부서: 법무감사담당관</span><span>전화 044-201-3365</span><span>최종 수정일: 2026.09.30.</span></div></div></div></div>
-</section>
-<section class="page" id="rules">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#law">법령·감독</a><span>›</span><strong>행정규칙</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>법령·감독</h2><a href="#law">소관 법령</a><a class="active" href="#rules">행정규칙</a></aside>
- <div><div class="content-head"><h1>행정규칙</h1><p>센티넬안전관리청 소관 고시·훈령·예규 및 주요 행정지침을 공개합니다.</p></div><div class="content-body">
-  <div class="table-scroll"><table class="data-table"><thead><tr><th>구분</th><th>행정규칙명</th><th>발령번호</th><th>발령일</th><th>상태</th></tr></thead><tbody>
-   <tr><td>고시</td><td><b>능력등급 판정기준</b></td><td>청 고시 제2026-21호</td><td>2026.09.01</td><td><span class="badge b-on">시행중</span></td></tr>
-   <tr><td>고시</td><td>공공안전 자율대응장치 안전관리 기준</td><td>청 고시 제2026-19호</td><td>2026.08.24</td><td><span class="badge b-on">시행중</span></td></tr>
-   <tr><td>훈령</td><td>현장 안정화 업무처리 지침</td><td>청 훈령 제2026-07호</td><td>2026.07.18</td><td><span class="badge b-on">시행중</span></td></tr>
-   <tr><td>예규</td><td>지역관리국 상황보고 및 기록관리 예규</td><td>청 예규 제2026-04호</td><td>2026.06.30</td><td><span class="badge b-on">시행중</span></td></tr>
-   <tr><td>훈령</td><td>능력보유자 개인정보 보호 및 정보열람 처리규정</td><td>청 훈령 제2025-11호</td><td>2025.12.15</td><td><span class="badge b-on">시행중</span></td></tr>
-  </tbody></table></div>
-  <div class="notice-area">행정규칙의 제정·개정·폐지 시 발령문과 시행일을 함께 공개하며, 안전상 공개가 제한되는 세부 자료는 별도 기준에 따라 처리합니다.</div>
-  <div class="meta"><span>담당부서: 법무감사담당관</span><span>전화 044-201-3365</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="alerts-history">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">국민안전 안내</a><span>›</span><strong>재난문자 이력</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>국민안전 안내</h2><a href="#guidance">행동요령</a><a class="active" href="#alerts-history">재난문자 이력</a></aside>
- <div><div class="content-head"><h1>재난문자 이력</h1></div><div class="content-body">
-  <div class="table-scroll"><table class="data-table alert-history-table"><thead><tr><th>발송일시</th><th>지역</th><th>단계</th><th>문자 내용</th></tr></thead><tbody>
-   <tr><td>2026.09.30 01:42</td><td>전국</td><td><span class="badge b-limit">주의</span></td><td>전국 위기경보가 주의 단계로 발령되었습니다. 지역별 안내에 따라 불필요한 접근을 자제해 주시기 바랍니다.</td></tr>
-   <tr><td>2026.09.29 22:18</td><td>부산광역시</td><td><span class="badge b-review">경계</span></td><td>부산 일부 지역 안전확인 요청이 증가하고 있습니다. 현장 안내에 따라 이동하고 통제구역에 접근하지 마십시오.</td></tr>
-   <tr><td>2026.09.28 19:36</td><td>인천광역시</td><td><span class="badge b-limit">주의</span></td><td>인천 지역 능력활동 관련 안전확인이 진행 중입니다. 공식 안내가 있을 때까지 현장 접근을 자제하십시오.</td></tr>
-   <tr><td>2026.09.27 16:05</td><td>경기도</td><td><span class="badge b-on">관심</span></td><td>경기도 일부 지역에서 안전확인 요청이 접수되었습니다. 이상 상황 발견 시 활동 신고를 이용하십시오.</td></tr>
-   <tr><td>2026.09.25 21:44</td><td>대전광역시</td><td><span class="badge b-limit">주의</span></td><td>대전 지역 공공시설 안전확인이 실시되고 있습니다. 시설 관계자의 안내에 따라 주십시오.</td></tr>
-   <tr><td>2026.09.22 14:12</td><td>서울특별시</td><td><span class="badge b-on">관심</span></td><td>서울 일부 지역에서 능력활동 신고가 접수되었습니다. 확인되지 않은 정보의 유포를 자제해 주십시오.</td></tr>
-   <tr><td>2026.09.18 08:27</td><td>강원특별자치도</td><td><span class="badge b-limit">주의</span></td><td>산악지역 안전확인 요청에 따라 일부 탐방로의 현장 확인이 진행 중입니다.</td></tr>
-   <tr><td>2026.09.12 23:51</td><td>부산광역시</td><td><span class="badge b-on">관심</span></td><td>해안 관광지 주변 안전확인이 강화됩니다. 현장 안전요원의 안내에 협조해 주십시오.</td></tr>
-  </tbody></table></div>
-  <div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="guidance">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>국민안전 안내</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>국민안전 안내</h2><a class="active" href="#guidance">행동요령</a><a href="#alerts-history">재난문자 이력</a></aside><div><div class="content-head"><h1>위기 단계별 행동요령</h1><p>사도 활동 위기경보 단계에 따른 국민 행동요령을 안내합니다.</p></div><div class="content-body"><div class="type-grid"><div class="type-card"><span class="badge b-on">관심</span><h3>평상시 대비</h3><p>공식 재난문자 수신 설정을 확인하고 주변 지역관리국 안내를 확인함.</p></div><div class="type-card"><span class="badge b-limit">주의</span><h3>외출 시 주의</h3><p>발령지역 내 불필요한 접근을 자제하고 공식 안내에 따라 이동함.</p></div><div class="type-card"><span class="badge b-review">경계</span><h3>안전구역 이동</h3><p>현장관리요원의 안내에 따라 지정된 안전구역으로 이동함.</p></div><div class="type-card"><span class="badge b-off" style="color:#b52e35;background:#fff0f0;border-color:#e7b4b4">심각</span><h3>즉시 대피</h3><p>현장 접근을 금지하고 재난문자 및 긴급방송에 따라 즉시 대피함.</p></div></div><div class="quote article"><b>신고·문의</b><br>긴급한 생명·신체 위험은 119 또는 112로 신고하고, 사도 활동 및 ARU 이상징후는 센티넬안전관리청 활동 신고를 이용하시기 바랍니다.</div><div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div></div></div></div>
-</section>
-<section class="page" id="report">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">신고·민원</a><span>›</span><strong>활동 신고</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a class="active" href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside>
- <div><div class="content-head"><h1>활동 신고</h1><p>사도 활동 또는 공공안전 자율대응장치의 이상징후를 신고할 수 있음.</p></div><div class="content-body">
-  <div class="notice-area"><strong>긴급신고</strong> · 생명 또는 신체에 즉각적인 위험이 있는 경우 119·112를 이용하시기 바랍니다. 본 신고창구는 행정상 안전확인 및 현장 안정화 요청을 위한 것임.</div>
-  <div class="type-grid">
-   <div class="type-card"><span class="type-no">01</span><h3>사도 활동 신고</h3><p>비정상적인 능력 사용, 대규모 능력 반응 등 확인이 필요한 상황을 신고함.</p><button class="submit" type="button" data-report-type="사도 활동">온라인 신고 →</button></div>
-   <div class="type-card"><span class="type-no">02</span><h3>ARU 오작동 신고</h3><p>공공안전 자율대응장치의 오작동·시설 이상을 신고함.</p><button class="submit" type="button" data-report-type="ARU 오작동">온라인 신고 →</button></div>
-   <div class="type-card"><span class="type-no">03</span><h3>안전확인 요청</h3><p>현장 상황의 확인이 필요한 경우 지역관리국에 안전확인을 요청함.</p><button class="submit" type="button" data-report-type="안전확인">요청 방법 →</button></div>
-  </div>
-  <div class="report-form-wrap" id="reportFormWrap" hidden>
-   <div class="form-title"><span>온라인 신고</span><b id="reportTypeTitle">사도 활동</b></div>
-   <form id="activityReportForm">
-    <div class="form-grid">
-     <label>발생 지역 <select id="reportRegion" required><option value="">선택</option><option>서울특별시</option><option>인천광역시</option><option>경기도</option><option>강원특별자치도</option><option>대전광역시</option><option>충청권</option><option>광주광역시</option><option>전북특별자치도</option><option>부산광역시</option><option>대구광역시</option><option>울산광역시</option><option>경상권</option><option>제주특별자치도</option></select></label>
-     <label>발생 시각 <input id="reportTime" type="datetime-local" required></label>
-    </div>
-    <label class="form-full">상황 설명 <textarea id="reportDescription" required minlength="10" placeholder="확인한 상황을 가능한 범위에서 구체적으로 작성해 주세요."></textarea></label>
-    <div class="form-grid"><label>신고자 연락처 <input id="reportContact" type="text" placeholder="선택사항"></label><label>추가 위치정보 <input id="reportPlace" type="text" placeholder="건물명·역명 등 선택사항"></label></div>
-    <label class="check-line"><input id="reportAgree" type="checkbox" required> 신고 내용의 사실 확인 및 안전확인을 위한 개인정보 처리에 동의합니다.</label>
-    <div class="form-actions"><button type="button" class="secondary" id="reportCancel">취소</button><button class="submit" type="submit">신고 접수하기</button></div>
-   </form>
-   <div class="report-result" id="reportResult" hidden></div>
-  </div>
-  <div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="searchPage">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>통합검색</strong></div></div>
- <div class="container" style="padding:35px 0 70px"><div class="content-head"><h1>통합검색</h1><p id="searchSummary">검색어를 입력해 주세요.</p></div><div class="content-body"><div id="searchItems"></div></div></div>
-</section>
-<section class="page" id="location">
- <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>청사 및 찾아오시는 길</strong></div></div>
- <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a class="active" href="#location">청사 및 찾아오시는 길</a></aside>
- <div><div class="content-head"><h1>청사 및 찾아오시는 길</h1><p>센티넬안전관리청 본원 청사 위치와 방문·교통 정보를 안내해 드립니다.</p></div><div class="content-body">
-  <div class="location-summary">
-   <div><span>본원</span><b>서울특별시 종로구 세종대로 101</b><small>센티넬안전관리청 본원</small></div>
-   <div><span>대표전화</span><b>02-201-3001</b><small>평일 09:00~18:00</small></div>
-   <div><span>민원 안내</span><b>방문민원 접수</b><small>평일 09:00~17:30</small></div>
-  </div>
-  <div class="location-map-wrap">
-   <div class="location-map-head"><div><b>본원 위치</b><span>서울특별시 종로구 세종대로 101</span></div><span class="location-map-note">지도는 청사 위치 확인을 위한 안내용임</span></div>
-   <div class="location-map">
-    <div class="map-block block-1"></div><div class="map-block block-2"></div><div class="map-block block-3"></div><div class="map-block block-4"></div>
-    <div class="map-road road-h1"></div><div class="map-road road-h2"></div><div class="map-road road-v1"></div><div class="map-road road-v2"></div><div class="map-road road-d1"></div>
-    <div class="map-label label-gov">정부서울청사</div><div class="map-label label-square">광화문광장</div><div class="map-label label-city">종로구청</div>
-    <div class="location-pin"><i></i><b>센티넬안전관리청</b><span>본원</span></div>
-    <div class="map-scale"><span></span><em>200 m</em></div>
-   </div>
-  </div>
-  <div class="location-info-grid">
-   <section><h2 class="location-heading">주소</h2><div class="location-detail"><b>서울특별시 종로구 세종대로 101</b><p>우편번호 03172</p><button type="button" class="copy-address" data-copy="서울특별시 종로구 세종대로 101">주소 복사</button></div></section>
-   <section><h2 class="location-heading">대표 연락처</h2><div class="location-detail"><b>02-201-3001</b><p>민원·방문 안내 평일 09:00~18:00</p><p>방문민원 접수 마감 17:30</p></div></section>
-  </div>
-  <h2 class="location-heading">대중교통 이용</h2>
-  <table class="data-table"><thead><tr><th>구분</th><th>이용 방법</th><th>하차·이동</th></tr></thead><tbody>
-   <tr><td><b>지하철</b></td><td>5호선 광화문역 또는 3호선 경복궁역 이용</td><td>광화문역 2번 출구에서 도보 약 7분</td></tr>
-   <tr><td><b>버스</b></td><td>세종문화회관·정부서울청사 인근 정류장 이용</td><td>정류장 하차 후 도보 약 3~8분</td></tr>
-   <tr><td><b>승용차</b></td><td>세종대로 방면으로 진입 후 청사 방문객 주차구역 이용</td><td>주차공간이 제한되어 대중교통 이용 권장</td></tr>
-  </tbody></table>
-  <div class="visit-guide"><strong>방문 안내</strong><div><span>01</span>부서 방문은 담당 부서에 사전 연락 후 방문하시기 바랍니다.</div><div><span>02</span>방문 시 신분증을 지참하고 1층 안내데스크에서 방문 등록을 진행합니다.</div><div><span>03</span>청사 보안 및 민원 처리 사유에 따라 일부 구역의 출입이 제한될 수 있습니다.</div></div>
-  <div class="meta"><span>담당부서: 운영지원과</span><span>전화 02-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
- </div></div></div>
-</section>
-<section class="page" id="org"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>조직도</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a class="active" href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a></aside><div><div class="content-head"><h1>조직도</h1><p>청장 아래 5개 본부 및 지역관리국 체계로 구성됩니다.</p></div><div class="content-body"><div class="type-grid"><div class="type-card"><span class="type-no">01</span><h3>기획조정관</h3><p>정책기획과 · 예산법무과 · 홍보담당관</p></div><div class="type-card"><span class="type-no">02</span><h3>등록관리본부</h3><p>등록관리과 · 등급판정과 · 교육운영과</p></div><div class="type-card"><span class="type-no">03</span><h3>동조지원본부</h3><p>동조지원과 · 가이드보호과 · 회복지원과</p></div><div class="type-card"><span class="type-no">04</span><h3>재난대응본부</h3><p>상황총괄과 · 현장대응과 · ARU운용과</p></div><div class="type-card"><span class="type-no">05</span><h3>권익보호본부</h3><p>인권보호과 · 정보보호과 · 민원지원과</p></div><div class="type-card"><span class="type-no">06</span><h3>지역관리국</h3><p>전국 15개 지역관리국 및 6개 권역지원센터 운영</p></div></div></div></div></div></section>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=0" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>에너지형 사도</strong><dl><div><dt>등급</dt><dd>1등급</dd></div><div><dt>상태</dt><dd>희귀 · -</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=1" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>인지·감각형 사도</strong><dl><div><dt>등급</dt><dd>2등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=2" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>물리변환형 사도</strong><dl><div><dt>등급</dt><dd>3등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=3" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>생체영향형 사도</strong><dl><div><dt>등급</dt><dd>3등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=4" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>환경영향형 사도</strong><dl><div><dt>등급</dt><dd>4등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=5" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>공간·이동형 사도</strong><dl><div><dt>등급</dt><dd>2등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=6" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>에너지형 사도</strong><dl><div><dt>등급</dt><dd>5등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+   <article class="apostle-row" data-apostle-href="#apostle-profile?id=7" tabindex="0"><div class="apostle-photo"><span>사도 이미지</span></div><div class="apostle-info"><strong>인지·감각형 사도</strong><dl><div><dt>등급</dt><dd>3등급</dd></div><div><dt>상태</dt><dd>-</dd></div><div><dt>관할 지역</dt><dd>-</dd></div></dl></div></article>
+  </div></div></div></div></section>
 <section class="page" id="sentinels">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>센티넬 목록</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
@@ -2729,6 +2357,15 @@ function enterAdmin(){
 }
 document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
 document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.stopPropagation();enterAdmin()});
+document.querySelectorAll('.apostle-row[data-apostle-href]').forEach(row=>{
+ row.addEventListener('click',e=>{
+  location.hash=row.dataset.apostleHref;
+  show(row.dataset.apostleHref);
+ });
+ row.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();location.hash=row.dataset.apostleHref;show(row.dataset.apostleHref)}
+ });
+});
 document.querySelectorAll('.sentinel-row[data-sentinel-href]').forEach(row=>{
  row.addEventListener('click',e=>{
   if(e.target.closest('button,a,input,select,textarea,[data-profile-edit]'))return;
