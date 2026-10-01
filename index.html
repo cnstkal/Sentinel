@@ -1795,6 +1795,40 @@ a{
 }
 
 .apostle-photo img:not([src=""]){display:block!important}.apostle-photo img[src=""]{display:none!important}.apostle-photo:has(img[src=""]){display:flex}
+
+/* Rare apostle featured photo */
+.apostle-photo img:not([src=""])+span{display:none!important}
+.apostle-row:first-child{
+  grid-template-columns:190px minmax(0,1.4fr) minmax(110px,.7fr) auto;
+  min-height:190px;
+}
+.apostle-row:first-child .apostle-photo{
+  width:190px;
+  height:190px;
+}
+.apostle-row:first-child .apostle-photo img{
+  object-fit:cover;
+}
+@media(max-width:700px){
+  .apostle-row:first-child{
+    grid-template-columns:1fr;
+    gap:14px;
+    padding:18px 14px;
+  }
+  .apostle-row:first-child .apostle-photo{
+    width:100%;
+    max-width:none;
+    height:250px;
+  }
+  .apostle-row:first-child>div:nth-child(2),
+  .apostle-row:first-child>div:nth-child(3){
+    text-align:left;
+  }
+  .apostle-row:first-child .sentinel-detail-btn{
+    grid-column:auto;
+    justify-self:start;
+  }
+}
 </style>
 </head>
 <body>
