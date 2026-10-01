@@ -202,6 +202,8 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  .related-row{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:700px){
+ .admin-mode-trigger{display:block;position:fixed;top:12px;right:14px;z-index:10050;padding:8px 12px;font-size:12px;font-weight:800;border:2px solid var(--navy);background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.16);border-radius:3px}
+ .admin-mode-trigger:hover,.admin-mode-trigger.active{background:var(--navy);border-color:var(--navy);color:#fff}
  .container{width:calc(100% - 28px)}.govbar .container{font-size:11px}.govbar .container>span{display:none}.govbar .container .gov-official{display:flex}
  .crisis .container{min-height:52px;flex-wrap:wrap;padding:7px 0;gap:5px}.crisis time{margin-left:0}.crisis a{margin-left:auto}
  .header-top .container{height:78px}.emblem{width:46px;height:46px}.brand-title{font-size:19px}.brand-en{font-size:9px}.util{display:none}
