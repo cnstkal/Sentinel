@@ -1632,6 +1632,11 @@ a{
     transition:none!important;
   }
 }
+
+/* Mobile menu: prevent duplicate bottom rule on the final submenu item */
+@media(max-width:700px){
+  .mobile-panel details>div a:last-child{border-bottom:0}
+}
 </style>
 </head>
 <body>
