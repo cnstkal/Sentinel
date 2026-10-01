@@ -1748,6 +1748,20 @@ img{height:auto}.sentinel-photo img,.apostle-photo img{height:100%}
 .lightbox img{max-width:min(92vw,720px);max-height:88vh;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5);object-fit:contain}
 @keyframes fi{from{opacity:0}}
 </style>
+<style id="final-polish-3">
+/* 겹선 정리: 선은 한 곳에서만 긋는다 */
+.mobile-panel details,.mobile-panel details[open]{border-bottom:1px solid #dce3ea!important}
+.mobile-panel details>div{border:0!important;padding:0!important;gap:0!important}
+.mobile-panel details>div a,.mobile-panel details>div a:last-child{border:0!important;padding:14px 16px!important}
+.mobile-panel details>div a:nth-child(n+3){border-top:1px solid #e6ebef!important}
+.mobile-panel details>div a:nth-child(even){border-left:1px solid #e6ebef!important}
+.mobile-panel details:last-child{border-bottom:0!important}
+.sentinel-list>:last-child,.apostle-list>:last-child{border-bottom:0!important}
+.sentinel-row,.apostle-row{border-bottom:1px solid var(--line2)}
+.faq-list details:last-of-type{border-bottom:1px solid var(--line)}
+.content-body>.notice-area+.notice-area{margin-top:12px}
+.meta{border-top:1px solid var(--line2)}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
