@@ -1799,6 +1799,17 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%}
 .admin-form-actions button{border:1px solid #b9c6d2;background:#fff;padding:8px 13px;font-size:12px}
 .admin-form-actions .primary{background:var(--navy);border-color:var(--navy);color:#fff}
 @media(max-width:700px){.admin-mode-trigger{padding:5px 7px;font-size:10px}.admin-form-grid{grid-template-columns:1fr}}
+.admin-mode-mobile{display:none}
+@media(max-width:700px){.nav-inner .admin-mode-mobile{display:block;margin:0 auto 0 14px;padding:8px 12px;font-size:12px}}
+.sentinel-row .admin-edit-btn{display:none!important}
+.adm-bar{display:none;grid-column:1/-1;width:100%;gap:6px;margin-top:6px}
+body.photo-admin .adm-bar{display:flex}
+.adm-bar button{flex:1;border:1px solid #b9c6d2;background:#fff;padding:10px 0;font-size:12px;font-weight:700;color:var(--navy)}
+.adm-bar .d{color:#c33;border-color:#e0a0a0}
+.adm-add{display:none;width:100%;margin:14px 0;padding:16px;border:2px dashed #7d9bd6;background:#f5f8ff;color:#2a4fa8;font-weight:800;font-size:14px}
+body.photo-admin .adm-add{display:block}
+body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px dashed #9bbcff;outline-offset:2px}
+.ssa-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:100005;background:#1b2b44;color:#fff;padding:11px 16px;font-size:13px;max-width:90vw}.ssa-toast.e{background:#c33}
 /* ===== ADMIN MODE END ===== */
 </style>
 </head>
@@ -1835,9 +1846,9 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%}
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">신고·민원</button><div class="mega"><div class="mega-inner"><div class="mega-title">신고·민원<small>REPORT & CIVIL</small></div><div class="mega-links"><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">법령·감독</button><div class="mega"><div class="mega-inner"><div class="mega-title">법령·감독<small>LAW & OVERSIGHT</small></div><div class="mega-links"><a href="#law">소관 법령</a><a href="#rules">행정규칙</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">알림마당</button><div class="mega"><div class="mega-inner"><div class="mega-title">알림마당<small>NEWS & MEDIA</small></div><div class="mega-links"><a href="#notice">공지사항</a><a href="#press">보도자료</a><a href="#briefing">정책브리핑</a></div></div></div></div>
-   <button class="all-menu" id="allMenu" aria-label="전체메뉴">☰</button>
+   <button class="admin-mode-mobile" id="adminModeBtnMobile" type="button">관리자 모드</button><button class="all-menu" id="allMenu" aria-label="전체메뉴">☰</button>
   </div>
-  <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><button class="admin-mode-mobile" id="adminModeBtnMobile" type="button">관리자 모드</button><span>전체메뉴</span><span>☰</span></button>
+  <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><span>전체메뉴</span><span>☰</span></button>
  </nav><div class="mobile-panel" id="mobilePanel" hidden aria-label="전체메뉴">
  <div class="mobile-panel-head"><b>전체메뉴</b><button type="button" id="closeMobilePanel" aria-label="전체메뉴 닫기">×</button></div>
  <div class="mobile-panel-list">
@@ -2664,8 +2675,8 @@ window.__profilePhoto=function(){
  if(ap){const w=$$('.apostle-row')[+new URLSearchParams(location.hash.split('?')[1]||'').get('id')],im=w&&$('.apostle-photo img',w);
   if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='사도 사진';ap.appendChild(i)}}
  const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
- const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),d=shared['s'+id];
- if(d&&!$('img',p)){p.textContent='';const i=new Image();i.src=url(d,600);i.alt='증명사진';p.appendChild(i)}
+ const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
+ if(im&&im.getAttribute('src')&&!$('img',p)){p.textContent='';const i=new Image();i.src=im.src;i.alt='증명사진';p.appendChild(i)}
 };
 addEventListener('hashchange',()=>{setTimeout(window.__profilePhoto,0);window.__renderSentinelProfile?.();ensureEditButtons()});
 
@@ -2685,15 +2696,15 @@ function profileModal(){
  m=document.createElement('div');m.id='sentinelAdminModal';m.className='admin-modal';m.hidden=true;
  m.innerHTML='<div class="admin-modal-card" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle"><div class="admin-modal-head"><strong id="adminModalTitle">센티넬 정보 수정</strong><button type="button" class="admin-modal-close" aria-label="닫기">×</button></div><form class="admin-form" id="sentinelAdminForm"><div class="admin-form-grid"><label>이름<input name="name" required></label><label>나이<input name="age"></label><label>성별<input name="gender"></label><label>소속 센터<input name="center"></label><label>등급<input name="grade"></label><label>능력 유형<input name="type"></label><label>등록 상태<input name="status"></label><label>최초 등록일<input name="joined"></label></div><div class="admin-note">사진은 별도 버튼 없이 사진 영역을 클릭해서 바로 등록하거나 변경할 수 있습니다.</div><div class="admin-form-actions"><button type="button" class="admin-cancel">취소</button><button type="submit" class="primary">저장</button></div></form></div>';
  document.body.appendChild(m);const close=()=>{m.hidden=true};$('.admin-modal-close',m).onclick=close;$('.admin-cancel',m).onclick=close;m.addEventListener('click',e=>{if(e.target===m)close()});
- $('#sentinelAdminForm',m).addEventListener('submit',async e=>{e.preventDefault();const idx=Number(m.dataset.index),data=currentProfiles(),x=data[idx];if(!x)return;const fd=new FormData(e.currentTarget),next={...x};['name','age','gender','center','grade','type','status','joined'].forEach(k=>next[k]=String(fd.get(k)||'').trim());data[idx]=next;window.__sentinelData=data;applyProfiles();close();await saveProfiles(data)});
+ $('#sentinelAdminForm',m).addEventListener('submit',async e=>{e.preventDefault();const idx=Number(m.dataset.index),data=currentProfiles(),x=data[idx];if(!x)return;const fd=new FormData(e.currentTarget),next={...x};['name','age','gender','center','grade','type','status','joined'].forEach(k=>next[k]=String(fd.get(k)||'').trim());data[idx]=next;window.__sentinelData=data;applyProfiles();close();window.__ssaSync&&window.__ssaSync();await saveProfiles(data)});
  return m;
 }
 function openProfileEditor(i){
  if(!document.body.classList.contains('photo-admin'))return;const data=currentProfiles(),x=data[i];if(!x)return;const m=profileModal();m.dataset.index=i;const form=$('#sentinelAdminForm',m);['name','age','gender','center','grade','type','status','joined'].forEach(k=>form.elements[k].value=x[k]||'');m.hidden=false;form.elements.name.focus();
 }
 async function loadProfiles(){
- try{const res=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error(res.status);const j=await res.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)return;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(Array.isArray(p.profiles)&&p.profiles.length){window.__sentinelData=p.profiles;localStorage.setItem('sentinel_profiles_cache',JSON.stringify(p.profiles));applyProfiles()}}
- catch(e){try{const p=JSON.parse(localStorage.getItem('sentinel_profiles_cache')||'null');if(Array.isArray(p)){window.__sentinelData=p;applyProfiles()}}catch(_){}}
+ try{const res=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error(res.status);const j=await res.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)return;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(!window.__ssaOwned&&Array.isArray(p.profiles)&&p.profiles.length){window.__sentinelData=p.profiles;localStorage.setItem('sentinel_profiles_cache',JSON.stringify(p.profiles));applyProfiles()}}
+ catch(e){try{const p=JSON.parse(localStorage.getItem('sentinel_profiles_cache')||'null');if(!window.__ssaOwned&&Array.isArray(p)){window.__sentinelData=p;applyProfiles()}}catch(_){}}
 }
 async function saveProfiles(data){
  if(profileSaveBusy)return;profileSaveBusy=true;const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),profiles:data});
@@ -2718,7 +2729,7 @@ document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
 document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.stopPropagation();enterAdmin()});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-profile-edit]');if(b&&document.body.classList.contains('photo-admin')){e.preventDefault();e.stopPropagation();openProfileEditor(Number(b.dataset.profileEdit))}
- const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));rows[id]?.inp.click()}
+ const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('s',id)}
 });
 if(!ADMIN_ENABLED){document.getElementById('adminModeBtn')?.remove();sessionStorage.removeItem('ssa_admin')}else if(sessionStorage.getItem('ssa_admin'))admin(true);
 /* ===== ADMIN MODE END ===== */
@@ -2748,6 +2759,51 @@ addEventListener('hashchange',render);render();
 let lt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-lt<350)e.preventDefault();lt=n},{passive:false});
 const fl=document.querySelector('.footer-links .container');
 
+})();
+</script>
+<script>
+(function(){
+const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelectorAll(q)];
+const CL='dbljkloal',TAG='ssa_lists_v1',LK='ssa_lists_cache';
+const LIST='https://res.cloudinary.com/'+CL+'/raw/list/'+TAG+'.json',RB='https://res.cloudinary.com/'+CL+'/raw/upload/',RAPI='https://api.cloudinary.com/v1_1/'+CL+'/raw/upload';
+const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const adm=()=>document.body.classList.contains('photo-admin');
+let M=null,tm;
+const SF=[['name','이름'],['age','나이'],['gender','성별'],['center','소속 센터'],['grade','등급'],['type','능력 유형'],['status','등록 상태'],['joined','등록일']],
+AF=[['code','사도 코드'],['grade','등급 · 능력유형'],['st','관리 상태'],['rg','관할 지역']];
+function toast(m,e){const d=document.createElement('div');d.className='ssa-toast'+(e?' e':'');d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
+const BAR='<div class="adm-bar"><button type="button" data-a="photo">사진 변경</button><button type="button" data-a="nophoto">사진 삭제</button><button type="button" data-a="edit">수정</button><button type="button" class="d" data-a="del">삭제</button></div>';
+const ph=(c,s,img)=>'<div class="'+c+(img?' has-img':'')+'"><img src="'+E(img)+'" alt=""'+(img?'':' hidden')+'><span>'+s+'</span></div>';
+const sRow=(x,i)=>{const p=x.p,h='#sentinel-profile?id='+i;return '<article class="sentinel-row" data-href="'+h+'" tabindex="0" role="link">'+ph('sentinel-photo','증명사진',x.img)+'<div class="sentinel-info"><strong>'+E(p.name)+'</strong><dl><div><dt>나이</dt><dd>'+E(p.age)+'</dd></div><div><dt>성별</dt><dd>'+E(p.gender)+'</dd></div><div><dt>센터</dt><dd>'+E(p.center)+'</dd></div></dl></div><a class="sentinel-detail-btn" href="'+h+'">자세히</a>'+BAR+'</article>'};
+const aRow=(x,i)=>{const h='#apostle-profile?id='+i;return '<article class="apostle-row" data-href="'+h+'" tabindex="0" role="link">'+ph('apostle-photo','사진',x.img)+'<div><strong>'+E(x.code)+'</strong><span>'+E(x.grade)+'</span></div><div><b>'+E(x.st)+'</b><small>'+E(x.rg)+'</small></div><a class="sentinel-detail-btn" href="'+h+'">등록정보</a>'+BAR+'</article>'};
+function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>({code:$('strong',r).textContent.trim(),grade:$('div:nth-child(2) span',r).textContent.trim(),st:$('b',r).textContent.trim(),rg:$('small',r).textContent.trim(),img:$('.apostle-photo img',r)?.getAttribute('src')||''}))}}
+function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
+function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','사도']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
+function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A)A.innerHTML=M.a.map(aRow).join('');window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash))dispatchEvent(new Event('hashchange'))}
+async function upload(){const id='ssa-lists-'+Date.now()+'.json',fd=new FormData();fd.append('file',new Blob([JSON.stringify({v:1,M})],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw 0;toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 저장 실패 — 이 기기에만 저장되었습니다.',1)}}
+function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
+const commit=()=>{render();persist()};
+function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const W=400,H=496,c=document.createElement('canvas');c.width=W;c.height=H;const s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;c.getContext('2d').drawImage(im,(W-w)/2,(H-h)/2,w,h);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.82))};im.onerror=no;im.src=u})}
+function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{M[k][i].img=await shrink(f.files[0]);commit()}catch(e){toast('사진을 처리하지 못했습니다.',1)}};f.click()}
+window.__ssaPick=pick;
+window.__ssaSync=()=>{if(!ensure())return;const d=window.__sentinelData||[];M.s.forEach((x,i)=>{if(d[i])x.p={...d[i]}});commit()};
+function modal(k,i){let m=$('#ssaModal');if(m)m.remove();m=document.createElement('div');m.id='ssaModal';m.className='admin-modal';const o=k==='s'?M.s[i].p:M.a[i],F=k==='s'?SF:AF;
+m.innerHTML='<div class="admin-modal-card"><div class="admin-modal-head"><strong>'+(k==='s'?'센티넬':'사도')+' 정보 수정</strong><button type="button" class="admin-modal-close">×</button></div><form class="admin-form"><div class="admin-form-grid">'+F.map(([n,l])=>'<label>'+l+'<input name="'+n+'" value="'+E(o[n])+'"></label>').join('')+'</div><div class="admin-form-actions"><button type="button" class="c">취소</button><button class="primary">저장</button></div></form></div>';
+document.body.appendChild(m);const x=()=>m.remove();$('.admin-modal-close',m).onclick=x;$('.c',m).onclick=x;m.onclick=e=>{if(e.target===m)x()};
+$('form',m).onsubmit=e=>{e.preventDefault();const fd=new FormData(e.target);F.forEach(([n])=>o[n]=String(fd.get(n)||'').trim());x();commit()}}
+function act(k,i,a){if(a==='photo')return pick(k,i);if(!ensure())return;
+if(a==='nophoto'){M[k][i].img='';commit()}
+else if(a==='edit')modal(k,i)
+else if(a==='del'){if(confirm('이 항목을 삭제할까요?')){M[k].splice(i,1);commit()}}
+else if(a==='add'){M[k].push(k==='s'?{p:{name:'새 센티넬',age:'-',gender:'-',center:'-',grade:'-',type:'-',status:'등록·운용',joined:'-'},img:''}:{code:'SA-'+new Date().toISOString().slice(2,10).replace(/-/g,''),grade:'3등급 · 유형',st:'등록',rg:'지역',img:''});commit();modal(k,M[k].length-1)}}
+document.addEventListener('click',e=>{if(!adm())return;const t=e.target,add=t.closest('.adm-add');if(add){e.preventDefault();e.stopImmediatePropagation();return act(add.dataset.k,0,'add')}
+const row=t.closest('.sentinel-row,.apostle-row');if(!row)return;const b=t.closest('.adm-bar button'),p=t.closest('.sentinel-photo,.apostle-photo');if(!b&&!p)return;
+e.preventDefault();e.stopImmediatePropagation();const k=row.classList.contains('sentinel-row')?'s':'a',i=$$(k==='s'?'.sentinel-row':'.apostle-row').indexOf(row);act(k,i,b?b.dataset.a:'photo')},true);
+let tries=0;function watch(){const on=adm(),b=$('#adminModeBtnMobile');if(b){b.textContent=on?'관리자 종료':'관리자 모드';b.classList.toggle('active',on)}if(on&&!M&&!document.body.classList.contains('photos-loading'))ensure();else if(on&&!M&&tries++<20)setTimeout(watch,800)}
+new MutationObserver(()=>{tries=0;watch()}).observe(document.body,{attributes:true,attributeFilter:['class']});
+addBtns();watch();
+(async function(){try{const c=JSON.parse(localStorage.getItem(LK)||'null');if(c&&c.s){M=c;render()}}catch(e){}
+try{const r=await fetch(LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)return;const p=await fetch(RB+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p.M&&p.M.s){M=p.M;render();try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){}}}catch(e){}})();
 })();
 </script>
 </body>
