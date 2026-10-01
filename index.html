@@ -1772,8 +1772,8 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%}
 </style>
 <style id="admin-mode-styles">
 /* ===== ADMIN MODE START ===== */
-.admin-mode-trigger{border:1px solid #b9c6d2;background:#fff;color:#435467;padding:5px 9px;font-size:11px;white-space:nowrap}
-.admin-mode-trigger:hover,.admin-mode-trigger.active{border-color:var(--blue);color:var(--blue);font-weight:700}
+.admin-mode-trigger{border:1px solid #8fa1b5;background:#fff;color:#26384a;padding:6px 11px;font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.admin-mode-trigger:hover,.admin-mode-trigger.active{border-color:var(--blue);background:#f3f7ff;color:var(--blue);font-weight:800}
 .photo-admin .sentinel-photo,.photo-admin .sentinel-detail-photo{cursor:pointer;outline:2px dashed transparent;outline-offset:3px}
 .photo-admin .sentinel-photo:hover,.photo-admin .sentinel-detail-photo:hover{outline-color:#9bbcff}
 .admin-edit-btn{display:none;margin-left:auto;flex:none;border:1px solid #b9c6d2;background:#fff;color:var(--navy);padding:7px 11px;font-size:11px}
@@ -2703,8 +2703,14 @@ function admin(on){
  document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();if(on){profileModal();toast('관리자 모드가 켜졌습니다. 사진 영역을 눌러 사진을 등록하세요.')}else{const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true}
 }
 function enterAdmin(){
- if(!ADMIN_ENABLED)return;if(document.body.classList.contains('photo-admin')){sessionStorage.removeItem('ssa_admin');admin(false);return}
- const v=prompt('관리자 비밀번호');if(v===ADMIN_PASS){sessionStorage.setItem('ssa_admin','1');admin(true)}else if(v!==null)toast('비밀번호가 올바르지 않습니다.',1);
+ if(!ADMIN_ENABLED)return;
+ if(document.body.classList.contains('photo-admin')){
+  sessionStorage.removeItem('ssa_admin');
+  admin(false);
+  return;
+ }
+ sessionStorage.setItem('ssa_admin','1');
+ admin(true);
 }
 document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
 document.addEventListener('click',e=>{
