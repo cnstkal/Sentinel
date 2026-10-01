@@ -1746,6 +1746,12 @@ a{
     line-height:1.65;
   }
 }
+
+/* Mobile menu: remove only the outer top/bottom separator lines of each category */
+@media(max-width:700px){
+  .mobile-panel details{border-bottom:0!important}
+  .mobile-panel details>div{border-top:0!important}
+}
 </style>
 </head>
 <body>
@@ -2493,6 +2499,17 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
  }
  renderSentinelProfile();
  window.addEventListener('hashchange',renderSentinelProfile);
+ // Restore the page represented by the URL hash after refresh/direct navigation.
+ if(location.hash){
+   const initialId=location.hash.replace('#','').split('?')[0];
+   if(document.getElementById(initialId)){
+     show(location.hash);
+     if(initialId==='searchPage'){
+       const initialQuery=new URLSearchParams(location.hash.split('?')[1]||'').get('query')||'';
+       if(initialQuery) renderSearch(initialQuery);
+     }
+   }
+ }
 </script>
 <div class="entry-popups" id="entryPopups" hidden>
 <div class="entry-popups-inner">
