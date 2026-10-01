@@ -1247,7 +1247,9 @@ footer{background:var(--navy2);border-top:0}
 @media(max-width:700px){.home-hero .container.hero-inner{padding-left:16px;padding-right:16px}}
 .sentinel-list{border-top:2px solid var(--navy)}
 .sentinel-row{display:flex;gap:24px;align-items:center;padding:18px 14px;border-bottom:1px solid var(--line);min-height:150px}
+.sentinel-row{cursor:pointer}
 .sentinel-row:hover{background:#fafcff}
+.sentinel-row:focus-visible{outline:3px solid var(--focus);outline-offset:-3px}
 .sentinel-photo{width:92px;height:116px;flex:none;border:1px solid #cfd7df;background:#f3f5f7;display:flex;align-items:center;justify-content:center;color:#7b8793;font-size:11px}
 .sentinel-info{flex:1;min-width:0}
 .sentinel-info>strong{display:block;font-size:19px;color:var(--navy);margin-bottom:12px}
@@ -2286,16 +2288,16 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
  <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
  <div><div class="content-head"><h1>센티넬 목록</h1><p>등록·운용 중인 센티넬의 공개 가능한 기본정보를 확인하실 수 있습니다.</p></div><div class="content-body">
   <div class="sentinel-list">
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>김도윤</strong><dl><div><dt>나이</dt><dd>28세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=0">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>이서윤</strong><dl><div><dt>나이</dt><dd>24세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=1">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>박준혁</strong><dl><div><dt>나이</dt><dd>31세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=2">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>최하은</strong><dl><div><dt>나이</dt><dd>22세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>충청권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=3">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>정우진</strong><dl><div><dt>나이</dt><dd>35세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>강원권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=4">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>한지민</strong><dl><div><dt>나이</dt><dd>27세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=5">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>오현석</strong><dl><div><dt>나이</dt><dd>29세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>영남·제주권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=6">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>윤채원</strong><dl><div><dt>나이</dt><dd>26세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>호남권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=7">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>강민재</strong><dl><div><dt>나이</dt><dd>33세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=8">자세히</a></article>
-   <article class="sentinel-row"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>서예린</strong><dl><div><dt>나이</dt><dd>21세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div><a class="sentinel-detail-btn" href="#sentinel-profile?id=9">자세히</a></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=0" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>김도윤</strong><dl><div><dt>나이</dt><dd>28세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=1" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>이서윤</strong><dl><div><dt>나이</dt><dd>24세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=2" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>박준혁</strong><dl><div><dt>나이</dt><dd>31세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=3" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>최하은</strong><dl><div><dt>나이</dt><dd>22세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>충청권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=4" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>정우진</strong><dl><div><dt>나이</dt><dd>35세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>강원권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=5" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>한지민</strong><dl><div><dt>나이</dt><dd>27세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=6" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>오현석</strong><dl><div><dt>나이</dt><dd>29세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>영남·제주권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=7" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>윤채원</strong><dl><div><dt>나이</dt><dd>26세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>호남권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=8" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>강민재</strong><dl><div><dt>나이</dt><dd>33세</dd></div><div><dt>성별</dt><dd>남성</dd></div><div><dt>센터</dt><dd>인천·경기권역지원센터</dd></div></dl></div></article>
+   <article class="sentinel-row" data-sentinel-href="#sentinel-profile?id=9" tabindex="0"><div class="sentinel-photo"><img src="" alt="" hidden><span>증명사진</span></div><div class="sentinel-info"><strong>서예린</strong><dl><div><dt>나이</dt><dd>21세</dd></div><div><dt>성별</dt><dd>여성</dd></div><div><dt>센터</dt><dd>서울권역지원센터</dd></div></dl></div></article>
   </div>
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
@@ -2727,6 +2729,20 @@ function enterAdmin(){
 }
 document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
 document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.stopPropagation();enterAdmin()});
+document.querySelectorAll('.sentinel-row[data-sentinel-href]').forEach(row=>{
+ row.addEventListener('click',e=>{
+  if(e.target.closest('button,a,input,select,textarea,[data-profile-edit]'))return;
+  location.hash=row.dataset.sentinelHref;
+  show(row.dataset.sentinelHref);
+ });
+ row.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){
+   e.preventDefault();
+   location.hash=row.dataset.sentinelHref;
+   show(row.dataset.sentinelHref);
+  }
+ });
+});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-profile-edit]');if(b&&document.body.classList.contains('photo-admin')){e.preventDefault();e.stopPropagation();openProfileEditor(Number(b.dataset.profileEdit))}
  const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('s',id)}
