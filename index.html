@@ -221,7 +221,6 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slides{transition:none}}
 </style>
-
 <style id="site-styles">
 @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap');
 :root{--blue:#256ef4;--blue-dark:#174a9e;--navy:#17263a;--text:#263648;--sub:#596979;--muted:#718091;--line:#d9e0e7;--line2:#e8edf2;--bg:#f5f7f9;--red:#d43c3c;--orange:#e87922;--yellow:#c99700;--focus:#111}
@@ -436,8 +435,6 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  .feedback{grid-template-columns:1fr}.footer-links .container{flex-wrap:wrap;padding:13px 0}.footer-main .container{flex-direction:column}.footer-right{text-align:left;align-items:flex-start}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.slides{transition:none}}
-
-/* ===== Government portal final readability pass ===== */
 :root{--blue:#1f64c8;--blue-dark:#174a8f;--navy:#182b3d;--text:#263747;--sub:#56697b;--muted:#6d7d8d;--line:#d5dde5;--line2:#e8edf2;--bg:#f4f6f8}
 html{font-size:16px;letter-spacing:-.025em}
 body{line-height:1.7;color:var(--text)}
@@ -507,12 +504,8 @@ body{line-height:1.7;color:var(--text)}
 .feedback{margin-top:35px}
 .meta{font-size:11px}
 footer{margin-top:0}
-
-/* no artificial pill / card appearance */
 .badge,.notice-badge{border-radius:0}
 .quick,.type-card,.panel,.hero-notice,.search-result{border-radius:0}
-
-/* mobile: readable government-site layout */
 @media(max-width:700px){
  html{font-size:16px}
  .container{width:calc(100% - 32px)}
@@ -574,11 +567,7 @@ footer{margin-top:0}
  .feedback{display:block}
  .footer-links .container{gap:8px 16px;font-size:10px}
 }
-
-/* prevent old dark dashboard rules from visually taking over */
 .topbar,.nav{display:none!important}
-
-/* ===== Footer white mode ===== */
 footer{background:#fff!important;color:#5f6f80!important;border-top:1px solid #d9e0e7;margin-top:0}
 .footer-main .container{padding:30px 0 34px;display:block}
 .footer-brand{display:flex;align-items:center;gap:12px}
@@ -593,62 +582,44 @@ footer{background:#fff!important;color:#5f6f80!important;border-top:1px solid #d
  .footer-brand b{font-size:16px}
  .footer-info{padding-left:0;margin-top:13px;font-size:10px;line-height:1.9}
 }
-
-/* ===== Mobile overflow fix ===== */
 html,body{width:100%;max-width:100%;overflow-x:hidden}
 *,*::before,*::after{box-sizing:border-box}
 img,svg,video,iframe{max-width:100%}
 .container{width:min(1180px,calc(100% - 48px));max-width:100%;min-width:0}
-
-/* top areas must never create horizontal overflow */
 .govbar,.crisis,.header-top,.header-search,.main-nav,.home-hero,.quick-services,
 .home-content,.map-section,.slider,.related,main,footer{width:100%;max-width:100%;min-width:0}
 .govbar .container,.crisis .container,.header-top .container,
 .header-search .container,.main-nav .container{max-width:100%;min-width:0}
-
-/* desktop nav items stay inside the viewport */
 .nav-list{min-width:0;width:100%}
 .nav-item{min-width:0}
 .nav-trigger{white-space:nowrap}
 .mega-menu{max-width:100vw;overflow:hidden}
-
-/* mobile */
 @media(max-width:700px){
  html,body{width:100vw;max-width:100vw;overflow-x:hidden}
  .container{width:calc(100% - 32px);max-width:calc(100% - 32px);min-width:0;margin-left:auto;margin-right:auto}
-
  .govbar .container,
  .crisis .container,
  .header-top .container,
  .header-search .container,
  .main-nav .container{width:100%;max-width:100%;margin:0;padding-left:16px;padding-right:16px}
-
- /* official banner */
  .govbar{overflow:hidden}
  .govbar .container{min-height:40px}
  .gov-official{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
  .gov-check{flex:0 0 auto;white-space:nowrap}
-
- /* crisis strip */
  .crisis{overflow:hidden}
  .crisis .container{display:flex;gap:10px;align-items:center}
  .crisis strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
  .crisis a{flex:0 0 auto}
-
- /* header */
  .header-top{overflow:hidden}
  .brand{min-width:0;flex:1}
  .brand>span{min-width:0;overflow:hidden}
  .brand-title,.brand-en{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
  .header-tools{display:none}
-
  .header-search{overflow:hidden}
  .header-search .container{display:block}
  .search-form{width:100%;max-width:100%;min-width:0}
  .search-form input{min-width:0;width:100%}
  .popular-search{max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-
- /* IMPORTANT: never let desktop category nav overflow the screen */
  .main-nav{height:52px;overflow:hidden}
  .main-nav .container{padding:0}
  .nav-list{display:none!important}
@@ -664,8 +635,6 @@ img,svg,video,iframe{max-width:100%}
  }
  .all-menu span,.mobile-menu span{display:inline}
  .mega-menu{display:none!important}
-
- /* content */
  .home-hero,.quick-services,.home-content,.map-section,.slider,.related{overflow:hidden}
  .hero-inner{width:100%;max-width:100%;min-width:0}
  .hero-copy,.hero-notice{min-width:0;max-width:100%}
@@ -673,23 +642,15 @@ img,svg,video,iframe{max-width:100%}
  .quick-services .container{width:100%;max-width:100%;padding:0 16px}
  .quick{min-width:0;max-width:100%;overflow:hidden}
  .quick b,.quick span{overflow-wrap:anywhere;word-break:keep-all}
-
  .home-columns{min-width:0;max-width:100%}
  .board,.press{min-width:0;max-width:100%;overflow:hidden}
  .board-row{min-width:0;max-width:100%}
  .board-title{min-width:0;overflow:hidden;overflow-wrap:anywhere;word-break:keep-all}
-
- /* tables may scroll inside their own box, never the whole page */
  .table-scroll{width:100%;max-width:100%;overflow-x:auto}
  .table-scroll .data-table{min-width:680px}
-
- /* footer */
  footer,.footer-main,.footer-main .container{width:100%;max-width:100%;min-width:0;overflow:hidden}
 }
-
-/* ===== Mobile content breathing room ===== */
 @media(max-width:700px){
-  /* Main content gets a consistent safe gutter */
   main > *,
   .home-hero,
   .home-content,
@@ -699,8 +660,6 @@ img,svg,video,iframe{max-width:100%}
     padding-left:20px;
     padding-right:20px;
   }
-
-  /* Avoid double padding on sections whose inner container already has it */
   .home-hero .hero-inner,
   .home-content .container,
   .map-section .container,
@@ -711,30 +670,24 @@ img,svg,video,iframe{max-width:100%}
     padding-left:0;
     padding-right:0;
   }
-
   .hero-copy{
     padding-left:0;
     padding-right:0;
   }
-
   .hero-copy h1{
     margin-left:0;
     margin-right:0;
     padding-left:0;
     padding-right:0;
   }
-
   .hero-copy p{
     padding-left:0;
     padding-right:0;
   }
-
   .hero-notice{
     margin-left:0;
     margin-right:0;
   }
-
-  /* Quick service grid keeps the same 20px outer gutter */
   .quick-services{
     padding-left:20px;
     padding-right:20px;
@@ -744,15 +697,11 @@ img,svg,video,iframe{max-width:100%}
     max-width:100%;
     padding:0;
   }
-
-  /* Section headings and lists align to the same gutter */
   .home-content .section-head,
   .home-content .board,
   .home-content .press{
     width:100%;
   }
-
-  /* Prevent long text from touching screen edges */
   .hero-copy h1,
   .hero-copy p,
   .section-head h2,
@@ -762,8 +711,6 @@ img,svg,video,iframe{max-width:100%}
     word-break:keep-all;
   }
 }
-
-/* ===== Mobile navigation: show complete menu control only ===== */
 @media(max-width:700px){
   .main-nav .nav-inner{
     width:100%;
@@ -803,8 +750,6 @@ img,svg,video,iframe{max-width:100%}
     display:none!important;
   }
 }
-
-/* ===== Mobile compact gutter ===== */
 @media(max-width:700px){
   main > *,
   .home-hero,
@@ -816,7 +761,6 @@ img,svg,video,iframe{max-width:100%}
     padding-left:14px;
     padding-right:14px;
   }
-
   .home-hero .hero-inner,
   .home-content .container,
   .map-section .container,
@@ -826,14 +770,11 @@ img,svg,video,iframe{max-width:100%}
     padding-left:0;
     padding-right:0;
   }
-
   .main-nav .nav-inner{
     padding-left:14px;
     padding-right:14px;
   }
 }
-
-/* ===== Unified vector language ===== */
 :root{--icon-blue:#245fae;--icon-line:1.8}
 .quick-icon{color:var(--icon-blue);font-weight:700}
 .quick-icon::before{content:"";display:inline-block;width:26px;height:26px;border:1.8px solid currentColor;border-radius:4px;vertical-align:-8px;margin-right:8px}
@@ -843,8 +784,6 @@ img,svg,video,iframe{max-width:100%}
 .quick:nth-child(4) .quick-icon::before{border-radius:50% 50% 3px 3px}
 .quick:nth-child(5) .quick-icon::before{border-radius:2px}
 .quick:nth-child(6) .quick-icon::before{border-radius:50%}
-
-/* ===== Accessible mobile mega menu ===== */
 .mobile-panel[hidden]{display:none}
 .mobile-panel{position:fixed;z-index:1000;inset:0;background:#fff;overflow:auto}
 .mobile-panel-head{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid #cfd8e1;color:#172d43}
@@ -868,8 +807,6 @@ body.menu-open{overflow:hidden}
  .mobile-panel-head{padding:0 14px}
  .mobile-panel-list{padding-left:14px;padding-right:14px}
 }
-
-/* ===== Regional office directory ===== */
 .regional-list{margin-top:28px;border-top:2px solid var(--navy)}
 .regional-head{display:flex;align-items:end;justify-content:space-between;padding:20px 0 14px;border-bottom:1px solid var(--line)}
 .regional-head h3{margin:0;font-size:19px;color:var(--navy)}
@@ -890,8 +827,6 @@ body.menu-open{overflow:hidden}
  .regional-grid article b{font-size:13px}
  .regional-grid article small{font-size:10px}
 }
-
-/* Apple system typography */
 html,body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;}
 button,input,select,textarea{font-family:inherit;}
 .board-pagination{display:flex;justify-content:center;align-items:center;gap:4px;margin-top:22px}
@@ -899,8 +834,6 @@ button,input,select,textarea{font-family:inherit;}
 .board-pagination button.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .board-pagination span{padding:0 6px;color:var(--sub)}
 @media(max-width:700px){.board-pagination{margin-top:18px}.board-pagination button{min-width:32px;height:32px}}
-
-/* Refined status map */
 .map-box{display:grid;grid-template-columns:minmax(0,1fr) 245px;gap:0;border:1px solid var(--line);background:#f7f9fb}
 .map-svg{position:relative;min-height:420px;padding:18px;background:linear-gradient(#fbfcfd,#f4f7fa)}
 .map-svg svg{width:100%;height:100%;min-height:380px}
@@ -913,7 +846,6 @@ button,input,select,textarea{font-family:inherit;}
 .map-scale{position:absolute;left:28px;bottom:22px;display:flex;align-items:center;gap:8px;font-size:11px;color:#718091}
 .map-scale i{display:block;width:34px;border-top:2px solid #718091}
 @media(max-width:700px){.map-box{grid-template-columns:1fr}.map-legend{border-left:0;border-top:1px solid var(--line)}.map-svg{min-height:300px;padding:8px}.map-svg svg{min-height:290px}.map-labels text{font-size:9px}}
-
 .press-article{max-width:920px;margin:0 auto;padding:48px 0 80px}
 .press-article-meta{display:flex;gap:16px;align-items:center;color:#667789;font-size:13px;border-bottom:1px solid var(--line);padding-bottom:14px}
 .press-article-meta span{font-weight:700;color:var(--blue)}
@@ -928,8 +860,6 @@ button,input,select,textarea{font-family:inherit;}
 .press-detail-link{color:var(--navy);font-weight:600}
 .press-detail-link:hover{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:700px){.press-article{padding:30px 0 55px}.press-article h1{font-size:23px}.press-article-info{gap:10px;flex-direction:column}.press-article-body{padding:25px 0;font-size:15px;line-height:1.9}.press-article-box{padding:18px}.press-article-footer{flex-direction:column;gap:5px}}
-
-/* Mobile quick-service alignment fix */
 .quick{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
 .quick-icon{position:relative;width:52px;height:52px;border:0;color:#73869a;display:grid;place-items:center;font-size:13px;font-weight:800;margin:0 auto 13px;align-self:center;z-index:0}
 .quick-icon::before{content:"";position:absolute;inset:7px;border:2px solid currentColor;border-radius:50%;margin:0;transform:none;z-index:-1;box-shadow:none}
@@ -952,8 +882,6 @@ button,input,select,textarea{font-family:inherit;}
  .map-svg svg{min-height:465px;width:100%;height:465px}
  .map-labels text{font-size:10px}
 }
-
-/* Quick services: clean numbered layout */
 .quick-icon,
 .quick:nth-child(1) .quick-icon::before,
 .quick:nth-child(2) .quick-icon::before,
@@ -997,8 +925,6 @@ button,input,select,textarea{font-family:inherit;}
   .quick b{font-size:15px}
   .quick>span:last-child{font-size:11px}
 }
-
-/* Notice article */
 .notice-article{max-width:920px;margin:0 auto;padding:46px 0 76px}
 .notice-article-meta{display:flex;gap:16px;align-items:center;color:#667789;font-size:13px;border-bottom:1px solid var(--line);padding-bottom:14px}
 .notice-article-meta span{font-weight:700;color:var(--blue)}
@@ -1014,8 +940,6 @@ button,input,select,textarea{font-family:inherit;}
  .notice-article-body{padding:25px 0;font-size:15px;line-height:1.9}
  .notice-article-footer{flex-direction:column;gap:5px}
 }
-
-/* Compact mobile crisis map: less canvas, larger map */
 @media(max-width:700px){
   .map-box{display:block}
   .map-svg{
@@ -1045,8 +969,6 @@ button,input,select,textarea{font-family:inherit;}
     padding:22px 24px;
   }
 }
-
-/* Activity report form */
 .report-form-wrap{margin-top:30px;border:1px solid var(--line);background:#fff}
 .form-title{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:2px solid var(--navy);font-size:15px}
 .form-title span{font-weight:700;color:var(--navy)}
@@ -1080,13 +1002,10 @@ button,input,select,textarea{font-family:inherit;}
  #activityReportForm label{min-width:0}
  #activityReportForm input,#activityReportForm select,#activityReportForm textarea{min-width:0;max-width:100%;width:100%}
  #activityReportForm input[type="datetime-local"]{font-size:16px}
-
  .form-title{padding:16px}
  .result-head b{font-size:17px}
  .report-result{padding:22px 16px}
 }
-
-/* Entry popups and short survey */
 .entry-popups{position:fixed;inset:0;z-index:9998;background:rgba(18,30,45,.34);display:flex;align-items:center;justify-content:center;padding:20px}
 .entry-popups[hidden]{display:none}
 .entry-popups-inner{width:min(760px,100%);display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -1117,8 +1036,6 @@ button,input,select,textarea{font-family:inherit;}
  .popup-primary,.popup-secondary{padding:8px 10px}
  .survey-form fieldset label{display:flex;margin-right:0}
 }
-
-/* Unified quick-service grid */
 .quick-services .container{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-left:1px solid var(--line2)}
 .quick{min-height:126px;height:126px;box-sizing:border-box;padding:22px 17px;border-left:0;border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);position:relative;display:flex;flex-direction:column;justify-content:flex-start}
 .quick:last-child{border-right:1px solid var(--line2)}
@@ -1126,8 +1043,6 @@ button,input,select,textarea{font-family:inherit;}
 .quick b{display:block;font-size:14px;color:var(--navy);margin:0 0 5px}
 .quick span:not(.quick-icon){font-size:11px;color:#738294;line-height:1.5}
 .quick:hover{background:#f7faff}
-
-/* Accurate Korea base map */
 .actual-map{position:relative;min-height:430px!important;padding:18px 30px 48px!important;box-sizing:border-box}
 .korea-map-image{position:relative;width:min(100%,560px);height:360px;display:flex;align-items:center;justify-content:center}
 .korea-map-image img{display:block;width:100%;height:100%;object-fit:contain;filter:grayscale(1);opacity:.82}
@@ -1138,7 +1053,6 @@ button,input,select,textarea{font-family:inherit;}
 .map-credit{position:absolute;right:12px;bottom:7px;margin:0;font-size:8px;color:#8a97a4}
 .map-scale{left:30px;bottom:22px}
 .map-svg.actual-map svg{display:none}
-
 @media(max-width:900px){
  .quick-services .container{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -1151,24 +1065,15 @@ button,input,select,textarea{font-family:inherit;}
  .map-scale{left:12px;bottom:18px;font-size:9px}
  .map-marker{width:10px;height:10px}
 }
-
-
-/* Hero section background fill */
 .home-hero{background:#f5f7f9}
-
-/* Requested layout/content refinements */
 @media(max-width:700px){
   .home-hero{padding-left:0!important;padding-right:0!important}
 }
-
-/* Mission & vision */
 .mission-grid{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--navy);border-bottom:1px solid var(--line);margin-bottom:32px}
 .mission-grid section{padding:28px 30px 30px}
 .mission-grid section+section{border-left:1px solid var(--line)}
 .mission-grid h2{font-size:23px;line-height:1.45;margin:10px 0 12px;color:var(--navy)}
 .mission-grid p{font-size:14px;line-height:1.85;color:#617285;margin:0}
-
-/* Chief profile */
 .chief-profile{display:flex;align-items:center;gap:24px;padding:28px 0;border-top:2px solid var(--navy);border-bottom:1px solid var(--line)}
 .chief-mark{width:120px;height:150px;display:grid;place-items:center;background:#eef2f6;color:#50657a;font-size:22px;font-weight:800;letter-spacing:.08em}
 .chief-profile h2{margin:8px 0 4px;font-size:30px;color:var(--navy)}
@@ -1180,8 +1085,6 @@ button,input,select,textarea{font-family:inherit;}
 .profile-list div{display:grid;grid-template-columns:95px 1fr;border-bottom:1px solid var(--line2);padding:13px 0;font-size:13px}
 .profile-list dt{color:#68798b}.profile-list dd{margin:0;color:var(--navy);font-weight:600}
 .chief-note{font-size:14px;line-height:1.85;color:#617285}
-
-/* History */
 .history-list{position:relative;margin:8px 0 35px;padding:4px 0}
 .history-list:before{content:"";position:absolute;left:91px;top:0;bottom:0;width:1px;background:#cbd5df}
 .history-list article{position:relative;display:grid;grid-template-columns:92px 1fr;gap:0;min-height:116px}
@@ -1190,13 +1093,9 @@ button,input,select,textarea{font-family:inherit;}
 .history-list article>div{padding:0 0 28px 28px}
 .history-list h2{font-size:18px!important;line-height:1.4;margin:0 0 7px!important;color:var(--navy)}
 .history-list p{font-size:13px;line-height:1.8;color:#647587;margin:0}
-
-/* Disaster message history */
 .alert-history-link{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding:13px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--blue);font-size:13px;font-weight:700}
 .alert-history-link span{font-size:20px;line-height:1}
 #alerts-history .data-table td:last-child{line-height:1.7}
-
-/* Mobile refinements */
 @media(max-width:700px){
   .mission-grid{grid-template-columns:1fr}
   .mission-grid section{padding:22px 0}
@@ -1217,8 +1116,6 @@ button,input,select,textarea{font-family:inherit;}
   .history-list p{font-size:12px;line-height:1.7}
   #alerts-history .data-table{min-width:760px}
 }
-
-/* Requested page refinements */
 .location-summary{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--navy);border-bottom:1px solid var(--line);margin-bottom:24px}
 .location-summary>div{padding:18px 20px;border-right:1px solid var(--line)}
 .location-summary>div:last-child{border-right:0}
@@ -1255,23 +1152,16 @@ button,input,select,textarea{font-family:inherit;}
  .faq-list summary{padding:16px 35px 16px 0;font-size:13px}
  .faq-list details p{padding:0 35px 17px 0;font-size:12px}
 }
-
-/* Five quick services after removing information-disclosure service */
 .quick-services .container{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media(max-width:900px){.quick-services .container{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){.quick-services .container{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-
-/* ===== Design upgrade layer ===== */
 :root{--navy:#0f2a52;--navy2:#0a1f3f;--blue:#1f5fd6;--blue-dark:#123f91;--gold:#e0b64a;--line:#d5dce5;--line2:#e6ebf1;--bg:#f4f6f9;--r:6px;--sh:0 2px 10px rgba(15,42,82,.08)}
 html{font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased}
 body{background:var(--bg)}
 .site-main{background:#fff}
-/* 공식 배너 */
 .govbar{background:#fff;border-bottom:1px solid var(--line2)}
 .govbar .container{min-height:36px;font-size:12px}
 .korea-icon{border-color:var(--navy);color:var(--navy)}
-/* 헤더 */
 .header-top .container{height:84px}
 .emblem{width:50px;height:50px;color:var(--navy)}
 .brand-title{font-size:24px;letter-spacing:-.04em}
@@ -1285,7 +1175,6 @@ body{background:var(--bg)}
 .popular{display:flex;align-items:center;gap:6px}
 .popular a{margin:0;padding:4px 11px;background:#fff;border:1px solid var(--line);border-radius:99px;font-size:12px}
 .popular a:hover{border-color:var(--blue);text-decoration:none}
-/* 주메뉴 */
 .main-nav{background:var(--navy);border-bottom:0}
 .nav-trigger{background:transparent;color:#fff;height:56px;font-size:15px;position:relative}
 .nav-trigger:hover,.nav-trigger[aria-expanded=true],.nav-item:hover .nav-trigger{color:#fff;background:rgba(255,255,255,.1)}
@@ -1294,7 +1183,6 @@ body{background:var(--bg)}
 .mega{top:56px;border-top:0;box-shadow:0 14px 28px rgba(10,31,63,.18)}
 .mega-title{font-size:20px;padding-top:4px}
 .mega-links a{border-radius:3px}
-/* 히어로 */
 .home-hero{background:linear-gradient(115deg,#0a1f3f 0%,#123f91 100%);border:0;position:relative;overflow:hidden}
 .home-hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 80px),radial-gradient(circle at 78% 20%,rgba(255,255,255,.14),transparent 45%)}
 .hero-inner{position:relative;min-height:300px;gap:50px;padding-bottom:36px}
@@ -1303,7 +1191,6 @@ body{background:var(--bg)}
 .hero-copy p{color:#c9d7ee}
 .hero-notice{background:#fff;border:0;border-top:5px solid var(--gold);border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.25);padding:22px 26px}
 .hero-notice strong{color:var(--navy);font-size:30px}
-/* 바로가기 카드 */
 .quick-services{background:transparent;border:0;margin-top:-34px;position:relative;z-index:2}
 .quick-services .container{gap:12px}
 .quick{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);min-height:120px;transition:.18s}
@@ -1311,7 +1198,6 @@ body{background:var(--bg)}
 .quick:hover{transform:translateY(-3px);border-color:var(--blue);background:#fff;box-shadow:0 8px 20px rgba(31,95,214,.18)}
 .quick-icon{background:#e8f0fe;border:0;border-radius:8px;width:36px;height:36px}
 .quick b{font-size:15px}
-/* 섹션 */
 .home-content{padding-top:48px}
 .section-head{height:52px}
 .section-head h2{font-size:22px;font-weight:800;padding-left:12px;border-left:5px solid var(--blue);line-height:1}
@@ -1324,7 +1210,6 @@ body{background:var(--bg)}
 .press-list article:hover b{color:var(--blue)}
 .map-box{border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
 .map-legend{background:#f8fafc}
-/* 하위 페이지 */
 .breadcrumb{background:#fff}
 .page-layout{padding-top:36px}
 .side-nav{border-top:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;align-self:start}
@@ -1343,7 +1228,6 @@ body{background:var(--bg)}
 .notice-area{border-radius:var(--r);border-left:4px solid var(--blue)}
 .submit,.popup-primary{border-radius:var(--r)}
 input,select,textarea{border-radius:4px}
-/* 푸터 */
 footer{background:var(--navy2);border-top:0}
 .footer-main .container{padding:36px 0}
 .footer-info{line-height:1.9;color:#a9b8cf;font-size:13px}
@@ -1353,16 +1237,12 @@ footer{background:var(--navy2);border-top:0}
  .nav-trigger{color:#fff}.header-search{padding:8px 0}.popular{display:none}
 }
 @media(max-width:700px){.quick-services{margin-top:-20px}.brand-title{font-size:20px}.hero-copy{padding:30px 0 10px}}
-
-/* 모바일: 히어로 좌우 여백 제거(전체 폭) */
 @media(max-width:900px){
  #home{padding-left:0;padding-right:0}
  .home-hero{padding-left:0!important;padding-right:0!important}
  .home-hero .container.hero-inner{padding-left:20px;padding-right:20px;box-sizing:border-box}
 }
 @media(max-width:700px){.home-hero .container.hero-inner{padding-left:16px;padding-right:16px}}
-
-/* 센티넬 목록 */
 .sentinel-list{border-top:2px solid var(--navy)}
 .sentinel-row{display:flex;gap:24px;align-items:center;padding:18px 14px;border-bottom:1px solid var(--line);min-height:150px}
 .sentinel-row:hover{background:#fafcff}
@@ -1380,8 +1260,6 @@ footer{background:var(--navy2);border-top:0}
  .sentinel-info dl{display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}
  .sentinel-info dl div:last-child{grid-column:1/-1}
 }
-
-/* 청사 및 찾아오시는 길 */
 .location-summary{display:grid;grid-template-columns:1.5fr 1fr 1fr;border:1px solid var(--line);margin-bottom:22px}
 .location-summary>div{padding:18px 20px;border-right:1px solid var(--line)}.location-summary>div:last-child{border-right:0}
 .location-summary span,.location-summary small{display:block;color:#718091;font-size:11px}.location-summary b{display:block;color:var(--navy);font-size:15px;margin:4px 0}.location-summary small{font-size:11px}
@@ -1396,9 +1274,7 @@ footer{background:var(--navy2);border-top:0}
 .location-heading{font-size:18px;color:var(--navy);margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--blue)}
 .visit-guide{border:1px solid var(--line);background:#f7f9fb;margin-top:20px;padding:15px 18px}.visit-guide strong{display:block;color:var(--navy);font-size:14px;margin-bottom:10px}.visit-guide div{font-size:12px;color:#596979;padding:6px 0;border-top:1px solid #e3e8ed}.visit-guide span{display:inline-block;width:28px;color:var(--blue);font-weight:800}
 @media(max-width:700px){.location-summary{grid-template-columns:1fr}.location-summary>div{border-right:0;border-bottom:1px solid var(--line)}.location-summary>div:last-child{border-bottom:0}.location-map{height:275px}.location-map-head{align-items:flex-start;gap:8px;flex-direction:column}.location-map-note{display:none}.location-info-grid{grid-template-columns:1fr}.location-pin b{font-size:10px}.location-pin{left:52%;top:53%}}
-
 .sentinel-row{position:relative}.sentinel-detail-btn{margin-left:auto;flex:none;border:1px solid #b9c6d2;background:#fff;color:var(--navy);padding:8px 14px;font-size:11px}.sentinel-detail-btn:hover{border-color:var(--blue);color:var(--blue)}
-
 .sentinel-detail-btn{display:inline-block;margin-left:auto;flex:none;border:1px solid #b9c6d2;background:#fff;color:var(--navy);padding:8px 14px;font-size:11px}
 .sentinel-detail-btn:hover{border-color:var(--blue);color:var(--blue)}
 .sentinel-profile-head{display:flex;align-items:center;gap:22px;padding:22px;border:1px solid var(--line);border-top:2px solid var(--navy)}
@@ -1409,8 +1285,6 @@ footer{background:var(--navy2);border-top:0}
 .sentinel-profile-table span{display:block;font-size:11px;color:#718091;margin-bottom:4px}.sentinel-profile-table b{font-size:14px;color:var(--text)}
 .back-to-list{display:inline-block;margin-top:20px;border:1px solid #b9c6d2;padding:9px 14px;font-size:12px;color:#435467}
 @media(max-width:700px){.sentinel-profile-head{padding:16px;gap:14px}.sentinel-detail-photo{width:82px;height:104px}.sentinel-profile-head h2{font-size:21px}.sentinel-grade{width:38px;height:38px;font-size:17px}.sentinel-profile-table{grid-template-columns:1fr}.sentinel-profile-table div,.sentinel-profile-table div:nth-child(2n){border-right:0}}
-
-/* Quick service card alignment cleanup */
 .quick-services .container{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1457,8 +1331,6 @@ footer{background:var(--navy2);border-top:0}
   .quick-services .container{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .quick{height:126px;min-height:126px}
 }
-
-/* Crisis map: inline province map + warning-level fills */
 .actual-map{position:relative;min-height:430px!important;padding:14px 22px 42px!important;box-sizing:border-box;background:#f7f9fb;overflow:hidden}
 .korea-map-image{position:relative;width:100%;height:390px;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .crisis-map-svg{display:block;width:100%;height:100%;max-width:900px}
@@ -1482,12 +1354,8 @@ footer{background:var(--navy2);border-top:0}
  .map-credit{font-size:7px;right:7px}
  .map-scale{left:10px;bottom:17px;font-size:9px}
 }
-
-/* Final crisis map visibility cleanup */
 .map-svg.actual-map .crisis-map-svg{display:block!important}
 .map-marker,.marker-seoul,.marker-daejeon,.marker-busan{display:none!important}
-
-/* Disaster message history table */
 .alert-history-table{table-layout:fixed;width:100%;font-size:13px}
 .alert-history-table th:nth-child(1),.alert-history-table td:nth-child(1){width:105px}
 .alert-history-table th:nth-child(2),.alert-history-table td:nth-child(2){width:88px}
@@ -1503,8 +1371,6 @@ footer{background:var(--navy2);border-top:0}
  .alert-history-table th:nth-child(4),.alert-history-table td:nth-child(4){width:auto;font-size:12px;word-break:keep-all;overflow-wrap:anywhere}
  .alert-history-table .badge{font-size:11px;padding:7px 5px;line-height:1.05;min-width:36px;box-sizing:border-box;text-align:center}
 }
-
-/* Mobile footer and crisis legend polish */
 .map-legend{border-radius:12px}
 .footer-brand .emblem{display:block;flex:0 0 44px;width:44px;height:44px}
 @media(max-width:700px){
@@ -1532,17 +1398,12 @@ footer{background:var(--navy2);border-top:0}
  .map-section-inner .section-head{width:100%}
  .map-section-inner .map-box{width:100%}
 }
-/* Disaster message text sizing */
 .alert-history-table td:nth-child(4){font-size:13px;line-height:1.65}
 @media(max-width:700px){
   .alert-history-table td:nth-child(4),
   .alert-history-table td:nth-child(4) *{font-size:12px;line-height:1.6}
 }
-
-/* Remove decorative page-header bars */
 .content-head::after{display:none!important;content:none!important}
-
-/* Prevent iOS Safari from auto-zooming focused text fields */
 input,select,textarea{font-size:16px}
 @media(max-width:700px){
   input,select,textarea{font-size:16px!important}
@@ -1551,7 +1412,6 @@ input,select,textarea{font-size:16px}
   .search-result-item b{font-size:15px;color:var(--navy);line-height:1.5}
   .search-result-item p{margin:5px 0 0;color:#718091;font-size:12px;line-height:1.6}
 }
-/* Mission page mobile table sizing */
 @media(max-width:700px){
   #mission .data-table{
     min-width:0!important;
@@ -1573,8 +1433,6 @@ input,select,textarea{font-size:16px}
   #mission .data-table th:last-child,
   #mission .data-table td:last-child{width:75%}
 }
-
-/* ===== Subtle interface motion ===== */
 @keyframes pageFadeUp{
   from{opacity:0;transform:translateY(6px)}
   to{opacity:1;transform:translateY(0)}
@@ -1632,27 +1490,19 @@ a{
     transition:none!important;
   }
 }
-
-/* Mobile menu: prevent duplicate bottom rule on the final submenu item */
 @media(max-width:700px){
   .mobile-panel details>div a:last-child{border-bottom:0}
 }
-
-/* Mobile menu: avoid doubled divider under expanded submenu */
 @media(max-width:700px){
   .mobile-panel details[open]{border-bottom:0}
   .mobile-panel details>div{border-bottom:1px solid #dce3ea}
 }
-
-/* Mobile menu: submenu has only a bottom divider */
 @media(max-width:700px){
   .mobile-panel details>div{
     border-top:0!important;
     border-bottom:1px solid #dce3ea;
   }
 }
-
-/* ARU model guide — mobile visual refinement */
 #models .notice-area{
   border-left-width:4px;
   border-radius:10px;
@@ -1746,14 +1596,10 @@ a{
     line-height:1.65;
   }
 }
-
-/* Mobile menu: remove only the outer top/bottom separator lines of each category */
 @media(max-width:700px){
   .mobile-panel details{border-bottom:0!important}
   .mobile-panel details>div{border-top:0!important}
 }
-
-/* Apostle registry */
 .apostle-list{border-top:2px solid var(--navy);border-bottom:1px solid var(--line);background:#fff}
 .apostle-row{display:grid;grid-template-columns:1.4fr 1fr auto;align-items:center;gap:20px;padding:18px 16px;border-bottom:1px solid var(--line2)}
 .apostle-row:last-child{border-bottom:0}
@@ -1771,8 +1617,6 @@ a{
   .apostle-row b{font-size:12px}
   .apostle-row small{font-size:10px}
 }
-
-/* Photo-ready registry cards */
 .sentinel-photo,.apostle-photo{
   overflow:hidden;
   background:#f2f5f8;
@@ -1793,10 +1637,7 @@ a{
   .apostle-row>div:nth-child(3){text-align:right}
   .apostle-row .sentinel-detail-btn{grid-column:2/-1}
 }
-
 .apostle-photo img:not([src=""]){display:block!important}.apostle-photo img[src=""]{display:none!important}.apostle-photo:has(img[src=""]){display:flex}
-
-/* Rare apostle featured photo */
 .apostle-photo img:not([src=""])+span{display:none!important}
 .apostle-row:first-child{
   grid-template-columns:190px minmax(0,1.4fr) minmax(110px,.7fr) auto;
@@ -1829,8 +1670,6 @@ a{
     justify-self:start;
   }
 }
-
-/* Featured rare-apostle photo: keep the image clean and give it more space */
 .apostle-photo span{display:none!important}
 .apostle-row:first-child{grid-template-columns:250px minmax(0,1.4fr) minmax(110px,.7fr) auto;min-height:250px}
 .apostle-row:first-child .apostle-photo{width:250px;height:250px}
@@ -1841,6 +1680,73 @@ a{
   .apostle-row:first-child .apostle-photo img{object-fit:cover}
   .apostle-row:first-child>div:nth-child(2),.apostle-row:first-child>div:nth-child(3){text-align:left}
 }
+</style>
+<style id="final-polish">
+/* ===== 최종 디자인 보정 / 사진 등록 ===== */
+:root{--r:10px;--sh:0 2px 10px rgba(23,38,58,.06);--sh2:0 6px 22px rgba(23,38,58,.12)}
+.sentinel-list,.apostle-list{border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:0 0 var(--r) var(--r);background:#fff;overflow:hidden}
+.sentinel-row,.apostle-row{padding:18px 20px;transition:background .15s,box-shadow .15s}
+.sentinel-row:hover,.apostle-row:hover{background:#f7faff}
+.sentinel-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:22px;align-items:center;min-height:0}
+.sentinel-photo,.apostle-photo{position:relative;overflow:hidden;border-radius:8px;border:1px solid #d7dfe7;background:linear-gradient(160deg,#f4f7fa,#e9eef3);display:flex;align-items:center;justify-content:center;color:#8a98a7;font-size:11px}
+.sentinel-photo{width:96px;height:120px}
+.sentinel-photo img,.apostle-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.sentinel-photo img[hidden]{display:none}
+.has-img span{display:none!important}
+.apostle-photo span{display:flex!important;font-size:11px}
+.apostle-row{display:grid;grid-template-columns:72px minmax(0,1.4fr) minmax(90px,.7fr) auto;gap:6px 20px;align-items:center}
+.apostle-photo{width:72px;height:90px;grid-row:auto}
+.apostle-row:first-child{grid-template-columns:220px minmax(0,1.4fr) minmax(110px,.7fr) auto;min-height:220px;background:linear-gradient(90deg,#f3f7ff,#fff 60%)}
+.apostle-row:first-child .apostle-photo{width:220px;height:220px}
+.apostle-row:first-child .apostle-photo.has-img span{display:none!important}
+.sentinel-info>strong{font-size:19px;margin-bottom:10px}
+.sentinel-info dl{flex-wrap:wrap;gap:6px 26px}
+.row-actions{display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:104px}
+.row-actions .sentinel-detail-btn{grid-column:auto!important;margin:0!important;text-align:center}
+.photo-btn{border:1px solid var(--blue);background:#fff;color:var(--blue);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;white-space:nowrap;transition:.15s}
+.photo-btn:hover{background:var(--blue);color:#fff}
+.photo-btn[disabled]{opacity:.6;cursor:wait}
+.photo-del{border:0;background:none;color:var(--muted);font-size:12px;text-decoration:underline;padding:2px;cursor:pointer}
+.photo-bar{position:absolute;left:0;bottom:0;height:4px;background:var(--blue);width:0;transition:width .2s}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#17263a;color:#fff;padding:12px 20px;border-radius:8px;font-size:14px;z-index:99999;box-shadow:var(--sh2);max-width:90vw}
+.toast.err{background:#b42318}
+.sentinel-detail-photo{overflow:hidden;position:relative}
+.sentinel-detail-photo img{width:100%;height:100%;object-fit:cover;display:block}
+img{height:auto}.sentinel-photo img,.apostle-photo img{height:100%}
+@media(max-width:700px){
+ .sentinel-row{grid-template-columns:76px minmax(0,1fr);gap:8px 14px;padding:14px 12px}
+ .sentinel-photo{width:76px;height:96px}
+ .sentinel-info>strong{font-size:17px}
+ .sentinel-row .row-actions{grid-column:1/-1;flex-direction:row}
+ .sentinel-row .row-actions>*{flex:1}
+ .apostle-row{grid-template-columns:60px minmax(0,1fr) auto;gap:8px 12px;padding:14px 12px}
+ .apostle-photo{width:60px;height:76px}
+ .apostle-row>div:nth-child(3){text-align:right}
+ .apostle-row .row-actions{grid-column:1/-1;flex-direction:row}
+ .apostle-row .row-actions>*{flex:1}
+ .apostle-row:first-child{grid-template-columns:1fr auto;gap:12px}
+ .apostle-row:first-child .apostle-photo{width:100%;height:auto;aspect-ratio:4/3;grid-column:1/-1}
+ .apostle-row:first-child>div:nth-child(2),.apostle-row:first-child>div:nth-child(3){text-align:left}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<style id="final-polish-2">
+.photo-btn,.photo-del,.admin-pill{display:none}
+.photo-admin .photo-btn{display:block}
+.photo-admin .photo-del:not([hidden]){display:block}
+.admin-pill{position:fixed;right:16px;bottom:16px;z-index:99998;border:0;border-radius:999px;background:#d43c3c;color:#fff;padding:10px 16px;font-size:13px;font-weight:700;box-shadow:0 6px 22px rgba(0,0,0,.25);cursor:pointer}
+.photo-admin .admin-pill{display:block}
+.row-actions{min-width:96px}
+.has-img{cursor:zoom-in}
+.photos-loading .sentinel-photo:not(.has-img),.photos-loading .apostle-photo:not(.has-img){background:linear-gradient(90deg,#eef2f6 25%,#e1e8ef 50%,#eef2f6 75%);background-size:200% 100%;animation:sh 1.2s infinite linear}
+@keyframes sh{to{background-position:-200% 0}}
+.list-search{width:100%;max-width:360px;margin:0 0 14px;padding:11px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff}
+.list-search:focus{border-color:var(--blue);outline:3px solid #cfe0ff;outline-offset:0}
+.list-empty{padding:30px;text-align:center;color:var(--muted)}
+.sentinel-list>[hidden],.apostle-list>[hidden]{display:none!important}
+.lightbox{position:fixed;inset:0;z-index:100000;background:rgba(10,18,30,.86);display:grid;place-items:center;padding:20px;cursor:zoom-out;animation:fi .15s}
+.lightbox img{max-width:min(92vw,720px);max-height:88vh;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.5);object-fit:contain}
+@keyframes fi{from{opacity:0}}
 </style>
 </head>
 <body>
@@ -1876,7 +1782,6 @@ a{
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">신고·민원</button><div class="mega"><div class="mega-inner"><div class="mega-title">신고·민원<small>REPORT & CIVIL</small></div><div class="mega-links"><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">법령·감독</button><div class="mega"><div class="mega-inner"><div class="mega-title">법령·감독<small>LAW & OVERSIGHT</small></div><div class="mega-links"><a href="#law">소관 법령</a><a href="#rules">행정규칙</a></div></div></div></div>
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">알림마당</button><div class="mega"><div class="mega-inner"><div class="mega-title">알림마당<small>NEWS & MEDIA</small></div><div class="mega-links"><a href="#notice">공지사항</a><a href="#press">보도자료</a><a href="#briefing">정책브리핑</a></div></div></div></div>
-   
    <button class="all-menu" id="allMenu" aria-label="전체메뉴">☰</button>
   </div>
   <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><span>전체메뉴</span><span>☰</span></button>
@@ -1890,11 +1795,9 @@ a{
   <details><summary>신고·민원</summary><div><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></div></details>
   <details><summary>법령·감독</summary><div><a href="#law">소관 법령</a><a href="#rules">행정규칙</a></div></details>
   <details><summary>알림마당</summary><div><a href="#notice">공지사항</a><a href="#press">보도자료</a></div></details>
-  
  </div>
 </div>
 </header>
-
 <main id="main" class="site-main">
 <section class="page active" id="home">
  <h1 class="sr-only">센티넬안전관리청 누리집</h1>
@@ -1942,7 +1845,6 @@ a{
 </div></div></section>
  </div>
 </section>
-
 <section class="page" id="models">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>기종 안내</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a class="active" href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
@@ -1959,7 +1861,6 @@ a{
   <div class="meta"><span>담당부서: 운용기획과</span><span>전화 044-201-3318</span><span>최종 수정일: 2026.09.30.</span></div><div class="cc-by"><span class="cc-mark">공공누리 1유형</span>출처표시 조건에 따라 자유이용이 가능합니다. 단, 별도의 저작권·제3자 권리 정보가 있는 경우 해당 권리자의 이용조건을 따릅니다.</div>
  </div></div></div>
 </section>
-
 <section class="page" id="classification">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#classification">사도 분류·관리</a><span>›</span><strong>등급 체계</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a class="active" href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></aside><div><div class="content-head"><h1>등급 체계</h1><p>사도의 능력 출력과 공공안전 영향 가능성을 종합하여 1~5등급으로 판정함.</p></div><div class="content-body">
@@ -1976,7 +1877,6 @@ a{
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div><div class="cc-by"><span class="cc-mark">공공누리 1유형</span>출처표시 조건에 따라 이용 가능합니다.</div>
  </div></div></div>
 </section>
-
 <section class="page" id="types">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#classification">사도 분류·관리</a><span>›</span><strong>능력 유형</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a href="#classification">등급 체계</a><a class="active" href="#types">능력 유형</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></aside>
@@ -1993,7 +1893,6 @@ a{
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="apostles">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#classification">사도 분류·관리</a><span>›</span><strong>사도 목록</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a class="active" href="#apostles">사도 목록</a><a href="#report">자진신고</a><a href="#register">등록 확인</a></aside>
@@ -2012,7 +1911,6 @@ a{
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.10.01.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="register">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#classification">사도 분류·관리</a><span>›</span><strong>등록 확인</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>사도 분류·관리</h2><a href="#classification">등급 체계</a><a href="#types">능력 유형</a><a href="#report">자진신고</a><a class="active" href="#register">등록 확인</a></aside><div><div class="content-head"><h1>등록 확인</h1><p>등록번호를 이용하여 공개 가능한 등록 상태를 확인할 수 있습니다.</p></div><div class="content-body">
@@ -2022,7 +1920,6 @@ a{
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="survey">
 <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>누리집 이용자 설문</strong></div></div>
 <div class="container page-layout"><aside class="side-nav"><h2>참여</h2><a class="active" href="#survey">누리집 이용자 설문</a></aside><div>
@@ -2034,7 +1931,6 @@ a{
 <label class="survey-comment">추가 의견<textarea maxlength="300" placeholder="의견이 있다면 자유롭게 작성해 주세요."></textarea></label>
 <div class="form-actions"><button type="submit" class="submit">설문 제출</button></div></form><div id="surveyResult" class="report-result" hidden></div></div></div></div>
 </section>
-
 <section class="page" id="faq">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#report">신고·민원</a><span>›</span><strong>자주 묻는 질문</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a href="#report">활동 신고</a><a href="#faq" class="active">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside>
@@ -2048,7 +1944,6 @@ a{
   <div class="meta"><span>담당부서: 민원지원과</span><span>전화 044-201-3407</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="status">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">신고·민원</a><span>›</span><strong>민원 처리 현황</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a class="active" href="#status">민원 처리 현황</a></aside>
@@ -2064,7 +1959,6 @@ a{
  <div class="meta"><span>담당부서: 민원지원과</span><span>전화 044-201-3407</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="notice">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>공지사항</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a class="active" href="#notice">공지사항</a><a href="#press">보도자료</a></aside><div><div class="content-head"><h1>공지사항</h1><p>센티넬안전관리청의 주요 행정사항과 국민 안내사항을 제공합니다.</p></div><div class="content-body">
@@ -2111,12 +2005,10 @@ a{
   <div class="meta"><span>담당부서: 홍보담당관</span><span>전화 044-201-3452</span><span>최종 수정일: 2026.09.30.</span></div><div class="cc-by"><span class="cc-mark">공공누리 1유형</span>출처표시 조건에 따라 이용 가능합니다.</div>
  </div></div></div>
 </section>
-
 <section class="page" id="notice-view">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#notice">알림마당</a><span>›</span><a href="#notice">공지사항</a><span>›</span><strong>공지사항 상세</strong></div></div>
  <div class="container"><div class="notice-article" id="noticeArticle"></div></div>
 </section>
-
 <section class="page" id="press">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>보도자료</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a href="#notice">공지사항</a><a class="active" href="#press">보도자료</a><a href="#briefing">정책브리핑</a></aside>
@@ -2130,7 +2022,6 @@ a{
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#press">알림마당</a><span>›</span><a href="#press">보도자료</a><span>›</span><strong>보도자료 상세</strong></div></div>
  <div class="container"><div class="press-article" id="pressArticle"></div></div>
 </section>
-
 <section class="page" id="briefing">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#news">알림마당</a><span>›</span><strong>정책브리핑</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>알림마당</h2><a href="#notice">공지사항</a><a href="#press">보도자료</a><a class="active" href="#briefing">정책브리핑</a></aside>
@@ -2146,7 +2037,6 @@ a{
   <div class="pagination"><button>«</button><button>‹</button><button class="active">1</button><button>2</button><button>3</button><button>›</button><button>»</button></div>
  </div></div></div>
 </section>
-
 <section class="page" id="about">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>청 소개</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a class="active" href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside><div><div class="content-head"><h1>청 소개</h1><p>센티넬안전관리청의 설립 목적과 주요 기능을 소개함.</p></div><div class="content-body article">
@@ -2173,7 +2063,6 @@ a{
   <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="mission">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>미션과 비전</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a class="active" href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside>
@@ -2192,7 +2081,6 @@ a{
   <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="chief">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>청장 프로필</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a class="active" href="#chief">청장 프로필</a><a href="#history">연혁</a><a href="#location">청사 위치</a></aside>
@@ -2205,7 +2093,6 @@ a{
   <div class="meta"><span>담당부서: 운영지원과</span><span>전화 044-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="history">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>연혁</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a class="active" href="#history">연혁</a><a href="#location">청사 위치</a></aside>
@@ -2225,12 +2112,10 @@ a{
   <div class="meta"><span>담당부서: 정책기획과</span><span>전화 044-201-3142</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="law">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>법령·감독</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>법령·감독</h2><a class="active" href="#law">소관 법령</a><a href="#rules">행정규칙</a></aside><div><div class="content-head"><h1>소관 법령</h1><p>센티넬 및 사도의 안전관리와 권익보호에 관한 주요 법령을 제공합니다.</p></div><div class="content-body"><div class="table-scroll"><table class="data-table"><thead><tr><th>구분</th><th>법령명</th><th>공포·발령번호</th><th>시행일</th><th>첨부</th></tr></thead><tbody><tr><td>법률</td><td><b>「사도 관리 및 공공안전에 관한 법률」</b></td><td>법률 제21841호</td><td>2026.07.01</td><td><span class="file"><i>PDF</i> 3.1MB</span></td></tr><tr><td>대통령령</td><td>「센티넬 안전관리 시행령」</td><td>대통령령 제36102호</td><td>2026.03.14</td><td><span class="file"><i>HWP</i> 711KB</span></td></tr><tr><td>청 고시</td><td>「가이드 동조권 보호지침」</td><td>청 고시 제2026-18호</td><td>2026.08.20</td><td><span class="file"><i>PDF</i> 1.2MB</span></td></tr><tr><td>청 고시</td><td>「능력등급 판정기준」</td><td>청 고시 제2026-21호</td><td>2026.09.01</td><td><span class="file"><i>PDF</i> 985KB</span></td></tr></tbody></table></div><div class="quote article">「사도 관리 및 공공안전에 관한 법률」 제4조제2항에 따라 국가는 능력 보유자의 안전과 권리를 균형 있게 보호하고, 공공안전에 필요한 최소한의 관리조치를 시행합니다.</div><div class="meta"><span>담당부서: 법무감사담당관</span><span>전화 044-201-3365</span><span>최종 수정일: 2026.09.30.</span></div></div></div></div>
 </section>
-
 <section class="page" id="rules">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#law">법령·감독</a><span>›</span><strong>행정규칙</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>법령·감독</h2><a href="#law">소관 법령</a><a class="active" href="#rules">행정규칙</a></aside>
@@ -2246,7 +2131,6 @@ a{
   <div class="meta"><span>담당부서: 법무감사담당관</span><span>전화 044-201-3365</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="alerts-history">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">국민안전 안내</a><span>›</span><strong>재난문자 이력</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>국민안전 안내</h2><a href="#guidance">행동요령</a><a class="active" href="#alerts-history">재난문자 이력</a></aside>
@@ -2264,14 +2148,10 @@ a{
   <div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="guidance">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>국민안전 안내</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>국민안전 안내</h2><a class="active" href="#guidance">행동요령</a><a href="#alerts-history">재난문자 이력</a></aside><div><div class="content-head"><h1>위기 단계별 행동요령</h1><p>사도 활동 위기경보 단계에 따른 국민 행동요령을 안내합니다.</p></div><div class="content-body"><div class="type-grid"><div class="type-card"><span class="badge b-on">관심</span><h3>평상시 대비</h3><p>공식 재난문자 수신 설정을 확인하고 주변 지역관리국 안내를 확인함.</p></div><div class="type-card"><span class="badge b-limit">주의</span><h3>외출 시 주의</h3><p>발령지역 내 불필요한 접근을 자제하고 공식 안내에 따라 이동함.</p></div><div class="type-card"><span class="badge b-review">경계</span><h3>안전구역 이동</h3><p>현장관리요원의 안내에 따라 지정된 안전구역으로 이동함.</p></div><div class="type-card"><span class="badge b-off" style="color:#b52e35;background:#fff0f0;border-color:#e7b4b4">심각</span><h3>즉시 대피</h3><p>현장 접근을 금지하고 재난문자 및 긴급방송에 따라 즉시 대피함.</p></div></div><div class="quote article"><b>신고·문의</b><br>긴급한 생명·신체 위험은 119 또는 112로 신고하고, 사도 활동 및 ARU 이상징후는 센티넬안전관리청 활동 신고를 이용하시기 바랍니다.</div><div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div></div></div></div>
 </section>
-
-
-
 <section class="page" id="report">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#guidance">신고·민원</a><span>›</span><strong>활동 신고</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>신고·민원</h2><a class="active" href="#report">활동 신고</a><a href="#malfunction">오작동 신고</a><a href="#faq">자주 묻는 질문</a><a href="#status">민원 처리 현황</a></aside>
@@ -2299,12 +2179,10 @@ a{
   <div class="meta"><span>담당부서: 재난대응과</span><span>전화 044-201-3271</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="searchPage">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>통합검색</strong></div></div>
  <div class="container" style="padding:35px 0 70px"><div class="content-head"><h1>통합검색</h1><p id="searchSummary">검색어를 입력해 주세요.</p></div><div class="content-body"><div id="searchItems"></div></div></div>
 </section>
-
 <section class="page" id="location">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#about">청 소개</a><span>›</span><strong>청사 및 찾아오시는 길</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a href="#mission">미션과 비전</a><a href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a><a class="active" href="#location">청사 및 찾아오시는 길</a></aside>
@@ -2338,9 +2216,7 @@ a{
   <div class="meta"><span>담당부서: 운영지원과</span><span>전화 02-201-3186</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="org"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>조직도</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>청 소개</h2><a href="#about">인사말</a><a class="active" href="#org">조직도</a><a href="#chief">청장 프로필</a><a href="#history">연혁</a></aside><div><div class="content-head"><h1>조직도</h1><p>청장 아래 5개 본부 및 지역관리국 체계로 구성됩니다.</p></div><div class="content-body"><div class="type-grid"><div class="type-card"><span class="type-no">01</span><h3>기획조정관</h3><p>정책기획과 · 예산법무과 · 홍보담당관</p></div><div class="type-card"><span class="type-no">02</span><h3>등록관리본부</h3><p>등록관리과 · 등급판정과 · 교육운영과</p></div><div class="type-card"><span class="type-no">03</span><h3>동조지원본부</h3><p>동조지원과 · 가이드보호과 · 회복지원과</p></div><div class="type-card"><span class="type-no">04</span><h3>재난대응본부</h3><p>상황총괄과 · 현장대응과 · ARU운용과</p></div><div class="type-card"><span class="type-no">05</span><h3>권익보호본부</h3><p>인권보호과 · 정보보호과 · 민원지원과</p></div><div class="type-card"><span class="type-no">06</span><h3>지역관리국</h3><p>전국 15개 지역관리국 및 6개 권역지원센터 운영</p></div></div></div></div></div></section>
-
 <section class="page" id="sentinels">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>센티넬 목록</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
@@ -2360,15 +2236,12 @@ a{
   <div class="meta"><span>담당부서: 등록관리과</span><span>전화 044-201-3224</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div>
 </section>
-
 <section class="page" id="sentinel-profile">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#sentinels">센티넬 목록</a><span>›</span><strong>센티넬 상세정보</strong></div></div>
  <div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a href="#sentinels">센티넬 목록</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside>
  <div><div class="content-head"><h1>센티넬 상세정보</h1><p>등록된 센티넬의 공개 가능한 기본정보를 확인하실 수 있습니다.</p></div><div class="content-body"><div id="sentinelProfileContent"></div></div></div></div>
 </section>
-
 <section class="page" id="deployment"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>지역별 배치현황</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a class="active" href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside><div><div class="content-head"><h1>지역별 배치현황</h1><p>공개 가능한 범위의 지역별 공공안전 자율대응장치 운용 현황입니다.</p></div><div class="content-body"><table class="data-table"><thead><tr><th>권역</th><th>관리국</th><th>4~6형</th><th>프라임</th><th>상태</th></tr></thead><tbody><tr><td>서울</td><td>서울중앙·서부</td><td>428</td><td>18</td><td><span class="badge b-on">정상</span></td></tr><tr><td>인천·경기</td><td>인천·경기남부·북부</td><td>602</td><td>24</td><td><span class="badge b-limit">주의</span></td></tr><tr><td>충청</td><td>대전·충북·충남</td><td>341</td><td>14</td><td><span class="badge b-on">정상</span></td></tr><tr><td>영남</td><td>부산·대구·경북·경남</td><td>516</td><td>21</td><td><span class="badge b-on">정상</span></td></tr><tr><td>호남·제주</td><td>광주·전북·전남·제주</td><td>372</td><td>16</td><td><span class="badge b-on">정상</span></td></tr></tbody></table><p style="font-size:11px;color:#68798b">※ 시설 안전을 위해 개별 장치의 정확한 위치·운용시간·대응능력은 공개하지 않음.</p></div></div></div></section>
-
 <section class="page" id="operation"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>운용 기준</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a class="active" href="#operation">운용 기준</a><a href="#inspection">안전점검 결과</a></aside><div><div class="content-head"><h1>운용 기준</h1><p>공공안전 자율대응장치의 도입·배치·운용·중지 및 사후기록에 적용되는 기본 기준을 안내해 드립니다.</p></div><div class="content-body article">
   <div class="notice-area"><strong>운용 원칙</strong> · ARU는 인명·시설 피해의 예방과 현장 안전확인을 목적으로 하며, 필요한 범위를 넘어 개인의 일상적 활동을 제한하지 않도록 운용함.</div>
   <h2>1. 운용 전 확인</h2>
@@ -2388,11 +2261,8 @@ a{
   <table class="data-table"><thead><tr><th>기존 표현</th><th>행정상 표준 표현</th><th>적용 의미</th></tr></thead><tbody><tr><td>격리</td><td><b>보호관리</b></td><td>위험 노출을 줄이고 안전한 환경에서 관리함.</td></tr><tr><td>추적</td><td><b>안전확인</b></td><td>현장 안전을 확인하고 필요한 지원을 제공합니다.</td></tr><tr><td>진압</td><td><b>현장 안정화</b></td><td>위험요인을 통제하고 추가 피해를 방지함.</td></tr></tbody></table>
   <div class="meta"><span>담당부서: 운용기획과</span><span>전화 044-201-3318</span><span>최종 수정일: 2026.09.30.</span></div>
  </div></div></div></section>
-
 <section class="page" id="inspection"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>안전점검 결과</strong></div></div><div class="container page-layout"><aside class="side-nav"><h2>센티넬 운용</h2><a href="#models">기종 안내</a><a href="#deployment">지역별 배치현황</a><a href="#operation">운용 기준</a><a class="active" href="#inspection">안전점검 결과</a></aside><div><div class="content-head"><h1>안전점검 결과</h1><p>2026년 하반기 표준대응 장치 정기점검 결과를 공개합니다.</p></div><div class="content-body"><table class="data-table"><thead><tr><th>점검 대상</th><th>점검 기간</th><th>대상 수</th><th>적합</th><th>개선조치</th></tr></thead><tbody><tr><td>4~6형 표준대응 장치</td><td>2026.07~09</td><td>2,259대</td><td>2,211대</td><td>48대</td></tr><tr><td>프라임 센티넬</td><td>2026.08~09</td><td>93대</td><td>93대</td><td>0대</td></tr></tbody></table><div class="notice-area" style="margin-top:18px">개선조치 대상은 운용기준에 따른 보완 후 재점검을 실시합니다. 세부 취약점 정보는 안전상 공개하지 않음.</div></div></div></div></section>
-
 </main>
-
 <footer>
  <div class="footer-main"><div class="container">
   <div>
@@ -2408,7 +2278,6 @@ a{
   </div>
  </div></div>
 </footer>
-
 <script>
 (function(){
  const pages=[...document.querySelectorAll('.page')];
@@ -2479,7 +2348,6 @@ a{
  show(location.hash);
 })();
 </script>
-
 <script>
 const PRESS_DATA=[["2026.09.29","센티넬안전관리청, 2026년 하반기 표준대응 장치 안전점검 실시","대변인실","안전관리","전국 15개 지역관리국이 운용 중인 표준대응 장치에 대한 하반기 정기 안전점검을 실시한다. 이번 점검은 장치의 물리적 안전상태뿐 아니라 현장요원의 운용기록, 비상정지 절차, 시민 접근 통제체계까지 함께 확인하는 방식으로 진행된다.","청은 장치 자체의 성능보다 실제 현장에서 안전절차가 제대로 작동하는지를 중점적으로 살필 계획이다. 점검 과정에서 즉시 조치가 가능한 사항은 현장에서 보완하고, 추가 정비가 필요한 장치는 운용기관과 일정을 조정해 순차적으로 재점검한다.","국민에게 공개되는 점검 결과에는 기관별 적합 여부와 개선조치 현황을 포함하고, 장치의 취약점이나 대응능력 등 안전상 공개가 제한되는 정보는 제외한다."],["2026.09.18","전국 권역지원센터 24시간 상담체계로 전환","권익보호과","권익보호","서울 대표센터를 포함한 6개 권역지원센터의 상담체계를 24시간 운영으로 전환한다. 야간 시간대 등록 절차와 안전확인 요청에 대한 기본 상담을 받을 수 있도록 전문 상담인력을 확대 배치한다.","긴급한 생명·신체 위험은 기존과 같이 119 또는 112를 이용하며, 권역지원센터는 행정절차 안내와 안전확인 요청 접수, 보호지원기관 연계 등을 담당한다.","청은 상담 기록에 포함되는 개인정보를 최소화하고, 본인의 동의 없이 능력 관련 정보가 외부로 전달되지 않도록 별도의 접근권한 관리체계를 적용한다고 밝혔다."],["2026.09.11","민간 능력중개업체 관리감독 실태점검 결과 발표","감독총괄과","감독","청이 등록된 민간 능력중개업체 312곳을 대상으로 실시한 상반기 실태점검 결과를 공개했다. 주요 점검 대상은 동조 전 설명절차, 개인정보 보관, 중단 요청 처리, 광고 내용의 사실성 등이었다.","점검 과정에서 행정상 보완이 필요한 업체에는 시정명령과 개선권고가 내려졌으며, 반복적으로 기준을 위반한 업체는 별도의 행정절차에 따라 관리하기로 했다.","청은 중개 서비스를 이용하는 국민이 계약 전 업체의 등록 여부와 표준계약서 사용 여부를 확인할 수 있도록 관련 정보를 누리집에서 제공할 예정이다."],["2026.09.05","동조권 보호 강화안 전국 시행에 따른 현장 대응지침 배포","동조지원과","권익보호","동조 과정에서 의사 확인과 중단 요청이 실질적으로 보장될 수 있도록 개정된 현장 대응지침을 전국 지역관리국에 배포했다. 지침에는 사전 설명, 의사 확인, 중단 요청 접수, 사후 기록의 네 단계가 포함됐다.","특히 의사표현이 어려운 상황에서는 주변인의 추정만으로 동조 여부를 결정하지 않도록 하고, 가능한 범위에서 본인의 의사를 반복 확인하도록 절차를 명확히 했다.","청은 현장 담당자 교육을 통해 개정 지침의 적용 사례를 공유하고, 분기별 이행점검을 실시할 계획이다."],["2026.08.29","서울 대표센터, 주말 등록상담 시범운영 실시","서울권역지원센터","지역지원","서울권역지원센터가 평일 방문이 어려운 국민을 위해 토요일 등록상담을 시범 운영한다. 시범기간에는 신규 등록 절차, 등록정보 변경, 정기 확인 일정 조회 등을 중심으로 상담한다.","상담은 사전 예약을 원칙으로 하며 현장에서 능력 검사를 실시하지 않는다. 검사나 등급판정이 필요한 경우에는 별도 절차를 안내한다.","시범운영 결과에 따라 다른 권역지원센터로 주말 상담 확대 여부를 검토할 예정이다."],["2026.08.22","폭염 속 능력 출력 증가 사례 분석…여름철 안전수칙 공개","재난대응과","재난대응","최근 5년간 여름철 신고자료를 분석한 결과 고온 환경에서 일부 능력의 출력이나 지속시간이 평소와 달라졌다는 안전확인 요청이 반복적으로 접수된 것으로 나타났다.","청은 고온다습한 환경에서 무리한 능력 사용을 피하고, 평소와 다른 신체 반응이나 주변 환경 변화가 발생하면 즉시 사용을 중단하도록 안내했다.","이번 분석은 특정 능력이나 개인의 특성을 판단하기 위한 자료가 아니라 계절별 안전관리 기준을 마련하기 위한 참고자료로 활용된다."],["2026.08.15","지하철 역사 내 ARU 안전구역 표시체계 전국 표준화","ARU운용과","ARU","지하철과 대형 환승시설에 설치된 공공안전 자율대응장치 주변의 안전구역 표시를 하나의 디자인으로 통일한다. 이용자가 처음 방문한 역사에서도 장치의 작동범위와 대피방향을 쉽게 확인할 수 있도록 색상과 표지 규격을 표준화한다.","새 표지는 기존 시설의 안내체계를 방해하지 않는 범위에서 설치하며, 시각장애인과 외국인을 위한 음성·다국어 안내도 단계적으로 확대한다.","청은 올해 말까지 주요 환승역을 우선 적용한 뒤 전국 시설로 확대할 계획이다."],["2026.08.07","사도 등록정보 모바일 조회 서비스 개편","등록관리과","등록관리","등록번호를 이용해 본인의 공개 가능한 등록상태를 확인하는 모바일 서비스를 개편한다. 화면 구성을 단순화하고 최근 갱신일, 관리상태, 다음 확인 예정일을 한 화면에서 확인할 수 있도록 했다.","타인의 등록정보를 조회할 수 없도록 본인확인 절차를 별도로 적용하며, 검색 기록은 최소한으로 보관한다.","청은 앞으로 모바일을 통한 주소 변경과 상담 예약 등 추가 기능도 단계적으로 도입할 계획이라고 밝혔다."],["2026.07.31","학교 주변 능력안전구역 시범사업 2단계 추진","어린이안전과","학교안전","초·중·고교 주변에서 발생할 수 있는 사도 관련 안전사고에 대응하기 위한 학교 주변 능력안전구역 시범사업을 확대한다. 등하교 시간대 안전확인 순찰과 학교 담당자 대상 교육을 함께 실시한다.","학교에는 능력 보유 학생의 개인정보가 불필요하게 공개되지 않도록 별도의 대응지침을 제공한다. 학교 구성원 누구나 신고할 수 있는 간편한 안전확인 창구도 운영한다.","시범사업 평가는 사고 건수뿐 아니라 학생과 교직원의 체감 안전도, 신고 접근성 등을 함께 고려해 실시한다."],["2026.07.24","해안 관광지 성수기 안전확인 지원반 운영","현장대응과","현장대응","여름 휴가철을 맞아 부산·강릉·제주 등 주요 해안 관광지에 임시 안전확인 지원반을 운영한다. 관광객이 몰리는 시간대에는 현장 안내와 신고 접수 지원을 강화한다.","지원반은 현장 상황을 직접 통제하기보다 지역관리국과 지자체의 대응을 지원하는 역할을 수행한다. 관광객에게는 능력 사용으로 인한 위험이 발생했을 경우 현장 안내요원의 지시에 따르고 임의로 접근하지 않을 것을 당부했다.","운영기간 동안 접수된 민원과 안전확인 요청은 지역별 특성을 분석하는 자료로 활용할 예정이다."],["2026.07.17","등록 센티넬 정기 안전교육 온라인 과정 개설","교육운영과","교육","등록 센티넬을 대상으로 하는 정기 안전교육의 일부 과정을 온라인으로 전환한다. 교육은 능력 사용 전후 안전확인, 공공장소 이용 시 주의사항, 긴급상황 신고절차 등 생활과 밀접한 내용으로 구성된다.","온라인 과정은 모바일에서도 수강할 수 있으며 교육 이수 여부는 기존 등록관리 시스템과 연계된다.","청은 교육 접근성을 높이면서도 고위험 등급에 대해서는 기존 대면교육을 유지할 방침이다."],["2026.07.10","국가 능력안전 통계 연보 첫 공개…10년간 신고 추이 분석","통계기획팀","통계","센티넬안전관리청이 기관 설립 이후 처음으로 국가 능력안전 통계 연보를 공개한다. 연보에는 신고 건수, 안전확인 요청, 등록 현황, ARU 점검 결과 등 국민이 이해하기 쉬운 통계가 수록된다.","개인을 특정할 수 있는 정보는 통계에서 제외하고 지역별 수치 역시 필요한 경우 일정 범위로 묶어 공개한다.","청은 앞으로 매년 통계 연보를 발간해 정책 수립과 국민의 정보 접근성을 높이겠다고 밝혔다."],["2026.07.03","야간 도심 능력활동 신고 증가…여름철 순찰체계 조정","상황총괄과","재난대응","최근 여름철 야간 시간대 도심에서 능력활동 관련 안전확인 요청이 증가함에 따라 지역관리국의 순찰 및 상담 지원시간을 조정한다. 조정 대상은 유흥·상업시설 밀집지역과 대중교통 환승거점이다.","청은 단순한 능력 사용 자체를 위험행위로 판단하지 않으며, 주변 사람의 안전을 위협하거나 시설 피해가 발생할 우려가 있는 경우에 한해 안전확인을 실시한다고 설명했다.","지역별 상황에 따라 지원시간은 탄력적으로 운영될 예정이다."],["2026.06.26","가이드 보호지원 프로그램 이용자 1만 명 돌파","가이드보호과","권익보호","가이드 보호지원 프로그램 누적 이용자가 1만 명을 넘어섰다. 프로그램은 동조 과정에서 발생할 수 있는 심리적 부담과 생활상의 어려움에 대한 상담, 의료·복지기관 연계 등을 지원한다.","지원 신청 여부와 상담 내용은 원칙적으로 외부에 공개되지 않으며, 긴급한 안전 문제가 있는 경우를 제외하면 본인의 동의 없이 관계기관에 정보를 제공하지 않는다.","청은 지역별 지원 격차를 줄이기 위해 권역지원센터와 전문기관의 연계망을 확대할 계획이다."],["2026.06.19","ARU 오작동 신고 1회 통합창구 개설","ARU운용과","ARU","공공안전 자율대응장치의 이상작동이나 시설 관련 불편을 한 번에 신고할 수 있는 통합창구를 개설한다. 기존에는 운용기관별로 신고처가 달라 국민이 담당기관을 찾기 어려운 경우가 있었다.","통합창구에 접수된 신고는 위치와 장치 식별정보를 기준으로 해당 지역관리국 또는 운용기관에 자동 배분된다.","긴급 위험이 발생한 경우에는 기존 긴급신고 체계를 우선 이용하도록 안내한다."],["2026.06.12","지역관리국 민원 처리기간 공개 확대","민원지원과","민원","지역관리국별 민원 처리 현황과 평균 처리기간을 누리집에서 확인할 수 있도록 공개 범위를 확대한다. 국민이 접수 후 처리 단계가 어디에 있는지 쉽게 확인할 수 있도록 상태표시도 개편한다.","단순 상담과 법정 민원을 구분해 처리기간을 표시하고, 개인정보나 조사 중인 사건의 세부 내용은 공개하지 않는다.","청은 공개된 처리자료를 내부 업무개선에도 활용할 예정이다."],["2026.06.05","대형 공연장 능력안전 운영지침 마련","다중이용시설안전과","다중이용시설","콘서트와 스포츠 경기 등 대규모 관객이 모이는 시설을 위한 능력안전 운영지침을 마련했다. 지침에는 입장 전 안내, 비상통로 확보, 현장 신고체계, ARU 운용기관과 시설관리자의 역할이 포함된다.","공연을 제한하는 것이 아니라 관객과 능력 보유자가 함께 안전하게 시설을 이용할 수 있도록 사전 준비체계를 마련하는 데 목적이 있다.","주요 공연장과 협력해 실제 상황을 가정한 모의훈련도 진행할 예정이다."],["2026.05.29","센티넬 안전교육 콘텐츠, 청소년 눈높이에 맞춰 전면 개편","홍보담당관","교육","중·고등학생이 능력안전 제도를 쉽게 이해할 수 있도록 온라인 교육 콘텐츠를 개편한다. 기존의 법령 중심 설명을 생활 사례와 짧은 영상 중심으로 바꾸고 신고와 개인정보 보호 방법을 함께 소개한다.","콘텐츠에는 능력 보유 학생을 특정하거나 낙인찍지 않도록 하는 학교생활 사례가 포함된다.","교육자료는 학교가 자율적으로 활용할 수 있도록 공개 배포한다."],["2026.05.22","봄철 산행 증가에 따라 산악지역 안전확인 체계 강화","강원지역관리국","현장대응","봄철 등산객 증가에 맞춰 산악지역의 능력안전 대응체계를 강화한다. 강원권역지원센터와 지역관리국은 주요 탐방로의 신고 위치 확인체계와 현장 연락망을 점검한다.","산악지역에서는 통신환경에 따라 신고 위치가 정확하지 않을 수 있어 신고자에게 주변 지형지물과 탐방로 정보를 함께 알려줄 것을 당부했다.","산림·소방 관계기관과의 공동 대응훈련도 순차적으로 실시한다."],["2026.05.15","전국 6개 권역지원센터, 찾아가는 등록상담 운영","권역지원센터운영팀","지역지원","거주지와 센터 간 거리가 먼 국민을 위해 권역지원센터가 직접 지역을 방문하는 찾아가는 등록상담을 운영한다. 주민센터와 공공시설을 활용해 등록 절차와 제도 상담을 제공한다.","현장에서는 서류 안내와 상담을 중심으로 진행하며, 등급판정 등 전문 절차가 필요한 경우 별도 예약을 안내한다.","첫 운영지역은 도서·산간지역과 센터 접근성이 낮은 지역을 중심으로 선정한다."],["2026.05.08","능력안전 민원 데이터 분석으로 반복 불편 12건 개선","민원지원과","민원","최근 1년간 접수된 민원을 분석해 국민이 반복적으로 겪는 행정 불편 12개 항목을 선정하고 개선방안을 마련했다. 주요 개선사항은 서류 제출 절차 간소화, 안내문 용어 정비, 온라인 예약 화면 개선 등이다.","청은 민원인이 이해하기 어려운 행정용어를 줄이고 동일한 정보를 여러 창구에 반복 제출하지 않도록 시스템 연계를 확대한다.","개선 결과는 분기별로 공개한다."],["2026.05.01","전국 대학 캠퍼스 능력안전 담당자 협의체 출범","교육협력과","교육","대학 캠퍼스에서 발생할 수 있는 능력 관련 안전사고에 공동 대응하기 위한 전국 대학 담당자 협의체를 출범한다. 대학별 안전담당자와 지역관리국이 정기적으로 사례와 대응절차를 공유한다.","협의체는 학생 개인의 등록 여부를 공유하는 조직이 아니라 캠퍼스 안전관리 절차와 교육자료를 공유하는 실무협의체로 운영된다.","하반기에는 대학 기숙사와 연구시설을 대상으로 별도 안전교육 자료를 배포할 예정이다."],["2026.04.24","ARU 배치시설 야간 소음 민원 감소 위한 운용기준 개선","ARU운용과","ARU","공공시설 주변에서 발생한 야간 장치 작동음 관련 민원을 분석해 운용기준을 일부 개선한다. 안전에 지장이 없는 범위에서 경보음의 방향성과 단계별 출력 기준을 조정한다.","안전 확보가 필요한 긴급 상황에서는 기존 대응 기준이 우선 적용된다.","변경된 기준은 시범시설에서 검증한 뒤 전국 운용기관에 적용할 예정이다."],["2026.04.17","인천·경기권역지원센터, 공항·항만 안전지원 협약","인천·경기권역지원센터","지역지원","인천·경기권역지원센터가 공항과 항만의 능력안전 담당기관과 협력체계를 구축했다. 해외 입국자와 대규모 이동객이 몰리는 시설에서 안전확인 요청이 발생했을 때 연락체계를 신속하게 연결하는 것이 목적이다.","개인정보는 관계 법령에 따라 필요한 범위에서만 처리하며, 일반적인 여행객의 능력 보유 여부를 별도로 확인하지 않는다.","협약기관은 정기적으로 비상연락망을 점검하고 합동교육을 실시한다."],["2026.04.10","능력 관련 허위정보 확산 방지 위한 공식 확인창구 운영","정보보호과","정보보호","온라인에서 확산되는 능력 관련 허위정보와 잘못된 안전수칙에 대응하기 위해 공식 확인창구를 운영한다. 국민이 온라인 게시물의 내용을 제보하면 관계 부서가 사실관계를 확인해 안내한다.","청은 개인이나 특정 집단을 대상으로 한 비난·신상공개성 게시물은 사실확인 대상과 별개로 개인정보 침해 여부를 검토할 수 있다고 설명했다.","확인된 내용은 사례별로 누리집에 게시해 유사한 오해가 반복되지 않도록 할 예정이다."],["2026.04.03","봄철 축제기간 임시 능력안전 안내소 운영","지역관리국총괄과","축제안전","지역축제와 벚꽃 명소 등 방문객이 많은 장소에 임시 능력안전 안내소를 설치한다. 안내소에서는 안전수칙, 신고방법, 지역지원센터 연락처 등을 제공한다.","안내소는 능력 보유자를 확인하거나 통제하기 위한 시설이 아니라 방문객에게 안전정보를 제공하는 목적으로 운영된다.","올해는 수도권과 주요 관광도시를 중심으로 시범 운영하고 결과를 분석한다."],["2026.03.27","사도 등급판정 이의신청 절차 온라인화","등급판정과","등록관리","등급판정 결과에 이견이 있는 국민이 온라인으로 이의신청 절차를 확인하고 관련 서류를 제출할 수 있도록 시스템을 개편한다.","이의신청은 판정 결과를 다시 검토하는 절차이며, 신청 사실만으로 관리등급이나 등록상태가 자동 변경되는 것은 아니다.","청은 처리 과정에서 신청인의 개인정보와 의료·능력 관련 민감정보가 불필요하게 노출되지 않도록 접근권한을 제한한다."],["2026.03.20","서울센터 주변 보행안전 개선…출입동선 전면 개편","서울권역지원센터","지역지원","서울 대표센터 이용자가 증가함에 따라 센터 주변 보행동선과 방문객 출입체계를 개편한다. 민원 방문객과 직원 차량의 동선을 분리하고 장애인 접근경로를 명확하게 표시한다.","센터 내부 상담공간에는 개인정보 보호를 위한 별도 상담구역을 마련한다.","공사는 민원서비스 운영을 중단하지 않는 범위에서 단계적으로 진행된다."],["2026.03.13","전국 지역관리국 상황실 공통 운영프로그램 도입","상황총괄과","재난대응","15개 지역관리국의 상황실에서 사용하는 사건·신고 분류체계를 하나로 통일한다. 지역별 상황을 비교할 수 있는 공통 지표와 긴급 연락체계를 적용한다.","새 시스템은 개인의 능력정보를 공유하는 시스템이 아니라 신고와 현장지원의 진행상황을 관리하는 행정시스템이다.","상황실 담당자 교육을 마친 지역부터 순차적으로 전환한다."],["2026.03.06","공공시설 ARU 점검결과 시민 확인 서비스 시범운영","ARU운용과","정보공개","공공시설에 설치된 ARU의 최근 안전점검 실시 여부를 시민이 확인할 수 있는 서비스를 시범운영한다. 시설명과 점검일, 점검상태 등 공개 가능한 정보만 제공한다.","장치의 위치를 세부 좌표로 표시하거나 보안상 민감한 정보는 공개하지 않는다.","시범서비스 이용자의 의견을 반영해 공개범위를 조정할 예정이다."],["2026.02.27","겨울철 한파 이후 능력안전 시설 특별점검 완료","재난대응과","시설안전","한파와 결빙으로 인한 시설물 손상 가능성을 확인하기 위해 전국 주요 ARU 설치시설을 특별점검했다. 전원시설, 외부 센서, 비상정지 장치 등을 중점적으로 확인했다.","경미한 시설 보완사항은 현장에서 조치했으며 추가 정비가 필요한 시설은 운용기관별 일정에 따라 개선한다.","점검 결과는 안전상 필요한 범위에서 기관별 공개자료에 반영할 예정이다."],["2026.02.20","능력안전 표준용어 48개 정비…국민 안내문부터 적용","홍보담당관","행정개선","청이 국민 안내문과 민원창구에서 사용되는 능력안전 관련 용어 48개를 정비한다. 전문용어를 그대로 사용하는 대신 국민이 의미를 바로 이해할 수 있는 표현을 우선 적용한다.","변경된 용어는 누리집과 안내문, 상담 스크립트에 먼저 적용하고 이후 관련 규정과 교육자료에도 순차 반영한다.","전문가와 국민을 대상으로 한 이해도 조사를 통해 추가 정비 항목을 검토한다."],["2026.02.13","가이드 동조 전 설명자료, 7개 언어로 확대","가이드보호과","다문화","외국 국적 가이드와 보호대상자가 동조 관련 권리를 이해할 수 있도록 표준 설명자료를 7개 언어로 확대한다. 설명자료에는 동조 전 확인사항과 중단 요청 방법, 개인정보 보호 내용을 담는다.","번역자료는 단순한 직역이 아니라 국내 제도상 권리와 절차가 정확히 전달되도록 전문 검수를 거친다.","권역지원센터와 외국인 지원기관을 통해 자료를 배포할 예정이다."],["2026.02.06","설 명절 귀성기간 주요 환승시설 안전지원반 운영","재난대응과","명절안전","설 연휴 기간 고속철도역과 버스터미널 등 주요 환승시설에 안전지원반을 배치한다. 대규모 이동으로 신고가 집중될 가능성에 대비해 현장 안내와 관계기관 연락체계를 점검한다.","지원반은 승객의 능력 보유 여부를 확인하지 않으며, 실제 안전사고나 현장 위험이 발생한 경우에만 대응절차에 따라 지원한다.","연휴 종료 후 접수 현황을 분석해 다음 명절 대응계획에 반영한다."],["2026.01.30","2026년 능력안전 연구지원 과제 18건 선정","정책기획과","연구","능력안전 정책과 현장 대응체계를 개선하기 위한 연구지원 과제 18건을 선정했다. 연구 분야에는 공공시설 안전, 동조권 보호, ARU 인간공학, 통계모델 등이 포함된다.","선정된 연구는 개인정보 보호와 연구윤리 기준을 준수하며, 정책 활용도가 높은 결과는 국민에게 공개할 예정이다.","연구 결과는 향후 안전기준 개정과 교육자료 개발에 활용한다."],["2026.01.23","지역별 능력안전 교육격차 해소 위한 이동교육단 출범","교육운영과","교육","교육 접근성이 낮은 지역을 찾아가는 이동교육단을 출범한다. 지역관리국 담당자와 전문강사가 주민과 시설관리자를 대상으로 실제 생활에서 필요한 안전수칙을 교육한다.","첫 교육지역은 도서지역과 산간지역을 우선 선정하며, 지역별 수요조사를 통해 교육내용을 조정한다.","교육 참석 여부나 개인의 능력정보는 별도로 수집하지 않는다."],["2026.01.16","ARU 제조·운용기관 안전인증 기준 개정안 행정예고","ARU운용과","법령","공공안전 자율대응장치의 제조와 운용 과정에서 요구되는 안전인증 기준 개정안을 행정예고한다. 장치의 비상정지, 오작동 기록, 정기점검 이력 관리 기준을 강화하는 내용이 포함된다.","개정안에 대한 의견은 정해진 기간 동안 누구나 제출할 수 있으며, 제출된 의견은 검토 후 최종 기준에 반영한다.","청은 기술 변화에 맞춰 안전인증 기준을 주기적으로 재검토할 예정이다."],["2026.01.09","새해 첫 전국 안전점검회의 개최…지역별 위험요인 공유","상황총괄과","안전관리","센티넬안전관리청이 15개 지역관리국과 6개 권역지원센터가 참여하는 전국 안전점검회의를 개최했다. 지난해 주요 안전확인 사례와 개선조치 이행현황을 공유하고 올해 중점관리 분야를 논의했다.","올해는 다중이용시설, 학교 주변, 대중교통시설의 안전절차를 집중적으로 점검한다.","회의 결과 중 공개 가능한 정책방향과 점검계획은 누리집을 통해 순차적으로 공개한다."],["2025.12.26","연말연시 다중이용시설 안전관리 특별기간 운영","재난대응과","시설안전","연말연시 인파가 집중되는 주요 상업시설과 환승시설을 대상으로 특별 안전관리기간을 운영한다. 지역관리국은 시설관리자와 비상연락망을 점검하고 현장 신고창구를 안내한다.","이번 조치는 특정 능력 보유자를 대상으로 한 단속이 아니라 모든 이용자의 안전을 확보하기 위한 시설 중심의 예방조치다.","시설별 자체점검 결과와 현장 의견을 취합해 다음 연도 다중이용시설 안전지침에 반영한다."],["2025.12.19","2026년 국민 능력안전 정책자료 공개계획 발표","정책기획과","정책","센티넬안전관리청이 2026년 한 해 동안 공개할 주요 정책자료의 분야와 일정을 안내했다. 안전통계, ARU 점검, 권익보호, 지역지원 등 국민 관심도가 높은 자료를 중심으로 공개를 확대한다.","공개 과정에서 개인을 식별할 수 있는 정보와 장치 운용에 직접적인 위험을 줄 수 있는 정보는 관련 기준에 따라 제외한다.","청은 국민이 정책자료의 작성 배경과 활용 목적을 함께 이해할 수 있도록 자료별 설명을 강화할 예정이다."]];
 function renderPressPage(page=1,filter=''){
@@ -2585,7 +2453,6 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
   r.innerHTML='<div class="result-head"><span>처리현황 조회</span><b>'+no+'</b></div><dl><div><dt>민원유형</dt><dd>'+x[0]+'</dd></div><div><dt>접수일</dt><dd>'+x[1]+'</dd></div><div><dt>현재 단계</dt><dd>'+x[2]+'</dd></div><div><dt>담당기관</dt><dd>'+x[3]+'</dd></div></dl><p>처리 단계가 변경되면 민원 신청 시 등록한 연락수단을 통해 안내됩니다.</p>';
  });
 })();
-
  const sentinelProfiles=[
   {name:'김도윤',age:'28세',gender:'남성',center:'서울권역지원센터',grade:'S',type:'에너지형',status:'등록·운용',joined:'2021.04.16'},
   {name:'이서윤',age:'24세',gender:'여성',center:'인천·경기권역지원센터',grade:'A',type:'인지·감각형',status:'등록·운용',joined:'2023.08.21'},
@@ -2623,5 +2490,148 @@ if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d
 <div class="entry-popups-inner">
 <div class="entry-popup"><div class="popup-head"><span>설문조사</span><button type="button" class="popup-x" data-close-popup>×</button></div><div class="popup-body"><strong>누리집 이용자 설문조사</strong><p>누리집 이용 경험을 확인하기 위한 짧은 설문입니다.</p><div class="popup-actions"><button type="button" class="popup-secondary" data-hide-day>오늘 하루 보지 않기</button><a class="popup-primary" href="#survey">설문 참여하기</a></div></div>
 </div></div></div>
+<script>
+(function(){
+const CLOUDINARY_CLOUD = 'dbljkloal';
+const CLOUDINARY_PRESET = 'Everything';
+const ADMIN_PASS = 'sentinel2026'; // ← 관리자 비밀번호 (변경하세요)
+const BASE='https://res.cloudinary.com/'+CLOUDINARY_CLOUD+'/image/';
+const API=BASE.replace('res.cloudinary.com','api.cloudinary.com/v1_1')+'upload';
+const MAX=10*1024*1024, CK='ssa_shared_v2';
+const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+const $=(q,r=document)=>r.querySelector(q), $$=(q,r=document)=>[...r.querySelectorAll(q)];
+let shared={},warned=false;
+try{shared=JSON.parse(localStorage.getItem(CK)||'{}')}catch(e){}
+const keep=()=>{try{localStorage.setItem(CK,JSON.stringify(shared))}catch(e){}};
+const url=(p,w)=>BASE+'upload/c_fill,g_auto,w_'+(w||500)+',h_'+Math.round((w||500)*1.24)+',q_auto,f_auto/v'+p.v+'/'+p.id;
+const tag=k=>'ssa_k_'+k;
+const rows=[]; // {key,box,btn,del,inp}
+
+function toast(m,err){const t=document.createElement('div');t.className='toast'+(err?' err':'');t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3600)}
+
+/* ---------- 화면 반영 ---------- */
+function paint(r){
+ const p=shared[r.key],box=r.box;let img=$('img',box);
+ if(!img){img=document.createElement('img');box.prepend(img)}
+ if(p){img.src=url(p);img.hidden=false;img.loading='lazy';img.alt=r.name+' 사진';box.classList.add('has-img');box.dataset.full=url(p,1000)}
+ else if(box.dataset.base){img.src=box.dataset.base;box.classList.add('has-img');box.dataset.full=box.dataset.base}
+ else{img.removeAttribute('src');img.hidden=true;box.classList.remove('has-img');delete box.dataset.full}
+ r.btn.textContent=p?'사진 변경':'사진 등록';
+ r.del.hidden=!p;
+}
+const paintAll=()=>rows.forEach(paint);
+
+/* ---------- 공유 목록 불러오기 (모든 접속자 공통) ---------- */
+async function pull(r){
+ try{
+  const res=await fetch(BASE+'list/'+tag(r.key)+'.json?_='+Math.floor(Date.now()/20000),{cache:'no-store'});
+  if(!res.ok)throw new Error(res.status);
+  const j=await res.json(),a=(j.resources||[]).sort((x,y)=>y.version-x.version)[0];
+  if(!a||a.width===1&&a.height===1)delete shared[r.key];
+  else shared[r.key]={id:a.public_id,v:a.version};
+  return true;
+ }catch(e){return e.message==='404'}
+}
+async function sync(){
+ const ok=await Promise.all(rows.map(pull));
+ if(ok.some(x=>!x))warned=true;
+ keep();paintAll();document.body.classList.remove('photos-loading');
+ if(window.__profilePhoto)window.__profilePhoto();
+}
+
+/* ---------- 업로드 ---------- */
+function send(r,file,remove){
+ const fd=new FormData();fd.append('file',file);fd.append('upload_preset',CLOUDINARY_PRESET);
+ fd.append('folder','sentinel');fd.append('tags','ssa_photo,'+tag(r.key));
+ const bar=document.createElement('div');bar.className='photo-bar';r.box.appendChild(bar);
+ const x=new XMLHttpRequest();x.open('POST',API);r.btn.disabled=true;r.btn.textContent=remove?'삭제 중…':'업로드 중…';
+ x.upload.onprogress=e=>{if(e.lengthComputable)bar.style.width=(e.loaded/e.total*100)+'%'};
+ const done=()=>{bar.remove();r.btn.disabled=false;paint(r)};
+ x.onload=()=>{
+  try{const j=JSON.parse(x.responseText);
+   if(x.status<200||x.status>=300||!j.public_id)throw new Error((j.error&&j.error.message)||x.status);
+   if(remove)delete shared[r.key];else shared[r.key]={id:j.public_id,v:j.version};
+   keep();done();
+   toast(remove?'사진이 삭제되었습니다.':'사진이 등록되었습니다. 모든 접속자에게 표시됩니다.');
+   if(warned)toast('공유 목록 읽기가 차단되어 있습니다. Cloudinary 설정에서 Resource list를 허용하세요.',1);
+  }catch(e){done();toast('업로드 실패: '+e.message,1)}
+ };
+ x.onerror=()=>{done();toast('네트워크 오류로 처리하지 못했습니다.',1)};
+ x.send(fd);
+}
+function pick(r,f){
+ if(!/^image\//.test(f.type))return toast('이미지 파일만 등록할 수 있습니다.',1);
+ if(f.size>MAX)return toast('10MB 이하 사진만 등록할 수 있습니다.',1);
+ send(r,f,false);
+}
+
+/* ---------- 행 초기화 ---------- */
+function init(sel,photoSel,keyFn){
+ $$(sel).forEach((row,i)=>{
+  const box=$(photoSel,row),nm=$('strong',row);if(!box||!nm)return;
+  const r={key:keyFn(row,i,nm),name:nm.textContent.trim(),box,row};
+  const im=$('img',box);if(im&&im.getAttribute('src'))box.dataset.base=im.getAttribute('src');
+  const link=$('.sentinel-detail-btn',row),act=document.createElement('div');act.className='row-actions';
+  link.replaceWith(act);act.appendChild(link);
+  r.btn=document.createElement('button');r.btn.type='button';r.btn.className='photo-btn';r.btn.setAttribute('aria-label',r.name+' 사진 등록');
+  r.del=document.createElement('button');r.del.type='button';r.del.className='photo-del';r.del.textContent='사진 삭제';
+  r.inp=document.createElement('input');r.inp.type='file';r.inp.accept='image/*';r.inp.hidden=true;
+  r.btn.onclick=()=>r.inp.click();
+  r.inp.onchange=()=>{if(r.inp.files[0])pick(r,r.inp.files[0]);r.inp.value=''};
+  r.del.onclick=()=>{if(confirm(r.name+' 사진을 삭제할까요?'))send(r,PIXEL,true)};
+  act.prepend(r.btn);act.append(r.del,r.inp);rows.push(r);
+ });
+}
+init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
+init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
+
+/* ---------- 검색 ---------- */
+[['.sentinel-list','이름·센터로 검색'],['.apostle-list','코드·등급·지역으로 검색']].forEach(([q,ph])=>{
+ const l=$(q);if(!l)return;
+ const i=document.createElement('input');i.type='search';i.className='list-search';i.placeholder=ph;i.setAttribute('aria-label',ph);
+ const em=document.createElement('p');em.className='list-empty';em.hidden=true;em.textContent='검색 결과가 없습니다.';
+ i.oninput=()=>{const v=i.value.trim().toLowerCase();let n=0;
+  [...l.children].forEach(c=>{const m=!v||c.textContent.toLowerCase().includes(v);c.hidden=!m;if(m)n++});em.hidden=n>0};
+ l.before(i);l.after(em);
+});
+
+/* ---------- 확대 보기 ---------- */
+document.addEventListener('click',e=>{
+ const b=e.target.closest('.sentinel-photo.has-img,.apostle-photo.has-img,.sentinel-detail-photo img');if(!b)return;
+ const src=b.dataset?.full||b.src;if(!src)return;
+ const o=document.createElement('div');o.className='lightbox';o.setAttribute('role','dialog');o.setAttribute('aria-label','사진 확대');
+ const im=new Image();im.src=src;im.alt='확대 사진';o.appendChild(im);
+ const close=()=>{o.remove();removeEventListener('keydown',k)},k=ev=>{if(ev.key==='Escape')close()};
+ o.onclick=close;addEventListener('keydown',k);document.body.appendChild(o);
+});
+
+/* ---------- 상세페이지 사진 ---------- */
+window.__profilePhoto=function(){
+ const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
+ const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),d=shared['s'+id];
+ if(d&&!$('img',p)){p.textContent='';const i=new Image();i.src=url(d,600);i.alt='증명사진';p.appendChild(i)}
+};
+addEventListener('hashchange',()=>{setTimeout(window.__profilePhoto,0);adminHash()});
+
+/* ---------- 관리자 모드 (#photo-admin) ---------- */
+function admin(on){document.body.classList.toggle('photo-admin',on);
+ let b=$('.admin-pill');if(!on){b&&b.remove();return}
+ if(!b){b=document.createElement('button');b.className='admin-pill';b.textContent='사진 관리자 모드 · 종료';
+  b.onclick=()=>{sessionStorage.removeItem('ssa_admin');admin(false)};document.body.appendChild(b)}}
+function adminHash(){
+ if(location.hash!=='#photo-admin')return;
+ history.replaceState(null,'','#home');dispatchEvent(new HashChangeEvent('hashchange'));
+ const v=prompt('관리자 비밀번호');
+ if(v===ADMIN_PASS){sessionStorage.setItem('ssa_admin','1');admin(true);toast('관리자 모드가 켜졌습니다.')}
+ else if(v!==null)toast('비밀번호가 올바르지 않습니다.',1);
+}
+if(sessionStorage.getItem('ssa_admin'))admin(true);
+adminHash();
+
+document.body.classList.add('photos-loading');
+paintAll();sync();
+setInterval(()=>{if(!document.hidden)sync()},120000);
+})();
+</script>
 </body>
 </html>
