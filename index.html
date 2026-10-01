@@ -202,8 +202,8 @@ footer{background:#263544;color:#dce4eb;margin-top:0}
  .related-row{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:700px){
- .admin-mode-trigger{display:block;position:fixed;top:12px;right:14px;z-index:10050;padding:8px 12px;font-size:12px;font-weight:800;border:2px solid var(--navy);background:#fff;color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.16);border-radius:3px}
- .admin-mode-trigger:hover,.admin-mode-trigger.active{background:var(--navy);border-color:var(--navy);color:#fff}
+ .admin-mode-mobile{display:block;margin-right:auto;padding:6px 11px;font-size:11px;font-weight:800;border:1px solid rgba(255,255,255,.8);background:transparent;color:#fff;border-radius:2px}
+ .admin-mode-mobile:hover,.admin-mode-mobile.active{background:#fff;color:var(--navy)}
  .container{width:calc(100% - 28px)}.govbar .container{font-size:11px}.govbar .container>span{display:none}.govbar .container .gov-official{display:flex}
  .crisis .container{min-height:52px;flex-wrap:wrap;padding:7px 0;gap:5px}.crisis time{margin-left:0}.crisis a{margin-left:auto}
  .header-top .container{height:78px}.emblem{width:46px;height:46px}.brand-title{font-size:19px}.brand-en{font-size:9px}.util{display:none}
@@ -1837,7 +1837,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%}
    <div class="nav-item"><button class="nav-trigger" aria-expanded="false">알림마당</button><div class="mega"><div class="mega-inner"><div class="mega-title">알림마당<small>NEWS & MEDIA</small></div><div class="mega-links"><a href="#notice">공지사항</a><a href="#press">보도자료</a><a href="#briefing">정책브리핑</a></div></div></div></div>
    <button class="all-menu" id="allMenu" aria-label="전체메뉴">☰</button>
   </div>
-  <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><span>전체메뉴</span><span>☰</span></button>
+  <button class="mobile-menu" id="mobileMenu" aria-expanded="false"><button class="admin-mode-mobile" id="adminModeBtnMobile" type="button">관리자 모드</button><span>전체메뉴</span><span>☰</span></button>
  </nav><div class="mobile-panel" id="mobilePanel" hidden aria-label="전체메뉴">
  <div class="mobile-panel-head"><b>전체메뉴</b><button type="button" id="closeMobilePanel" aria-label="전체메뉴 닫기">×</button></div>
  <div class="mobile-panel-list">
@@ -2715,6 +2715,7 @@ function enterAdmin(){
  admin(true);
 }
 document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
+document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.stopPropagation();enterAdmin()});
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-profile-edit]');if(b&&document.body.classList.contains('photo-admin')){e.preventDefault();e.stopPropagation();openProfileEditor(Number(b.dataset.profileEdit))}
  const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));rows[id]?.inp.click()}
