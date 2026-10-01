@@ -1651,6 +1651,101 @@ a{
     border-bottom:1px solid #dce3ea;
   }
 }
+
+/* ARU model guide — mobile visual refinement */
+#models .notice-area{
+  border-left-width:4px;
+  border-radius:10px;
+  background:#f5f8fc;
+  padding:15px 16px;
+  line-height:1.7;
+}
+#models .table-scroll{
+  margin-top:18px;
+  border:1px solid #dbe2e9;
+  border-radius:10px;
+  overflow:hidden;
+}
+#models .data-table{border-top:0}
+#models .data-table th{background:#eef3f8;color:var(--navy)}
+#models .data-table .badge{border-radius:999px;padding:5px 9px}
+#models .redacted{white-space:nowrap;letter-spacing:.03em}
+#models textarea{
+  border:1px solid #c8d2dc;
+  border-radius:8px;
+  min-height:92px;
+  padding:13px 14px;
+}
+@media(max-width:700px){
+  #models .content-body{padding-top:4px}
+  #models .notice-area{font-size:13px;margin-bottom:16px}
+  #models .table-scroll{overflow:visible}
+  #models .data-table{
+    display:block;
+    border:0;
+    font-size:12px!important;
+  }
+  #models .data-table thead{display:grid;grid-template-columns:1.25fr .8fr 1fr}
+  #models .data-table thead tr{display:contents}
+  #models .data-table th{
+    padding:11px 9px;
+    font-size:12px!important;
+    border-bottom:1px solid #d9e1e8;
+  }
+  #models .data-table tbody,
+  #models .data-table tbody tr{display:block}
+  #models .data-table tbody tr{
+    display:grid;
+    grid-template-columns:1.25fr .8fr 1fr;
+    min-height:78px;
+    border-bottom:1px solid #e0e6ec;
+    background:#fff;
+  }
+  #models .data-table td{
+    padding:13px 9px;
+    font-size:12px!important;
+    line-height:1.5;
+    border-bottom:0;
+    word-break:keep-all;
+    overflow-wrap:anywhere;
+  }
+  #models .data-table th:nth-child(n+4),
+  #models .data-table td:nth-child(n+4){display:none}
+  #models .data-table td:first-child b{font-size:12px}
+  #models .data-table tr:hover td{background:#fff}
+  #models .data-table .redacted{font-size:10px!important;overflow:hidden}
+  #models .content-body>p{
+    font-size:11px!important;
+    line-height:1.7!important;
+    margin:12px 0 0!important;
+  }
+  #models .content-body>div:last-of-type{
+    display:flex;
+    gap:8px;
+    align-items:flex-end;
+    margin-top:16px;
+  }
+  #models .content-body>div:last-of-type textarea{flex:1;min-width:0;margin:0}
+  #models .content-body>div:last-of-type .submit{
+    flex:0 0 auto;
+    margin:0;
+    padding:10px 12px;
+    border-radius:7px;
+  }
+  #models .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px 16px;
+    margin-top:18px;
+    font-size:11px;
+  }
+  #models .cc-by{
+    margin-top:18px;
+    padding-top:14px;
+    font-size:11px;
+    line-height:1.65;
+  }
+}
 </style>
 </head>
 <body>
