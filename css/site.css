@@ -2391,3 +2391,21 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
 }
 
 /* 페이지 전환 시 중간 스크롤로 보이는 현상 방지 */
+
+
+/* 통합검색 상단 공백 제거 - 검색 페이지는 헤더 바로 아래에서 시작 */
+body:has(#searchPage.active) .site-main{
+  min-height:0!important;
+}
+#searchPage,
+#searchPage.active{
+  position:relative!important;
+  top:0!important;
+  margin-top:0!important;
+  margin-bottom:0!important;
+  padding-top:0!important;
+  min-height:0!important;
+}
+#searchPage .breadcrumb{
+  margin-top:0!important;
+}
