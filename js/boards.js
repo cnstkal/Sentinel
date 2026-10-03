@@ -142,3 +142,10 @@ window.addEventListener('hashchange',()=>{
  if(location.hash==='#law'||location.hash==='#rules')renderLawRuleList();
 });
 setTimeout(renderLawRuleList,0);
+
+/* Scheduled content refresh */
+window.addEventListener('ssa-scheduled-updated',()=>{
+  try{renderPressPage(1,'')}catch(e){}
+  try{renderNoticePage?.(1,'')}catch(e){}
+  try{renderBriefingPage?.(1,'')}catch(e){}
+});
