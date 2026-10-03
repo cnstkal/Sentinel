@@ -172,8 +172,8 @@ init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
 init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
 
 /* ---------- 행 클릭 → 상세 ---------- */
-const go=e=>{const r=e.target.closest('[data-href]');if(!r||e.target.closest('.row-actions')||e.target.closest('input[type="file"]')||e.target.closest('.admin-edit-btn'))return;
- if(e.type==='keydown'&&e.key!=='Enter')return;location.hash=r.dataset.href};
+const go=e=>{const r=e.target.closest('[data-href],[data-guide-href]');if(!r||e.target.closest('.row-actions')||e.target.closest('input[type="file"]')||e.target.closest('.admin-edit-btn'))return;
+ if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;e.preventDefault();const h=r.dataset.href||r.dataset.guideHref;if(h)location.hash=h};
 document.addEventListener('click',go);document.addEventListener('keydown',go);
 
 /* ---------- 검색 ---------- */
