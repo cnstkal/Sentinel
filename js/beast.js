@@ -12,8 +12,8 @@ function render(){
   joined=ds.joined||(m?'20'+m[1]+'.'+m[2]+'.'+m[3]:'-'),sp=ds.special||'해당 없음',
   row=(k,v,f)=>'<div data-f="'+f+'"><span>'+k+'</span><b>'+X(v)+'</b></div>';
  box.dataset.id=id;
- box.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo">사진</div><div><h2 data-f="code">'+X(code)+' <span class="sentinel-grade" data-f="grade">'+X(grade)+'</span></h2><p data-f="rg">'+X(rg)+' · '+X(st)+'</p></div><button type="button" class="admin-only prof-edit">정보 수정</button></div><div class="sentinel-profile-table">'
-  +row('괴수 코드',code,'code')+row('등급',grade,'grade')+row('능력 유형',type,'type')+row('관리 상태',st,'st')+row('관할 지역',rg,'rg')+row('최초 등록일',joined,'joined')+row('특이 구분',sp,'special')
+ box.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo">사진</div><div><h2 data-f="code">'+X(code)+' <span class="sentinel-grade" data-f="grade">'+X(grade)+'</span></h2><p>'+X(st)+'</p></div><button type="button" class="admin-only prof-edit">정보 수정</button></div><div class="sentinel-profile-table">'
+  +row('괴수 코드',code,'code')+row('등급',grade,'grade')+row('능력 유형',type,'type')+row('관리 상태',st,'st')+row('최초 등록일',joined,'joined')+row('특이 구분',sp,'special')
   +'</div><div class="notice-area"><strong>공개 범위 안내</strong><br>괴수의 개인식별정보와 상세 능력 정보는 공개하지 않으며, 등록 코드를 기준으로 기본정보만 안내합니다.</div><a class="back-to-list" href="#apostles">← 괴수 목록으로</a>';
  const detailPhoto=box.querySelector('.sentinel-detail-photo'),listImg=r.querySelector('.apostle-photo img'),src=listImg?.getAttribute('src');
  if(detailPhoto&&src){detailPhoto.innerHTML='<img src="'+X(src)+'" alt="괴수 사진">';}
