@@ -2503,3 +2503,32 @@ body:has(#searchPage.active) .site-main{
     overflow:visible!important;
   }
 }
+/* ===== 공통 상세정보 / 검색 / 위기경보 UI 정리 ===== */
+.search-result-item>a{position:relative}
+.search-result-item em{display:inline-flex;align-items:center;margin-left:8px;padding:3px 7px;border-radius:999px;background:#eef4ff;color:var(--blue);font-size:10px;font-style:normal;font-weight:800;vertical-align:middle}
+.sentinel-history{margin-top:24px;border-top:2px solid var(--navy)}
+.sentinel-history h3{margin:0;padding:17px 0 11px;color:var(--navy);font-size:18px}
+.sentinel-history-list{border-top:1px solid var(--line)}
+.sentinel-history-list>div{display:grid;grid-template-columns:100px 120px 1fr;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.sentinel-history-list time{font-size:12px;color:var(--blue);font-weight:700}
+.sentinel-history-list b{font-size:13px;color:var(--navy)}
+.sentinel-history-list span{font-size:12px;color:#68798b}
+.map-region-popover{position:absolute;z-index:20;left:50%;top:50%;transform:translate(-50%,-50%);width:min(250px,calc(100% - 28px));padding:17px 18px;background:#fff;border:1px solid #d6e0ea;border-radius:12px;box-shadow:0 12px 30px rgba(20,40,65,.16);display:flex;flex-direction:column;gap:6px}
+.map-region-popover[hidden]{display:none}
+.map-region-popover strong{font-size:17px;color:var(--navy)}
+.map-region-popover span{font-size:12px;color:#68798b}
+.map-region-popover b{margin-left:5px}
+.map-region-popover small{font-size:10px;color:#8794a2}
+.map-region-close{position:absolute;right:8px;top:6px;border:0;background:transparent;color:#718091;font-size:20px;line-height:1;cursor:pointer}
+.map-region-popover .lv-interest{color:#2f5fc4}.map-region-popover .lv-caution{color:#a47b00}.map-region-popover .lv-warning{color:#cf6a14}.map-region-popover .lv-serious{color:#c95757}
+.crisis-map-svg .region{cursor:pointer}
+.crisis-map-svg .region:focus{outline:none;filter:brightness(.96)}
+@media(max-width:700px){
+ .sentinel-history-list>div{grid-template-columns:82px 100px 1fr;gap:8px}
+ .sentinel-history-list span{font-size:11px;line-height:1.45}
+ .search-result-item em{font-size:9px;margin-left:5px}
+ /* 모바일에서는 지도에 화면을 과도하게 할애하지 않고 전체 한반도를 한 카드 안에 표시 */
+ .map-box .actual-map{height:310px!important;min-height:310px!important;padding:0 8px!important;overflow:visible!important}
+ .map-box .korea-map-image{width:100%!important;height:285px!important;overflow:visible!important;transform:none!important}
+ .map-box .crisis-map-svg{width:68%!important;height:285px!important;max-width:none!important;transform:translateY(12px)!important;margin:0 auto!important}
+}
