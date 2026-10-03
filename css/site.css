@@ -1347,12 +1347,12 @@ footer{background:var(--navy2);border-top:0}
 .map-scale{left:22px;bottom:19px}
 .map-svg.actual-map svg{display:none}
 @media(max-width:700px){
- .actual-map{min-height:315px!important;padding:5px 7px 40px!important}
- .korea-map-image{height:285px}
- .crisis-map-svg{width:118%;max-width:none}
- .map-status-label text{font-size:13px}
+ .actual-map{min-height:270px!important;padding:5px 7px 34px!important}
+ .korea-map-image{height:220px!important}
+ .crisis-map-svg{width:100%!important;max-width:100%!important;height:100%!important}
+ .map-status-label text{font-size:12px}
  .map-credit{font-size:7px;right:7px}
- .map-scale{left:10px;bottom:17px;font-size:9px}
+ .map-scale{left:10px;bottom:14px;font-size:9px}
 }
 .map-svg.actual-map .crisis-map-svg{display:block!important}
 .map-marker,.marker-seoul,.marker-daejeon,.marker-busan{display:none!important}
