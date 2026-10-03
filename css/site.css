@@ -2623,3 +2623,11 @@ body:has(#searchPage.active) .site-main{
 [hidden]{display:none!important}
 .page.active{display:block!important}
 a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
+
+/* ===== 검색창 배경 순백색 ===== */
+.header-search,
+.header-search .container,
+.search-form,
+.search-form input{
+  background:#fff!important;
+}
