@@ -2730,3 +2730,23 @@ body.photo-admin .nav-admin-btn{
  }
  .all-menu{margin-left:auto}
 }
+
+/* 가이드 관리자 사진 등록 버튼 */
+.guide-photo{position:relative}
+.guide-photo-admin{
+ position:absolute;
+ left:50%;
+ bottom:8px;
+ transform:translateX(-50%);
+ z-index:20;
+ border:0;
+ border-radius:5px;
+ padding:6px 10px;
+ background:var(--navy);
+ color:#fff;
+ font-size:11px;
+ font-weight:700;
+ white-space:nowrap;
+ cursor:pointer;
+}
+.guide-photo-admin:hover{background:var(--blue)}
