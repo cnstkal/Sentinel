@@ -9,7 +9,7 @@
    if(!document.getElementById(id)) id='home';
    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
    document.querySelectorAll('.side-nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
-   window.scrollTo({top:0,behavior:'smooth'});
+   window.scrollTo({top:0,behavior:'auto'});
  }
  window.addEventListener('hashchange',()=>show(location.hash));
  document.addEventListener('click',e=>{
@@ -66,6 +66,10 @@
  document.querySelectorAll('.press-tabs').forEach(tabs=>{tabs.querySelectorAll('button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{tabs.querySelectorAll('button[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));const root=tabs.parentElement;root.querySelectorAll('.press-list').forEach(list=>list.hidden=list.id!==btn.dataset.tab)}))});
  document.querySelectorAll('.rating').forEach(r=>{const bs=[...r.querySelectorAll('button')];bs.forEach((b,i)=>b.addEventListener('click',()=>bs.forEach((x,j)=>x.classList.toggle('on',j<=i))))});
  show(location.hash);
+ const initialSearch=location.hash.match(/^#searchPage\\?query=(.*)$/);
+ if(initialSearch){
+   try{renderSearch(decodeURIComponent(initialSearch[1]||''));}catch(e){}
+ }
 })();
 
 
