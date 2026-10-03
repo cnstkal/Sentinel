@@ -2741,3 +2741,21 @@ body.photo-admin .guide-admin-bar{display:flex}
 @media(max-width:700px){
  .guide-admin-bar button{padding:10px 5px;font-size:12px}
 }
+
+/* ===== MODELS PAGE POLISH ===== */
+#models .content-head{border-bottom:0;padding-bottom:8px}
+#models .models-opinion{display:flex;gap:10px;align-items:stretch;margin-top:18px}
+#models .models-opinion textarea{flex:1;min-height:108px;resize:vertical;border:1px solid #c8d2dc;border-radius:9px;background:#fff;padding:13px 14px;color:var(--text);outline:none}
+#models .models-opinion textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,110,244,.10)}
+#models .models-opinion .submit{align-self:flex-end;min-width:104px;height:44px;margin:0;border:1px solid var(--navy);border-radius:8px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;padding:0 16px;transition:.15s}
+#models .models-opinion .submit:hover{background:#223752}
+#models .models-opinion .submit:active{transform:translateY(1px)}
+@media(max-width:700px){
+ #models .table-scroll{width:100%;border-radius:9px;overflow:hidden}
+ #models .data-table thead{grid-template-columns:1.45fr .75fr}
+ #models .data-table tbody tr{grid-template-columns:1.45fr .75fr}
+ #models .data-table th:nth-child(n+3),#models .data-table td:nth-child(n+3){display:none}
+ #models .models-opinion{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+ #models .models-opinion textarea{width:100%;min-height:112px;font-size:13px}
+ #models .models-opinion .submit{width:100%;height:44px;align-self:stretch;font-size:13px}
+}
