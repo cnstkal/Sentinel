@@ -2481,3 +2481,25 @@ body:has(#searchPage.active) .site-main{
  .map-legend .region-list div{min-width:0!important;padding:6px 0!important;font-size:12px!important}
  .map-legend .region-list div span{white-space:nowrap}
 }
+@media(max-width:700px){
+  .map-box .korea-map-image{
+    width:100%!important;
+    height:270px!important;
+    overflow:visible!important;
+    transform:none!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+  .map-box .crisis-map-svg{
+    width:70%!important;
+    max-width:none!important;
+    height:270px!important;
+    transform:translateY(16px)!important;
+    margin:0 auto!important;
+  }
+  .map-box .actual-map{
+    min-height:310px!important;
+    padding:0 8px 20px!important;
+    overflow:visible!important;
+  }
+}
