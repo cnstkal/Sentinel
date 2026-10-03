@@ -1752,7 +1752,15 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
 .ssa-toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);z-index:100005;background:#1b2b44;color:#fff;padding:11px 16px;font-size:13px;max-width:90vw}.ssa-toast.e{background:#c33}
 /* ===== ADMIN MODE END ===== */
 </style>
-<style id="photo-cover-fix">.sentinel-photo img,.apostle-photo img,.sentinel-detail-photo img{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;display:block!important}</style><style id="photo-cover-fix-2">.sentinel-photo.has-img span,.apostle-photo.has-img span{display:none!important}.sentinel-photo img,.apostle-photo img{position:absolute;inset:0;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;display:block!important}.sentinel-photo,.apostle-photo{overflow:hidden!important}</style><style id="briefing-page-style">.briefing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}.briefing-grid .type-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);padding:22px;background:#fff}.briefing-grid .type-card small{color:#6d7d8d}.briefing-grid .type-card h3{line-height:1.45;margin:10px 0 8px}.briefing-grid .type-card p{font-size:13px;line-height:1.7;color:#667789;margin:0}@media(max-width:700px){.briefing-grid{grid-template-columns:1fr;gap:12px}.briefing-grid .type-card{padding:18px}}</style></head>
+<style id="photo-cover-fix">.sentinel-photo img,.apostle-photo img,.sentinel-detail-photo img{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;display:block!important}</style><style id="photo-cover-fix-2">.sentinel-photo.has-img span,.apostle-photo.has-img span{display:none!important}.sentinel-photo img,.apostle-photo img{position:absolute;inset:0;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover!important;object-position:center center!important;display:block!important}.sentinel-photo,.apostle-photo{overflow:hidden!important}</style><style id="briefing-page-style">.briefing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}.briefing-grid .type-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);padding:22px;background:#fff}.briefing-grid .type-card small{color:#6d7d8d}.briefing-grid .type-card h3{line-height:1.45;margin:10px 0 8px}.briefing-grid .type-card p{font-size:13px;line-height:1.7;color:#667789;margin:0}@media(max-width:700px){.briefing-grid{grid-template-columns:1fr;gap:12px}.briefing-grid .type-card{padding:18px}}</style><style id="law-rule-style">
+.law-list,.rule-list{display:grid;gap:10px;margin-top:22px}
+.law-card,.rule-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);background:#fff;padding:19px 22px}
+.law-card:hover,.rule-card:hover{border-color:#9bbcff;background:#f8fbff}
+.law-meta,.rule-meta{display:flex;gap:12px;align-items:center;font-size:12px;color:#718093;margin-bottom:7px}
+.law-type,.rule-type{font-weight:700;color:#315d9b}
+.law-card h3,.rule-card h3{margin:4px 0 7px;font-size:17px;line-height:1.45}
+.law-card p,.rule-card p{margin:0;color:#667789;font-size:13px;line-height:1.65}
+</style></head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
 <header>
@@ -1880,6 +1888,30 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
 <section class="page" id="briefing-view">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#briefing">정책브리핑</a><span>›</span><strong>정책브리핑 상세</strong></div></div>
  <div class="container pg-wrap"><div class="press-article" id="briefingArticle"></div><a class="article-back" href="#briefing">목록으로</a></div>
+</section>
+<section class="page" id="law">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>소관 법령</strong></div></div>
+ <div class="container pg-wrap">
+  <div class="content-head"><h1>소관 법령</h1><p>센티넬안전관리청의 소관 법률과 시행령·시행규칙 등 능력안전 관리에 관한 법령 정보를 제공합니다.</p></div>
+  <div class="notice-area"><strong>법령 안내</strong><br>아래 법령은 센티넬안전관리청 세계관 기준의 가상 법령입니다. 법령명, 제정·개정일, 주요 내용을 확인할 수 있습니다.</div>
+  <div class="law-list" id="lawList"></div>
+ </div>
+</section>
+<section class="page" id="law-view">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#law">소관 법령</a><span>›</span><strong>법령 상세</strong></div></div>
+ <div class="container pg-wrap"><div class="press-article" id="lawArticle"></div><a class="article-back" href="#law">목록으로</a></div>
+</section>
+<section class="page" id="rules">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>행정규칙</strong></div></div>
+ <div class="container pg-wrap">
+  <div class="content-head"><h1>행정규칙</h1><p>센티넬안전관리청의 훈령·예규·고시·지침 등 행정규칙을 안내합니다.</p></div>
+  <div class="notice-area"><strong>행정규칙 안내</strong><br>기관의 업무처리 기준과 현장 적용 절차를 정하는 내부 행정규칙을 분야별로 확인할 수 있습니다.</div>
+  <div class="rule-list" id="ruleList"></div>
+ </div>
+</section>
+<section class="page" id="rules-view">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#rules">행정규칙</a><span>›</span><strong>행정규칙 상세</strong></div></div>
+ <div class="container pg-wrap"><div class="press-article" id="ruleArticle"></div><a class="article-back" href="#rules">목록으로</a></div>
 </section>
 <section class="page" id="models">
  <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><a href="#models">센티넬 운용</a><span>›</span><strong>기종 안내</strong></div></div>
@@ -2699,4 +2731,47 @@ function renderBriefingDetail(id){
 }
 window.addEventListener('hashchange',()=>{const m=location.hash.match(/^#briefing-view\?id=(\d+)/);if(m)renderBriefingDetail(m[1])});
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#briefing-view"]');if(a){const m=a.getAttribute('href').match(/id=(\d+)/);if(m)setTimeout(()=>renderBriefingDetail(m[1]),0)}});
+</script><script>
+const LAW_DATA=[
+["국민능력안전기본법","법률","2026.06.30","능력 보유자의 권리 보호와 국민 안전 확보를 위한 기본 원칙, 국가와 지방자치단체의 책무, 등록 및 안전관리 체계의 기본사항을 규정한다.","정책기획과"],
+["공공안전 자율대응장치법","법률","2026.05.18","공공안전 자율대응장치의 설치·운용·점검 및 안전인증에 관한 기준과 운용기관의 책임을 규정한다.","ARU안전과"],
+["괴수 등록 및 관리에 관한 법률","법률","2026.04.12","괴수의 등록, 분류, 등급판정, 안전관리 및 관련 정보의 보호에 관한 사항을 정한다.","등록관리과"],
+["국민능력안전기본법 시행령","대통령령","2026.07.01","기본법에서 위임된 등록관리, 지역관리국 운영, 안전확인 절차와 국가 안전통계 작성에 관한 세부사항을 정한다.","정책기획과"],
+["공공안전 자율대응장치법 시행규칙","부령","2026.06.01","ARU 안전인증 신청, 정기점검 기록, 비상정지 확인 및 이상작동 보고에 필요한 서식과 절차를 규정한다.","ARU안전과"],
+["괴수 등록 및 관리에 관한 법률 시행규칙","부령","2026.05.02","괴수 등록 신청, 등록정보 변경, 등급판정 신청 및 이의신청에 필요한 서류와 처리절차를 정한다.","등록관리과"]
+];
+const RULE_DATA=[
+["공공안전 자율대응장치 정기점검 업무지침","훈령","2026.09.20","ARU 설치시설의 정기점검 주기, 점검항목, 이상 발견 시 조치 및 결과 기록방법을 정한다.","ARU안전과"],
+["괴수 등급판정 업무처리규정","예규","2026.09.05","등급판정 신청 접수부터 검사, 판정, 결과 통지 및 이의신청 안내까지의 내부 처리절차를 정한다.","등급판정과"],
+["지역관리국 안전확인 대응지침","지침","2026.08.25","지역관리국이 안전확인 요청을 접수했을 때 현장 확인과 관계기관 협조를 진행하는 표준절차를 정한다.","상황총괄과"],
+["센티넬 등록정보 보호 및 접근관리 지침","지침","2026.08.08","등록정보와 개인식별정보의 접근권한, 열람기록, 보존 및 정정 요청 처리 기준을 정한다.","등록관리과"],
+["다중이용시설 능력안전 관리지침","고시","2026.07.15","공연장, 환승시설 등 다중이용시설에서 적용할 안전계획, 신고체계와 비상동선 관리기준을 정한다.","다중이용시설과"],
+["능력안전 민원 처리기준","예규","2026.06.22","민원 접수, 담당부서 배정, 처리기한 안내, 보완요청 및 처리결과 통지에 관한 세부기준을 정한다.","민원총괄과"],
+["공공시설 ARU 점검결과 공개기준","고시","2026.05.30","시민에게 공개할 수 있는 ARU 점검정보의 범위와 보안상 공개를 제한하는 정보의 처리기준을 정한다.","정보보호과"],
+["동조 과정 권익보호 현장대응지침","지침","2026.05.10","동조 전 설명, 의사 확인, 중단 요청, 사후 기록 등 권익보호를 위한 현장 대응절차를 정한다.","권익보호과"]
+];
+function renderLawRuleList(){
+ const law=document.getElementById('lawList'),rule=document.getElementById('ruleList');
+ if(law)law.innerHTML=LAW_DATA.map((x,i)=>'<a class="law-card" href="#law-view?id='+i+'"><div class="law-meta"><span class="law-type">'+x[1]+'</span><span>시행 '+x[2]+'</span></div><h3>'+x[0]+'</h3><p>'+x[3]+'</p></a>').join('');
+ if(rule)rule.innerHTML=RULE_DATA.map((x,i)=>'<a class="rule-card" href="#rules-view?id='+i+'"><div class="rule-meta"><span class="rule-type">'+x[1]+'</span><span>발령 '+x[2]+'</span></div><h3>'+x[0]+'</h3><p>'+x[3]+'</p></a>').join('');
+}
+function renderLawDetail(id){
+ const x=LAW_DATA[Number(id)];if(!x)return;
+ document.getElementById('lawArticle').innerHTML='<div class="press-article-meta"><span>'+x[1]+'</span><time>'+x[2]+'</time></div><h1>'+x[0]+'</h1><div class="press-article-info"><span>소관부서 '+x[4]+'</span><span>시행일 '+x[2]+'</span></div><div class="press-article-body"><h3>주요 내용</h3><p>'+x[3]+'</p><h3>소관 부서</h3><p>'+x[4]+'에서 법령 관련 업무를 담당합니다.</p><h3>정보 안내</h3><p>법령의 세부 조문과 부칙은 법령 원문 페이지에서 확인할 수 있도록 구성되어 있습니다.</p></div>';
+}
+function renderRuleDetail(id){
+ const x=RULE_DATA[Number(id)];if(!x)return;
+ document.getElementById('ruleArticle').innerHTML='<div class="press-article-meta"><span>'+x[1]+'</span><time>'+x[2]+'</time></div><h1>'+x[0]+'</h1><div class="press-article-info"><span>발령부서 '+x[4]+'</span><span>발령일 '+x[2]+'</span></div><div class="press-article-body"><h3>주요 내용</h3><p>'+x[3]+'</p><h3>적용 범위</h3><p>센티넬안전관리청 및 관련 지역관리국의 해당 업무 처리에 적용됩니다.</p><h3>담당 부서</h3><p>'+x[4]+'</p></div>';
+}
+document.addEventListener('click',e=>{
+ const l=e.target.closest('a[href^="#law-view"]'),r=e.target.closest('a[href^="#rules-view"]');
+ if(l){const m=l.getAttribute('href').match(/id=(\d+)/);if(m)setTimeout(()=>renderLawDetail(m[1]),0)}
+ if(r){const m=r.getAttribute('href').match(/id=(\d+)/);if(m)setTimeout(()=>renderRuleDetail(m[1]),0)}
+});
+window.addEventListener('hashchange',()=>{
+ let m=location.hash.match(/^#law-view\?id=(\d+)/);if(m){renderLawDetail(m[1]);return}
+ m=location.hash.match(/^#rules-view\?id=(\d+)/);if(m){renderRuleDetail(m[1]);return}
+ if(location.hash==='#law'||location.hash==='#rules')renderLawRuleList();
+});
+setTimeout(renderLawRuleList,0);
 </script>
