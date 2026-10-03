@@ -212,8 +212,16 @@ function enterAdmin(){
  sessionStorage.setItem('ssa_admin','1');
  admin(true);
 }
-document.getElementById('adminModeBtn')?.addEventListener('click',enterAdmin);
-document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.stopPropagation();enterAdmin()});
+window.__ssaEnterAdmin=enterAdmin;
+function bindAdminButtons(){
+ document.querySelectorAll('#adminModeBtn,#adminModeBtnMobile').forEach(btn=>{
+  if(btn.dataset.adminBound==='1')return;
+  btn.dataset.adminBound='1';
+  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();enterAdmin()});
+ });
+}
+bindAdminButtons();
+document.addEventListener('DOMContentLoaded',bindAdminButtons);
 document.querySelectorAll('.apostle-row[data-apostle-href]').forEach(row=>{
  row.addEventListener('click',e=>{
   location.hash=row.dataset.apostleHref;
