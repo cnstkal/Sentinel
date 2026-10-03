@@ -172,7 +172,11 @@ window.__profilePhoto=function(){
   if(cur!==src){p.textContent='';const i=new Image();i.src=src;i.alt='증명사진';p.appendChild(i)}
  }
 };
-addEventListener('hashchange',()=>{setTimeout(window.__profilePhoto,0);window.__renderSentinelProfile?.();ensureEditButtons()});
+addEventListener('hashchange',()=>{
+ window.__renderSentinelProfile?.();
+ [0,100,300,700,1500].forEach(t=>setTimeout(()=>window.__profilePhoto?.(),t));
+ ensureEditButtons();
+});
 
 /* ===== ADMIN MODE START ===== */
 let profileSaveBusy=false;
