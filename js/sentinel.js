@@ -14,16 +14,26 @@
   {name:'김도윤',age:'28세',gender:'남성',center:'서울권역지원센터',grade:'S',type:'에너지형',status:'등록·운용',joined:'2021.04.16'},
   {name:'이서윤',age:'24세',gender:'여성',center:'인천·경기권역지원센터',grade:'A',type:'인지·감각형',status:'등록·운용',joined:'2023.08.21'},
   {name:'박준혁',age:'31세',gender:'남성',center:'서울권역지원센터',grade:'B',type:'물리변환형',status:'등록·운용',joined:'2020.11.03'},
-  {name:'최하은',age:'22세',gender:'여성',center:'충청권역지원센터',grade:'D',type:'환경영향형',status:'등록·운용',joined:'2025.02.14'},
-  {name:'정우진',age:'35세',gender:'남성',center:'강원권역지원센터',grade:'C',type:'공간·이동형',status:'등록·운용',joined:'2019.06.28'},
+  {name:'최하은',age:'22세',gender:'여성',center:'충청권역지원센터',grade:'B',type:'환경영향형',status:'등록·운용',joined:'2025.02.14'},
+  {name:'정우진',age:'35세',gender:'남성',center:'강원권역지원센터',grade:'B',type:'공간·이동형',status:'등록·운용',joined:'2019.06.28'},
   {name:'한지민',age:'27세',gender:'여성',center:'서울권역지원센터',grade:'A',type:'생체영향형',status:'등록·운용',joined:'2022.09.07'},
   {name:'오현석',age:'29세',gender:'남성',center:'영남·제주권역지원센터',grade:'B',type:'에너지형',status:'등록·운용',joined:'2021.12.11'},
-  {name:'윤채원',age:'26세',gender:'여성',center:'호남권역지원센터',grade:'C',type:'인지·감각형',status:'등록·운용',joined:'2023.03.19'},
+  {name:'윤채원',age:'26세',gender:'여성',center:'호남권역지원센터',grade:'B',type:'인지·감각형',status:'등록·운용',joined:'2023.03.19'},
   {name:'강민재',age:'33세',gender:'남성',center:'인천·경기권역지원센터',grade:'A',type:'물리변환형',status:'등록·운용',joined:'2020.05.26'},
-  {name:'서예린',age:'21세',gender:'여성',center:'서울권역지원센터',grade:'D',type:'공간·이동형',status:'등록·운용',joined:'2025.07.02'}
+  {name:'서예린',age:'21세',gender:'여성',center:'서울권역지원센터',grade:'B',type:'공간·이동형',status:'등록·운용',joined:'2025.07.02'}
  ];
  window.__sentinelData=window.__sentinelData||sentinelProfiles;
- function getSentinelData(){return window.__sentinelData||sentinelProfiles}
+ function normalizeSentinelGrades(data){
+ if(!Array.isArray(data))return {data,changed:false};
+ let changed=false;
+ const out=data.map(x=>{
+  const y={...x};
+  if(y.grade==='C'||y.grade==='D'){y.grade='B';changed=true}
+  return y;
+ });
+ return {data:out,changed};
+}
+function getSentinelData(){return window.__sentinelData||sentinelProfiles}
  function renderSentinelProfile(){
   const panel=document.getElementById('sentinelProfileContent');if(!panel)return;
   const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),x=getSentinelData()[Number(id)];
@@ -201,8 +211,24 @@ function openProfileEditor(i){
  if(!document.body.classList.contains('photo-admin'))return;const data=currentProfiles(),x=data[i];if(!x)return;const m=profileModal();m.dataset.index=i;const form=$('#sentinelAdminForm',m);['name','age','gender','center','grade','type','status','joined'].forEach(k=>form.elements[k].value=x[k]||'');m.hidden=false;form.elements.name.focus();
 }
 async function loadProfiles(){
- try{const res=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error(res.status);const j=await res.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)return;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(!window.__ssaOwned&&Array.isArray(p.profiles)&&p.profiles.length){window.__sentinelData=p.profiles;localStorage.setItem('sentinel_profiles_cache',JSON.stringify(p.profiles));applyProfiles()}}
- catch(e){try{const p=JSON.parse(localStorage.getItem('sentinel_profiles_cache')||'null');if(!window.__ssaOwned&&Array.isArray(p)){window.__sentinelData=p;applyProfiles()}}catch(_){}}
+ try{
+  const res=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!res.ok)throw Error(res.status);
+  const j=await res.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw Error('empty');
+  const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());
+  if(!window.__ssaOwned&&Array.isArray(p.profiles)&&p.profiles.length){
+   const n=normalizeSentinelGrades(p.profiles);window.__sentinelData=n.data;
+   localStorage.setItem('sentinel_profiles_cache',JSON.stringify(n.data));applyProfiles();
+   if(n.changed)saveProfiles(n.data);
+  }
+ }catch(e){
+  try{
+   const p=JSON.parse(localStorage.getItem('sentinel_profiles_cache')||'null');
+   if(!window.__ssaOwned&&Array.isArray(p)){
+    const n=normalizeSentinelGrades(p);window.__sentinelData=n.data;applyProfiles();
+    if(n.changed){localStorage.setItem('sentinel_profiles_cache',JSON.stringify(n.data));saveProfiles(n.data)}
+   }
+  }catch(_){}
+ }
 }
 async function saveProfiles(data){
  if(profileSaveBusy)return;profileSaveBusy=true;const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),profiles:data});
