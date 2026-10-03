@@ -286,9 +286,15 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const CL='dbljkloal',PRESET='Everything',MAX=10*1024*1024;
  const IMG_API='https://api.cloudinary.com/v1_1/'+CL+'/image/upload';
  const IMG_BASE='https://res.cloudinary.com/'+CL+'/image/upload/';
+ const RAW_API='https://api.cloudinary.com/v1_1/'+CL+'/raw/upload';
+ const RAW_BASE='https://res.cloudinary.com/'+CL+'/raw/upload/';
+ const RAW_LIST='https://res.cloudinary.com/'+CL+'/raw/list/ssa_official_profile_config_v1.json';
  const TAG_PREFIX='ssa_official_';
  const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
- let state={chief:'',leaders:{}},busy={};
+ let state={chief:'',leaders:{}},busy={},configBusy=false;
+ function cacheState(){try{localStorage.setItem('official_profile_cache_v1',JSON.stringify(state))}catch(e){}}
+ async function loadConfig(){try{const r=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p?.state){state={chief:String(p.state.chief||''),leaders:p.state.leaders||{}};cacheState();return true}}catch(e){}try{const p=JSON.parse(localStorage.getItem('official_profile_cache_v1')||'null');if(p){state=p;return true}}catch(e){}return false}
+ async function saveConfig(){if(configBusy)return false;configBusy=true;try{const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),state}),id='official-profile-config-'+Date.now()+'.json',fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset',PRESET);fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags','ssa_official_profile_config_v1');const r=await fetch(RAW_API,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw 0;cacheState();return true}catch(e){cacheState();return false}finally{configBusy=false}}
 
  const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const leaderKey=name=>{
@@ -328,6 +334,8 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  }
 
  async function load(){
+  const loaded=await loadConfig();
+  if(loaded){paint();addButtons();return}
   await pull('chief');
   const names=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim());
   await Promise.all(names.map(n=>pull(n)));
@@ -374,7 +382,9 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
      if(name)state.leaders[name]=src;
     }
     paint();addButtons();
-    toast(remove?'사진이 삭제되었습니다.':'사진이 등록되었습니다. 모든 접속자에게 표시됩니다.');
+    cacheState();
+    const shared=await saveConfig();
+    toast(remove?'사진이 삭제되었습니다.':(shared?'사진이 등록되었습니다. 모든 접속자에게 표시됩니다.':'사진은 등록됐지만 서버 공유 저장에 실패했습니다.'));
    }catch(e){toast('사진 등록 실패: '+e.message,1)}
    bar.remove();busy[key]=false;
   };
