@@ -2534,3 +2534,19 @@ body:has(#searchPage.active) .site-main{
 }
 
 .map-box{position:relative}
+
+
+/* 모바일 위기경보 범례 2열 정렬 */
+@media(max-width:700px){
+  .map-legend .legend-row{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    column-gap:22px!important;
+    row-gap:4px!important;
+    margin:0!important;
+    min-height:34px;
+  }
+  .map-legend{
+    padding:22px 24px!important;
+  }
+}
