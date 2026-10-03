@@ -166,8 +166,11 @@ window.__profilePhoto=function(){
   if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='괴수 사진';i.dataset.beastKey=key||'';ap.appendChild(i)}
  }
  const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
- const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
- if(im&&im.getAttribute('src')&&!$('img',p)){p.textContent='';const i=new Image();i.src=im.src;i.alt='증명사진';p.appendChild(i)}
+ const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
+ if(im&&im.getAttribute('src')){
+  const src=im.getAttribute('src'),cur=p.querySelector('img')?.getAttribute('src');
+  if(cur!==src){p.textContent='';const i=new Image();i.src=src;i.alt='증명사진';p.appendChild(i)}
+ }
 };
 addEventListener('hashchange',()=>{setTimeout(window.__profilePhoto,0);window.__renderSentinelProfile?.();ensureEditButtons()});
 
