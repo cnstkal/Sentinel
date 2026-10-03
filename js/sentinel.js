@@ -159,8 +159,12 @@ document.addEventListener('click',e=>{
 /* ---------- 상세페이지 사진 ---------- */
 window.__profilePhoto=function(){
  const ap=$('#apostleProfileContent .sentinel-detail-photo');
- if(ap){const w=$$('.apostle-row')[+new URLSearchParams(location.hash.split('?')[1]||'').get('id')],im=w&&$('.apostle-photo img',w);
-  if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='괴수 사진';ap.appendChild(i)}}
+ if(ap){
+  const id=+new URLSearchParams(location.hash.split('?')[1]||'').get('id');
+  const rows=$('.apostle-row'),w=rows[id],key=w?.dataset.beastKey;
+  const im=w?.querySelector('.apostle-photo img');
+  if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='괴수 사진';i.dataset.beastKey=key||'';ap.appendChild(i)}
+ }
  const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
  const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
  if(im&&im.getAttribute('src')&&!$('img',p)){p.textContent='';const i=new Image();i.src=im.src;i.alt='증명사진';p.appendChild(i)}
