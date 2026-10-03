@@ -9,6 +9,7 @@
    if(!document.getElementById(id)) id='home';
    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));
    document.querySelectorAll('.side-nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
+   if(id==='guide-profile'&&typeof window.__renderGuideProfile==='function') window.__renderGuideProfile();
    window.scrollTo({top:0,behavior:'auto'});
  }
  window.addEventListener('hashchange',()=>show(location.hash));
