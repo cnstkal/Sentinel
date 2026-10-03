@@ -1770,6 +1770,11 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
 .malfunction-wrap{max-width:900px}.malfunction-wrap textarea{display:block;width:100%;box-sizing:border-box;margin-top:8px;border:1px solid #c7d0da;padding:12px 13px;font:inherit;color:var(--navy);resize:vertical}
 @media(max-width:700px){.faq-search{height:44px}.status-lookup{padding:18px 16px}.status-lookup-title{align-items:flex-start;gap:8px;flex-direction:column}#statusForm{height:44px}.status-result dl{grid-template-columns:100px 1fr}.status-result dt,.status-result dd{padding:11px 10px}.status-steps{grid-template-columns:1fr 1fr}.status-steps>div:nth-child(2){border-right:0}.status-steps>div:nth-child(-n+2){border-bottom:1px solid var(--line)}.status-steps>div:nth-child(3){border-right:1px solid var(--line)}}
 </style>
+
+<style id="safety-guide-style">
+.guidance-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px}.guidance-card{border:1px solid var(--line);padding:22px;background:#fff;border-radius:10px;transition:.15s}.guidance-card:hover{border-color:var(--blue);box-shadow:0 8px 22px -10px rgba(37,110,244,.3)}.guidance-card b{display:block;font-size:17px;color:var(--navy);margin-bottom:7px}.guidance-card span{display:block;font-size:13px;color:var(--sub);line-height:1.7;min-height:44px}.guidance-card strong{display:block;margin-top:15px;font-size:12px;color:var(--blue)}.guidance-detail{border:1px solid var(--line);background:#f7f9fb;padding:24px}.guidance-detail h2{margin:0 0 12px;color:var(--navy);font-size:19px}.guidance-detail ol{margin:0;padding-left:22px}.guidance-detail li{padding:7px 0;font-size:13px;color:#536578}.alert-filter{display:flex;gap:7px;margin-bottom:16px}.alert-filter select,.alert-filter button{height:40px;border:1px solid #c7d0da;background:#fff;padding:0 12px;font-size:12px}.alert-filter button{background:var(--navy);color:#fff;border-color:var(--navy)}.alert-history-list{border-top:2px solid var(--navy)}.alert-item{display:grid;grid-template-columns:110px 90px 1fr 100px;gap:15px;align-items:center;padding:17px 12px;border-bottom:1px solid var(--line);font-size:12px}.alert-item .alert-time{color:#718091}.alert-item .alert-region{font-weight:700;color:var(--navy)}.alert-item .alert-title{color:#435467}.alert-item .alert-level{justify-self:end;padding:4px 9px;border-radius:999px;font-weight:800}.alert-level.interest{background:#edf4ff;color:#3267c7}.alert-level.caution{background:#fff8df;color:#9a7400}.alert-level.warning{background:#fff0e7;color:#c45f16}.alert-level.critical{background:#ffe9e9;color:#bf3030}
+@media(max-width:700px){.guidance-grid{grid-template-columns:1fr}.guidance-card{padding:18px}.alert-filter{flex-wrap:wrap}.alert-filter select{flex:1;min-width:130px}.alert-item{grid-template-columns:1fr auto;gap:6px 10px;padding:15px 5px}.alert-item .alert-title{grid-column:1/-1;line-height:1.6}.alert-item .alert-level{grid-column:2;grid-row:1;align-self:start}}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
@@ -1930,6 +1935,33 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
    <div class="status-steps"><div><b>01</b><strong>접수완료</strong><span>신고·민원이 정상적으로 접수된 상태</span></div><div><b>02</b><strong>내용확인</strong><span>담당부서가 신고 내용을 확인하는 단계</span></div><div><b>03</b><strong>처리중</strong><span>관계기관 확인 또는 현장 대응이 진행되는 단계</span></div><div><b>04</b><strong>처리완료</strong><span>처리 결과가 등록된 상태</span></div></div>
   </div>
   <div class="notice-area"><strong>안내</strong><br>이 사이트의 민원 처리 현황은 센티넬안전관리청 세계관을 위한 가상 데이터입니다. 실제 민원 처리 결과를 조회하는 서비스가 아닙니다.</div>
+ </div>
+</section>
+
+<section class="page" id="guidance">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>행동요령</strong></div></div>
+ <div class="container pg-wrap">
+  <div class="content-head"><h1>행동요령</h1><p>위기 상황에서 국민이 확인해야 할 기본 행동요령을 상황별로 안내합니다.</p></div>
+  <div class="notice-area"><strong>현재 전국 위기경보: 주의 · 2단계</strong><br>지역별 경보와 현장 안내가 다른 경우 현장 안내에 따르며, 긴급한 생명·신체 위험은 119·112로 신고해 주세요.</div>
+  <div class="guidance-grid">
+   <a class="guidance-card" href="#guidance?type=sentinel"><b>능력 이상징후 발견</b><span>주변의 비정상적인 능력 반응이나 위험 징후를 발견했을 때</span><strong>행동요령 보기 ›</strong></a>
+   <a class="guidance-card" href="#guidance?type=beast"><b>괴수 출현·활동 발견</b><span>괴수의 출현이나 위험한 활동을 목격했을 때</span><strong>행동요령 보기 ›</strong></a>
+   <a class="guidance-card" href="#guidance?type=aru"><b>ARU 이상작동</b><span>공공안전 자율대응장치에서 이상작동이나 경보가 발생했을 때</span><strong>행동요령 보기 ›</strong></a>
+   <a class="guidance-card" href="#guidance?type=evac"><b>대피 안내를 받은 경우</b><span>지역관리국이나 관계기관으로부터 대피 안내를 받은 경우</span><strong>행동요령 보기 ›</strong></a>
+  </div>
+  <div class="guidance-detail" id="guidanceDetail">
+   <h2>기본 안전수칙</h2>
+   <ol><li>현장의 위험요인과 안전거리를 먼저 확인합니다.</li><li>주변 사람에게 상황을 알리고 안전한 장소로 이동합니다.</li><li>필요한 경우 119·112 또는 활동 신고를 이용합니다.</li><li>현장에 접근하거나 위험 장치를 임의로 조작하지 않습니다.</li><li>공식 안내가 있을 때까지 확인되지 않은 정보를 유포하지 않습니다.</li></ol>
+  </div>
+ </div>
+</section>
+<section class="page" id="alerts-history">
+ <div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>재난문자 이력</strong></div></div>
+ <div class="container pg-wrap">
+  <div class="content-head"><h1>재난문자 이력</h1><p>센티넬안전관리청에서 발령한 가상 안전안내문자의 최근 이력을 확인할 수 있습니다.</p></div>
+  <div class="alert-filter"><select id="alertRegionFilter"><option value="">전체 지역</option><option>서울특별시</option><option>인천광역시</option><option>경기도</option><option>강원도</option><option>충청남도</option><option>경상북도</option><option>경상남도</option><option>부산광역시</option><option>제주특별자치도</option></select><select id="alertLevelFilter"><option value="">전체 단계</option><option>관심</option><option>주의</option><option>경계</option><option>심각</option></select><button type="button" id="alertFilterReset">초기화</button></div>
+  <div class="alert-history-list" id="alertHistoryList"></div>
+  <div class="notice-area"><strong>안내</strong><br>표시된 재난문자와 상황은 센티넬안전관리청 세계관을 위한 가상 데이터입니다.</div>
  </div>
 </section>
 <section class="page" id="notice"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>공지사항</strong></div></div><div class="container pg-wrap"><div class="content-head"><h1>공지사항</h1><p>센티넬안전관리청의 주요 공지와 안내를 확인하실 수 있습니다.</p></div><div class="board-tools"><span class="count"></span></div><table class="data-table notice-table"><thead><tr><th style="width:70px">번호</th><th>제목</th><th style="width:130px">담당부서</th><th style="width:120px">등록일</th><th style="width:80px">첨부</th></tr></thead><tbody><tr data-notice-row><td>36</td><td class="t"><a href="#notice-view?id=0">2026년 하반기 표준대응 장치 정기 안전점검에 따른 일부 시설 운용중지 안내</a></td><td>운용기획과</td><td>2026.09.24</td><td>PDF</td></tr><tr data-notice-row><td>35</td><td class="t"><a href="#notice-view?id=1">권역지원센터 야간 상담체계 전환 및 긴급 안전확인 접수 안내</a></td><td>권익보호과</td><td>2026.09.18</td><td>HWP</td></tr><tr data-notice-row><td>34</td><td class="t"><a href="#notice-view?id=2">민간 능력중개업체 등록정보 확인 의무 및 이용자 유의사항 안내</a></td><td>감독총괄과</td><td>2026.09.11</td><td>PDF</td></tr><tr data-notice-row><td>33</td><td class="t"><a href="#notice-view?id=3">국가 위기경보 단계 상향에 따른 지역별 안전수칙 준수 안내</a></td><td>홍보담당관</td><td>2026.08.30</td><td>-</td></tr><tr data-notice-row><td>32</td><td class="t"><a href="#notice-view?id=4">등록 센티넬 2026년 하반기 정기 안전교육 이수기한 안내</a></td><td>교육운영과</td><td>2026.08.21</td><td>PDF</td></tr><tr data-notice-row><td>31</td><td class="t"><a href="#notice-view?id=5">2026년도 능력등급 재판정 신청기간 및 제출서류 안내</a></td><td>등록관리과</td><td>2026.08.13</td><td>-</td></tr><tr data-notice-row><td>30</td><td class="t"><a href="#notice-view?id=6">폭염특보 기간 중 고출력 능력 사용 관련 안전관리 강화 안내</a></td><td>재난대응과</td><td>2026.08.05</td><td>PDF</td></tr><tr data-notice-row><td>29</td><td class="t"><a href="#notice-view?id=7">서울권역지원센터 주말 등록업무 시범운영 및 사전예약 안내</a></td><td>권역지원과</td><td>2026.07.29</td><td>HWP</td></tr><tr data-notice-row><td>28</td><td class="t"><a href="#notice-view?id=8">공공시설 ARU 안전점검 결과 공개범위 및 확인방법 안내</a></td><td>ARU안전과</td><td>2026.07.22</td><td>PDF</td></tr><tr data-notice-row><td>27</td><td class="t"><a href="#notice-view?id=9">학교 주변 능력안전구역 운영기준 변경 및 학교 대응절차 안내</a></td><td>생활안전과</td><td>2026.07.15</td><td>-</td></tr><tr data-notice-row><td>26</td><td class="t"><a href="#notice-view?id=10">해안 관광지 성수기 특별안전관리기간 운영 및 현장 신고 안내</a></td><td>지역대응과</td><td>2026.07.08</td><td>PDF</td></tr><tr data-notice-row><td>25</td><td class="t"><a href="#notice-view?id=11">가이드 권익보호 상담기록 개인정보 처리기준 안내</a></td><td>권익보호과</td><td>2026.06.30</td><td>HWP</td></tr><tr data-notice-row><td>24</td><td class="t"><a href="#notice-view?id=12">ARU 오작동·이상작동 신고 통합창구 개편 안내</a></td><td>ARU안전과</td><td>2026.06.24</td><td>PDF</td></tr><tr data-notice-row><td>23</td><td class="t"><a href="#notice-view?id=13">지역관리국 민원 처리단계 조회서비스 운영방법 안내</a></td><td>민원총괄과</td><td>2026.06.17</td><td>-</td></tr><tr data-notice-row><td>22</td><td class="t"><a href="#notice-view?id=14">대형 공연장 능력안전 관리지침 개정 및 시설관리자 준수사항 안내</a></td><td>다중이용시설과</td><td>2026.06.10</td><td>PDF</td></tr><tr data-notice-row><td>21</td><td class="t"><a href="#notice-view?id=15">청소년 능력안전 교육자료 개편에 따른 학교 이용방법 안내</a></td><td>교육운영과</td><td>2026.06.03</td><td>-</td></tr><tr data-notice-row><td>20</td><td class="t"><a href="#notice-view?id=16">산악지역 안전확인 요청 증가에 따른 탐방객 신고요령 안내</a></td><td>지역대응과</td><td>2026.05.27</td><td>PDF</td></tr><tr data-notice-row><td>19</td><td class="t"><a href="#notice-view?id=17">찾아가는 등록상담 대상지역 및 방문상담 신청방법 안내</a></td><td>등록관리과</td><td>2026.05.20</td><td>HWP</td></tr><tr data-notice-row><td>18</td><td class="t"><a href="#notice-view?id=18">대학 캠퍼스 능력안전 담당자 지정 및 사고보고 절차 안내</a></td><td>생활안전과</td><td>2026.05.13</td><td>-</td></tr><tr data-notice-row><td>17</td><td class="t"><a href="#notice-view?id=19">공공시설 ARU 야간 운용기준 변경에 따른 이용자 안내</a></td><td>ARU안전과</td><td>2026.05.06</td><td>PDF</td></tr><tr data-notice-row><td>16</td><td class="t"><a href="#notice-view?id=20">공항·항만 능력안전 협력체계 개편 및 해외입국자 안전확인 안내</a></td><td>국제협력과</td><td>2026.04.29</td><td>PDF</td></tr><tr data-notice-row><td>15</td><td class="t"><a href="#notice-view?id=21">능력 관련 허위정보 신고·정정 요청창구 운영기준 안내</a></td><td>홍보담당관</td><td>2026.04.22</td><td>-</td></tr><tr data-notice-row><td>14</td><td class="t"><a href="#notice-view?id=22">지역축제 기간 임시 안전안내소 운영지역 및 이용방법 안내</a></td><td>지역대응과</td><td>2026.04.15</td><td>HWP</td></tr><tr data-notice-row><td>13</td><td class="t"><a href="#notice-view?id=23">능력등급 판정 결과 이의신청 접수기간 및 처리절차 안내</a></td><td>등록관리과</td><td>2026.04.08</td><td>PDF</td></tr><tr data-notice-row><td>12</td><td class="t"><a href="#notice-view?id=24">서울권역지원센터 방문객 출입동선 변경 및 민원실 이용 안내</a></td><td>서울지역관리국</td><td>2026.04.01</td><td>-</td></tr><tr data-notice-row><td>11</td><td class="t"><a href="#notice-view?id=25">지역관리국 상황실 시스템 전환에 따른 신고접수 처리기준 안내</a></td><td>상황총괄과</td><td>2026.03.25</td><td>PDF</td></tr><tr data-notice-row><td>10</td><td class="t"><a href="#notice-view?id=26">공공시설 ARU 점검정보 시민 확인서비스 운영 확대 안내</a></td><td>ARU안전과</td><td>2026.03.18</td><td>-</td></tr><tr data-notice-row><td>9</td><td class="t"><a href="#notice-view?id=27">한파 이후 ARU 설치시설 특별점검에 따른 일부 시설 이용제한 안내</a></td><td>시설점검과</td><td>2026.03.11</td><td>PDF</td></tr><tr data-notice-row><td>8</td><td class="t"><a href="#notice-view?id=28">능력안전 행정 표준용어 개정에 따른 민원서식 변경 안내</a></td><td>정책기획과</td><td>2026.03.04</td><td>HWP</td></tr><tr data-notice-row><td>7</td><td class="t"><a href="#notice-view?id=29">가이드 동조 관련 권익보호 설명자료 개정 및 제공방법 안내</a></td><td>권익보호과</td><td>2026.02.25</td><td>PDF</td></tr><tr data-notice-row><td>6</td><td class="t"><a href="#notice-view?id=30">설 연휴 다중이용시설 특별안전관리기간 및 신고체계 안내</a></td><td>재난대응과</td><td>2026.02.11</td><td>-</td></tr><tr data-notice-row><td>5</td><td class="t"><a href="#notice-view?id=31">2026년 능력안전 연구지원사업 신청기간 및 지원대상 안내</a></td><td>연구지원과</td><td>2026.02.04</td><td>PDF</td></tr><tr data-notice-row><td>4</td><td class="t"><a href="#notice-view?id=32">상반기 찾아가는 능력안전 이동교육 신청기관 모집 안내</a></td><td>교육운영과</td><td>2026.01.21</td><td>HWP</td></tr><tr data-notice-row><td>3</td><td class="t"><a href="#notice-view?id=33">공공안전 자율대응장치 안전인증 기준 개정안 행정예고 안내</a></td><td>ARU안전과</td><td>2026.01.14</td><td>PDF</td></tr><tr data-notice-row><td>2</td><td class="t"><a href="#notice-view?id=34">2026년 지역관리국 정기 안전점검 일정 및 국민 확인방법 안내</a></td><td>상황총괄과</td><td>2026.01.07</td><td>-</td></tr><tr data-notice-row><td>1</td><td class="t"><a href="#notice-view?id=35">2026년 국민 능력안전 정책자료 공개일정 및 의견제출 안내</a></td><td>정책기획과</td><td>2025.12.19</td><td>PDF</td></tr></tbody></table><div class="board-pagination" id="noticePagination"></div></div></section><section class="page" id="notice-view"><div class="breadcrumb"><div class="container"><a href="#home">홈</a><span>›</span><strong>공지사항 상세</strong></div></div><div class="container pg-wrap"><div class="notice-article" id="noticeArticle"></div><a class="article-back" href="#notice">목록으로</a></div></section>
@@ -2827,6 +2859,45 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
    if(!x){box.innerHTML='<div class="status-result-head"><b>조회 결과가 없습니다.</b></div><div class="status-result-note">입력한 접수번호를 다시 확인해 주세요. 예시 접수번호는 <strong>SSA-2026-100001</strong>입니다.</div>';return}
    box.innerHTML='<div class="status-result-head"><span class="status-badge">'+esc(x.status)+'</span><b>'+esc(x.type)+'</b></div><dl><dt>접수번호</dt><dd>'+esc(key)+'</dd><dt>접수일시</dt><dd>'+esc(x.date)+'</dd><dt>발생지역</dt><dd>'+esc(x.region)+'</dd><dt>담당부서</dt><dd>'+esc(x.dept)+'</dd><dt>현재 단계</dt><dd>'+esc(x.status)+' · '+x.step+'단계</dd><dt>최근 처리일</dt><dd>'+esc(x.updated)+'</dd></dl><div class="status-result-note"><strong>민원 요약</strong><br>'+esc(x.summary)+'<br><br>처리상태는 가상 서비스 데이터이며 실제 기관의 민원 처리 결과와는 관련이 없습니다.</div>';
    box.scrollIntoView({behavior:'smooth',block:'start'});
+ });
+})();
+</script>
+
+<script id="safety-guide-js">
+(function(){
+ const data=[
+  ['2026.09.30 01:42','전국','주의','전국 위기경보 2단계 발령. 지역별 안전수칙과 현장 안내를 확인해 주세요.'],
+  ['2026.09.29 18:20','서울특별시','주의','도심 일부 지역 능력 이상징후 확인에 따른 주변 접근 자제 및 신고 안내.'],
+  ['2026.09.27 21:05','경기도','관심','공공시설 주변 이상반응 확인에 따른 안전거리 유지 안내.'],
+  ['2026.09.25 14:33','인천광역시','관심','항만 인근 안전확인 활동에 따른 현장 안내요원 지시에 따라 주세요.'],
+  ['2026.09.22 09:10','강원도','주의','산악지역 괴수 활동 신고 증가에 따른 탐방객 안전수칙 안내.'],
+  ['2026.09.18 17:45','경상남도','관심','다중이용시설 ARU 정기점검에 따른 일부 출입동선 변경 안내.'],
+  ['2026.09.15 12:08','부산광역시','주의','해안지역 이상징후 확인에 따른 해안 접근 자제 및 안전확인 안내.'],
+  ['2026.09.11 16:40','경상북도','관심','지역관리국 안전확인 기간 중 신고 접수방법 및 긴급상황 대응 안내.'],
+  ['2026.09.05 08:25','충청남도','주의','공공시설 ARU 이상작동 확인에 따른 주변 접근 금지 안내.'],
+  ['2026.08.30 19:32','제주특별자치도','관심','관광지 안전확인 강화에 따른 현장 안전요원 안내 준수 요청.']
+ ];
+ const cls={관심:'interest',주의:'caution',경계:'warning',심각:'critical'};
+ function render(){
+  const rg=document.getElementById('alertRegionFilter')?.value||'',lv=document.getElementById('alertLevelFilter')?.value||'',root=document.getElementById('alertHistoryList');
+  if(!root)return;
+  const rows=data.filter(x=>(!rg||x[1]===rg)&&(!lv||x[2]===lv));
+  root.innerHTML=rows.length?rows.map(x=>'<article class="alert-item"><time class="alert-time">'+x[0]+'</time><span class="alert-region">'+x[1]+'</span><span class="alert-title">'+x[3]+'</span><b class="alert-level '+cls[x[2]]+'">'+x[2]+'</b></article>').join(''):'<div class="notice-area">조건에 맞는 재난문자 이력이 없습니다.</div>';
+ }
+ ['alertRegionFilter','alertLevelFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',render));
+ document.getElementById('alertFilterReset')?.addEventListener('click',()=>{document.getElementById('alertRegionFilter').value='';document.getElementById('alertLevelFilter').value='';render()});
+ render();
+ window.addEventListener('hashchange',render);
+ document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#guidance?type="]');if(!a)return;
+  const type=new URLSearchParams(a.getAttribute('href').split('?')[1]).get('type');
+  const title={sentinel:'능력 이상징후 발견',beast:'괴수 출현·활동 발견',aru:'ARU 이상작동',evac:'대피 안내를 받은 경우'}[type]||'기본 안전수칙';
+  const root=document.getElementById('guidanceDetail');if(root){root.querySelector('h2').textContent=title;root.querySelector('ol').innerHTML={
+   sentinel:'<li>이상반응이 나타나는 장소에서 안전거리를 확보합니다.</li><li>현장 상황을 직접 확인하려고 접근하지 않습니다.</li><li>필요한 경우 활동 신고를 통해 위치와 상황을 알립니다.</li><li>어지럼증·의식저하 등 이상이 느껴지면 주변에 도움을 요청하고 긴급기관에 연락합니다.</li>',
+   beast:'<li>괴수와 최대한 거리를 두고 이동 경로를 피합니다.</li><li>괴수를 자극하거나 촬영을 위해 접근하지 않습니다.</li><li>주변 사람에게 위험을 알리고 안전한 실내 등으로 이동합니다.</li><li>위치와 상황을 활동 신고로 알리고 긴급한 위험은 119·112로 신고합니다.</li>',
+   aru:'<li>이상작동 중인 ARU에 접근하거나 임의로 조작하지 않습니다.</li><li>경보음이나 표시등을 확인하고 주변의 접근을 막습니다.</li><li>장치 식별번호와 위치를 확인해 오작동 신고를 이용합니다.</li><li>감전·화재 등 즉각적인 위험이 있으면 긴급기관에 연락합니다.</li>',
+   evac:'<li>대피 안내가 내려진 경우 안내된 방향으로 침착하게 이동합니다.</li><li>엘리베이터 등 위험할 수 있는 시설 이용은 현장 안내에 따릅니다.</li><li>대피 중 위험지역으로 되돌아가지 않습니다.</li><li>공식 안내가 있을 때까지 안전한 장소에서 대기합니다.</li>'
+  }[type]||'';root.scrollIntoView({behavior:'smooth',block:'start'})}
  });
 })();
 </script>
