@@ -1763,7 +1763,7 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
     <span><span class="brand-title">센티넬안전관리청</span><span class="brand-en">Sentinel Safety Administration</span></span>
    </a>
    <nav class="util" aria-label="유틸리티 메뉴">
-    <a href="#join">회원가입</a><a href="#sitemap">사이트맵</a><span class="divider"></span>
+    
     
     <button class="admin-mode-trigger" id="adminModeBtn" type="button">관리자 모드</button>
    </nav>
@@ -1774,7 +1774,7 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
    <form class="search-form" id="siteSearch" role="search">
     <label class="sr-only" for="searchInput">통합검색</label><input id="searchInput" type="search" placeholder="검색어를 입력하세요" autocomplete="off"><button type="submit" aria-label="검색">⌕</button>
    </form>
-   <div class="popular"><b>인기검색어</b><a href="#search?query=신고방법">신고방법</a><a href="#search?query=등급확인">등급확인</a><a href="#search?query=정보공개청구">정보공개청구</a><a href="#search?query=배치현황">배치현황</a></div>
+   
   </div>
  </div>
  <nav class="main-nav" id="nav" aria-label="주메뉴">
@@ -2041,7 +2041,7 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
 }
  const regForm=document.getElementById('registrationSearch');
  regForm?.addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('regNo').value.trim().toUpperCase();const db={'SN-26018492':['SN-26018492','사도','3등급','등록','서울특별시','2026.09.29'],'SN-26017421':['SN-26017421','사도','4등급','관찰','인천광역시','2026.09.30'],'GD-26088317':['GD-26088317','가이드','-','등록','서울특별시','2026.09.28']};const r=db[q], box=document.getElementById('regResult');box.hidden=false;box.innerHTML=r?'<h2>등록정보 확인</h2><dl><dt>등록번호</dt><dd>'+r[0]+'</dd><dt>구분</dt><dd>'+r[1]+'</dd><dt>등급</dt><dd>'+r[2]+'</dd><dt>관리상태</dt><dd>'+r[3]+'</dd><dt>관리지역</dt><dd>'+r[4]+'</dd><dt>최종 갱신</dt><dd>'+r[5]+'</dd></dl>':'<h2>조회 결과가 없습니다.</h2><p>입력하신 등록번호를 확인하시기 바랍니다.</p>'});
- let idx=0,playing=true,timer;const slides=document.getElementById('slides'),count=3;function move(n){idx=(idx+n+count)%count;slides.style.transform='translateX(-'+idx*100+'%)'}function restart(){clearInterval(timer);if(playing)timer=setInterval(()=>move(1),5000)}(document.getElementById('prevSlide')||{}).onclick=()=>{move(-1);restart()};(document.getElementById('nextSlide')||{}).onclick=()=>{move(1);restart()};(document.getElementById('playSlide')||{}).onclick=()=>{playing=!playing;document.getElementById('playSlide').textContent=playing?'Ⅱ':'▶';document.getElementById('playSlide').setAttribute('aria-label',playing?'슬라이드 자동재생 일시정지':'슬라이드 자동재생 재생');restart()};restart();
+ let idx=0,playing=true,timer;const slides=document.getElementById('slides'),count=3;function move(n){if(!slides)return;idx=(idx+n+count)%count;slides.style.transform='translateX(-'+idx*100+'%)'}function restart(){clearInterval(timer);if(playing)timer=setInterval(()=>move(1),5000)}(document.getElementById('prevSlide')||{}).onclick=()=>{move(-1);restart()};(document.getElementById('nextSlide')||{}).onclick=()=>{move(1);restart()};(document.getElementById('playSlide')||{}).onclick=()=>{playing=!playing;document.getElementById('playSlide').textContent=playing?'Ⅱ':'▶';document.getElementById('playSlide').setAttribute('aria-label',playing?'슬라이드 자동재생 일시정지':'슬라이드 자동재생 재생');restart()};restart();
  document.querySelectorAll('.press-tabs').forEach(tabs=>{tabs.querySelectorAll('button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{tabs.querySelectorAll('button[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));const root=tabs.parentElement;root.querySelectorAll('.press-list').forEach(list=>list.hidden=list.id!==btn.dataset.tab)}))});
  document.querySelectorAll('.rating').forEach(r=>{const bs=[...r.querySelectorAll('button')];bs.forEach((b,i)=>b.addEventListener('click',()=>bs.forEach((x,j)=>x.classList.toggle('on',j<=i))))});
  show(location.hash);
@@ -2396,17 +2396,24 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
 const box=document.getElementById('apostleProfileContent');
 function render(){
  if(!box)return;
+ const X=v=>String(v==null?'':v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const id=+new URLSearchParams(location.hash.split('?')[1]||'').get('id'),r=document.querySelectorAll('.apostle-row')[id];
  if(!r){box.innerHTML='<div class="notice-area">사도 정보를 찾을 수 없습니다.</div>';return}
- const inf=r.querySelector('.apostle-info'),dd=inf?[...inf.querySelectorAll('dd')].map(x=>x.textContent.trim()):[],
-  code=r.querySelector('strong').textContent.trim(),a=inf?[dd[0]||'-',code,'']:r.querySelector('div:nth-child(2) span').textContent.split(' · '),
-  st=inf?(dd[1]||'-'):r.querySelector('b').textContent,rg=inf?(dd[2]||'-'):r.querySelector('small').textContent,m=code.match(/(\d\d)(\d\d)(\d\d)$/),
-  d=m?'20'+m[1]+'.'+m[2]+'.'+m[3]:'-',row=(k,v)=>'<div><span>'+k+'</span><b>'+v+'</b></div>';
- box.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo">사진</div><div><h2>'+code+' <span class="sentinel-grade">'+a[0]+'</span></h2><p>'+rg+' · '+st+'</p></div></div><div class="sentinel-profile-table">'
-  +row('사도 코드',code)+row('등급',a[0])+row('능력 유형',a[1]||'-')+row('관리 상태',st)+row('관할 지역',rg)+row('최초 등록일',d)+row('특이 구분',a[2]||'해당 없음')
+ const dd=[...r.querySelectorAll('.apostle-info dd')].map(x=>x.textContent.trim()),code=r.querySelector('strong').textContent.trim(),ds=r.dataset,
+  grade=dd[0]||'-',st=dd[1]||'-',rg=dd[2]||'-',type=ds.type||code,m=code.match(/(\d\d)(\d\d)(\d\d)$/),
+  joined=ds.joined||(m?'20'+m[1]+'.'+m[2]+'.'+m[3]:'-'),sp=ds.special||'해당 없음',
+  row=(k,v,f)=>'<div data-f="'+f+'"><span>'+k+'</span><b>'+X(v)+'</b></div>';
+ box.dataset.id=id;
+ box.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo">사진</div><div><h2 data-f="code">'+X(code)+' <span class="sentinel-grade" data-f="grade">'+X(grade)+'</span></h2><p data-f="rg">'+X(rg)+' · '+X(st)+'</p></div><button type="button" class="admin-only prof-edit">정보 수정</button></div><div class="sentinel-profile-table">'
+  +row('사도 코드',code,'code')+row('등급',grade,'grade')+row('능력 유형',type,'type')+row('관리 상태',st,'st')+row('관할 지역',rg,'rg')+row('최초 등록일',joined,'joined')+row('특이 구분',sp,'special')
   +'</div><div class="notice-area"><strong>공개 범위 안내</strong><br>사도의 개인식별정보와 상세 능력 정보는 공개하지 않으며, 등록 코드를 기준으로 기본정보만 안내합니다.</div><a class="back-to-list" href="#apostles">← 사도 목록으로</a>';
  if(window.__profilePhoto)window.__profilePhoto();
 }
+box&&box.addEventListener('click',e=>{
+ if(!document.body.classList.contains('photo-admin'))return;
+ const t=e.target.closest('[data-f],.prof-edit');if(!t)return;
+ window.__ssaEditA&&window.__ssaEditA(+box.dataset.id,t.dataset.f||'code');
+});
 addEventListener('hashchange',render);render();
 /* 더블탭·핀치 확대 방지 (iOS) */
 ['gesturestart','gesturechange'].forEach(t=>document.addEventListener(t,e=>e.preventDefault()));
@@ -2424,13 +2431,13 @@ const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>
 const adm=()=>document.body.classList.contains('photo-admin');
 let M=null,tm;
 const SF=[['name','이름'],['age','나이'],['gender','성별'],['center','소속 센터'],['grade','등급'],['type','능력 유형'],['status','등록 상태'],['joined','등록일']],
-AF=[['code','사도 코드'],['grade','등급 · 능력유형'],['st','관리 상태'],['rg','관할 지역']];
+AF=[['code','사도 코드'],['grade','등급'],['type','능력 유형'],['st','관리 상태'],['rg','관할 지역'],['joined','최초 등록일'],['special','특이 구분']];
 function toast(m,e){const d=document.createElement('div');d.className='ssa-toast'+(e?' e':'');d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
 const BAR='<div class="adm-bar"><button type="button" data-a="photo">사진 변경</button><button type="button" data-a="nophoto">사진 삭제</button><button type="button" data-a="edit">수정</button><button type="button" class="d" data-a="del">삭제</button></div>';
 const ph=(c,s,img)=>'<div class="'+c+(img?' has-img':'')+'"><img src="'+E(img)+'" alt=""'+(img?'':' hidden')+'><span>'+s+'</span></div>';
 const sRow=(x,i)=>{const p=x.p,h='#sentinel-profile?id='+i;return '<article class="sentinel-row" data-href="'+h+'" tabindex="0" role="link">'+ph('sentinel-photo','증명사진',x.img)+'<div class="sentinel-info"><strong>'+E(p.name)+'</strong><dl><div><dt>나이</dt><dd>'+E(p.age)+'</dd></div><div><dt>성별</dt><dd>'+E(p.gender)+'</dd></div><div><dt>센터</dt><dd>'+E(p.center)+'</dd></div></dl></div>'+BAR+'</article>'};
-const aRow=(x,i)=>{const h='#apostle-profile?id='+i;return '<article class="apostle-row" data-href="'+h+'" tabindex="0" role="link">'+ph('apostle-photo','사도 이미지',x.img)+'<div class="apostle-info"><strong>'+E(x.code)+'</strong><dl><div><dt>등급</dt><dd>'+E(x.grade)+'</dd></div><div><dt>상태</dt><dd>'+E(x.st)+'</dd></div><div><dt>관할 지역</dt><dd>'+E(x.rg)+'</dd></div></dl></div>'+BAR+'</article>'};
-function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>{const dd=$$('.apostle-info dd',r).map(x=>x.textContent.trim());return {code:($('strong',r)||{textContent:''}).textContent.trim(),grade:dd[0]||'',st:dd[1]||'',rg:dd[2]||'',img:$('.apostle-photo img',r)?.getAttribute('src')||''}})}}
+const aRow=(x,i)=>{const h='#apostle-profile?id='+i;return '<article class="apostle-row" data-href="'+h+'" data-type="'+E(x.type)+'" data-joined="'+E(x.joined)+'" data-special="'+E(x.special)+'" tabindex="0" role="link">'+ph('apostle-photo','사도 이미지',x.img)+'<div class="apostle-info"><strong>'+E(x.code)+'</strong><dl><div><dt>등급</dt><dd>'+E(x.grade)+'</dd></div><div><dt>상태</dt><dd>'+E(x.st)+'</dd></div><div><dt>관할 지역</dt><dd>'+E(x.rg)+'</dd></div></dl></div>'+BAR+'</article>'};
+function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>{const dd=$$('.apostle-info dd',r).map(x=>x.textContent.trim()),code=($('strong',r)||{textContent:''}).textContent.trim(),mm=code.match(/(\d\d)(\d\d)(\d\d)$/);return {code,grade:dd[0]||'',type:r.dataset.type||code,st:dd[1]||'',rg:dd[2]||'',joined:r.dataset.joined||(mm?'20'+mm[1]+'.'+mm[2]+'.'+mm[3]:'-'),special:r.dataset.special||'해당 없음',img:$('.apostle-photo img',r)?.getAttribute('src')||''}})}}
 function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
 function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','사도']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
 function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A)A.innerHTML=M.a.map(aRow).join('');window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash))dispatchEvent(new Event('hashchange'))}
@@ -2439,7 +2446,7 @@ function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast
 const commit=()=>{render();persist()};
 function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const W=400,H=496,c=document.createElement('canvas');c.width=W;c.height=H;const s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;c.getContext('2d').drawImage(im,(W-w)/2,(H-h)/2,w,h);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.82))};im.onerror=no;im.src=u})}
 function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{M[k][i].img=await shrink(f.files[0]);commit()}catch(e){toast('사진을 처리하지 못했습니다.',1)}};f.click()}
-window.__ssaPick=pick;
+window.__ssaPick=pick;window.__ssaEditA=(i,f)=>{if(!ensure()||!M.a[i])return;modal('a',i);const m=document.getElementById('ssaModal'),inp=m&&m.querySelector('input[name="'+f+'"]');inp&&inp.focus()};
 window.__ssaSync=()=>{if(!ensure())return;const d=window.__sentinelData||[];M.s.forEach((x,i)=>{if(d[i])x.p={...d[i]}});commit()};
 function modal(k,i){let m=$('#ssaModal');if(m)m.remove();m=document.createElement('div');m.id='ssaModal';m.className='admin-modal';const o=k==='s'?M.s[i].p:M.a[i],F=k==='s'?SF:AF;
 m.innerHTML='<div class="admin-modal-card"><div class="admin-modal-head"><strong>'+(k==='s'?'센티넬':'사도')+' 정보 수정</strong><button type="button" class="admin-modal-close">×</button></div><form class="admin-form"><div class="admin-form-grid">'+F.map(([n,l])=>'<label>'+l+'<input name="'+n+'" value="'+E(o[n])+'"></label>').join('')+'</div><div class="admin-form-actions"><button type="button" class="c">취소</button><button class="primary">저장</button></div></form></div>';
@@ -2449,7 +2456,7 @@ function act(k,i,a){if(a==='photo')return pick(k,i);if(!ensure())return;
 if(a==='nophoto'){M[k][i].img='';commit()}
 else if(a==='edit')modal(k,i)
 else if(a==='del'){if(confirm('이 항목을 삭제할까요?')){M[k].splice(i,1);commit()}}
-else if(a==='add'){M[k].push(k==='s'?{p:{name:'새 센티넬',age:'-',gender:'-',center:'-',grade:'-',type:'-',status:'등록·운용',joined:'-'},img:''}:{code:'SA-'+new Date().toISOString().slice(2,10).replace(/-/g,''),grade:'3등급 · 유형',st:'등록',rg:'지역',img:''});commit();modal(k,M[k].length-1)}}
+else if(a==='add'){M[k].push(k==='s'?{p:{name:'새 센티넬',age:'-',gender:'-',center:'-',grade:'-',type:'-',status:'등록·운용',joined:'-'},img:''}:{code:'SA-'+new Date().toISOString().slice(2,10).replace(/-/g,''),grade:'3등급',type:'-',st:'등록',rg:'지역',joined:'-',special:'해당 없음',img:''});commit();modal(k,M[k].length-1)}}
 document.addEventListener('click',e=>{if(!adm())return;const t=e.target,add=t.closest('.adm-add');if(add){e.preventDefault();e.stopImmediatePropagation();return act(add.dataset.k,0,'add')}
 const row=t.closest('.sentinel-row,.apostle-row');if(!row)return;const b=t.closest('.adm-bar button'),p=t.closest('.sentinel-photo,.apostle-photo');if(!b&&!p)return;
 e.preventDefault();e.stopImmediatePropagation();const k=row.classList.contains('sentinel-row')?'s':'a',i=$$(k==='s'?'.sentinel-row':'.apostle-row').indexOf(row);act(k,i,b?b.dataset.a:'photo')},true);
@@ -2623,6 +2630,14 @@ document.addEventListener('click',go);document.addEventListener('keydown',go);
 .sentinel-profile-head p{font-size:14px;margin-top:8px}
 .sentinel-profile-table{border-radius:0 0 12px 12px}
 @media(max-width:700px){.sentinel-detail-photo{width:82px!important;height:104px!important}.sentinel-profile-head h2{font-size:22px}.sentinel-profile-head{padding:16px;gap:14px}}
+</style>
+<style id="pc-v6">
+.admin-only{display:none!important}
+body.photo-admin .admin-only{display:inline-flex!important}
+.prof-edit{margin-left:auto;align-self:flex-start;padding:9px 18px;border:0;border-radius:8px;background:var(--blue);color:#fff;font-weight:700}
+body.photo-admin #apostleProfileContent [data-f]{cursor:pointer;outline:1px dashed transparent;outline-offset:3px;transition:outline-color .15s,background .15s}
+body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;background:rgba(37,110,244,.06)}
+.search-form{margin-left:auto;margin-right:auto}
 </style>
 </body>
 </html>
