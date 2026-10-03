@@ -321,8 +321,8 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
    const empty=!a||((a.width===1&&a.height===1)||a.public_id==='pixel');
    if(key==='chief')state.chief=empty?'':cloudUrl(a);
    else{
-    const name=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim()).find(n=>leaderKey(n)===key);
-    if(name)state.leaders[name]=empty?'':cloudUrl(a);
+    const name=key;
+    if(document.querySelectorAll('.org-leader h3').length)state.leaders[name]=empty?'':cloudUrl(a);
    }
   }catch(e){}
  }
