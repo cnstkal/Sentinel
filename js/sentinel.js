@@ -170,6 +170,8 @@ function init(sel,photoSel,keyFn){
 }
 init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
 init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
+init('.guide-row','.guide-photo',(row,i)=>'g'+i);
+window.__ssaPick=function(kind,id){const r=rows.find(x=>x.key===kind+String(id));if(r&&r.inp)r.inp.click()};
 
 /* ---------- 행 클릭 → 상세 ---------- */
 const go=e=>{const r=e.target.closest('[data-href],[data-guide-href]');if(!r||e.target.closest('.row-actions')||e.target.closest('input[type="file"]')||e.target.closest('.admin-edit-btn'))return;
@@ -205,6 +207,8 @@ window.__profilePhoto=function(){
   const im=w?.querySelector('.apostle-photo img');
   if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='괴수 사진';i.dataset.beastKey=key||'';ap.appendChild(i)}
  }
+ const gp=$('#guideProfileContent .sentinel-detail-photo');
+ if(gp){const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),r=rows.find(x=>x.key==='g'+id),src=r?.box?.querySelector('img')?.getAttribute('src');if(src){const cur=gp.querySelector('img')?.getAttribute('src');if(cur!==src){gp.textContent='';const i=new Image();i.src=src;i.alt='증명사진';gp.appendChild(i)}}}
  const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
  const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
  if(im&&im.getAttribute('src')){
@@ -306,6 +310,15 @@ document.querySelectorAll('.apostle-row[data-apostle-href]').forEach(row=>{
   if(e.key==='Enter'||e.key===' '){e.preventDefault();location.hash=row.dataset.apostleHref;show(row.dataset.apostleHref)}
  });
 });
+document.querySelectorAll('.guide-row[data-guide-href]').forEach(row=>{
+ row.addEventListener('click',e=>{
+  if(e.target.closest('button,a,input,select,textarea'))return;
+  location.hash=row.dataset.guideHref;
+ });
+ row.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();location.hash=row.dataset.guideHref;}
+ });
+});
 document.querySelectorAll('.sentinel-row[data-sentinel-href]').forEach(row=>{
  row.addEventListener('click',e=>{
   if(e.target.closest('button,a,input,select,textarea,[data-profile-edit]'))return;
@@ -323,6 +336,7 @@ document.querySelectorAll('.sentinel-row[data-sentinel-href]').forEach(row=>{
 document.addEventListener('click',e=>{
  const b=e.target.closest('[data-profile-edit]');if(b&&document.body.classList.contains('photo-admin')){e.preventDefault();e.stopPropagation();openProfileEditor(Number(b.dataset.profileEdit))}
  const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('s',id)}
+ const guideBox=e.target.closest('#guideProfileContent .sentinel-detail-photo');if(guideBox&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('g',id)}
 });
 if(!ADMIN_ENABLED){document.getElementById('adminModeBtn')?.remove();sessionStorage.removeItem('ssa_admin')}else if(sessionStorage.getItem('ssa_admin'))admin(true);
 /* ===== ADMIN MODE END ===== */
