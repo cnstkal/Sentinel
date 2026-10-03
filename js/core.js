@@ -156,3 +156,12 @@ document.addEventListener('click',go);document.addEventListener('keydown',go);
 })();
 
 
+
+/* ===== ADMIN BUTTON FALLBACK ===== */
+document.addEventListener('click',function(e){
+ const btn=e.target.closest('#adminModeBtn,#adminModeBtnMobile');
+ if(!btn||typeof window.__ssaEnterAdmin!=='function')return;
+ e.preventDefault();
+ e.stopPropagation();
+ window.__ssaEnterAdmin();
+},true);
