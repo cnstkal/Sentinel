@@ -44,7 +44,17 @@ const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>
 const adm=()=>document.body.classList.contains('photo-admin');
 let M=null,tm;
 const SF=[['name','이름'],['age','나이'],['gender','성별'],['center','소속 센터'],['grade','등급'],['type','능력 유형'],['status','등록 상태'],['joined','등록일']],
-AF=[['code','괴수 코드'],['grade','등급'],['type','능력 유형'],['st','관리 상태'],['rg','관할 지역'],['joined','최초 등록일'],['special','특이 구분']];
+AF=[['code','괴수 코드'],['grade','등급'],['type','능력 유형'],['st','관리 상태'],['joined','최초 등록일'],['special','특이 구분']];
+const DEFAULT_A=[
+ {code:'에너지형 괴수',grade:'1등급',type:'고출력 전격·에너지 방출형',st:'희귀',joined:'2011.06.17',special:'고출력 전격'},
+ {code:'인지·감각형 괴수',grade:'2등급',type:'감각 교란·인지 간섭형',st:'관찰',joined:'2006.04.22',special:'인지 간섭'},
+ {code:'물리변환형 괴수',grade:'3등급',type:'물질 변환·신체 변형형',st:'관리',joined:'2004.09.17',special:'물질 변환'},
+ {code:'생체영향형 괴수',grade:'3등급',type:'생체 변형·생리 영향형',st:'관리',joined:'2008.07.03',special:'생체 영향'},
+ {code:'환경영향형 괴수',grade:'4등급',type:'환경 변화·생태 교란형',st:'관찰',joined:'2013.11.29',special:'환경 변화'},
+ {code:'공간이동형 괴수',grade:'2등급',type:'공간 이동·거리 왜곡형',st:'추적',joined:'2016.02.14',special:'공간 이동'},
+ {code:'에너지형 괴수',grade:'5등급',type:'에너지 방출·흡수형',st:'관찰',joined:'2003.08.11',special:'에너지 방출'},
+ {code:'인지·감각형 괴수',grade:'3등급',type:'감각 증폭·인지 교란형',st:'관리',joined:'2019.05.26',special:'감각 교란'}
+];
 function toast(m,e){const d=document.createElement('div');d.className='ssa-toast'+(e?' e':'');d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
 const BAR='<div class="adm-bar"><button type="button" data-a="photo">사진 변경</button><button type="button" data-a="nophoto">사진 삭제</button><button type="button" data-a="edit">수정</button><button type="button" class="d" data-a="del">삭제</button></div>';
 const ph=(c,s,img)=>'<div class="'+c+(img?' has-img':'')+'"><img src="'+E(img)+'" alt=""'+(img?'':' hidden')+'><span>'+s+'</span></div>';
@@ -54,8 +64,16 @@ function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map(
 function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
 function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','괴수']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
 function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A){M.a.sort((x,y)=>{const ax=parseInt(String(x.grade||'').match(/\\d+/)?.[0]||'999',10),ay=parseInt(String(y.grade||'').match(/\\d+/)?.[0]||'999',10);return ax-ay});A.innerHTML=M.a.map(aRow).join('')}window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash)){dispatchEvent(new Event('hashchange'));setTimeout(()=>window.__profilePhoto?.(),0)}}
-async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.stringify({v:2,M}),fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw new Error(j.error?.message||r.status);toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 설정 저장 실패: '+e.message,1)}}
+async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.stringify({v:3,M}),fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw new Error(j.error?.message||r.status);toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 설정 저장 실패: '+e.message,1)}}
 function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
+function applyDefaultA(force=false){
+ if(!M)return false;
+ const imgs=(M.a||[]).map(x=>x?.img||'');
+ if(!force && M.a.length===DEFAULT_A.length && M._defaultVersion===3)return false;
+ M.a=DEFAULT_A.map((x,i)=>({...x,img:imgs[i]||''}));
+ M._defaultVersion=3;
+ return true;
+}
 const commit=()=>{render();persist()};
 function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const W=800,H=992,c=document.createElement('canvas');c.width=W;c.height=H;const ctx=c.getContext('2d'),s=Math.max(W/im.width,H/im.height),w=Math.round(im.width*s),h=Math.round(im.height*s);ctx.drawImage(im,(W-w)/2,(H-h)/2,w,h);URL.revokeObjectURL(u);c.toBlob(b=>b?ok(b):no(new Error('이미지 변환 실패')),'image/jpeg',.9)};im.onerror=no;im.src=u})}
 async function uploadPhoto(file,kind,index){
@@ -87,8 +105,17 @@ e.preventDefault();e.stopImmediatePropagation();const k=row.classList.contains('
 let tries=0;function watch(){const on=adm(),b=$('#adminModeBtnMobile');if(b){b.textContent=on?'관리자 종료':'관리자 모드';b.classList.toggle('active',on)}if(on&&!M&&!document.body.classList.contains('photos-loading'))ensure();else if(on&&!M&&tries++<20)setTimeout(watch,800)}
 new MutationObserver(()=>{tries=0;watch()}).observe(document.body,{attributes:true,attributeFilter:['class']});
 addBtns();watch();
-(async function(){try{const c=JSON.parse(localStorage.getItem(LK)||'null');if(c&&c.s){M=c;render()}}catch(e){}
-try{const r=await fetch(LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)return;const p=await fetch(RB+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p.M&&p.M.s){M=p.M;render();try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){}}}catch(e){}})();
+(async function(){
+ let migrated=false;
+ try{const c=JSON.parse(localStorage.getItem(LK)||'null');if(c&&c.s){M=c;migrated=applyDefaultA();render()}}catch(e){}
+ try{
+  const r=await fetch(LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+  const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;
+  const p=await fetch(RB+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());
+  if(p.M&&p.M.s){M=p.M;migrated=applyDefaultA();render();try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){}}
+ }catch(e){}
+ if(migrated)upload();
+})();
 })();
 
 
