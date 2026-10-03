@@ -172,6 +172,24 @@ init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
 init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
 init('.guide-row','.guide-photo',(row,i)=>'g'+i);
 window.__ssaPick=function(kind,id){const r=rows.find(x=>x.key===kind+String(id));if(r&&r.inp)r.inp.click()};
+/* 가이드 증명사진: 항상 클릭하면 파일 선택창을 연다 */
+function bindGuidePhotoPickers(){
+ $('.guide-row').forEach((row,i)=>{
+  const box=$('.guide-photo',row);
+  if(!box||box.dataset.photoPickerBound==='1')return;
+  const r=rows.find(x=>x.key==='g'+i);
+  if(!r)return;
+  box.dataset.photoPickerBound='1';
+  box.style.cursor='pointer';
+  box.addEventListener('click',e=>{
+   e.preventDefault();e.stopPropagation();
+   r.inp.click();
+  });
+ });
+}
+bindGuidePhotoPickers();
+document.addEventListener('DOMContentLoaded',bindGuidePhotoPickers);
+
 
 /* ---------- 행 클릭 → 상세 ---------- */
 const go=e=>{const r=e.target.closest('[data-href],[data-guide-href]');if(!r||e.target.closest('.row-actions')||e.target.closest('input[type="file"]')||e.target.closest('.admin-edit-btn'))return;
