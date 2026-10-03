@@ -1122,7 +1122,9 @@ function init(sel,photoSel,keyFn){
   const link=$('.sentinel-detail-btn',row),hh=link?link.getAttribute('href'):(row.dataset.sentinelHref||row.dataset.apostleHref||'');if(hh)row.dataset.href=hh;row.tabIndex=0;row.setAttribute('role','link');
   r.inp=document.createElement('input');r.inp.type='file';r.inp.accept='image/*';r.inp.hidden=true;
   r.inp.onchange=()=>{if(r.inp.files[0])pick(r,r.inp.files[0]);r.inp.value=''};
-  box.addEventListener('click',e=>{if(!document.body.classList.contains('photo-admin'))return;e.stopPropagation();r.inp.click()});
+  if(sel!=='.guide-row'){
+   box.addEventListener('click',e=>{if(!document.body.classList.contains('photo-admin'))return;e.stopPropagation();r.inp.click()});
+  }
   row.appendChild(r.inp);rows.push(r);
  });
 }
