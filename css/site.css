@@ -2735,10 +2735,9 @@ body.photo-admin .nav-admin-btn{
 .guide-photo{position:relative}
 
 /* ===== 가이드 관리자 액션바 ===== */
-.guide-admin-bar{display:none}
+.guide-admin-bar{display:none;grid-column:1/-1;width:100%;gap:6px;margin-top:6px}
 body.photo-admin .guide-admin-bar{display:flex}
-.guide-admin-bar button{flex:1;min-width:0}
+.guide-admin-bar button{flex:1;min-width:0;border:1px solid #b9c6d2;background:#fff;padding:10px 0;font-size:12px;font-weight:700;color:var(--navy);cursor:pointer}
 @media(max-width:700px){
- .guide-admin-bar{display:flex!important}
  .guide-admin-bar button{padding:10px 5px;font-size:12px}
 }
