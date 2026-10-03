@@ -2038,3 +2038,20 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
 .official-photo-save-bar button{border:0;border-radius:5px;background:#1557a6;color:#fff;font-weight:700;padding:8px 14px;cursor:pointer}
 .official-photo-save-bar button:hover{background:#0d4384}
 .official-photo-save-bar button:disabled{opacity:.6;cursor:wait}
+
+
+/* 괴수 등록 확인 */
+.registration-search{max-width:720px;margin:8px 0 26px;padding:24px;background:#f7f9fb;border:1px solid var(--line)}
+.registration-search label{display:block;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:9px}
+.registration-search>div{display:flex}
+.registration-search input{flex:1;min-width:0;height:46px;border:1px solid #bfcbd7;background:#fff;padding:0 13px;outline:0}
+.registration-search input:focus{border-color:var(--blue)}
+.registration-search button{width:76px;border:0;background:var(--navy);color:#fff;font-weight:700}
+.registration-search button:hover{background:var(--blue-dark)}
+.registration-result{max-width:720px;border-top:2px solid var(--navy);background:#fff}
+.registration-result .result-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
+.registration-result dl{margin:0;padding:0 18px}
+.registration-result dl>div{display:flex;border-bottom:1px solid var(--line2);padding:12px 0}
+.registration-result dt{width:130px;color:var(--sub);font-size:13px}
+.registration-result dd{margin:0;font-weight:700;color:var(--navy)}
+.registration-result p{padding:0 18px 18px;color:var(--sub);font-size:13px}
