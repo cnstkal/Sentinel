@@ -2030,3 +2030,11 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
 .official-photo-actions{position:absolute;left:4px;right:4px;bottom:4px;display:flex;gap:4px;z-index:5}
 .official-photo-actions button{flex:1;border:1px solid rgba(255,255,255,.8);background:rgba(16,47,89,.92);color:#fff;border-radius:4px;padding:5px 4px;font-size:10px;cursor:pointer}
 .official-photo-actions button:hover{background:#2468c7}
+
+
+/* 공식 증명사진 변경사항 저장 */
+.official-photo-save-bar{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;background:#fff;border:1px solid #b9c7d8;border-radius:8px;box-shadow:0 8px 24px rgba(16,47,89,.16);z-index:9999;opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;font-size:13px;color:#26384d}
+.official-photo-save-bar.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.official-photo-save-bar button{border:0;border-radius:5px;background:#1557a6;color:#fff;font-weight:700;padding:8px 14px;cursor:pointer}
+.official-photo-save-bar button:hover{background:#0d4384}
+.official-photo-save-bar button:disabled{opacity:.6;cursor:wait}
