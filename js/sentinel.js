@@ -10,7 +10,33 @@
   r.innerHTML='<div class="result-head"><span>처리현황 조회</span><b>'+no+'</b></div><dl><div><dt>민원유형</dt><dd>'+x[0]+'</dd></div><div><dt>접수일</dt><dd>'+x[1]+'</dd></div><div><dt>현재 단계</dt><dd>'+x[2]+'</dd></div><div><dt>담당기관</dt><dd>'+x[3]+'</dd></div></dl><p>처리 단계가 변경되면 민원 신청 시 등록한 연락수단을 통해 안내됩니다.</p>';
  });
 })();
- const sentinelProfiles=[
+ const guideProfiles=[
+ {name:'김하린',age:'26세',gender:'여성',center:'서울권역지원센터',grade:'A',type:'공명 동조형',status:'등록·운용',joined:'2022.05.18'},
+ {name:'박서준',age:'30세',gender:'남성',center:'인천·경기권역지원센터',grade:'B',type:'감응 안정형',status:'등록·운용',joined:'2021.09.04'},
+ {name:'이유진',age:'23세',gender:'여성',center:'서울권역지원센터',grade:'B',type:'정신 동조형',status:'등록·운용',joined:'2024.01.22'},
+ {name:'최민석',age:'34세',gender:'남성',center:'충청권역지원센터',grade:'C',type:'감각 증폭형',status:'등록·운용',joined:'2020.07.11'},
+ {name:'정다은',age:'25세',gender:'여성',center:'강원권역지원센터',grade:'B',type:'공명 동조형',status:'등록·운용',joined:'2023.11.09'},
+ {name:'한도현',age:'29세',gender:'남성',center:'영남·제주권역지원센터',grade:'A',type:'감응 안정형',status:'등록·운용',joined:'2021.03.27'},
+ {name:'윤서아',age:'22세',gender:'여성',center:'호남권역지원센터',grade:'D',type:'감각 보조형',status:'등록·운용',joined:'2025.08.16'},
+ {name:'강지훈',age:'32세',gender:'남성',center:'인천·경기권역지원센터',grade:'C',type:'정신 동조형',status:'등록·운용',joined:'2022.12.03'},
+ {name:'송예은',age:'27세',gender:'여성',center:'충청권역지원센터',grade:'B',type:'공명 동조형',status:'등록·운용',joined:'2024.04.15'},
+ {name:'오준호',age:'36세',gender:'남성',center:'영남·제주권역지원센터',grade:'D',type:'감응 안정형',status:'등록·운용',joined:'2019.10.21'}
+];
+window.__guideData=window.__guideData||guideProfiles;
+function getGuideData(){return window.__guideData||guideProfiles}
+function renderGuideProfile(){
+ const panel=document.getElementById('guideProfileContent');if(!panel)return;
+ const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),x=getGuideData()[Number(id)];
+ if(!x){panel.innerHTML='<div class="notice-area">가이드 정보를 찾을 수 없습니다.</div>';return}
+ const gradeClass=String(x.grade||'').toUpperCase().replace(/[^A-Z]/g,'');
+ const photoHtml='<div class="sentinel-detail-photo">증명사진</div>';
+ panel.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo-wrap">'+photoHtml+'</div><div><h2>'+x.name+' <span class="sentinel-grade grade-'+gradeClass+'">'+x.grade+'</span></h2><p>'+x.center+' · '+x.status+'</p></div></div><div class="sentinel-profile-table"><div><span>나이</span><b>'+x.age+'</b></div><div><span>성별</span><b>'+x.gender+'</b></div><div><span>소속 센터</span><b>'+x.center+'</b></div><div><span>등급</span><b>'+x.grade+'</b></div><div><span>가이드 유형</span><b>'+x.type+'</b></div><div><span>등록 상태</span><b>'+x.status+'</b></div><div><span>최초 등록일</span><b>'+x.joined+'</b></div></div><div class="notice-area"><strong>공개 범위 안내</strong><br>개인의 안전과 권익 보호를 위해 상세 능력 정보 및 개인식별정보는 공개하지 않습니다.</div><a class="back-to-list" href="#guides">← 가이드 목록으로</a>';
+}
+window.__renderGuideProfile=renderGuideProfile;
+renderGuideProfile();
+window.addEventListener('hashchange',renderGuideProfile);
+
+const sentinelProfiles=[
   {name:'김도윤',age:'28세',gender:'남성',center:'서울권역지원센터',grade:'S',type:'에너지형',status:'등록·운용',joined:'2021.04.16'},
   {name:'이서윤',age:'24세',gender:'여성',center:'인천·경기권역지원센터',grade:'A',type:'인지·감각형',status:'등록·운용',joined:'2023.08.21'},
   {name:'박준혁',age:'31세',gender:'남성',center:'서울권역지원센터',grade:'B',type:'물리변환형',status:'등록·운용',joined:'2020.11.03'},
