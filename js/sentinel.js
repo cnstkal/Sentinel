@@ -357,12 +357,18 @@ function paint(){
  }
 
  async function load(){
-  const loaded=await loadConfig();
-  if(loaded){paint();addButtons();return}
-  await pull('chief');
+  /* 실제 Cloudinary 사진을 최우선으로 읽는다.
+     설정 JSON은 보조 저장본일 뿐이며 화면 상태를 덮어쓰지 않는다. */
   const names=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim());
-  await Promise.all(names.map(n=>pull(n)));
-  paint();addButtons();
+  const before=JSON.stringify(state);
+  await Promise.all(['chief',...names].map(k=>pull(k)));
+  const after=JSON.stringify(state);
+  if(before===after){
+   try{await loadConfig()}catch(e){}
+  }
+  cacheState();
+  paint();
+  addButtons();
  }
 
  function addBar(box){
