@@ -1,0 +1,24 @@
+name: Sentinel scheduled publication
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update scheduler heartbeat
+        run: |
+          mkdir -p .sentinel
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .sentinel/last-scheduler-run.txt
+          git config user.name "Sentinel Automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add .sentinel/last-scheduler-run.txt
+          git diff --cached --quiet || git commit -m "chore: scheduled publication heartbeat"
+          git push
