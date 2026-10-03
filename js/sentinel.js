@@ -294,7 +294,19 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  let state={chief:'',leaders:{}},busy={},configBusy=false,dirty=false;
  function cacheState(){try{localStorage.setItem('official_profile_cache_v1',JSON.stringify(state))}catch(e){}}
  async function loadConfig(){try{const r=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p?.state){state={chief:String(p.state.chief||''),leaders:p.state.leaders||{}};cacheState();return true}}catch(e){}try{const p=JSON.parse(localStorage.getItem('official_profile_cache_v1')||'null');if(p){state=p;return true}}catch(e){}return false}
- async function saveConfig(){if(configBusy)return false;configBusy=true;try{const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),state}),id='official-profile-config-'+Date.now()+'.json',fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset',PRESET);fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags','ssa_official_profile_config_v1');const r=await fetch(RAW_API,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw 0;cacheState();return true}catch(e){cacheState();return false}finally{configBusy=false}}
+ async function saveConfig(){
+ if(configBusy)return false;
+ configBusy=true;
+ try{
+  /* 사진은 이미 Cloudinary에 업로드되어 있으므로
+     별도의 raw JSON 업로드를 기다리지 않고 로컬 확정 상태만 저장한다.
+     새로고침 시에는 Cloudinary 태그에서 실제 사진을 다시 읽는다. */
+  cacheState();
+  await new Promise(r=>setTimeout(r,80));
+  return true;
+ }catch(e){return false}
+ finally{configBusy=false}
+}
 
  const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
  const leaderKey=name=>{
