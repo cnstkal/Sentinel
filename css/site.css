@@ -2475,3 +2475,9 @@ body:has(#searchPage.active) .site-main{
     grid-column:1/-1!important;
   }
 }
+
+@media(max-width:700px){
+ .map-legend .region-list{display:grid!important;grid-template-columns:1fr 1fr!important;column-gap:18px!important;row-gap:0!important}
+ .map-legend .region-list div{min-width:0!important;padding:6px 0!important;font-size:12px!important}
+ .map-legend .region-list div span{white-space:nowrap}
+}
