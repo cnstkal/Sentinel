@@ -2670,3 +2670,24 @@ a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
   cursor:default;
 }
 .apostle-photo img,.sentinel-detail-photo img{cursor:zoom-in}
+
+/* ===== 관리자 모드 버튼 ===== */
+.admin-mode-toggle{
+ position:fixed;
+ right:16px;
+ bottom:18px;
+ z-index:99998;
+ border:0;
+ border-radius:999px;
+ background:var(--navy);
+ color:#fff;
+ padding:11px 17px;
+ font-size:13px;
+ font-weight:800;
+ box-shadow:0 6px 20px rgba(0,0,0,.22);
+ cursor:pointer;
+}
+.admin-mode-toggle:hover{background:var(--blue)}
+body.photo-admin .admin-mode-toggle{background:var(--red)}
+.guide-photo{cursor:default}
+body.photo-admin .guide-photo{cursor:pointer}
