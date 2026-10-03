@@ -331,7 +331,7 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
     btn.disabled=true;btn.textContent='저장 중…';
     const ok=await saveConfig();
     if(ok){
-     dirty=false;cacheState();bar.classList.remove('show');toast('사진 변경사항이 저장되었습니다.');
+     dirty=false;cacheState();bar.classList.add('saved');bar.querySelector('span').textContent='사진 변경사항이 저장되었습니다.';btn.textContent='저장됨';setTimeout(()=>{bar.classList.remove('show','saved');bar.querySelector('span').textContent='사진 변경사항이 있습니다.';btn.textContent='사진 변경사항 저장'},1200);
     }else{
      toast('저장에 실패했습니다. 다시 눌러주세요.',1);
     }
