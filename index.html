@@ -1763,9 +1763,9 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
     <span><span class="brand-title">센티넬안전관리청</span><span class="brand-en">Sentinel Safety Administration</span></span>
    </a>
    <nav class="util" aria-label="유틸리티 메뉴">
-    <a href="#login">로그인</a><a href="#join">회원가입</a><a href="#sitemap">사이트맵</a><a href="#english">ENGLISH</a><span class="divider"></span>
-    <span class="font-control" aria-label="글자크기"><span>글자크기</span><button id="fontDown" title="글자 작게">가-</button><button id="fontUp" title="글자 크게">가+</button></span>
-    <button class="contrast-btn" id="contrastBtn">고대비 모드</button><button class="admin-mode-trigger" id="adminModeBtn" type="button">관리자 모드</button>
+    <a href="#join">회원가입</a><a href="#sitemap">사이트맵</a><span class="divider"></span>
+    
+    <button class="admin-mode-trigger" id="adminModeBtn" type="button">관리자 모드</button>
    </nav>
   </div>
  </div>
@@ -1997,9 +1997,9 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
    const id=h.replace('#','').split('?')[0];
    if(document.getElementById(id)){e.preventDefault();location.hash=h;show(h)}
  });
- document.getElementById('fontUp').addEventListener('click',()=>document.body.classList.add('large'));
- document.getElementById('fontDown').addEventListener('click',()=>document.body.classList.remove('large'));
- document.getElementById('contrastBtn').addEventListener('click',()=>document.body.classList.toggle('contrast'));
+ document.getElementById('fontUp')?.addEventListener('click',()=>document.body.classList.add('large'));
+ document.getElementById('fontDown')?.addEventListener('click',()=>document.body.classList.remove('large'));
+ document.getElementById('contrastBtn')?.addEventListener('click',()=>document.body.classList.toggle('contrast'));
  navTriggers.forEach(btn=>btn.addEventListener('click',()=>{const x=btn.getAttribute('aria-expanded')==='true';navTriggers.forEach(b=>b.setAttribute('aria-expanded','false'));btn.setAttribute('aria-expanded',String(!x))}));
  const panel=document.getElementById('mobilePanel'), closePanel=document.getElementById('closeMobilePanel');
  function togglePanel(open){panel.hidden=!open;document.body.classList.toggle('menu-open',open);all.setAttribute('aria-expanded',String(open));}
@@ -2040,8 +2040,8 @@ body.photo-admin .sentinel-photo,body.photo-admin .apostle-photo{outline:2px das
  }).join('');
 }
  const regForm=document.getElementById('registrationSearch');
- regForm.addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('regNo').value.trim().toUpperCase();const db={'SN-26018492':['SN-26018492','사도','3등급','등록','서울특별시','2026.09.29'],'SN-26017421':['SN-26017421','사도','4등급','관찰','인천광역시','2026.09.30'],'GD-26088317':['GD-26088317','가이드','-','등록','서울특별시','2026.09.28']};const r=db[q], box=document.getElementById('regResult');box.hidden=false;box.innerHTML=r?'<h2>등록정보 확인</h2><dl><dt>등록번호</dt><dd>'+r[0]+'</dd><dt>구분</dt><dd>'+r[1]+'</dd><dt>등급</dt><dd>'+r[2]+'</dd><dt>관리상태</dt><dd>'+r[3]+'</dd><dt>관리지역</dt><dd>'+r[4]+'</dd><dt>최종 갱신</dt><dd>'+r[5]+'</dd></dl>':'<h2>조회 결과가 없습니다.</h2><p>입력하신 등록번호를 확인하시기 바랍니다.</p>'});
- let idx=0,playing=true,timer;const slides=document.getElementById('slides'),count=3;function move(n){idx=(idx+n+count)%count;slides.style.transform='translateX(-'+idx*100+'%)'}function restart(){clearInterval(timer);if(playing)timer=setInterval(()=>move(1),5000)}document.getElementById('prevSlide').onclick=()=>{move(-1);restart()};document.getElementById('nextSlide').onclick=()=>{move(1);restart()};document.getElementById('playSlide').onclick=()=>{playing=!playing;document.getElementById('playSlide').textContent=playing?'Ⅱ':'▶';document.getElementById('playSlide').setAttribute('aria-label',playing?'슬라이드 자동재생 일시정지':'슬라이드 자동재생 재생');restart()};restart();
+ regForm?.addEventListener('submit',e=>{e.preventDefault();const q=document.getElementById('regNo').value.trim().toUpperCase();const db={'SN-26018492':['SN-26018492','사도','3등급','등록','서울특별시','2026.09.29'],'SN-26017421':['SN-26017421','사도','4등급','관찰','인천광역시','2026.09.30'],'GD-26088317':['GD-26088317','가이드','-','등록','서울특별시','2026.09.28']};const r=db[q], box=document.getElementById('regResult');box.hidden=false;box.innerHTML=r?'<h2>등록정보 확인</h2><dl><dt>등록번호</dt><dd>'+r[0]+'</dd><dt>구분</dt><dd>'+r[1]+'</dd><dt>등급</dt><dd>'+r[2]+'</dd><dt>관리상태</dt><dd>'+r[3]+'</dd><dt>관리지역</dt><dd>'+r[4]+'</dd><dt>최종 갱신</dt><dd>'+r[5]+'</dd></dl>':'<h2>조회 결과가 없습니다.</h2><p>입력하신 등록번호를 확인하시기 바랍니다.</p>'});
+ let idx=0,playing=true,timer;const slides=document.getElementById('slides'),count=3;function move(n){idx=(idx+n+count)%count;slides.style.transform='translateX(-'+idx*100+'%)'}function restart(){clearInterval(timer);if(playing)timer=setInterval(()=>move(1),5000)}(document.getElementById('prevSlide')||{}).onclick=()=>{move(-1);restart()};(document.getElementById('nextSlide')||{}).onclick=()=>{move(1);restart()};(document.getElementById('playSlide')||{}).onclick=()=>{playing=!playing;document.getElementById('playSlide').textContent=playing?'Ⅱ':'▶';document.getElementById('playSlide').setAttribute('aria-label',playing?'슬라이드 자동재생 일시정지':'슬라이드 자동재생 재생');restart()};restart();
  document.querySelectorAll('.press-tabs').forEach(tabs=>{tabs.querySelectorAll('button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>{tabs.querySelectorAll('button[data-tab]').forEach(b=>b.classList.toggle('active',b===btn));const root=tabs.parentElement;root.querySelectorAll('.press-list').forEach(list=>list.hidden=list.id!==btn.dataset.tab)}))});
  document.querySelectorAll('.rating').forEach(r=>{const bs=[...r.querySelectorAll('button')];bs.forEach((b,i)=>b.addEventListener('click',()=>bs.forEach((x,j)=>x.classList.toggle('on',j<=i))))});
  show(location.hash);
@@ -2264,7 +2264,7 @@ function init(sel,photoSel,keyFn){
   const box=$(photoSel,row),nm=$('strong',row);if(!box||!nm)return;
   const r={key:keyFn(row,i,nm),name:nm.textContent.trim(),box,row},im=$('img',box);
   if(im&&im.getAttribute('src'))box.dataset.base=im.getAttribute('src');
-  const link=$('.sentinel-detail-btn',row);row.dataset.href=link.getAttribute('href');row.tabIndex=0;row.setAttribute('role','link');
+  const link=$('.sentinel-detail-btn',row),hh=link?link.getAttribute('href'):(row.dataset.sentinelHref||row.dataset.apostleHref||'');if(hh)row.dataset.href=hh;row.tabIndex=0;row.setAttribute('role','link');
   r.inp=document.createElement('input');r.inp.type='file';r.inp.accept='image/*';r.inp.hidden=true;
   r.inp.onchange=()=>{if(r.inp.files[0])pick(r,r.inp.files[0]);r.inp.value=''};
   box.addEventListener('click',e=>{if(!document.body.classList.contains('photo-admin'))return;e.stopPropagation();r.inp.click()});
@@ -2428,9 +2428,9 @@ AF=[['code','사도 코드'],['grade','등급 · 능력유형'],['st','관리 �
 function toast(m,e){const d=document.createElement('div');d.className='ssa-toast'+(e?' e':'');d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3200)}
 const BAR='<div class="adm-bar"><button type="button" data-a="photo">사진 변경</button><button type="button" data-a="nophoto">사진 삭제</button><button type="button" data-a="edit">수정</button><button type="button" class="d" data-a="del">삭제</button></div>';
 const ph=(c,s,img)=>'<div class="'+c+(img?' has-img':'')+'"><img src="'+E(img)+'" alt=""'+(img?'':' hidden')+'><span>'+s+'</span></div>';
-const sRow=(x,i)=>{const p=x.p,h='#sentinel-profile?id='+i;return '<article class="sentinel-row" data-href="'+h+'" tabindex="0" role="link">'+ph('sentinel-photo','증명사진',x.img)+'<div class="sentinel-info"><strong>'+E(p.name)+'</strong><dl><div><dt>나이</dt><dd>'+E(p.age)+'</dd></div><div><dt>성별</dt><dd>'+E(p.gender)+'</dd></div><div><dt>센터</dt><dd>'+E(p.center)+'</dd></div></dl></div><a class="sentinel-detail-btn" href="'+h+'">자세히</a>'+BAR+'</article>'};
-const aRow=(x,i)=>{const h='#apostle-profile?id='+i;return '<article class="apostle-row" data-href="'+h+'" tabindex="0" role="link">'+ph('apostle-photo','사진',x.img)+'<div><strong>'+E(x.code)+'</strong><span>'+E(x.grade)+'</span></div><div><b>'+E(x.st)+'</b><small>'+E(x.rg)+'</small></div><a class="sentinel-detail-btn" href="'+h+'">등록정보</a>'+BAR+'</article>'};
-function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>({code:$('strong',r).textContent.trim(),grade:$('div:nth-child(2) span',r).textContent.trim(),st:$('b',r).textContent.trim(),rg:$('small',r).textContent.trim(),img:$('.apostle-photo img',r)?.getAttribute('src')||''}))}}
+const sRow=(x,i)=>{const p=x.p,h='#sentinel-profile?id='+i;return '<article class="sentinel-row" data-href="'+h+'" tabindex="0" role="link">'+ph('sentinel-photo','증명사진',x.img)+'<div class="sentinel-info"><strong>'+E(p.name)+'</strong><dl><div><dt>나이</dt><dd>'+E(p.age)+'</dd></div><div><dt>성별</dt><dd>'+E(p.gender)+'</dd></div><div><dt>센터</dt><dd>'+E(p.center)+'</dd></div></dl></div>'+BAR+'</article>'};
+const aRow=(x,i)=>{const h='#apostle-profile?id='+i;return '<article class="apostle-row" data-href="'+h+'" tabindex="0" role="link">'+ph('apostle-photo','사도 이미지',x.img)+'<div class="apostle-info"><strong>'+E(x.code)+'</strong><dl><div><dt>등급</dt><dd>'+E(x.grade)+'</dd></div><div><dt>상태</dt><dd>'+E(x.st)+'</dd></div><div><dt>관할 지역</dt><dd>'+E(x.rg)+'</dd></div></dl></div>'+BAR+'</article>'};
+function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>{const dd=$$('.apostle-info dd',r).map(x=>x.textContent.trim());return {code:($('strong',r)||{textContent:''}).textContent.trim(),grade:dd[0]||'',st:dd[1]||'',rg:dd[2]||'',img:$('.apostle-photo img',r)?.getAttribute('src')||''}})}}
 function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
 function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','사도']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
 function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A)A.innerHTML=M.a.map(aRow).join('');window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash))dispatchEvent(new Event('hashchange'))}
@@ -2611,5 +2611,18 @@ const go=e=>{
 document.addEventListener('click',go);document.addEventListener('keydown',go);
 })();
 </script>
+<style id="pc-v5">
+.sentinel-detail-btn{display:none!important}
+.apostle-row::after,.sentinel-row::after{content:none!important;display:none!important}
+.apostle-row,.apostle-row:has(>.sentinel-detail-btn),.sentinel-row{grid-template-columns:96px minmax(0,1fr)!important}
+.apostle-row>div:nth-child(3){text-align:left}
+.sentinel-profile-head{border-radius:14px;border:1px solid var(--line);border-top:1px solid var(--line);padding:24px 28px;gap:26px;background:linear-gradient(100deg,#f6f9ff,#fff 70%);box-shadow:0 1px 2px rgba(23,38,58,.05),0 8px 24px -8px rgba(23,38,58,.1)}
+.sentinel-detail-photo{width:104px!important;height:130px!important;flex:none;display:flex;align-items:center;justify-content:center;border-radius:12px;border:1px solid #d7dfe7;background:linear-gradient(160deg,#f4f7fa,#e6ecf2);color:#8a98a7;font-size:12px}
+.sentinel-profile-head h2{font-size:30px;letter-spacing:-.04em;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.sentinel-grade{width:auto!important;height:auto!important;min-width:0;margin:0!important;padding:3px 11px;border:0!important;border-radius:999px;background:linear-gradient(135deg,#256ef4,#174a9e);color:#fff!important;font-size:13px!important;font-weight:700;letter-spacing:.02em;line-height:1.5;box-shadow:0 2px 6px rgba(37,110,244,.3)}
+.sentinel-profile-head p{font-size:14px;margin-top:8px}
+.sentinel-profile-table{border-radius:0 0 12px 12px}
+@media(max-width:700px){.sentinel-detail-photo{width:82px!important;height:104px!important}.sentinel-profile-head h2{font-size:22px}.sentinel-profile-head{padding:16px;gap:14px}}
+</style>
 </body>
 </html>
