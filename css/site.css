@@ -2055,3 +2055,232 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
 .registration-result dt{width:130px;color:var(--sub);font-size:13px}
 .registration-result dd{margin:0;font-weight:700;color:var(--navy)}
 .registration-result p{padding:0 18px 18px;color:var(--sub);font-size:13px}
+
+
+/* ===== ARU 오작동 신고 UI 개선 ===== */
+#malfunction .content-head{margin-bottom:24px}
+#malfunction .content-head h1{display:flex;align-items:center;gap:12px}
+#malfunction .content-head h1::before{
+ content:"ARU";
+ display:inline-flex;align-items:center;justify-content:center;
+ width:42px;height:28px;border-radius:6px;
+ background:#edf4ff;color:var(--blue);
+ font-size:11px;font-weight:900;letter-spacing:.04em;
+}
+#malfunction .notice-area{
+ max-width:1080px;
+ margin:0 0 18px;
+ padding:17px 20px 17px 22px;
+ border:1px solid #d7e2f0;
+ border-left:4px solid #2f6fed;
+ border-radius:10px;
+ background:#f7faff;
+ color:#53677d;
+ font-size:12px;
+ line-height:1.7;
+ box-shadow:0 2px 8px rgba(31,57,89,.04);
+}
+#malfunction .notice-area strong{
+ display:block;
+ margin-bottom:3px;
+ color:#17355f;
+ font-size:13px;
+}
+#malfunction .malfunction-wrap{
+ max-width:1080px;
+ margin-top:0;
+ border:1px solid #d9e1e9;
+ border-radius:14px;
+ background:#fff;
+ overflow:hidden;
+ box-shadow:0 8px 28px rgba(24,45,70,.08);
+}
+#malfunction .malfunction-wrap .form-title{
+ position:relative;
+ min-height:72px;
+ padding:0 26px;
+ border-bottom:1px solid #e3e8ee;
+ background:#fbfcfe;
+}
+#malfunction .malfunction-wrap .form-title span{
+ display:flex;
+ flex-direction:column;
+ gap:3px;
+ color:var(--navy);
+ font-size:17px;
+ font-weight:800;
+ letter-spacing:-.025em;
+}
+#malfunction .malfunction-wrap .form-title span::after{
+ content:"장치 이상·파손·통신 장애 등 ARU 관련 이상 상황을 접수합니다.";
+ color:#748397;
+ font-size:11px;
+ font-weight:500;
+ letter-spacing:0;
+}
+#malfunction .malfunction-wrap .form-title b{
+ padding:6px 9px;
+ border-radius:5px;
+ background:#f0f4f8;
+ color:#647488;
+ font-size:10px;
+ font-weight:700;
+}
+#malfunction #malfunctionForm{
+ padding:26px 28px 28px;
+}
+#malfunction #malfunctionForm .form-grid{
+ display:grid;
+ grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:20px 22px;
+ margin:0 0 20px;
+}
+#malfunction #malfunctionForm label{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ min-width:0;
+ margin:0;
+ color:#35485c;
+ font-size:12px;
+ font-weight:700;
+ line-height:1.3;
+}
+#malfunction #malfunctionForm input,
+#malfunction #malfunctionForm select,
+#malfunction #malfunctionForm textarea{
+ box-sizing:border-box;
+ width:100%;
+ min-width:0;
+ border:1px solid #cbd5df;
+ border-radius:7px;
+ background:#fff;
+ color:#1d3045;
+ font-family:inherit;
+ font-size:13px;
+ outline:none;
+ transition:border-color .15s,box-shadow .15s,background .15s;
+}
+#malfunction #malfunctionForm input,
+#malfunction #malfunctionForm select{
+ height:46px;
+ padding:0 13px;
+}
+#malfunction #malfunctionForm textarea{
+ min-height:150px;
+ margin-top:1px;
+ padding:13px;
+ line-height:1.7;
+ resize:vertical;
+}
+#malfunction #malfunctionForm input::placeholder,
+#malfunction #malfunctionForm textarea::placeholder{
+ color:#a3afbc;
+}
+#malfunction #malfunctionForm select{
+ appearance:auto;
+ cursor:pointer;
+}
+#malfunction #malfunctionForm input:focus,
+#malfunction #malfunctionForm select:focus,
+#malfunction #malfunctionForm textarea:focus{
+ border-color:#4b83ee;
+ box-shadow:0 0 0 3px rgba(47,111,237,.10);
+ background:#fcfdff;
+}
+#malfunction #malfunctionForm > label:not(.rp-agree){
+ margin-top:2px;
+}
+#malfunction #malfunctionForm > label:not(.rp-agree)::before{
+ content:"신고 내용";
+ display:block;
+ margin-bottom:0;
+ color:#35485c;
+ font-size:12px;
+ font-weight:700;
+}
+#malfunction #malfunctionForm > label:not(.rp-agree){
+ color:transparent;
+}
+#malfunction #malfunctionForm > label:not(.rp-agree) textarea{
+ color:#1d3045;
+}
+#malfunction #malfunctionForm .rp-agree{
+ display:flex;
+ flex-direction:row;
+ align-items:center;
+ gap:8px;
+ margin:22px 0 0!important;
+ padding:15px 16px;
+ border:1px solid #e1e7ed;
+ border-radius:8px;
+ background:#f8fafc;
+ color:#536579!important;
+ font-size:12px!important;
+ font-weight:600!important;
+}
+#malfunction #malfunctionForm .rp-agree input{
+ width:16px!important;
+ height:16px!important;
+ flex:0 0 16px;
+ margin:0!important;
+ accent-color:var(--blue);
+}
+#malfunction #malfunctionForm .rp-actions{
+ display:flex;
+ justify-content:flex-end;
+ align-items:center;
+ gap:9px;
+ margin-top:22px;
+ padding-top:20px;
+ border-top:1px solid #e7ebef;
+}
+#malfunction #malfunctionForm .rp-btn{
+ min-width:104px;
+ height:44px;
+ padding:0 20px;
+ border:1px solid #cbd4dd;
+ border-radius:7px;
+ background:#fff;
+ color:#526477;
+ font-size:12px;
+ font-weight:700;
+ cursor:pointer;
+ transition:.15s;
+}
+#malfunction #malfunctionForm .rp-btn:hover{
+ border-color:#9eacbb;
+ background:#f7f9fb;
+}
+#malfunction #malfunctionForm .rp-btn.primary{
+ min-width:128px;
+ border-color:var(--blue);
+ background:var(--blue);
+ color:#fff;
+ box-shadow:0 5px 14px rgba(47,111,237,.20);
+}
+#malfunction #malfunctionForm .rp-btn.primary:hover{
+ background:#245fd0;
+ border-color:#245fd0;
+ transform:translateY(-1px);
+}
+#malfunction #malResult{
+ border-top:1px solid #e1e7ed;
+}
+@media(max-width:700px){
+ #malfunction .notice-area{padding:15px 16px}
+ #malfunction .malfunction-wrap{border-radius:10px}
+ #malfunction .malfunction-wrap .form-title{
+  min-height:auto;padding:17px 18px;align-items:flex-start;gap:10px;
+ }
+ #malfunction .malfunction-wrap .form-title span{font-size:15px}
+ #malfunction .malfunction-wrap .form-title span::after{font-size:10px;line-height:1.5}
+ #malfunction #malfunctionForm{padding:20px 17px 22px}
+ #malfunction #malfunctionForm .form-grid{grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+ #malfunction #malfunctionForm input,
+ #malfunction #malfunctionForm select{height:44px}
+ #malfunction #malfunctionForm textarea{min-height:140px}
+ #malfunction #malfunctionForm .rp-actions{gap:8px}
+ #malfunction #malfunctionForm .rp-btn{flex:1}
+ #malfunction #malfunctionForm .rp-btn.primary{flex:1.2}
+}
