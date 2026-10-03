@@ -68,9 +68,14 @@ async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.st
 function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
 function applyDefaultA(force=false){
  if(!M)return false;
- const imgs=(M.a||[]).map(x=>x?.img||'');
- if(!force && M.a.length===DEFAULT_A.length && M._defaultVersion===3)return false;
- M.a=DEFAULT_A.map((x,i)=>({...x,img:imgs[i]||''}));
+ if(!force && M._defaultVersion===3)return false;
+ const old=M.a||[];
+ const findImg=x=>{
+  const same=old.filter(o=>o&&o.code===x.code&&o.grade===x.grade);
+  const exact=same.find(o=>o.joined===x.joined&&o.img);
+  return (exact||same.find(o=>o.img))?.img||'';
+ };
+ M.a=DEFAULT_A.map(x=>({...x,img:findImg(x)}));
  M._defaultVersion=3;
  return true;
 }
