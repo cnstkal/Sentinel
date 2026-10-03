@@ -2360,7 +2360,7 @@ document.getElementById('adminModeBtnMobile')?.addEventListener('click',e=>{e.st
 document.querySelectorAll('.apostle-row[data-apostle-href]').forEach(row=>{
  row.addEventListener('click',e=>{
   location.hash=row.dataset.apostleHref;
-  show(row.dataset.apostleHref);
+  
  });
  row.addEventListener('keydown',e=>{
   if(e.key==='Enter'||e.key===' '){e.preventDefault();location.hash=row.dataset.apostleHref;show(row.dataset.apostleHref)}
@@ -2370,13 +2370,13 @@ document.querySelectorAll('.sentinel-row[data-sentinel-href]').forEach(row=>{
  row.addEventListener('click',e=>{
   if(e.target.closest('button,a,input,select,textarea,[data-profile-edit]'))return;
   location.hash=row.dataset.sentinelHref;
-  show(row.dataset.sentinelHref);
+  
  });
  row.addEventListener('keydown',e=>{
   if(e.key==='Enter'||e.key===' '){
    e.preventDefault();
    location.hash=row.dataset.sentinelHref;
-   show(row.dataset.sentinelHref);
+   
   }
  });
 });
@@ -2398,8 +2398,9 @@ function render(){
  if(!box)return;
  const id=+new URLSearchParams(location.hash.split('?')[1]||'').get('id'),r=document.querySelectorAll('.apostle-row')[id];
  if(!r){box.innerHTML='<div class="notice-area">사도 정보를 찾을 수 없습니다.</div>';return}
- const code=r.querySelector('strong').textContent.trim(),a=r.querySelector('div:nth-child(2) span').textContent.split(' · '),
-  st=r.querySelector('b').textContent,rg=r.querySelector('small').textContent,m=code.match(/(\d\d)(\d\d)(\d\d)$/),
+ const inf=r.querySelector('.apostle-info'),dd=inf?[...inf.querySelectorAll('dd')].map(x=>x.textContent.trim()):[],
+  code=r.querySelector('strong').textContent.trim(),a=inf?[dd[0]||'-',code,'']:r.querySelector('div:nth-child(2) span').textContent.split(' · '),
+  st=inf?(dd[1]||'-'):r.querySelector('b').textContent,rg=inf?(dd[2]||'-'):r.querySelector('small').textContent,m=code.match(/(\d\d)(\d\d)(\d\d)$/),
   d=m?'20'+m[1]+'.'+m[2]+'.'+m[3]:'-',row=(k,v)=>'<div><span>'+k+'</span><b>'+v+'</b></div>';
  box.innerHTML='<div class="sentinel-profile-head"><div class="sentinel-detail-photo">사진</div><div><h2>'+code+' <span class="sentinel-grade">'+a[0]+'</span></h2><p>'+rg+' · '+st+'</p></div></div><div class="sentinel-profile-table">'
   +row('사도 코드',code)+row('등급',a[0])+row('능력 유형',a[1]||'-')+row('관리 상태',st)+row('관할 지역',rg)+row('최초 등록일',d)+row('특이 구분',a[2]||'해당 없음')
@@ -2583,5 +2584,32 @@ html,body,button,input,select,textarea,body *{font-family:-apple-system,BlinkMac
 }
 @media(max-width:700px){.rp-types{grid-template-columns:1fr}.report-result dl{grid-template-columns:1fr}}
 </style>
+<style id="pc-v4">
+.apostle-row,.sentinel-row{grid-template-columns:96px minmax(0,1fr) auto!important;min-height:0!important;gap:6px 22px!important;padding:18px 20px!important;background:#fff;cursor:pointer}
+.apostle-row:hover,.sentinel-row:hover{background:#f7faff}
+.apostle-row:first-child{background:#fff!important;min-height:0!important;grid-template-columns:96px minmax(0,1fr) auto!important}
+.apostle-row .apostle-photo,.apostle-row:first-child .apostle-photo{width:96px!important;height:120px!important;aspect-ratio:auto!important}
+.apostle-row:first-child .apostle-photo.has-img span{display:none!important}
+.apostle-row:has(>.sentinel-detail-btn){grid-template-columns:96px minmax(0,1.4fr) minmax(90px,.7fr) auto!important}
+.apostle-info>strong{font-size:19px!important;margin-bottom:10px!important}
+.apostle-info dl{flex-wrap:wrap;gap:6px 26px!important}
+.apostle-row:not(:has(.sentinel-detail-btn)):not(:has(.adm-bar))::after,.sentinel-row:not(:has(.sentinel-detail-btn)):not(:has(.adm-bar))::after{content:"자세히 ›";font-size:13px;font-weight:700;color:var(--blue);padding:8px 14px;border:1px solid #cfdcf5;border-radius:999px;white-space:nowrap}
+.apostle-row:hover::after,.sentinel-row:hover::after{background:var(--blue);color:#fff;border-color:var(--blue)}
+@media(max-width:700px){.apostle-row,.sentinel-row{grid-template-columns:76px minmax(0,1fr)!important;padding:14px 12px!important}.apostle-row .apostle-photo,.apostle-row:first-child .apostle-photo{width:76px!important;height:96px!important}.apostle-row::after,.sentinel-row::after{display:none}.apostle-row:has(>.sentinel-detail-btn){grid-template-columns:76px minmax(0,1fr)!important}}
+</style>
+<script id="row-nav">
+(function(){
+const go=e=>{
+ const r=e.target.closest('[data-apostle-href],[data-sentinel-href],.apostle-row[data-href],.sentinel-row[data-href]');
+ if(!r||e.target.closest('button,input,select,textarea,a,.adm-bar,.admin-edit-btn'))return;
+ if(document.body.classList.contains('photo-admin')&&e.target.closest('.apostle-photo,.sentinel-photo'))return;
+ if(e.type==='keydown'&&e.key!=='Enter'&&e.key!==' ')return;
+ e.preventDefault();
+ const h=r.dataset.apostleHref||r.dataset.sentinelHref||r.dataset.href;
+ if(h&&location.hash!==h)location.hash=h;
+};
+document.addEventListener('click',go);document.addEventListener('keydown',go);
+})();
+</script>
 </body>
 </html>
