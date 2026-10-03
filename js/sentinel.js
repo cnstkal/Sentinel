@@ -204,7 +204,15 @@ async function saveProfiles(data){
  finally{profileSaveBusy=false}
 }
 function admin(on){
- document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();saveBar();if(on){profileModal();toast('관리자 모드가 켜졌습니다. 사진 영역을 눌러 사진을 등록하세요.')}else{const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true}
+ document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();saveBar();
+ if(on){
+  profileModal();
+  window.__officialProfilePhotos?.addButtons?.();
+  toast('관리자 모드가 켜졌습니다. 청장·간부 사진 영역에서 사진을 등록하거나 변경할 수 있습니다.');
+ }else{
+  const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true;
+  window.__officialProfilePhotos?.addButtons?.();
+ }
 }
 function enterAdmin(){
  if(!ADMIN_ENABLED)return;
@@ -480,6 +488,8 @@ function paint(){
 
  const mo=new MutationObserver(()=>addButtons());mo.observe(document.body,{childList:true,subtree:true});
  window.__officialProfilePhotos={paint,load,addButtons,saveBar};
+ const adminObserver=new MutationObserver(()=>{if(document.body.classList.contains('photo-admin'))addButtons()});
+ adminObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
  addEventListener('hashchange',()=>setTimeout(()=>{load()},0));
  load();
 })();
