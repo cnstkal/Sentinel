@@ -2648,3 +2648,33 @@ body.photo-admin .guide-admin-bar{display:flex}
 @media(max-width:700px){
  .guide-admin-bar button{padding:10px 5px;font-size:12px}
 }
+
+
+/* ===== ABILITY TYPES MOBILE TABLE ===== */
+#types .types-table-scroll{
+  margin-top:16px;
+  width:100%;
+  max-width:100%;
+  border:1px solid #dbe2e9;
+  border-radius:10px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  background:#fff;
+}
+#types .types-table-scroll .data-table{
+  min-width:720px;
+  margin:0;
+}
+#types .types-table-scroll .data-table tr:last-child td{
+  border-bottom:0;
+}
+@media(max-width:700px){
+  #types .content-head{padding-bottom:16px}
+  #types .content-body{padding-top:14px}
+  #types .notice-area{margin-bottom:14px}
+  #types .types-table-scroll{margin-top:14px;border-radius:9px}
+  #types .types-table-scroll .data-table{min-width:720px;font-size:12px}
+  #types .types-table-scroll .data-table th,
+  #types .types-table-scroll .data-table td{padding:11px 10px;font-size:12px;line-height:1.5}
+}
