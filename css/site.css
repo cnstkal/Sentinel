@@ -2532,3 +2532,5 @@ body:has(#searchPage.active) .site-main{
  .map-box .korea-map-image{width:100%!important;height:285px!important;overflow:visible!important;transform:none!important}
  .map-box .crisis-map-svg{width:68%!important;height:285px!important;max-width:none!important;transform:translateY(12px)!important;margin:0 auto!important}
 }
+
+.map-box{position:relative}
