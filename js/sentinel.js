@@ -358,27 +358,32 @@ function paint(){
   try{
    const r=await fetch('https://res.cloudinary.com/'+CL+'/image/list/'+tagFor(key)+'.json?_='+Date.now(),{cache:'no-store'});
    if(!r.ok)return;
-   const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];
-   const empty=!a||((a.width===1&&a.height===1)||a.public_id==='pixel');
-   if(key==='chief')state.chief=empty?'':cloudUrl(a);
+   const j=await r.json();
+   const resources=(j.resources||[]).filter(a=>!(a.width===1&&a.height===1)&&a.public_id!=='pixel');
+   const a=resources.sort((x,y)=>(y.version||0)-(x.version||0))[0];
+   /* 실제 사진이 확인됐을 때만 갱신. 조회 결과가 빈 배열이라고 해서
+      기존 사진을 삭제된 것으로 취급하지 않는다. */
+   if(!a)return;
+   if(key==='chief')state.chief=cloudUrl(a);
    else{
     const name=key;
-    if(document.querySelectorAll('.org-leader h3').length)state.leaders[name]=empty?'':cloudUrl(a);
+    if(document.querySelectorAll('.org-leader h3').length)state.leaders[name]=cloudUrl(a);
    }
   }catch(e){}
  }
 
  async function load(){
-  /* 실제 Cloudinary 사진을 최우선으로 읽는다.
-     설정 JSON은 보조 저장본일 뿐이며 화면 상태를 덮어쓰지 않는다. */
+  /* Cloudinary에서 실제 사진이 확인된 경우에만 해당 항목을 갱신한다.
+     조회 실패/지연 시에는 기존 저장 상태를 절대 빈 값으로 덮어쓰지 않는다. */
+  let changed=false;
   const names=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim());
-  const before=JSON.stringify(state);
-  await Promise.all(['chief',...names].map(k=>pull(k)));
-  const after=JSON.stringify(state);
-  if(before===after){
-   try{await loadConfig()}catch(e){}
+  for(const key of ['chief',...names]){
+   const before=key==='chief'?state.chief:state.leaders[key];
+   await pull(key);
+   const after=key==='chief'?state.chief:state.leaders[key];
+   if(before!==after)changed=true;
   }
-  cacheState();
+  if(changed)cacheState();
   paint();
   addButtons();
  }
