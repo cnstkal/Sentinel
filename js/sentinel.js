@@ -204,7 +204,7 @@ async function saveProfiles(data){
  finally{profileSaveBusy=false}
 }
 function admin(on){
- document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();if(on){profileModal();toast('관리자 모드가 켜졌습니다. 사진 영역을 눌러 사진을 등록하세요.')}else{const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true}
+ document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();saveBar();if(on){profileModal();toast('관리자 모드가 켜졌습니다. 사진 영역을 눌러 사진을 등록하세요.')}else{const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true}
 }
 function enterAdmin(){
  if(!ADMIN_ENABLED)return;
@@ -291,7 +291,7 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const RAW_LIST='https://res.cloudinary.com/'+CL+'/raw/list/ssa_official_profile_config_v1.json';
  const TAG_PREFIX='ssa_official_';
  const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
- let state={chief:'',leaders:{}},busy={},configBusy=false;
+ let state={chief:'',leaders:{}},busy={},configBusy=false,dirty=false;
  function cacheState(){try{localStorage.setItem('official_profile_cache_v1',JSON.stringify(state))}catch(e){}}
  async function loadConfig(){try{const r=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p?.state){state={chief:String(p.state.chief||''),leaders:p.state.leaders||{}};cacheState();return true}}catch(e){}try{const p=JSON.parse(localStorage.getItem('official_profile_cache_v1')||'null');if(p){state=p;return true}}catch(e){}return false}
  async function saveConfig(){if(configBusy)return false;configBusy=true;try{const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),state}),id='official-profile-config-'+Date.now()+'.json',fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset',PRESET);fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags','ssa_official_profile_config_v1');const r=await fetch(RAW_API,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw 0;cacheState();return true}catch(e){cacheState();return false}finally{configBusy=false}}
@@ -305,7 +305,30 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const tagFor=key=>TAG_PREFIX+(key==='chief'?'chief':leaderKey(key));
  const cloudUrl=r=>IMG_BASE+'v'+r.version+'/'+r.public_id;
 
- function paint(){
+ function saveBar(){
+  let bar=document.getElementById('officialPhotoSaveBar');
+  if(!bar){
+   bar=document.createElement('div');
+   bar.id='officialPhotoSaveBar';
+   bar.className='official-photo-save-bar';
+   bar.innerHTML='<span>사진 변경사항이 있습니다.</span><button type="button" id="officialPhotoSaveBtn">사진 변경사항 저장</button>';
+   document.body.appendChild(bar);
+   document.getElementById('officialPhotoSaveBtn').addEventListener('click',async()=>{
+    if(!dirty||configBusy)return;
+    const btn=document.getElementById('officialPhotoSaveBtn');
+    btn.disabled=true;btn.textContent='저장 중…';
+    const ok=await saveConfig();
+    if(ok){
+     dirty=false;cacheState();bar.classList.remove('show');toast('사진 변경사항이 저장되었습니다.');
+    }else{
+     toast('저장에 실패했습니다. 다시 눌러주세요.',1);
+    }
+    btn.disabled=false;btn.textContent='사진 변경사항 저장';
+   });
+  }
+  bar.classList.toggle('show',dirty&&document.body.classList.contains('photo-admin'));
+}
+function paint(){
   const chief=document.querySelector('.chief-mark');
   if(chief){
    chief.innerHTML=state.chief?'<img src="'+esc(state.chief)+'" alt="한서진 청장 증명사진">':'청장<br>증명사진';
@@ -382,9 +405,8 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
      if(name)state.leaders[name]=src;
     }
     paint();addButtons();
-    cacheState();
-    const shared=await saveConfig();
-    toast(remove?'사진이 삭제되었습니다.':(shared?'사진이 등록되었습니다. 모든 접속자에게 표시됩니다.':'사진은 등록됐지만 서버 공유 저장에 실패했습니다.'));
+    dirty=true;saveBar();
+    toast(remove?'사진이 삭제되었습니다.':'사진이 등록되었습니다. 저장 버튼을 눌러야 영구 저장됩니다.');
    }catch(e){toast('사진 등록 실패: '+e.message,1)}
    bar.remove();busy[key]=false;
   };
@@ -423,7 +445,7 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  });
 
  const mo=new MutationObserver(()=>addButtons());mo.observe(document.body,{childList:true,subtree:true});
- window.__officialProfilePhotos={paint,load,addButtons};
+ window.__officialProfilePhotos={paint,load,addButtons,saveBar};
  addEventListener('hashchange',()=>setTimeout(()=>{load()},0));
  load();
 })();
