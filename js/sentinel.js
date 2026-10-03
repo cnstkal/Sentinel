@@ -371,7 +371,7 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
   fd.append('tags','ssa_official_profile,'+tagFor(key));
   const x=new XMLHttpRequest();x.open('POST',IMG_API);
   x.upload.onprogress=e=>{if(e.lengthComputable)bar.style.width=(e.loaded/e.total*100)+'%'};
-  x.onload=()=>{
+  x.onload=async()=>{
    try{
     const j=JSON.parse(x.responseText);
     if(x.status<200||x.status>=300||!j.public_id)throw Error(j.error?.message||x.status);
