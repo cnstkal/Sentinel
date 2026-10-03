@@ -2601,3 +2601,20 @@ body:has(#searchPage.active) .site-main{
     overflow-wrap:anywhere;
   }
 }
+
+
+/* ===== INDEX.HTML 현재 구조 보정 ===== */
+.guide-row{cursor:pointer}
+.guide-photo{cursor:pointer;overflow:hidden}
+.guide-photo img,.sentinel-photo img,.apostle-photo img,.org-leader-photo img,.chief-mark img{
+  display:block;width:100%;height:100%;object-fit:cover;
+}
+.guide-photo img,.sentinel-photo img,.apostle-photo img{border-radius:inherit}
+.org-leader-photo.has-official-photo,.chief-mark.has-official-photo{overflow:hidden}
+.org-leader-photo.has-official-photo img,.chief-mark.has-official-photo img{
+  width:100%;height:100%;object-fit:cover;
+}
+@media(max-width:700px){
+  .guide-row{grid-template-columns:76px minmax(0,1fr);gap:8px 14px}
+  .guide-photo{width:76px;height:96px}
+}
