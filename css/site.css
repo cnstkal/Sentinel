@@ -1990,3 +1990,35 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
  .org-level:before{display:none}.about-contact{grid-template-columns:1fr}.about-contact>div{border-right:0;border-bottom:1px solid var(--line2)}
  .about-contact>div:last-child{border-bottom:0}
 }
+
+
+/* ===== ORGANIZATION DETAIL ===== */
+.org-root>span{display:block;margin-top:10px;font-size:13px;font-weight:500;color:#71829b}
+.org-unit-link{display:block;color:inherit;text-decoration:none;cursor:pointer;transition:transform .18s,box-shadow .18s,border-color .18s}
+.org-unit-link:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(16,45,82,.12);border-color:#2d6cdf}
+.org-unit-link em{display:block;margin-top:14px;font-size:12px;font-style:normal;font-weight:700;color:#1d64d8}
+.org-detail-intro{padding:30px 32px;background:#f5f8fc;border-top:3px solid #173b6c;margin-bottom:34px}
+.org-detail-intro h2{margin:8px 0 10px;font-size:28px;color:#102f59}
+.org-detail-intro p{margin:0;line-height:1.8;color:#5f7189}
+.org-detail-section{margin-top:38px}
+.org-detail-section>h2{font-size:20px;margin-bottom:18px;color:#102f59}
+.org-dept-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.org-dept-grid>div{padding:22px;background:#fff;border:1px solid #dce4ee}
+.org-dept-grid b,.org-dept-grid span{display:block}
+.org-dept-grid b{font-size:16px;color:#173b6c;margin-bottom:8px}
+.org-dept-grid span{font-size:13px;color:#687991;line-height:1.6}
+.org-leader-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.org-leader{display:grid;grid-template-columns:120px 1fr;gap:22px;padding:24px;background:#fff;border:1px solid #dce4ee}
+.org-leader-photo{height:150px;background:#eef2f7;display:flex;align-items:center;justify-content:center;color:#9aa8ba;font-size:12px}
+.org-leader h3{margin:7px 0 6px;font-size:24px;color:#102f59}
+.org-leader p{margin:0 0 14px;color:#66788f;font-size:13px}
+.org-leader dl{margin:0}
+.org-leader dl div{display:flex;border-top:1px solid #edf0f4;padding:8px 0;font-size:12px}
+.org-leader dt{width:52px;color:#8996a7}
+.org-leader dd{margin:0;color:#3d4e65;font-weight:600}
+.org-back{display:inline-block;margin-top:34px}
+@media(max-width:800px){
+ .org-dept-grid,.org-leader-grid{grid-template-columns:1fr}
+ .org-leader{grid-template-columns:90px 1fr}
+ .org-leader-photo{height:120px}
+}
