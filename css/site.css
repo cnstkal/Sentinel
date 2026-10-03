@@ -2678,3 +2678,7 @@ body.photo-admin .guide-admin-bar{display:flex}
   #types .types-table-scroll .data-table th,
   #types .types-table-scroll .data-table td{padding:11px 10px;font-size:12px;line-height:1.5}
 }
+
+
+/* ===== SEARCH PLACEHOLDER ===== */
+#searchInput::placeholder{color:#b5bdc7;opacity:1}
