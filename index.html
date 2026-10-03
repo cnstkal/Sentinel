@@ -1133,6 +1133,7 @@ function bindGuidePhotoPickers(){
   box.dataset.photoPickerBound='1';
   box.style.cursor='pointer';
   box.addEventListener('click',function(e){
+   if(!document.body.classList.contains('photo-admin'))return;
    e.preventDefault();
    e.stopImmediatePropagation();
    r.inp.click();
@@ -1253,9 +1254,21 @@ function admin(on){
 function enterAdmin(){ admin(true); }
 window.__ssaEnterAdmin=enterAdmin;
 function bindAdminButtons(){
- document.getElementById('adminModeBtn')?.remove();
- document.getElementById('adminModeBtnMobile')?.remove();
- admin(true);
+ let b=document.getElementById('adminModeBtn');
+ if(!b){
+  b=document.createElement('button');
+  b.id='adminModeBtn';
+  b.type='button';
+  b.className='admin-mode-toggle';
+  b.textContent='관리자 모드';
+  document.body.appendChild(b);
+  b.addEventListener('click',()=>{
+   const on=!document.body.classList.contains('photo-admin');
+   admin(on);
+   b.textContent=on?'관리자 모드 종료':'관리자 모드';
+  });
+ }
+ admin(false);
 }
 bindAdminButtons();
 document.addEventListener('DOMContentLoaded',bindAdminButtons);
