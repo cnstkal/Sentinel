@@ -2550,3 +2550,46 @@ body:has(#searchPage.active) .site-main{
     padding:22px 24px!important;
   }
 }
+
+
+/* 모바일 등록 이력 가독성 개선 */
+@media(max-width:700px){
+  .sentinel-history{
+    margin-top:30px!important;
+  }
+  .sentinel-history h3{
+    padding:0 0 15px!important;
+    font-size:20px!important;
+  }
+  .sentinel-history-list{
+    border-top:1px solid var(--line)!important;
+  }
+  .sentinel-history-list>div{
+    display:grid!important;
+    grid-template-columns:86px 1fr!important;
+    gap:0 12px!important;
+    align-items:start!important;
+    padding:16px 0!important;
+  }
+  .sentinel-history-list time{
+    grid-column:1;
+    grid-row:1;
+    font-size:11px!important;
+    line-height:1.5!important;
+    white-space:nowrap;
+  }
+  .sentinel-history-list b{
+    grid-column:2;
+    grid-row:1;
+    font-size:13px!important;
+    line-height:1.5!important;
+  }
+  .sentinel-history-list span{
+    grid-column:2;
+    grid-row:2;
+    margin-top:5px!important;
+    font-size:11px!important;
+    line-height:1.55!important;
+    color:#718091!important;
+  }
+}
