@@ -2631,3 +2631,18 @@ a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
 .search-form input{
   background:#fff!important;
 }
+
+/* ===== SEARCH WHITE FINAL OVERRIDE ===== */
+.header-search .search-form,
+.header-search .search-form input,
+.header-search .search-form button{
+  background-color:#fff!important;
+  background-image:none!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+.header-search .search-form input{
+  -webkit-box-shadow:0 0 0 1000px #fff inset!important;
+  box-shadow:0 0 0 1000px #fff inset!important;
+  -webkit-text-fill-color:var(--text);
+}
