@@ -2427,3 +2427,45 @@ body:has(#searchPage.active) .site-main{
     overflow:visible;
   }
 }
+
+
+/* ===== MOBILE: 첫 번째 괴수 카드도 다른 카드와 동일한 2열 구조 ===== */
+@media(max-width:700px){
+  .apostle-row:first-child{
+    display:grid!important;
+    grid-template-columns:76px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:14px 22px!important;
+    min-height:0!important;
+    padding:14px 12px!important;
+    background:#fff!important;
+  }
+  .apostle-row:first-child .apostle-photo{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    width:76px!important;
+    height:96px!important;
+    aspect-ratio:auto!important;
+  }
+  .apostle-row:first-child .apostle-info{
+    grid-column:auto!important;
+    grid-row:auto!important;
+    min-width:0!important;
+  }
+  .apostle-row:first-child .apostle-info>strong{
+    font-size:19px!important;
+    line-height:1.35!important;
+    white-space:normal!important;
+    word-break:keep-all!important;
+    margin-bottom:10px!important;
+  }
+  .apostle-row:first-child .apostle-info dl{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:6px 18px!important;
+    margin:0!important;
+  }
+  .apostle-row:first-child .apostle-info dl div:last-child{
+    grid-column:1/-1!important;
+  }
+}
