@@ -2441,11 +2441,22 @@ function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map(
 function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
 function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','사도']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
 function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A)A.innerHTML=M.a.map(aRow).join('');window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash))dispatchEvent(new Event('hashchange'))}
-async function upload(){const id='ssa-lists-'+Date.now()+'.json',fd=new FormData();fd.append('file',new Blob([JSON.stringify({v:1,M})],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw 0;toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 저장 실패 — 이 기기에만 저장되었습니다.',1)}}
+async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.stringify({v:2,M}),fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw new Error(j.error?.message||r.status);toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 설정 저장 실패: '+e.message,1)}}
 function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
 const commit=()=>{render();persist()};
-function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const W=400,H=496,c=document.createElement('canvas');c.width=W;c.height=H;const s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;c.getContext('2d').drawImage(im,(W-w)/2,(H-h)/2,w,h);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.82))};im.onerror=no;im.src=u})}
-function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{M[k][i].img=await shrink(f.files[0]);commit()}catch(e){toast('사진을 처리하지 못했습니다.',1)}};f.click()}
+function shrink(f){return new Promise((ok,no)=>{const im=new Image(),u=URL.createObjectURL(f);im.onload=()=>{const W=800,H=992,c=document.createElement('canvas');c.width=W;c.height=H;const s=Math.min(W/im.width,H/im.height);const w=Math.max(1,Math.round(im.width*s)),h=Math.max(1,Math.round(im.height*s));c.getContext('2d').drawImage(im,(W-w)/2,(H-h)/2,w,h);URL.revokeObjectURL(u);c.toBlob(b=>b?ok(b):no(new Error('이미지 변환 실패')),'image/jpeg',.86)};im.onerror=no;im.src=u})}
+async function uploadPhoto(file,kind,index){
+ const form=new FormData();
+ form.append('file',file);
+ form.append('upload_preset','Everything');
+ form.append('folder','sentinel/photos');
+ form.append('tags','ssa_photo,'+kind+'_'+index);
+ const res=await fetch('https://api.cloudinary.com/v1_1/'+CL+'/image/upload',{method:'POST',body:form});
+ const j=await res.json();
+ if(!res.ok||!j.secure_url)throw new Error(j.error?.message||'사진 업로드 실패');
+ return {url:j.secure_url,public_id:j.public_id,version:j.version||Date.now()};
+}
+async function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{const blob=await shrink(f.files[0]);toast('사진을 서버에 업로드하는 중입니다.');const p=await uploadPhoto(blob,k,i);M[k][i].img=p.url;commit()}catch(e){toast('사진 업로드 실패: '+e.message,1)}};f.click()}
 window.__ssaPick=pick;window.__ssaEditA=(i,f)=>{if(!ensure()||!M.a[i])return;modal('a',i);const m=document.getElementById('ssaModal'),inp=m&&m.querySelector('input[name="'+f+'"]');inp&&inp.focus()};
 window.__ssaSync=()=>{if(!ensure())return;const d=window.__sentinelData||[];M.s.forEach((x,i)=>{if(d[i])x.p={...d[i]}});commit()};
 function modal(k,i){let m=$('#ssaModal');if(m)m.remove();m=document.createElement('div');m.id='ssaModal';m.className='admin-modal';const o=k==='s'?M.s[i].p:M.a[i],F=k==='s'?SF:AF;
