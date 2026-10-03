@@ -2733,20 +2733,12 @@ body.photo-admin .nav-admin-btn{
 
 /* 가이드 관리자 사진 등록 버튼 */
 .guide-photo{position:relative}
-.guide-photo-admin{
- position:absolute;
- left:50%;
- bottom:8px;
- transform:translateX(-50%);
- z-index:20;
- border:0;
- border-radius:5px;
- padding:6px 10px;
- background:var(--navy);
- color:#fff;
- font-size:11px;
- font-weight:700;
- white-space:nowrap;
- cursor:pointer;
+
+/* ===== 가이드 관리자 액션바 ===== */
+.guide-admin-bar{display:none}
+body.photo-admin .guide-admin-bar{display:flex}
+.guide-admin-bar button{flex:1;min-width:0}
+@media(max-width:700px){
+ .guide-admin-bar{display:flex!important}
+ .guide-admin-bar button{padding:10px 5px;font-size:12px}
 }
-.guide-photo-admin:hover{background:var(--blue)}
