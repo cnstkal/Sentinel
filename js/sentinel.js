@@ -283,21 +283,28 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
 
 /* ===== OFFICIAL PROFILE PHOTOS ===== */
 (function(){
- const CL='dbljkloal',PRESET='Everything',RAW='https://api.cloudinary.com/v1_1/'+CL+'/raw/upload',KEY='ssa_official_profiles_v1';
- let state={chief:'',leaders:{}};
+ const CL='dbljkloal',PRESET='Everything',MAX=10*1024*1024;
+ const IMG_API='https://api.cloudinary.com/v1_1/'+CL+'/image/upload';
+ const IMG_BASE='https://res.cloudinary.com/'+CL+'/image/upload/';
+ const TAG_PREFIX='ssa_official_';
+ const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+ let state={chief:'',leaders:{}},busy={};
+
  const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
- function saveLocal(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
- async function load(){
-  try{
-   const r=await fetch('https://res.cloudinary.com/'+CL+'/raw/list/ssa_official_profiles.json?_='+Date.now(),{cache:'no-store'});
-   if(r.ok){const j=await r.json(),a=(j.resources||[]).sort((x,y)=>y.version-x.version)[0];if(a){const q=await fetch('https://res.cloudinary.com/'+CL+'/raw/upload/'+a.public_id+'.json?_='+Date.now(),{cache:'no-store'});if(q.ok)state=await q.json()}}
-  }catch(e){}
-  try{const l=JSON.parse(localStorage.getItem(KEY)||'null');if(l&&typeof l==='object'){state={...state,...l,leaders:{...(state.leaders||{}),...(l.leaders||{})}}}}catch(e){}
-  paint();
- }
+ const leaderKey=name=>{
+  let h=2166136261;
+  for(let i=0;i<String(name).length;i++){h^=String(name).charCodeAt(i);h=Math.imul(h,16777619)}
+  return 'leader_'+(h>>>0).toString(36);
+ };
+ const tagFor=key=>TAG_PREFIX+(key==='chief'?'chief':leaderKey(key));
+ const cloudUrl=r=>IMG_BASE+'v'+r.version+'/'+r.public_id;
+
  function paint(){
   const chief=document.querySelector('.chief-mark');
-  if(chief){chief.innerHTML=state.chief?'<img src="'+esc(state.chief)+'" alt="한서진 청장 증명사진">':'청장<br>증명사진';chief.classList.toggle('has-official-photo',!!state.chief)}
+  if(chief){
+   chief.innerHTML=state.chief?'<img src="'+esc(state.chief)+'" alt="한서진 청장 증명사진">':'청장<br>증명사진';
+   chief.classList.toggle('has-official-photo',!!state.chief);
+  }
   document.querySelectorAll('.org-leader').forEach(card=>{
    const name=card.querySelector('h3')?.textContent.trim(),box=card.querySelector('.org-leader-photo'),src=state.leaders[name];
    if(!box)return;
@@ -305,42 +312,108 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
    box.classList.toggle('has-official-photo',!!src);
   });
  }
- async function upload(file,key){
-  if(!file||!/^image\//.test(file.type)){toast('이미지 파일만 등록할 수 있습니다.',1);return}
-  if(file.size>10*1024*1024){toast('10MB 이하 사진만 등록할 수 있습니다.',1);return}
-  toast('사진을 서버에 업로드하는 중입니다.');
-  const fd=new FormData();fd.append('file',file);fd.append('upload_preset',PRESET);fd.append('folder','sentinel/official');fd.append('tags','ssa_official_profile,'+key);
+
+ async function pull(key){
   try{
-   const r=await fetch('https://api.cloudinary.com/v1_1/'+CL+'/image/upload',{method:'POST',body:fd}),j=await r.json();
-   if(!r.ok||!j.secure_url)throw new Error(j.error?.message||'업로드 실패');
-   if(key==='chief')state.chief=j.secure_url;else state.leaders[key]=j.secure_url;
-   saveLocal();
-   const fd2=new FormData(),id='ssa-official-'+Date.now()+'.json';
-   fd2.append('file',new Blob([JSON.stringify(state)],{type:'application/json'}),id);fd2.append('upload_preset',PRESET);fd2.append('public_id',id.replace('.json',''));fd2.append('folder','sentinel-config');fd2.append('tags','ssa_official_profiles');
-   const rr=await fetch(RAW,{method:'POST',body:fd2});if(!rr.ok)throw new Error('공유 설정 저장 실패');
-   paint();toast('사진이 등록되었습니다. 모든 접속자에게 표시됩니다.');
-  }catch(e){toast('사진 등록 실패: '+e.message,1)}
+   const r=await fetch('https://res.cloudinary.com/'+CL+'/image/list/'+tagFor(key)+'.json?_='+Date.now(),{cache:'no-store'});
+   if(!r.ok)return;
+   const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];
+   const empty=!a||((a.width===1&&a.height===1)||a.public_id==='pixel');
+   if(key==='chief')state.chief=empty?'':cloudUrl(a);
+   else{
+    const name=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim()).find(n=>leaderKey(n)===key);
+    if(name)state.leaders[name]=empty?'':cloudUrl(a);
+   }
+  }catch(e){}
  }
+
+ async function load(){
+  await pull('chief');
+  const names=[...document.querySelectorAll('.org-leader h3')].map(x=>x.textContent.trim());
+  await Promise.all(names.map(n=>pull(n)));
+  paint();addButtons();
+ }
+
+ function addBar(box){
+  const bar=document.createElement('div');bar.className='photo-bar';box.appendChild(bar);return bar;
+ }
+
+ function upload(file,key,remove=false){
+  if(busy[key])return;
+  if(!remove){
+   if(!file||!/^image\//.test(file.type)){toast('이미지 파일만 등록할 수 있습니다.',1);return}
+   if(file.size>MAX){toast('10MB 이하 사진만 등록할 수 있습니다.',1);return}
+  }
+  const box=key==='chief'?document.querySelector('.chief-mark'):[...document.querySelectorAll('.org-leader')].find(c=>leaderKey(c.querySelector('h3')?.textContent.trim())===key)?.querySelector('.org-leader-photo');
+  if(!box)return;
+  busy[key]=true;
+  const bar=addBar(box),fd=new FormData();
+  if(remove){
+   fetch(PIXEL).then(r=>r.blob()).then(blob=>{
+    fd.append('file',blob,'pixel.png');send(fd,key,box,bar,true);
+   }).catch(()=>{bar.remove();busy[key]=false;toast('삭제 처리에 실패했습니다.',1)});
+  }else{
+   fd.append('file',file);send(fd,key,box,bar,false);
+  }
+ }
+
+ function send(fd,key,box,bar,remove){
+  fd.append('upload_preset',PRESET);
+  fd.append('folder','sentinel/official');
+  fd.append('tags','ssa_official_profile,'+tagFor(key));
+  const x=new XMLHttpRequest();x.open('POST',IMG_API);
+  x.upload.onprogress=e=>{if(e.lengthComputable)bar.style.width=(e.loaded/e.total*100)+'%'};
+  x.onload=()=>{
+   try{
+    const j=JSON.parse(x.responseText);
+    if(x.status<200||x.status>=300||!j.public_id)throw Error(j.error?.message||x.status);
+    const src=remove?'':j.secure_url;
+    if(key==='chief')state.chief=src;
+    else{
+     const name=[...document.querySelectorAll('.org-leader h3')].map(e=>e.textContent.trim()).find(n=>leaderKey(n)===key);
+     if(name)state.leaders[name]=src;
+    }
+    paint();addButtons();
+    toast(remove?'사진이 삭제되었습니다.':'사진이 등록되었습니다. 모든 접속자에게 표시됩니다.');
+   }catch(e){toast('사진 등록 실패: '+e.message,1)}
+   bar.remove();busy[key]=false;
+  };
+  x.onerror=()=>{bar.remove();busy[key]=false;toast('네트워크 오류로 처리하지 못했습니다.',1)};
+  x.send(fd);
+ }
+
  function picker(key){
-  const i=document.createElement('input');i.type='file';i.accept='image/*';i.onchange=()=>upload(i.files[0],key);i.click();
+  const i=document.createElement('input');i.type='file';i.accept='image/*';
+  i.onchange=()=>{if(i.files[0])upload(i.files[0],key);i.value=''};i.click();
  }
+
  function addButtons(){
   if(!document.body.classList.contains('photo-admin'))return;
   const chief=document.querySelector('.chief-mark');
   if(chief&&!chief.querySelector('.official-photo-actions')){
-   const d=document.createElement('div');d.className='official-photo-actions';d.innerHTML='<button type="button" data-official-photo="chief">'+(state.chief?'사진 변경':'사진 등록')+'</button>'+(state.chief?'<button type="button" data-official-del="chief">삭제</button>':'');chief.appendChild(d);
+   const d=document.createElement('div');d.className='official-photo-actions';
+   d.innerHTML='<button type="button" data-official-photo="chief">'+(state.chief?'사진 변경':'사진 등록')+'</button>'+(state.chief?'<button type="button" data-official-del="chief">삭제</button>':'');
+   chief.appendChild(d);
   }
   document.querySelectorAll('.org-leader').forEach(card=>{
-   const name=card.querySelector('h3')?.textContent.trim(),box=card.querySelector('.org-leader-photo');if(!box||box.querySelector('.official-photo-actions'))return;
-   const d=document.createElement('div');d.className='official-photo-actions';d.innerHTML='<button type="button" data-official-photo="'+esc(name)+'">'+(state.leaders[name]?'변경':'사진 등록')+'</button>'+(state.leaders[name]?'<button type="button" data-official-del="'+esc(name)+'">삭제</button>':'');box.appendChild(d);
+   const name=card.querySelector('h3')?.textContent.trim(),box=card.querySelector('.org-leader-photo');
+   if(!box||box.querySelector('.official-photo-actions'))return;
+   const has=!!state.leaders[name],key=leaderKey(name),d=document.createElement('div');
+   d.className='official-photo-actions';
+   d.innerHTML='<button type="button" data-official-photo="'+key+'">'+(has?'사진 변경':'사진 등록')+'</button>'+(has?'<button type="button" data-official-del="'+key+'">삭제</button>':'');
+   box.appendChild(d);
   });
  }
+
  document.addEventListener('click',e=>{
-  const up=e.target.closest('[data-official-photo]');if(up){e.preventDefault();e.stopPropagation();picker(up.dataset.officialPhoto);return}
-  const del=e.target.closest('[data-official-del]');if(del){e.preventDefault();e.stopPropagation();const k=del.dataset.officialDel;if(k==='chief')state.chief='';else delete state.leaders[k];saveLocal();paint();addButtons();toast('사진이 삭제되었습니다.');}
+  const up=e.target.closest('[data-official-photo]');
+  if(up){e.preventDefault();e.stopPropagation();picker(up.dataset.officialPhoto);return}
+  const del=e.target.closest('[data-official-del]');
+  if(del){e.preventDefault();e.stopPropagation();upload(null,del.dataset.officialDel,true)}
  });
+
  const mo=new MutationObserver(()=>addButtons());mo.observe(document.body,{childList:true,subtree:true});
  window.__officialProfilePhotos={paint,load,addButtons};
- addEventListener('hashchange',()=>setTimeout(()=>{paint();addButtons()},0));
+ addEventListener('hashchange',()=>setTimeout(()=>{load()},0));
  load();
 })();
