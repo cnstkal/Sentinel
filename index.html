@@ -1882,5 +1882,34 @@ document.addEventListener('click',e=>{
  hashNow();
 })();
 </script>
+<script>
+/* ===== MENU AUTO CLOSE ===== */
+(function(){
+ function move(h){
+  if(!h||h==='#')return;
+  var id=h.replace(/^#/,'').split('?')[0];
+  var target=document.getElementById(id);
+  if(!target)return;
+  var panel=document.getElementById('mobilePanel');
+  if(panel)panel.hidden=true;
+  document.querySelectorAll('.nav-item.nav-open').forEach(function(x){x.classList.remove('nav-open')});
+  document.querySelectorAll('.nav-trigger[aria-expanded="true"]').forEach(function(x){x.setAttribute('aria-expanded','false')});
+  document.querySelectorAll('.page').forEach(function(x){x.classList.toggle('active',x.id===id)});
+  if(id==='guide-profile'&&window.__renderGuideProfile)window.__renderGuideProfile();
+  window.scrollTo({top:0,behavior:'auto'});
+  if(location.hash!==h)history.pushState(null,'',h);
+ }
+ document.addEventListener('click',function(e){
+  var a=e.target.closest('.mega a[href^="#"],.mobile-panel a[href^="#"],.side-nav a[href^="#"],.quick[href^="#"],.section-more[href^="#"]');
+  if(!a)return;
+  var h=a.getAttribute('href');
+  if(h&&document.getElementById(h.replace(/^#/,'').split('?')[0])){
+   e.preventDefault();
+   e.stopImmediatePropagation();
+   move(h);
+  }
+ },true);
+})();
+</script>
 </body>
 </html>
