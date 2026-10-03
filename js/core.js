@@ -43,7 +43,18 @@
    if(title && text) index.push({title:title.textContent.trim(),desc:desc?desc.textContent.trim():'',text,href:'#'+page.id});
  });
  if(typeof NOTICE_DATA!=='undefined') NOTICE_DATA.forEach(x=>index.push({title:x[1],desc:x[5]||x[6]||'',text:norm(x.join(' ')),href:'#notice'}));
- if(typeof PRESS_DATA!=='undefined') PRESS_DATA.forEach(x=>index.push({title:x[1],desc:x[5]||x[4]||'',text:norm(x.join(' ')),href:'#press'}));
+ if(typeof PRESS_DATA!=='undefined') PRESS_DATA.forEach(x=>index.push({title:x[1],desc:x[5]||x[4]||'',text:norm(x.join(' ')),href:'#press',type:'보도자료'}));
+ document.querySelectorAll('.sentinel-row').forEach((row,i)=>{
+   const name=row.querySelector('.sentinel-info>strong')?.textContent?.trim()||'';
+   const grade=row.querySelector('.sentinel-grade')?.textContent?.trim()||'';
+   const text=norm(row.innerText);
+   if(name)index.push({title:name,desc:'센티넬 · '+(grade?grade+'급 · ':'')+(row.querySelector('.sentinel-info dd:nth-of-type(3)')?.textContent?.trim()||''),text,href:row.dataset.sentinelHref||'#sentinels',type:'센티넬'});
+ });
+ document.querySelectorAll('.apostle-row').forEach(row=>{
+   const name=row.querySelector('.apostle-info>strong')?.textContent?.trim()||'';
+   const text=norm(row.innerText);
+   if(name)index.push({title:name,desc:'괴수 · 등록 공개 정보',text,href:row.dataset.apostleHref||'#apostles',type:'괴수'});
+ });
  const tokens=query.split(/\\s+/).filter(Boolean);
  const results=index.map(item=>{
    let score=0;
@@ -57,7 +68,7 @@
  const unique=new Set();
  root.innerHTML=results.filter(x=>{const k=x.href+'|'+x.title;if(unique.has(k))return false;unique.add(k);return true}).slice(0,30).map(x=>{
    const desc=x.desc||'센티넬안전관리청 누리집에서 제공하는 관련 정보입니다.';
-   return '<article class="search-result-item"><a href="'+x.href+'"><b>'+esc(x.title)+'</b><p>'+esc(desc)+'</p></a></article>';
+   return '<article class="search-result-item"><a href="'+x.href+'"><b>'+esc(x.title)+'</b>'+(x.type?'<em>'+esc(x.type)+'</em>':'')+'<p>'+esc(desc)+'</p></a></article>';
  }).join('');
 }
  const regForm=document.getElementById('registrationSearch');
@@ -249,4 +260,30 @@ document.addEventListener('click',go);document.addEventListener('keydown',go);
  window.addEventListener('DOMContentLoaded',function(){
   if(sessionStorage.getItem('ssa_admin')==='1' && typeof window.__ssaEnterAdmin==='function')window.__ssaEnterAdmin();
  });
+})();
+
+/* ===== CRISIS MAP REGION INFO ===== */
+(function(){
+ const labels={interest:'관심',caution:'주의',warning:'경계',serious:'심각'};
+ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+ function bind(){
+   const map=document.querySelector('.crisis-map-svg');if(!map||map.dataset.regionBound)return;
+   const host=document.querySelector('.map-box');if(!host)return;
+   map.dataset.regionBound='1';
+   const box=document.createElement('div');box.className='map-region-popover';box.hidden=true;host.appendChild(box);
+   map.querySelectorAll('.region[data-region]').forEach(path=>{
+     path.setAttribute('tabindex','0');path.setAttribute('role','button');
+     const open=()=>{
+       const region=path.dataset.region||'';
+       const cls=[...path.classList].find(c=>c.startsWith('region-'));const key=cls?.replace('region-','')||'interest';
+       box.innerHTML='<button type="button" class="map-region-close" aria-label="닫기">×</button><strong>'+esc(region)+'</strong><span>현재 위기경보 <b class="lv-'+esc(key)+'">'+esc(labels[key]||'미정')+'</b></span><small>최종 업데이트 2026.10.03 18시 기준</small>';
+       box.hidden=false;
+     };
+     path.addEventListener('click',e=>{e.stopPropagation();open()});
+     path.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+   });
+   box.addEventListener('click',e=>{if(e.target.closest('.map-region-close'))box.hidden=true});
+   document.addEventListener('click',e=>{if(!box.hidden&&!box.contains(e.target)&&!e.target.closest('.crisis-map-svg'))box.hidden=true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
 })();
