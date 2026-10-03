@@ -1981,5 +1981,25 @@ document.addEventListener('click',function(e){
  if(act==='nophoto')send(r,null,true);
 },true);
 </script>
+<script>
+/* ===== DETAIL ROUTER FINAL FIX ===== */
+(function(){
+ function routeDetail(){
+  const h=location.hash||'#home';
+  const m=h.match(/^#(notice-view|press-view|briefing-view)\\?id=(\\d+)/);
+  if(!m)return;
+  const id=m[2];
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===m[1]));
+  document.querySelectorAll('.side-nav a').forEach(a=>a.classList.toggle('active',false));
+  if(m[1]==='notice-view' && typeof window.__renderNoticeDetail==='function') window.__renderNoticeDetail(id);
+  if(m[1]==='press-view' && typeof window.__renderPressDetail==='function') window.__renderPressDetail(id);
+  if(m[1]==='briefing-view' && typeof window.__renderBriefingDetail==='function') window.__renderBriefingDetail(id);
+  window.scrollTo(0,0);
+ }
+ window.addEventListener('hashchange',()=>setTimeout(routeDetail,0));
+ window.addEventListener('load',()=>setTimeout(routeDetail,0));
+ setTimeout(routeDetail,0);
+})();
+</script>
 </body>
 </html>
