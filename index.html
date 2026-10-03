@@ -779,6 +779,7 @@ function renderPressDetail(id){
  const x=all[Number(id)]; if(!x)return;
  document.getElementById('pressArticle').innerHTML='<div class="press-article-meta"><span>보도자료</span><time>'+x[0]+'</time></div><h1>'+x[1]+'</h1><div class="press-article-info"><span>작성부서 '+x[2]+'</span><span>분야 '+x[3]+'</span></div><div class="press-article-body"><p>'+x[4]+'</p><p>'+x[5]+'</p><p>'+x[6]+'</p></div><div class="press-article-footer"><span>담당부서: '+x[2]+'</span><span>대표전화 044-201-3001</span><span>최종 수정일: '+x[0]+'.</span></div><a class="article-back" href="#press">목록으로 돌아가기</a>';
 }
+window.__renderPressDetail=renderPressDetail;
 document.addEventListener('submit',e=>{if(e.target.id==='pressSearch'||e.target.closest('#press')&&e.target.classList.contains('board-search')){e.preventDefault();renderPressPage(1,document.getElementById('pressSearch').value)}});
 document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#press-view"]');if(a){setTimeout(()=>{const m=a.getAttribute('href').match(/id=(\d+)/);if(m)renderPressDetail(m[1])},0)}});
 window.addEventListener('hashchange',()=>{const m=location.hash.match(/^#press-view\?id=(\d+)/);if(m)renderPressDetail(m[1]);else if(location.hash==='#press'||location.hash==='#home')setTimeout(()=>renderPressPage(1,''),0)});
