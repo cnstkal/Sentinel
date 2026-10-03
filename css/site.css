@@ -2682,3 +2682,9 @@ body.photo-admin .guide-admin-bar{display:flex}
 
 /* ===== SEARCH PLACEHOLDER ===== */
 #searchInput::placeholder{color:#b5bdc7;opacity:1}
+
+
+/* ===== NOTICE TABLE MOBILE SCROLL ===== */
+#notice .notice-table-scroll{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;border-radius:9px}
+#notice .notice-table-scroll .notice-table{min-width:760px;margin:0}
+@media(max-width:700px){#notice .notice-table-scroll{border:1px solid #dbe2e9}#notice .notice-table-scroll .notice-table{min-width:720px}}
