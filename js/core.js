@@ -50,6 +50,11 @@
    const text=norm(row.innerText);
    if(name)index.push({title:name,desc:'센티넬 · '+(grade?grade+'급 · ':'')+(row.querySelector('.sentinel-info dd:nth-of-type(3)')?.textContent?.trim()||''),text,href:row.dataset.sentinelHref||'#sentinels',type:'센티넬'});
  });
+ document.querySelectorAll('.guide-row').forEach(row=>{
+   const name=row.querySelector('.guide-info>strong')?.textContent?.trim()||'';
+   const text=norm(row.innerText);
+   if(name)index.push({title:name,desc:'가이드 · '+(row.querySelector('.guide-info dd:nth-of-type(3)')?.textContent?.trim()||''),text,href:row.dataset.guideHref||'#guides',type:'가이드'});
+ });
  document.querySelectorAll('.apostle-row').forEach(row=>{
    const name=row.querySelector('.apostle-info>strong')?.textContent?.trim()||'';
    const text=norm(row.innerText);
