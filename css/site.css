@@ -2024,9 +2024,9 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
 }
 
 /* ===== OFFICIAL PROFILE PHOTO ADMIN ===== */
-.chief-mark,.org-leader-photo{position:relative;overflow:hidden}
+.chief-mark,.org-leader-photo{position:relative;overflow:hidden;border-radius:6px}
 .chief-mark.has-official-photo{padding:0}
-.chief-mark>img,.org-leader-photo>img{width:100%;height:100%;object-fit:cover;display:block}
+.chief-mark>img,.org-leader-photo>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:6px}
 .official-photo-actions{position:absolute;left:4px;right:4px;bottom:4px;display:flex;gap:4px;z-index:5}
 .official-photo-actions button{flex:1;border:1px solid rgba(255,255,255,.8);background:rgba(16,47,89,.92);color:#fff;border-radius:4px;padding:5px 4px;font-size:10px;cursor:pointer}
 .official-photo-actions button:hover{background:#2468c7}
