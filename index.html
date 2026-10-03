@@ -1953,5 +1953,37 @@ document.addEventListener('click',e=>{
  },true);
 })();
 </script>
+<script>
+/* ===== GUIDE ADMIN PHOTO UI ===== */
+(function(){
+ function bind(){
+  document.querySelectorAll('.guide-row').forEach(function(row,i){
+   var box=row.querySelector('.guide-photo');
+   if(!box)return;
+   var input=row.querySelector('input[type="file"]');
+   if(!input)return;
+   var old=box.querySelector('.guide-photo-admin');
+   if(document.body.classList.contains('photo-admin')){
+    if(!old){
+     var b=document.createElement('button');
+     b.type='button';b.className='guide-photo-admin';b.textContent='사진 등록';
+     b.onclick=function(e){e.preventDefault();e.stopPropagation();input.click()};
+     box.appendChild(b);
+    }
+   }else if(old)old.remove();
+  });
+ }
+ window.__bindGuideAdminPhoto=bind;
+ new MutationObserver(bind).observe(document.body,{childList:true,subtree:true});
+ document.addEventListener('click',function(e){
+  var b=e.target.closest('.guide-photo-admin');
+  if(!b)return;
+  e.preventDefault();e.stopImmediatePropagation();
+  var row=b.closest('.guide-row'),input=row&&row.querySelector('input[type="file"]');
+  if(input)input.click();
+ },true);
+ setTimeout(bind,0);
+})();
+</script>
 </body>
 </html>
