@@ -1962,5 +1962,19 @@ document.addEventListener('click',e=>{
 })();
 </script>
 
+<script>
+/* ===== GUIDE ADMIN ACTION HANDLER ===== */
+document.addEventListener('click',function(e){
+ const b=e.target.closest('[data-guide-action]');
+ if(!b||!document.body.classList.contains('photo-admin'))return;
+ e.preventDefault();e.stopImmediatePropagation();
+ const row=b.closest('.guide-row'),i=row?[...document.querySelectorAll('.guide-row')].indexOf(row):-1;
+ const r=rows.find(x=>x.key==='g'+i);
+ if(!r)return;
+ const act=b.dataset.guideAction;
+ if(act==='photo')r.inp.click();
+ if(act==='nophoto')send(r,null,true);
+},true);
+</script>
 </body>
 </html>
