@@ -2618,3 +2618,8 @@ body:has(#searchPage.active) .site-main{
   .guide-row{grid-template-columns:76px minmax(0,1fr);gap:8px 14px}
   .guide-photo{width:76px;height:96px}
 }
+
+/* ===== 긴급 UI 복구 ===== */
+[hidden]{display:none!important}
+.page.active{display:block!important}
+a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
