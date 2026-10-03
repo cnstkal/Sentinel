@@ -2593,3 +2593,17 @@ body:has(#searchPage.active) .site-main{
     color:#718091!important;
   }
 }
+
+
+/* 모바일 검색 영역 세로 여백 축소 */
+@media(max-width:700px){
+  .header-search{
+    padding:4px 0!important;
+  }
+  .header-search .container{
+    height:58px!important;
+  }
+  .search-form{
+    height:50px!important;
+  }
+}
