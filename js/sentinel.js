@@ -172,7 +172,7 @@ init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
 init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
 init('.guide-row','.guide-photo',(row,i)=>'g'+i);
 window.__ssaPick=function(kind,id){const r=rows.find(x=>x.key===kind+String(id));if(r&&r.inp)r.inp.click()};
-/* 가이드 증명사진: 항상 클릭하면 파일 선택창을 연다 */
+/* 가이드 증명사진 업로드 */
 function bindGuidePhotoPickers(){
  document.querySelectorAll('.guide-row').forEach((row,i)=>{
   const box=row.querySelector('.guide-photo');
@@ -180,20 +180,14 @@ function bindGuidePhotoPickers(){
   if(!box||!r||box.dataset.photoPickerBound==='1')return;
   box.dataset.photoPickerBound='1';
   box.style.cursor='pointer';
-  box.setAttribute('role','button');
-  box.setAttribute('tabindex','0');
-  const open=ev=>{
-   ev.preventDefault();
-   ev.stopPropagation();
+  box.addEventListener('click',function(e){
+   e.preventDefault();
+   e.stopImmediatePropagation();
    r.inp.click();
-  };
-  box.addEventListener('click',open);
-  box.addEventListener('keydown',ev=>{
-   if(ev.key==='Enter'||ev.key===' '){open(ev)}
-  });
+  },true);
+ });
 }
 bindGuidePhotoPickers();
-document.addEventListener('DOMContentLoaded',bindGuidePhotoPickers);
 
 
 /* ---------- 행 클릭 → 상세 ---------- */
