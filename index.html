@@ -800,7 +800,14 @@ function renderNoticeDetail(id){
  document.getElementById('noticeArticle').innerHTML='<div class="notice-article-meta"><span>공지사항</span><time>'+x[3]+'</time></div><h1>'+x[1]+'</h1><div class="notice-article-info"><span>담당부서 '+x[2]+'</span><span>첨부 '+x[4]+'</span></div><div class="notice-article-body"><p>'+x[5]+'</p><p>'+x[6]+'</p><p>'+x[7]+'</p></div><div class="notice-article-footer"><span>담당부서: '+x[2]+'</span><span>전화 '+phone+'</span><span>최종 수정일: '+x[3]+'</span></div><a class="article-back" href="#notice">목록으로 돌아가기</a>';
 }
 window.__renderNoticeDetail=renderNoticeDetail;
-window.addEventListener('hashchange',()=>{const m=location.hash.match(/^#notice-view\?id=(\d+)/);if(m)renderNoticeDetail(m[1]);});
+document.addEventListener('click',e=>{
+ const a=e.target.closest('a[href^="#notice-view"]');
+ if(a){
+  const m=a.getAttribute('href').match(/id=(\d+)/);
+  if(m)setTimeout(()=>renderNoticeDetail(m[1]),0);
+ }
+});
+window.addEventListener('hashchange',()=>{const m=location.hash.match(/^#notice-view\?id=(\d+)/);if(m)setTimeout(()=>renderNoticeDetail(m[1]),0);});
 if(location.hash.startsWith('#notice-view')){const m=location.hash.match(/id=(\d+)/);if(m)renderNoticeDetail(m[1]);}
 
 
