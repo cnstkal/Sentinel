@@ -2284,3 +2284,110 @@ body.photo-admin #apostleProfileContent [data-f]:hover{outline-color:#6b9bf5;bac
  #malfunction #malfunctionForm .rp-btn{flex:1}
  #malfunction #malfunctionForm .rp-btn.primary{flex:1.2}
 }
+
+
+/* ===== 통합검색 페이지 정리 ===== */
+#searchPage{
+  display:none;
+  padding:0!important;
+  margin:0!important;
+  min-height:0!important;
+}
+#searchPage.active{
+  display:block;
+  animation:none;
+}
+#searchPage .breadcrumb{
+  margin:0!important;
+  padding:0!important;
+}
+#searchPage .breadcrumb .container{
+  height:52px;
+}
+#searchPage .search-page-layout{
+  display:block;
+  width:min(1000px,calc(100% - 48px));
+  margin:0 auto;
+  padding:38px 0 72px!important;
+  min-height:0!important;
+}
+#searchPage .search-page-layout>main{
+  width:100%;
+  min-width:0;
+}
+#searchPage .content-head{
+  padding:0 0 20px;
+  margin:0;
+}
+#searchPage .content-head h1{
+  margin:0 0 8px;
+  font-size:34px;
+  line-height:1.25;
+}
+#searchPage .content-head p{
+  margin:0;
+  font-size:14px;
+  color:#68798b;
+}
+#searchPage .content-body{
+  padding-top:22px;
+}
+#searchPage .search-results{
+  display:grid;
+  gap:10px;
+}
+#searchPage .search-result-item{
+  margin:0;
+  padding:0;
+  border:1px solid #dce4ec;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+}
+#searchPage .search-result-item>a{
+  display:block;
+  padding:18px 20px;
+}
+#searchPage .search-result-item b{
+  display:block;
+  margin:0 0 5px;
+  color:var(--navy);
+  font-size:16px;
+  line-height:1.5;
+}
+#searchPage .search-result-item p{
+  margin:0;
+  color:#68798b;
+  font-size:13px;
+  line-height:1.65;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+#searchPage .search-result-item:hover{
+  transform:none;
+  border-color:#b9cdf0;
+  background:#f8fbff;
+}
+#searchPage .notice-area{
+  margin:0;
+}
+@media(max-width:700px){
+  #searchPage .breadcrumb .container{height:46px}
+  #searchPage .search-page-layout{
+    width:calc(100% - 32px);
+    padding:25px 0 48px!important;
+  }
+  #searchPage .content-head h1{font-size:28px}
+  #searchPage .content-head p{font-size:13px}
+  #searchPage .search-result-item>a{padding:15px 16px}
+  #searchPage .search-result-item b{font-size:15px}
+  #searchPage .search-result-item p{
+    white-space:normal;
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+  }
+}
+
+/* 페이지 전환 시 중간 스크롤로 보이는 현상 방지 */
