@@ -300,13 +300,62 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const TAG_PREFIX='ssa_official_';
  const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
  let state={chief:'',leaders:{}},busy={},configBusy=false,dirty=false;
- function cacheState(){try{localStorage.setItem('official_profile_cache_v1',JSON.stringify(state))}catch(e){}}
- async function loadConfig(){try{const r=await fetch(RAW_LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());if(p?.state){state={chief:String(p.state.chief||''),leaders:p.state.leaders||{}};cacheState();return true}}catch(e){}try{const p=JSON.parse(localStorage.getItem('official_profile_cache_v1')||'null');if(p){state=p;return true}}catch(e){}return false}
+ let stateUpdatedAt='';
+ function cacheState(updatedAt){
+  try{
+   localStorage.setItem('official_profile_cache_v1',JSON.stringify({
+    version:1,updatedAt:updatedAt||stateUpdatedAt||new Date().toISOString(),state
+   }));
+  }catch(e){}
+ }
+ function readCachedState(){
+  try{
+   const raw=JSON.parse(localStorage.getItem('official_profile_cache_v1')||'null');
+   if(raw&&raw.state)return {state:raw.state,updatedAt:String(raw.updatedAt||'')};
+   if(raw&&typeof raw==='object'&&('chief' in raw||'leaders' in raw))return {state:raw,updatedAt:''};
+  }catch(e){}
+  return null;
+ }
+ function remoteIsNewer(a,b){
+  if(!a)return true;
+  if(!b)return false;
+  const ta=Date.parse(a),tb=Date.parse(b);
+  return Number.isFinite(ta)&&Number.isFinite(tb)?tb>=ta:true;
+ }
+ async function loadConfig(){
+  const cached=readCachedState();
+  try{
+   const r=await fetch(RAW_LIST+'?_='+Date.now()+'_'+Math.random().toString(36).slice(2),{cache:'no-store'});
+   if(!r.ok)throw 0;
+   const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];
+   if(!a)throw 0;
+   const p=await fetch(RAW_BASE+'v'+a.version+'/'+a.public_id+'?_='+Date.now()+'_'+Math.random().toString(36).slice(2),{cache:'no-store'}).then(x=>x.json());
+   if(p?.state){
+    const remoteAt=String(p.updatedAt||'');
+    if(!cached||remoteIsNewer(cached.updatedAt,remoteAt)){
+     state={chief:String(p.state.chief||''),leaders:p.state.leaders||{}};
+     stateUpdatedAt=remoteAt;
+     cacheState(remoteAt);
+    }else{
+     state={chief:String(cached.state?.chief||''),leaders:cached.state?.leaders||{}};
+     stateUpdatedAt=cached.updatedAt||'';
+    }
+    return true;
+   }
+  }catch(e){}
+  if(cached){
+   state={chief:String(cached.state?.chief||''),leaders:cached.state?.leaders||{}};
+   stateUpdatedAt=cached.updatedAt||'';
+   return true;
+  }
+  return false;
+ }
  async function saveConfig(){
   if(configBusy)return false;
   configBusy=true;
   try{
-   const payload=JSON.stringify({version:1,updatedAt:new Date().toISOString(),state});
+   stateUpdatedAt=new Date().toISOString();
+   const payload=JSON.stringify({version:1,updatedAt:stateUpdatedAt,state});
    const id='official-profile-config-'+Date.now()+'.json';
    const fd=new FormData();
    fd.append('file',new Blob([payload],{type:'application/json'}),id);
@@ -317,10 +366,9 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
    const r=await fetch(RAW_API,{method:'POST',body:fd});
    const j=await r.json();
    if(!r.ok||!j.public_id)throw new Error(j.error?.message||'config upload failed');
-   cacheState();
+   cacheState(stateUpdatedAt);
    return true;
   }catch(e){
-   cacheState();
    return false;
   }finally{configBusy=false}
  }
@@ -372,21 +420,27 @@ function paint(){
  }
 
  async function pull(key){
-  try{
-   const r=await fetch('https://res.cloudinary.com/'+CL+'/image/list/'+tagFor(key)+'.json?_='+Date.now(),{cache:'no-store'});
-   if(!r.ok)return;
-   const j=await r.json();
-   const resources=(j.resources||[]).filter(a=>!(a.width===1&&a.height===1)&&a.public_id!=='pixel');
-   const a=resources.sort((x,y)=>(y.version||0)-(x.version||0))[0];
-   /* 실제 사진이 확인됐을 때만 갱신. 조회 결과가 빈 배열이라고 해서
-      기존 사진을 삭제된 것으로 취급하지 않는다. */
-   if(!a)return;
-   if(key==='chief')state.chief=cloudUrl(a);
-   else{
-    const name=key;
-    if(document.querySelectorAll('.org-leader h3').length)state.leaders[name]=cloudUrl(a);
+  for(let attempt=0;attempt<3;attempt++){
+   try{
+    const r=await fetch('https://res.cloudinary.com/'+CL+'/image/list/'+tagFor(key)+'.json?_='+Date.now()+'_'+attempt+'_'+Math.random().toString(36).slice(2),{cache:'no-store'});
+    if(!r.ok)throw Error(r.status);
+    const j=await r.json();
+    const resources=(j.resources||[]).filter(a=>!(a.width===1&&a.height===1)&&a.public_id!=='pixel');
+    const a=resources.sort((x,y)=>(y.version||0)-(x.version||0))[0];
+    /* 목록이 일시적으로 비어 있거나 CDN이 오래된 목록을 주더라도
+       이미 확인된 최신 사진을 빈 값/구버전으로 덮어쓰지 않는다. */
+    if(!a)return;
+    const next=cloudUrl(a);
+    const current=key==='chief'?state.chief:state.leaders[key];
+    const m=current&&current.match(/\/v(\d+)\//),currentVersion=m?Number(m[1]):0;
+    if(currentVersion&&Number(a.version||0)<currentVersion)return;
+    if(key==='chief')state.chief=next;
+    else state.leaders[key]=next;
+    return;
+   }catch(e){
+    if(attempt<2)await new Promise(resolve=>setTimeout(resolve,300*(attempt+1)));
    }
-  }catch(e){}
+  }
  }
 
  async function load(){
