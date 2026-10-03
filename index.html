@@ -1838,5 +1838,49 @@ document.addEventListener('click',e=>{
 })();
 </script>
 
+<script>
+/* ===== NAV FINAL FIX ===== */
+(function(){
+ function openPage(h){
+  var id=String(h||'').replace(/^#/,'').split('?')[0];
+  var target=document.getElementById(id);
+  if(!target)return false;
+  var pages=document.querySelectorAll('.page');
+  for(var i=0;i<pages.length;i++)pages[i].classList.remove('active');
+  target.classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='guide-profile'&&window.__renderGuideProfile)window.__renderGuideProfile();
+  return true;
+ }
+ function hashNow(){openPage(location.hash||'#home')}
+ document.querySelectorAll('.mega-links a,.mobile-panel a,.quick[href^="#"],.section-more[href^="#"],.side-nav a[href^="#"]').forEach(function(a){
+  a.onclick=function(e){
+   var h=a.getAttribute('href');
+   if(h&&openPage(h)){e.preventDefault();history.pushState(null,'',h);}
+  };
+ });
+ document.querySelectorAll('.nav-trigger').forEach(function(b){
+  b.onclick=function(e){
+   e.preventDefault();e.stopPropagation();
+   var item=b.closest('.nav-item');
+   document.querySelectorAll('.nav-item').forEach(function(x){if(x!==item)x.classList.remove('nav-open')});
+   item.classList.toggle('nav-open');
+  };
+ });
+ document.querySelectorAll('.nav-item').forEach(function(item){
+  var mega=item.querySelector('.mega');
+  if(mega){
+   item.addEventListener('mouseenter',function(){item.classList.add('nav-open')});
+   item.addEventListener('mouseleave',function(){item.classList.remove('nav-open')});
+  }
+ });
+ var all=document.getElementById('allMenu'), panel=document.getElementById('mobilePanel'), close=document.getElementById('closeMobilePanel');
+ if(all&&panel)all.onclick=function(e){e.preventDefault();panel.hidden=false};
+ if(close&&panel)close.onclick=function(e){e.preventDefault();panel.hidden=true};
+ window.addEventListener('hashchange',hashNow);
+ window.addEventListener('popstate',hashNow);
+ hashNow();
+})();
+</script>
 </body>
 </html>
