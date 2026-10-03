@@ -174,18 +174,23 @@ init('.guide-row','.guide-photo',(row,i)=>'g'+i);
 window.__ssaPick=function(kind,id){const r=rows.find(x=>x.key===kind+String(id));if(r&&r.inp)r.inp.click()};
 /* 가이드 증명사진: 항상 클릭하면 파일 선택창을 연다 */
 function bindGuidePhotoPickers(){
- $('.guide-row').forEach((row,i)=>{
-  const box=$('.guide-photo',row);
-  if(!box||box.dataset.photoPickerBound==='1')return;
+ document.querySelectorAll('.guide-row').forEach((row,i)=>{
+  const box=row.querySelector('.guide-photo');
   const r=rows.find(x=>x.key==='g'+i);
-  if(!r)return;
+  if(!box||!r||box.dataset.photoPickerBound==='1')return;
   box.dataset.photoPickerBound='1';
   box.style.cursor='pointer';
-  box.addEventListener('click',e=>{
-   e.preventDefault();e.stopPropagation();
+  box.setAttribute('role','button');
+  box.setAttribute('tabindex','0');
+  const open=ev=>{
+   ev.preventDefault();
+   ev.stopPropagation();
    r.inp.click();
+  };
+  box.addEventListener('click',open);
+  box.addEventListener('keydown',ev=>{
+   if(ev.key==='Enter'||ev.key===' '){open(ev)}
   });
- });
 }
 bindGuidePhotoPickers();
 document.addEventListener('DOMContentLoaded',bindGuidePhotoPickers);
