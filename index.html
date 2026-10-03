@@ -1094,7 +1094,12 @@ async function sync(){
 
 /* ---------- 업로드 ---------- */
 function send(r,file,remove){
- const fd=new FormData();fd.append('file',file);fd.append('upload_preset',CLOUDINARY_PRESET);fd.append('folder','sentinel');fd.append('tags','ssa_photo,'+tag(r.key));
+ const fd=new FormData();
+ const uploadFile=remove?new Blob([atob(PIXEL.split(',')[1])],{type:'image/png'}):file;
+ fd.append('file',uploadFile,remove?'remove.png':file.name);
+ fd.append('upload_preset',CLOUDINARY_PRESET);
+ fd.append('folder','sentinel');
+ fd.append('tags','ssa_photo,'+tag(r.key));
  const bar=document.createElement('div');bar.className='photo-bar';r.box.appendChild(bar);r.box.classList.add('uploading');
  const x=new XMLHttpRequest();x.open('POST',API);
  const done=()=>{bar.remove();r.box.classList.remove('uploading');paint(r)};
@@ -1125,23 +1130,6 @@ init('.sentinel-row','.sentinel-photo',(row,i)=>'s'+i);
 init('.apostle-row','.apostle-photo',(row,i,nm)=>'a'+nm.textContent.replace(/[^A-Za-z0-9]/g,'').toLowerCase());
 init('.guide-row','.guide-photo',(row,i)=>'g'+i);
 window.__ssaPick=function(kind,id){const r=rows.find(x=>x.key===kind+String(id));if(r&&r.inp)r.inp.click()};
-/* 가이드 증명사진 업로드 */
-function bindGuidePhotoPickers(){
- document.querySelectorAll('.guide-row').forEach((row,i)=>{
-  const box=row.querySelector('.guide-photo');
-  const r=rows.find(x=>x.key==='g'+i);
-  if(!box||!r||box.dataset.photoPickerBound==='1')return;
-  box.dataset.photoPickerBound='1';
-  box.style.cursor='pointer';
-  box.addEventListener('click',function(e){
-   if(!document.body.classList.contains('photo-admin'))return;
-   e.preventDefault();
-   e.stopImmediatePropagation();
-   r.inp.click();
-  },true);
- });
-}
-bindGuidePhotoPickers();
 
 
 /* ---------- 행 클릭 → 상세 ---------- */
@@ -1241,12 +1229,31 @@ async function saveProfiles(data){
  catch(e){localStorage.setItem('sentinel_profiles_cache',payload);toast('공유 저장에 실패해 이 기기에만 임시 저장되었습니다.',1)}
  finally{profileSaveBusy=false}
 }
+function ensureGuideAdminBars(){
+ $('.guide-row').forEach((row,i)=>{
+  let bar=row.querySelector('.guide-admin-bar');
+  const r=rows.find(x=>x.key==='g'+i);
+  if(!r)return;
+  if(!document.body.classList.contains('photo-admin')){
+   if(bar)bar.remove();
+   return;
+  }
+  if(bar)return;
+  bar=document.createElement('div');
+  bar.className='adm-bar guide-admin-bar';
+  bar.innerHTML='<button type="button" data-guide-action="photo">사진 변경</button><button type="button" data-guide-action="nophoto">사진 삭제</button>';
+  row.appendChild(bar);
+ });
+}
 function admin(on){
- document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();
+ document.body.classList.toggle('photo-admin',on);
+ const b=document.getElementById('adminModeBtn');
+ if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}
+ ensureEditButtons();
+ ensureGuideAdminBars();
  if(on){
   profileModal();
   window.__officialProfilePhotos?.addButtons?.();
-  
  }else{
   const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true;
   window.__officialProfilePhotos?.addButtons?.();
@@ -1954,37 +1961,6 @@ document.addEventListener('click',e=>{
  },true);
 })();
 </script>
-<script>
-/* ===== GUIDE ADMIN PHOTO UI ===== */
-(function(){
- function bind(){
-  document.querySelectorAll('.guide-row').forEach(function(row,i){
-   var box=row.querySelector('.guide-photo');
-   if(!box)return;
-   var input=row.querySelector('input[type="file"]');
-   if(!input)return;
-   var old=box.querySelector('.guide-photo-admin');
-   if(document.body.classList.contains('photo-admin')){
-    if(!old){
-     var b=document.createElement('button');
-     b.type='button';b.className='guide-photo-admin';b.textContent='사진 등록';
-     b.onclick=function(e){e.preventDefault();e.stopPropagation();input.click()};
-     box.appendChild(b);
-    }
-   }else if(old)old.remove();
-  });
- }
- window.__bindGuideAdminPhoto=bind;
- new MutationObserver(bind).observe(document.body,{childList:true,subtree:true});
- document.addEventListener('click',function(e){
-  var b=e.target.closest('.guide-photo-admin');
-  if(!b)return;
-  e.preventDefault();e.stopImmediatePropagation();
-  var row=b.closest('.guide-row'),input=row&&row.querySelector('input[type="file"]');
-  if(input)input.click();
- },true);
- setTimeout(bind,0);
-})();
-</script>
+
 </body>
 </html>
