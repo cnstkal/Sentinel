@@ -2691,3 +2691,7 @@ a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
 body.photo-admin .admin-mode-toggle{background:var(--red)}
 .guide-photo{cursor:default}
 body.photo-admin .guide-photo{cursor:pointer}
+
+/* 헤더 로고/검색 영역 구분선 제거 */
+.header-top{border-bottom:0!important}
+.header-search{border-bottom:0!important}
