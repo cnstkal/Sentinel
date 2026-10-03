@@ -90,7 +90,7 @@ function getSentinelData(){return window.__sentinelData||sentinelProfiles}
 /* ===== ORIGINAL SCRIPT BLOCK 8 ===== */
 
 (function(){
-const ADMIN_ENABLED = true; // false로 바꾸면 관리자 기능 전체를 숨길 수 있습니다.
+const ADMIN_ENABLED = true; // 관리자 기능은 항상 활성화
 const CLOUDINARY_CLOUD = 'dbljkloal';
 const CLOUDINARY_PRESET = 'Everything';
 const ADMIN_PASS = 'sentinel2026';
@@ -281,23 +281,12 @@ function admin(on){
   window.__officialProfilePhotos?.addButtons?.();
  }
 }
-function enterAdmin(){
- if(!ADMIN_ENABLED)return;
- if(document.body.classList.contains('photo-admin')){
-  sessionStorage.removeItem('ssa_admin');
-  admin(false);
-  return;
- }
- sessionStorage.setItem('ssa_admin','1');
- admin(true);
-}
+function enterAdmin(){ admin(true); }
 window.__ssaEnterAdmin=enterAdmin;
 function bindAdminButtons(){
- document.querySelectorAll('#adminModeBtn,#adminModeBtnMobile').forEach(btn=>{
-  if(btn.dataset.adminBound==='1')return;
-  btn.dataset.adminBound='1';
-  btn.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();enterAdmin()});
- });
+ document.getElementById('adminModeBtn')?.remove();
+ document.getElementById('adminModeBtnMobile')?.remove();
+ admin(true);
 }
 bindAdminButtons();
 document.addEventListener('DOMContentLoaded',bindAdminButtons);
@@ -338,7 +327,7 @@ document.addEventListener('click',e=>{
  const box=e.target.closest('#sentinelProfileContent .sentinel-detail-photo');if(box&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('s',id)}
  const guideBox=e.target.closest('#guideProfileContent .sentinel-detail-photo');if(guideBox&&document.body.classList.contains('photo-admin')){const id=Number(new URLSearchParams(location.hash.split('?')[1]||'').get('id'));window.__ssaPick&&window.__ssaPick('g',id)}
 });
-if(!ADMIN_ENABLED){document.getElementById('adminModeBtn')?.remove();sessionStorage.removeItem('ssa_admin')}else if(sessionStorage.getItem('ssa_admin'))admin(true);
+document.getElementById('adminModeBtn')?.remove();document.getElementById('adminModeBtnMobile')?.remove();admin(true);
 /* ===== ADMIN MODE END ===== */
 document.body.classList.add('photos-loading');
 paintAll();sync();loadProfiles();ensureEditButtons();
