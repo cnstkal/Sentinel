@@ -158,10 +158,31 @@ document.addEventListener('click',go);document.addEventListener('keydown',go);
 
 
 /* ===== ADMIN BUTTON FALLBACK ===== */
-document.addEventListener('click',function(e){
- const btn=e.target.closest('#adminModeBtn,#adminModeBtnMobile');
- if(!btn||typeof window.__ssaEnterAdmin!=='function')return;
- e.preventDefault();
- e.stopPropagation();
- window.__ssaEnterAdmin();
-},true);
+(function(){
+ function fallbackAdmin(){
+  const on=document.body.classList.toggle('photo-admin');
+  if(on)sessionStorage.setItem('ssa_admin','1');else sessionStorage.removeItem('ssa_admin');
+  document.querySelectorAll('#adminModeBtn,#adminModeBtnMobile').forEach(b=>{
+   b.textContent=on?'관리자 모드 종료':'관리자 모드';
+   b.classList.toggle('active',on);
+  });
+  if(typeof window.__ssaEnterAdmin==='function'){
+   const hasReal=window.__ssaEnterAdmin;
+   /* sentinel.js가 정상 로드된 경우에는 실제 관리자 로직을 사용 */
+   document.body.classList.toggle('photo-admin',!on);
+   hasReal();
+  }
+ }
+ window.__ssaAdminFallback=fallbackAdmin;
+ document.addEventListener('click',function(e){
+  const btn=e.target.closest('#adminModeBtn,#adminModeBtnMobile');
+  if(!btn)return;
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  if(typeof window.__ssaEnterAdmin==='function')window.__ssaEnterAdmin();
+  else fallbackAdmin();
+ },true);
+ window.addEventListener('DOMContentLoaded',function(){
+  if(sessionStorage.getItem('ssa_admin')==='1' && typeof window.__ssaEnterAdmin==='function')window.__ssaEnterAdmin();
+ });
+})();
