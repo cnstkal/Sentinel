@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="./css/site.css?v=20261003-mobiletopfix2">
 <script src="./data/scheduled-content.js?v=20261003" defer></script>
 <script src="./js/scheduler.js?v=20261003" defer></script>
+<style>.chief-mark,.org-leader-photo,.sentinel-detail-photo,.guide-photo,.sentinel-photo,.apostle-photo{cursor:pointer}.official-photo-save-bar{display:none!important}</style>
 </head>
 <body>
 <a class="skip" href="#main">본문 바로가기</a><a class="skip" href="#nav">주메뉴 바로가기</a>
@@ -1052,7 +1053,7 @@ const RAW_LIST='https://res.cloudinary.com/'+CLOUDINARY_CLOUD+'/raw/list/sentine
 const RAW_API='https://api.cloudinary.com/v1_1/'+CLOUDINARY_CLOUD+'/raw/upload';
 const MAX=10*1024*1024, CK='ssa_shared_v2';
 const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-const $=(q,r=document)=>r.querySelector(q), $=(q,r=document)=>[...r.querySelectorAll(q)];
+const $=(q,r=document)=>r.querySelector(q), $$=(q,r=document)=>[...r.querySelectorAll(q)];
 let shared={},warned=false;
 try{shared=JSON.parse(localStorage.getItem(CK)||'{}')}catch(e){}
 const keep=()=>{try{localStorage.setItem(CK,JSON.stringify(shared))}catch(e){}};
@@ -1108,7 +1109,7 @@ function pick(r,f){
 
 /* ---------- 행 초기화 ---------- */
 function init(sel,photoSel,keyFn){
- $(sel).forEach((row,i)=>{
+ $$(sel).forEach((row,i)=>{
   const box=$(photoSel,row),nm=$('strong',row);if(!box||!nm)return;
   const r={key:keyFn(row,i,nm),name:nm.textContent.trim(),box,row},im=$('img',box);
   if(im&&im.getAttribute('src'))box.dataset.base=im.getAttribute('src');
@@ -1171,14 +1172,14 @@ window.__profilePhoto=function(){
  const ap=$('#apostleProfileContent .sentinel-detail-photo');
  if(ap){
   const id=+new URLSearchParams(location.hash.split('?')[1]||'').get('id');
-  const rows=$('.apostle-row'),w=rows[id],key=w?.dataset.beastKey;
+  const rows=$$('.apostle-row'),w=rows[id],key=w?.dataset.beastKey;
   const im=w?.querySelector('.apostle-photo img');
   if(im&&im.getAttribute('src')&&!$('img',ap)){ap.textContent='';const i=new Image();i.src=im.src;i.alt='괴수 사진';i.dataset.beastKey=key||'';ap.appendChild(i)}
  }
  const gp=$('#guideProfileContent .sentinel-detail-photo');
  if(gp){const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),r=rows.find(x=>x.key==='g'+id),src=r?.box?.querySelector('img')?.getAttribute('src');if(src){const cur=gp.querySelector('img')?.getAttribute('src');if(cur!==src){gp.textContent='';const i=new Image();i.src=src;i.alt='증명사진';gp.appendChild(i)}}}
  const p=$('#sentinelProfileContent .sentinel-detail-photo');if(!p)return;
- const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
+ const id=new URLSearchParams(location.hash.split('?')[1]||'').get('id'),w=$$('.sentinel-row')[+id],im=w&&$('.sentinel-photo img',w);
  if(im&&im.getAttribute('src')){
   const src=im.getAttribute('src'),cur=p.querySelector('img')?.getAttribute('src');
   if(cur!==src){p.textContent='';const i=new Image();i.src=src;i.alt='증명사진';p.appendChild(i)}
@@ -1195,11 +1196,11 @@ let profileSaveBusy=false;
 function currentProfiles(){return(window.__sentinelData||sentinelProfiles).map(x=>({...x}))}
 function applyProfiles(){
  const data=currentProfiles();
- $('.sentinel-row').forEach((row,i)=>{const x=data[i];if(!x)return;const strong=$('.sentinel-info>strong',row),dds=$('.sentinel-info dd',row);if(strong)strong.textContent=x.name||'-';if(dds[0])dds[0].textContent=x.age||'-';if(dds[1])dds[1].textContent=x.gender||'-';if(dds[2])dds[2].textContent=x.center||'-';row.querySelector('.sentinel-photo')?.setAttribute('aria-label',(x.name||'센티넬')+' 사진');const edit=row.querySelector('.admin-edit-btn');if(edit)edit.dataset.profileEdit=i});
+ $$('.sentinel-row').forEach((row,i)=>{const x=data[i];if(!x)return;const strong=$('.sentinel-info>strong',row),dds=$$('.sentinel-info dd',row);if(strong)strong.textContent=x.name||'-';if(dds[0])dds[0].textContent=x.age||'-';if(dds[1])dds[1].textContent=x.gender||'-';if(dds[2])dds[2].textContent=x.center||'-';row.querySelector('.sentinel-photo')?.setAttribute('aria-label',(x.name||'센티넬')+' 사진');const edit=row.querySelector('.admin-edit-btn');if(edit)edit.dataset.profileEdit=i});
  if(window.__renderSentinelProfile)window.__renderSentinelProfile();ensureEditButtons();
 }
 function ensureEditButtons(){
- $('.sentinel-row').forEach((row,i)=>{let b=row.querySelector('.admin-edit-btn');if(document.body.classList.contains('photo-admin')){if(!b){b=document.createElement('button');b.type='button';b.className='admin-edit-btn';b.textContent='정보 수정';b.dataset.profileEdit=i;b.onclick=e=>{e.preventDefault();e.stopPropagation();openProfileEditor(i)};row.appendChild(b)}}else if(b)b.remove()});
+ $$('.sentinel-row').forEach((row,i)=>{let b=row.querySelector('.admin-edit-btn');if(document.body.classList.contains('photo-admin')){if(!b){b=document.createElement('button');b.type='button';b.className='admin-edit-btn';b.textContent='정보 수정';b.dataset.profileEdit=i;b.onclick=e=>{e.preventDefault();e.stopPropagation();openProfileEditor(i)};row.appendChild(b)}}else if(b)b.remove()});
 }
 function profileModal(){
  let m=document.getElementById('sentinelAdminModal');if(m)return m;
@@ -1239,11 +1240,11 @@ async function saveProfiles(data){
  finally{profileSaveBusy=false}
 }
 function admin(on){
- document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();saveBar();
+ document.body.classList.toggle('photo-admin',on);const b=document.getElementById('adminModeBtn');if(b){b.textContent=on?'관리자 모드 종료':'관리자 모드';b.classList.toggle('active',on)}ensureEditButtons();
  if(on){
   profileModal();
   window.__officialProfilePhotos?.addButtons?.();
-  toast('관리자 모드가 켜졌습니다. 청장·간부 사진 영역에서 사진을 등록하거나 변경할 수 있습니다.');
+  
  }else{
   const m=document.getElementById('sentinelAdminModal');if(m)m.hidden=true;
   window.__officialProfilePhotos?.addButtons?.();
@@ -1334,6 +1335,7 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const TAG_PREFIX='ssa_official_';
  const PIXEL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
  let state={chief:'',leaders:{}},busy={},configBusy=false,dirty=false;
+  const toast=(m,err)=>{const t=document.createElement('div');t.className='toast'+(err?' err':'');t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),3600)};
  let stateUpdatedAt='';
  function cacheState(updatedAt){
   try{
@@ -1416,7 +1418,17 @@ setInterval(()=>{if(!document.hidden){sync();loadProfiles()}},120000);
  const tagFor=key=>TAG_PREFIX+(key==='chief'?'chief':leaderKey(key));
  const cloudUrl=r=>IMG_BASE+'v'+r.version+'/'+r.public_id;
 
- function saveBar(){
+ let saveAgain=false;
+  async function autoSave(){
+   if(configBusy){saveAgain=true;return}
+   for(let i=0;i<3;i++){
+    if(await saveConfig()){cacheState();break}
+    await new Promise(r=>setTimeout(r,800*(i+1)));
+   }
+   if(saveAgain){saveAgain=false;autoSave()}
+  }
+  function saveBar(){
+   return;
   let bar=document.getElementById('officialPhotoSaveBar');
   if(!bar){
    bar=document.createElement('div');
@@ -1459,8 +1471,9 @@ function paint(){
     const r=await fetch('https://res.cloudinary.com/'+CL+'/image/list/'+tagFor(key)+'.json?_='+Date.now()+'_'+attempt+'_'+Math.random().toString(36).slice(2),{cache:'no-store'});
     if(!r.ok)throw Error(r.status);
     const j=await r.json();
-    const resources=(j.resources||[]).filter(a=>!(a.width===1&&a.height===1)&&a.public_id!=='pixel');
+    const resources=(j.resources||[]);
     const a=resources.sort((x,y)=>(y.version||0)-(x.version||0))[0];
+     if(a&&a.width===1&&a.height===1){if(key==='chief')state.chief='';else state.leaders[key]='';return}
     /* 목록이 일시적으로 비어 있거나 CDN이 오래된 목록을 주더라도
        이미 확인된 최신 사진을 빈 값/구버전으로 덮어쓰지 않는다. */
     if(!a)return;
@@ -1468,6 +1481,7 @@ function paint(){
     const current=key==='chief'?state.chief:state.leaders[key];
     const m=current&&current.match(/\/v(\d+)\//),currentVersion=m?Number(m[1]):0;
     if(currentVersion&&Number(a.version||0)<currentVersion)return;
+     if(current===next)return;
     if(key==='chief')state.chief=next;
     else state.leaders[key]=next;
     return;
@@ -1535,8 +1549,8 @@ function paint(){
      if(name)state.leaders[name]=src;
     }
     paint();addButtons();
-    dirty=true;saveBar();
-    toast(remove?'사진이 삭제되었습니다.':'사진이 등록되었습니다. 저장 버튼을 눌러야 영구 저장됩니다.');
+    cacheState();autoSave();
+    toast(remove?'사진이 삭제되었습니다.':'사진이 저장되었습니다.');
    }catch(e){toast('사진 등록 실패: '+e.message,1)}
    bar.remove();busy[key]=false;
   };
@@ -1554,7 +1568,7 @@ function paint(){
   const chief=document.querySelector('.chief-mark');
   if(chief&&!chief.querySelector('.official-photo-actions')){
    const d=document.createElement('div');d.className='official-photo-actions';
-   d.innerHTML='<button type="button" data-official-photo="chief">'+(state.chief?'사진 변경':'사진 등록')+'</button>'+(state.chief?'<button type="button" data-official-del="chief">삭제</button>':'');
+   d.innerHTML=(state.chief?'<button type="button" data-official-del="chief">삭제</button>':'');
    chief.appendChild(d);
   }
   document.querySelectorAll('.org-leader').forEach(card=>{
@@ -1562,13 +1576,21 @@ function paint(){
    if(!box||box.querySelector('.official-photo-actions'))return;
    const has=!!state.leaders[name],key=leaderKey(name),d=document.createElement('div');
    d.className='official-photo-actions';
-   d.innerHTML='<button type="button" data-official-photo="'+key+'">'+(has?'사진 변경':'사진 등록')+'</button>'+(has?'<button type="button" data-official-del="'+key+'">삭제</button>':'');
+   d.innerHTML=(has?'<button type="button" data-official-del="'+key+'">삭제</button>':'');
    box.appendChild(d);
   });
  }
 
  document.addEventListener('click',e=>{
-  const up=e.target.closest('[data-official-photo]');
+  if(!e.target.closest('[data-official-del]')){
+    const cb=e.target.closest('.chief-mark'),lb=e.target.closest('.org-leader-photo');
+    if(cb||lb){
+     let key='chief';
+     if(lb){const nm=lb.closest('.org-leader')?.querySelector('h3')?.textContent.trim();key=leaderKey(nm)}
+     e.preventDefault();e.stopPropagation();picker(key);return;
+    }
+   }
+   const up=e.target.closest('[data-official-photo]');
   if(up){e.preventDefault();e.stopPropagation();picker(up.dataset.officialPhoto);return}
   const del=e.target.closest('[data-official-del]');
   if(del){e.preventDefault();e.stopPropagation();upload(null,del.dataset.officialDel,true)}
@@ -1623,7 +1645,7 @@ const fl=document.querySelector('.footer-links .container');
 /* ===== ORIGINAL SCRIPT BLOCK 10 ===== */
 
 (function(){
-const $=(q,r=document)=>r.querySelector(q),$=(q,r=document)=>[...r.querySelectorAll(q)];
+const $=(q,r=document)=>r.querySelector(q),$$=(q,r=document)=>[...r.querySelectorAll(q)];
 const CL='dbljkloal',TAG='ssa_lists_v1',LK='ssa_lists_cache';
 const LIST='https://res.cloudinary.com/'+CL+'/raw/list/'+TAG+'.json',RB='https://res.cloudinary.com/'+CL+'/raw/upload/',RAPI='https://api.cloudinary.com/v1_1/'+CL+'/raw/upload';
 const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -1646,12 +1668,13 @@ const BAR='<div class="adm-bar"><button type="button" data-a="photo">사진 변�
 const ph=(c,s,img)=>'<div class="'+c+(img?' has-img':'')+'"><img src="'+E(img)+'" alt=""'+(img?'':' hidden')+'><span>'+s+'</span></div>';
 const sRow=(x,i)=>{const p=x.p,h='#sentinel-profile?id='+i;return '<article class="sentinel-row" data-href="'+h+'" tabindex="0" role="link">'+ph('sentinel-photo','증명사진',x.img)+'<div class="sentinel-info"><strong>'+E(p.name)+'</strong><dl><div><dt>나이</dt><dd>'+E(p.age)+'</dd></div><div><dt>성별</dt><dd>'+E(p.gender)+'</dd></div><div><dt>센터</dt><dd>'+E(p.center)+'</dd></div></dl></div>'+BAR+'</article>'};
 const aRow=(x,i)=>{const h='#apostle-profile?id='+i;const key=String(x.code||('BEAST-'+i));return '<article class="apostle-row" data-beast-key="'+E(key)+'" data-href="'+h+'" data-type="'+E(x.type)+'" data-joined="'+E(x.joined)+'" data-special="'+E(x.special)+'" data-rg="'+E(x.rg)+'" tabindex="0" role="link">'+ph('apostle-photo','괴수 이미지',x.img)+'<div class="apostle-info"><strong>'+E(x.code)+'</strong><dl><div><dt>등급</dt><dd>'+E(x.grade)+'</dd></div><div><dt>상태</dt><dd>'+E(String(x.st||'').split(' · ')[0])+'</dd></div></dl></div>'+BAR+'</article>'};
-function adopt(){const d=window.__sentinelData||[];M={s:$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$('.apostle-row').map(r=>{const dd=$('.apostle-info dd',r).map(x=>x.textContent.trim()),code=($('strong',r)||{textContent:''}).textContent.trim(),mm=code.match(/(\d\d)(\d\d)(\d\d)$/);return {code,grade:dd[0]||'',type:r.dataset.type||code,st:dd[1]||'',rg:r.dataset.rg||'',joined:r.dataset.joined||(mm?'20'+mm[1]+'.'+mm[2]+'.'+mm[3]:'-'),special:r.dataset.special||'해당 없음',img:$('.apostle-photo img',r)?.getAttribute('src')||''}})}}
+function adopt(){const d=window.__sentinelData||[];M={s:$$('.sentinel-row').map((r,i)=>({p:{...(d[i]||{})},img:$('.sentinel-photo img',r)?.getAttribute('src')||''})),a:$$('.apostle-row').map(r=>{const dd=$$('.apostle-info dd',r).map(x=>x.textContent.trim()),code=($('strong',r)||{textContent:''}).textContent.trim(),mm=code.match(/(\d\d)(\d\d)(\d\d)$/);return {code,grade:dd[0]||'',type:r.dataset.type||code,st:dd[1]||'',rg:r.dataset.rg||'',joined:r.dataset.joined||(mm?'20'+mm[1]+'.'+mm[2]+'.'+mm[3]:'-'),special:r.dataset.special||'해당 없음',img:$('.apostle-photo img',r)?.getAttribute('src')||''}})}}
 function ensure(){if(M)return true;if(document.body.classList.contains('photos-loading')){toast('사진을 불러오는 중입니다. 잠시 후 다시 눌러주세요.',1);return false}adopt();render();return true}
 function addBtns(){[['s','.sentinel-list','센티넬'],['a','.apostle-list','괴수']].forEach(([k,q,n])=>{const l=$(q);if(!l||$('.adm-add[data-k="'+k+'"]'))return;const b=document.createElement('button');b.type='button';b.className='adm-add';b.dataset.k=k;b.textContent='＋ '+n+' 추가';const em=l.nextElementSibling;(em&&em.classList.contains('list-empty')?em:l).after(b)})}
 function render(){window.__ssaOwned=true;const S=$('.sentinel-list'),A=$('.apostle-list');if(S)S.innerHTML=M.s.map(sRow).join('');if(A){M.a.sort((x,y)=>{const ax=parseInt(String(x.grade||'').match(/\\d+/)?.[0]||'999',10),ay=parseInt(String(y.grade||'').match(/\\d+/)?.[0]||'999',10);return ax-ay});A.innerHTML=M.a.map(aRow).join('')}window.__sentinelData=M.s.map(x=>({...x.p}));addBtns();if(/profile/.test(location.hash)){dispatchEvent(new Event('hashchange'));setTimeout(()=>window.__profilePhoto?.(),0)}}
-async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.stringify({v:3,M}),fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw new Error(j.error?.message||r.status);toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 설정 저장 실패: '+e.message,1)}}
-function persist(){try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
+async function upload(){const id='ssa-lists-'+Date.now()+'.json',payload=JSON.stringify({v:3,M}),fd=new FormData();fd.append('file',new Blob([payload],{type:'application/json'}),id);fd.append('upload_preset','Everything');fd.append('public_id',id);fd.append('folder','sentinel-config');fd.append('tags',TAG);try{const r=await fetch(RAPI,{method:'POST',body:fd}),j=await r.json();if(!r.ok||!j.public_id)throw new Error(j.error?.message||r.status);pending=false;toast('저장되었습니다. 모든 접속자에게 반영됩니다.')}catch(e){toast('공유 설정 저장 실패: '+e.message+' (다시 시도합니다)',1);setTimeout(upload,3000)}}
+let pending=false;
+function persist(){pending=true;try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){toast('저장 공간이 부족합니다.',1)}clearTimeout(tm);tm=setTimeout(upload,700)}
 function applyDefaultA(force=false){
  if(!M)return false;
  if(!force && M._defaultVersion===3)return false;
@@ -1678,7 +1701,7 @@ async function uploadPhoto(file,kind,index){
  if(!res.ok||!j.secure_url)throw new Error(j.error?.message||'사진 업로드 실패');
  return {url:j.secure_url,public_id:j.public_id,version:j.version||Date.now()};
 }
-async function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{const blob=await shrink(f.files[0]);toast('사진을 서버에 업로드하는 중입니다.');const p=await uploadPhoto(blob,k,i);M[k][i].img=p.url;commit()}catch(e){toast('사진 업로드 실패: '+e.message,1)}};f.click()}
+async function pick(k,i){const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=async()=>{if(!f.files[0]||!ensure())return;try{const blob=await shrink(f.files[0]);toast('사진을 서버에 업로드하는 중입니다.');const p=await uploadPhoto(blob,k,i);await pullRemote(true);if(!M||!M[k]||!M[k][i])throw new Error('목록이 변경되었습니다. 다시 시도해 주세요.');M[k][i].img=p.url;commit()}catch(e){toast('사진 업로드 실패: '+e.message,1)}};f.click()}
 window.__ssaPick=pick;window.__ssaEditA=(i,f)=>{if(!ensure()||!M.a[i])return;modal('a',i);const m=document.getElementById('ssaModal'),inp=m&&m.querySelector('input[name="'+f+'"]');inp&&inp.focus()};
 window.__ssaSync=()=>{if(!ensure())return;const d=window.__sentinelData||[];M.s.forEach((x,i)=>{if(d[i])x.p={...d[i]}});commit()};
 function modal(k,i){let m=$('#ssaModal');if(m)m.remove();m=document.createElement('div');m.id='ssaModal';m.className='admin-modal';const o=k==='s'?M.s[i].p:M.a[i],F=k==='s'?SF:AF;
@@ -1692,21 +1715,43 @@ else if(a==='del'){if(confirm('이 항목을 삭제할까요?')){M[k].splice(i,1
 else if(a==='add'){M[k].push(k==='s'?{p:{name:'새 센티넬',age:'-',gender:'-',center:'-',grade:'-',type:'-',status:'등록·운용',joined:'-'},img:''}:{code:'SA-'+new Date().toISOString().slice(2,10).replace(/-/g,''),grade:'3등급',type:'-',st:'등록',rg:'지역',joined:'-',special:'해당 없음',img:''});commit();modal(k,M[k].length-1)}}
 document.addEventListener('click',e=>{if(!adm())return;const t=e.target,add=t.closest('.adm-add');if(add){e.preventDefault();e.stopImmediatePropagation();return act(add.dataset.k,0,'add')}
 const row=t.closest('.sentinel-row,.apostle-row');if(!row)return;const b=t.closest('.adm-bar button'),p=t.closest('.sentinel-photo,.apostle-photo');if(!b&&!p)return;
-e.preventDefault();e.stopImmediatePropagation();const k=row.classList.contains('sentinel-row')?'s':'a',i=$(k==='s'?'.sentinel-row':'.apostle-row').indexOf(row);act(k,i,b?b.dataset.a:'photo')},true);
+e.preventDefault();e.stopImmediatePropagation();const k=row.classList.contains('sentinel-row')?'s':'a',i=$$(k==='s'?'.sentinel-row':'.apostle-row').indexOf(row);act(k,i,b?b.dataset.a:'photo')},true);
 let tries=0;function watch(){const on=adm(),b=$('#adminModeBtnMobile');if(b){b.textContent=on?'관리자 종료':'관리자 모드';b.classList.toggle('active',on)}if(on&&!M&&!document.body.classList.contains('photos-loading'))ensure();else if(on&&!M&&tries++<20)setTimeout(watch,800)}
 new MutationObserver(()=>{tries=0;watch()}).observe(document.body,{attributes:true,attributeFilter:['class']});
 addBtns();watch();
-(async function(){
- let migrated=false;
- try{const c=JSON.parse(localStorage.getItem(LK)||'null');if(c&&c.s){M=c;migrated=applyDefaultA();render()}}catch(e){}
- try{
-  const r=await fetch(LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
-  const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;
-  const p=await fetch(RB+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());
-  if(p.M&&p.M.s){M=p.M;migrated=applyDefaultA();render();try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){}}
- }catch(e){}
- if(migrated)upload();
-})();
+let lastPull=0;
+async function pullRemote(force){
+  if(pending&&!force)return false;
+  let migrated=false;
+  if(!M){try{const c=JSON.parse(localStorage.getItem(LK)||'null');if(c&&c.s){M=c;migrated=applyDefaultA();render()}}catch(e){}}
+  try{
+   const r=await fetch(LIST+'?_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+   const j=await r.json(),a=(j.resources||[]).sort((x,y)=>(y.version||0)-(x.version||0))[0];if(!a)throw 0;
+   const p=await fetch(RB+'v'+a.version+'/'+a.public_id+'?_='+Date.now(),{cache:'no-store'}).then(x=>x.json());
+   if(p.M&&p.M.s){
+    if(!force&&pending)return false;
+    const changed=JSON.stringify(M)!==JSON.stringify(p.M);
+    M=p.M;migrated=applyDefaultA()||migrated;
+    if(changed||migrated)render();
+    try{localStorage.setItem(LK,JSON.stringify(M))}catch(e){}
+   }
+  }catch(e){}
+  if(migrated&&!force)upload();
+  lastPull=Date.now();
+  return true;
+}
+pullRemote();
+setInterval(()=>{if(!document.hidden)pullRemote()},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&Date.now()-lastPull>10000)pullRemote()});
+addEventListener('focus',()=>{if(Date.now()-lastPull>10000)pullRemote()});
+/* 괴수 상세 페이지 사진 탭 → 바로 사진 선택 */
+document.addEventListener('click',e=>{
+  if(!adm())return;
+  const d=e.target.closest('#apostleProfileContent .sentinel-detail-photo');if(!d)return;
+  const id=+new URLSearchParams(location.hash.split('?')[1]||'').get('id');
+  const ph=$$('.apostle-row')[id]?.querySelector('.apostle-photo');
+  if(ph){e.preventDefault();e.stopImmediatePropagation();ph.click()}
+},true);
 })();
 
 
