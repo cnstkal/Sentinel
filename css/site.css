@@ -2646,3 +2646,27 @@ a,button,input,select,textarea,[role="button"],[tabindex]{pointer-events:auto}
   box-shadow:0 0 0 1000px #fff inset!important;
   -webkit-text-fill-color:var(--text);
 }
+
+/* ===== 괴수 사진 확대 ===== */
+.apostle-photo-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  background:rgba(10,18,30,.88);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  cursor:zoom-out;
+}
+.apostle-photo-lightbox img{
+  max-width:min(92vw,900px);
+  max-height:88vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:8px;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
+  cursor:default;
+}
+.apostle-photo img,.sentinel-detail-photo img{cursor:zoom-in}
