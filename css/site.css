@@ -3020,3 +3020,16 @@ body.photo-admin .guide-admin-bar{display:flex}
  .archive-date{font-size:13px}
  .archive-date-label{font-size:12px}
 }
+
+
+/* 날짜 목록은 타임라인 점/세로선 없이 단순 목록으로 표시 */
+.archive-date-list{position:relative!important;margin:0!important}
+.archive-date-list:before{display:none!important;content:none!important}
+.archive-date-list .archive-date-row:before,
+.archive-date-list .archive-date-row:after{display:none!important;content:none!important}
+.archive-date-row{position:relative!important;display:grid!important;grid-template-columns:110px minmax(0,1fr) 20px!important;align-items:center!important;box-sizing:border-box!important;min-height:52px!important;margin:0!important;border:0!important;border-bottom:1px solid #e8ebf0!important;border-radius:0!important;background:#fff!important;padding:14px 8px!important;transform:none!important}
+.archive-date-row .archive-date{display:block!important;position:static!important;white-space:nowrap!important}
+.archive-date-row .archive-date-label{display:block!important;position:static!important}
+@media(max-width:640px){
+ .archive-date-row{grid-template-columns:82px minmax(0,1fr) 18px!important;padding:13px 4px!important}
+}
