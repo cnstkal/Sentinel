@@ -2727,3 +2727,17 @@ body.photo-admin .guide-admin-bar{display:flex}
     transform:translateY(-5px);
   }
 }
+
+
+/* ===== PC 검색창 기본 테두리 ===== */
+@media(min-width:701px){
+  .header-search .search-form{
+    border:1px solid #cbd3dd;
+    background:#fff;
+    box-shadow:0 0 0 1px rgba(17,45,82,.03);
+  }
+  .header-search .search-form:focus-within{
+    border:2px solid var(--blue);
+    box-shadow:none;
+  }
+}
