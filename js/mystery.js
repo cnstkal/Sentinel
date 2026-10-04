@@ -269,3 +269,48 @@
  }
  window.addEventListener('hashchange',()=>setTimeout(run,180));setTimeout(run,650);
 })();
+
+
+/* ===== MEMORIAL ANNIVERSARY / GUESTBOOK ===== */
+(function(){
+  const KEY='ssa_memorial_guestbook_v1';
+  const seed=[
+    ['하늘','순직 센티넬 전체','삼가 고인의 명복을 빕니다. 국민의 안전을 위해 힘써주신 모든 분들을 기억하겠습니다.','2026.09.28'],
+    ['민트라떼','박재민','삼가 고인의 명복을 빕니다. 편히 쉬시길 바랍니다.','2026.09.28'],
+    ['seoul_02','순직 센티넬 전체','잊지 않겠습니다. 감사합니다.','2026.09.29'],
+    ['구름','김서현','삼가 고인의 명복을 빕니다.','2026.09.29'],
+    ['안전제일','한지우','국민들을 대피시키고 마지막까지 현장에 계셨던 분께 감사드립니다. 삼가 고인의 명복을 빕니다.','2026.09.30'],
+    ['ㅇㅇ','이도현','삼가 고인의 명복을 빕니다.','2026.09.30'],
+    ['푸른별','순직 센티넬 전체','우리가 평범하게 하루를 보낼 수 있었던 건 누군가의 희생이 있었기 때문이라고 생각합니다. 기억하겠습니다.','2026.10.01'],
+    ['기억할게요','박재민','3주기입니다. 잊지 않겠습니다. 삼가 고인의 명복을 빕니다.','2026.10.01'],
+    ['anonymous','순직 센티넬 전체','삼가 고인의 명복을 빕니다.','2026.10.02'],
+    ['기록을읽는사람','순직 센티넬 전체','추모한다고 하면서 왜 2011년 이후 기록에서는 계속 표현이 달라졌는지 설명은 해주셨으면 합니다. 당시 사람들은 무엇을 알고 있었나요?','2026.10.02'],
+    ['진실을기억하자','이도현','“은폐하려고 했던 기록”까지 공개하지 않는다면 추모라는 말도 공허합니다. 2011년 전후 기록을 비교해 보신 분들은 아실 겁니다.','2026.10.03'],
+    ['ㅇㅅㅇ','순직 센티넬 전체','삼가 고인의 명복을 빕니다.','2026.10.03'],
+    ['현장기억','김서현','당시 현장에 있었던 분들의 기록도 언젠가는 제대로 공개되기를 바랍니다. 삼가 고인의 명복을 빕니다.','2026.10.04']
+  ];
+  const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  function get(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null');return Array.isArray(x)&&x.length?x:seed.slice()}catch(e){return seed.slice()}}
+  function save(a){localStorage.setItem(KEY,JSON.stringify(a))}
+  function render(){
+    const root=document.getElementById('memorialGuestbookList'); if(!root)return;
+    const data=get();
+    root.innerHTML=data.slice().reverse().map(x=>'<article class="guestbook-entry"><div class="guestbook-entry-meta"><b>'+esc(x[0])+'</b><span>'+esc(x[2])+'</span><time>'+esc(x[3])+'</time></div><div class="guestbook-entry-target">추모 대상 · '+esc(x[1])+'</div><p>'+esc(x[4]||'')+'</p></article>').join('');
+  }
+  function init(){
+    const form=document.getElementById('memorialGuestbookForm'); if(!form)return;
+    if(!localStorage.getItem(KEY))save(seed.slice());
+    render();
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=document.getElementById('guestbookName').value.trim();
+      const target=document.getElementById('guestbookTarget').value;
+      const msg=document.getElementById('guestbookMessage').value.trim();
+      if(!name||!msg)return;
+      const now=new Date(); const date=now.getFullYear()+'.'+String(now.getMonth()+1).padStart(2,'0')+'.'+String(now.getDate()).padStart(2,'0');
+      const data=get(); data.push([name,target,msg,date]); save(data); form.reset(); render();
+    });
+  }
+  window.addEventListener('hashchange',()=>setTimeout(init,80));
+  setTimeout(init,250);
+})();
