@@ -2869,3 +2869,30 @@ body.photo-admin .guide-admin-bar{display:flex}
     margin-right:0!important;
   }
 }
+
+
+/* 순직 센티넬 추모공간 */
+.memorial-page{padding-bottom:80px}
+.memorial-intro{margin:28px 0 34px;border-left:3px solid #718096;background:#f7f8fa;color:#4b5563;line-height:1.8}
+.memorial-list{display:grid;gap:18px}
+.memorial-card{display:grid;grid-template-columns:100px 1fr;border:1px solid #dfe4ea;background:#fff;min-height:210px}
+.memorial-year{display:flex;align-items:flex-start;justify-content:center;padding-top:28px;background:#f5f6f8;color:#667085;font-size:18px;font-weight:700;border-right:1px solid #e3e7ec}
+.memorial-info{padding:27px 30px 30px}
+.memorial-status{display:inline-block;font-size:12px;color:#6b7280;border:1px solid #d8dde4;padding:4px 8px;margin-bottom:10px}
+.memorial-info h2{margin:0 0 18px;font-size:27px;color:#202b38;letter-spacing:-.03em}
+.memorial-info dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 20px;padding-bottom:18px;border-bottom:1px solid #edf0f3}
+.memorial-info dl div{display:flex;flex-direction:column;gap:5px}
+.memorial-info dt{font-size:12px;color:#7a8491}
+.memorial-info dd{margin:0;font-size:14px;color:#374151;font-weight:600}
+.memorial-info p{margin:0;color:#626b78;font-size:14px;line-height:1.8}
+.memorial-footer{margin-top:28px;padding:22px 24px;border-top:1px solid #dfe4ea;border-bottom:1px solid #dfe4ea;display:flex;justify-content:space-between;gap:20px;color:#4b5563}
+.memorial-footer span{font-weight:700}
+.memorial-footer small{color:#8a929d}
+@media(max-width:700px){
+ .memorial-card{grid-template-columns:1fr}
+ .memorial-year{justify-content:flex-start;padding:16px 20px;border-right:0;border-bottom:1px solid #e3e7ec}
+ .memorial-info{padding:22px 20px 24px}
+ .memorial-info h2{font-size:24px}
+ .memorial-info dl{grid-template-columns:1fr 1fr}
+ .memorial-footer{flex-direction:column}
+}
