@@ -113,17 +113,28 @@ document.addEventListener('click',go);document.addEventListener('keydown',go);
    const host=document.querySelector('.map-box');if(!host)return;
    map.dataset.regionBound='1';
    const box=document.createElement('div');box.className='map-region-popover';box.hidden=true;host.appendChild(box);
+   let activeRegion='';
+   const getInfo=(region,path)=>{
+     const cls=[...path.classList].find(c=>c.startsWith('region-'));let key=cls?.replace('region-','')||'interest';
+     const live=(window.LIVE_CRISIS?.regionalAlerts||[]).find(a=>a.region===region);
+     if(live && live.level)key=live.level;
+     return {key,label:labels[key]||'미정',updated:window.LIVE_CRISIS?.updatedAtDisplay||'현재 기준'};
+   };
+   const open=(path)=>{
+     const region=path.dataset.region||''; activeRegion=region;
+     const info=getInfo(region,path);
+     box.innerHTML='<button type="button" class="map-region-close" aria-label="닫기">×</button><div class="map-popover-kicker">지역 위기경보</div><div class="map-popover-main"><strong>'+esc(region)+'</strong><b class="lv-'+esc(info.key)+'"><i></i>'+esc(info.label)+'</b></div><div class="map-popover-meta"><span>현재 경보 단계</span><span>'+esc(info.label)+'</span></div><small>최종 업데이트 · '+esc(info.updated)+'</small>';
+     box.hidden=false;
+   };
    map.querySelectorAll('.region[data-region]').forEach(path=>{
      path.setAttribute('tabindex','0');path.setAttribute('role','button');
-     const open=()=>{
-       const region=path.dataset.region||'';
-       const cls=[...path.classList].find(c=>c.startsWith('region-'));const key=cls?.replace('region-','')||'interest';
-       box.innerHTML='<button type="button" class="map-region-close" aria-label="닫기">×</button><strong>'+esc(region)+'</strong><span>현재 위기경보 <b class="lv-'+esc(key)+'">'+esc(labels[key]||'미정')+'</b></span><small>최종 업데이트 2026.10.03 18시 기준</small>';
-       box.hidden=false;
-     };
-     path.addEventListener('click',e=>{e.stopPropagation();open()});
-     path.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+     path.addEventListener('click',e=>{e.stopPropagation();open(path)});
+     path.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(path)}});
    });
+   window.addEventListener('ssa-live-crisis-updated',()=>{if(!box.hidden&&activeRegion){const path=map.querySelector('[data-region="'+CSS.escape(activeRegion)+'"]');if(path)open(path)}});
+   box.addEventListener('click',e=>{if(e.target.closest('.map-region-close')){box.hidden=true;activeRegion=''}});
+   document.addEventListener('click',e=>{if(!box.hidden&&!box.contains(e.target)&&!e.target.closest('.crisis-map-svg')){box.hidden=true;activeRegion=''}});
+
    box.addEventListener('click',e=>{if(e.target.closest('.map-region-close'))box.hidden=true});
    document.addEventListener('click',e=>{if(!box.hidden&&!box.contains(e.target)&&!e.target.closest('.crisis-map-svg'))box.hidden=true});
  }
