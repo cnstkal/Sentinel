@@ -316,7 +316,7 @@
  setTimeout(run,700);
 })();
 
-/* ===== PROGRESSIVE HINTS / LOGO LONG PRESS ===== */
+/* ===== PROGRESSIVE HINTS / LOGO DOUBLE TAP ===== */
 (function(){
  const HINTS=[
   {title:'첫 번째 힌트',text:'추모공간에서 특정 센티넬의 이름을 자세히 살펴보세요. 다른 사람들과 달리 눌러볼 수 있는 기록이 있습니다.',target:'추모공간'},
@@ -340,7 +340,7 @@
  }
  function open(){
   document.getElementById('ssaHintModal')?.remove();
-  const page=progress(), hint=HINTS[Math.min(page,HINTS.length-1)];
+  const page=progress(),hint=HINTS[Math.min(page,HINTS.length-1)];
   const o=document.createElement('div');o.id='ssaHintModal';o.className='mystery-modal ssa-hint-modal';
   o.innerHTML='<div class="mystery-dialog ssa-hint-dialog" role="dialog" aria-modal="true"><div class="mystery-dialog-head"><span class="mystery-classified">SSA · 열람 지원</span><button type="button" class="mystery-close" aria-label="닫기">×</button></div><div class="ssa-hint-body"><div class="ssa-hint-label">HINT '+String(page+1).padStart(2,'0')+' / '+String(HINTS.length).padStart(2,'0')+'</div><h2>'+hint.title+'</h2><p>'+hint.text+'</p><div class="ssa-hint-target">확인 대상 · <b>'+hint.target+'</b></div><div class="ssa-hint-pages"><button type="button" data-prev>‹</button><span>1 / 1</span><button type="button" data-next>›</button></div></div></div>';
   document.body.appendChild(o);
@@ -349,10 +349,12 @@
  function bind(){
   const logo=document.querySelector('.emblem');if(!logo||logo.dataset.hintBound)return;
   logo.dataset.hintBound='1';
-  let timer=null;
-  const start=e=>{timer=setTimeout(()=>{timer=null;open()},900)};
-  const cancel=()=>{if(timer){clearTimeout(timer);timer=null}};
-  logo.addEventListener('pointerdown',start);logo.addEventListener('pointerup',cancel);logo.addEventListener('pointerleave',cancel);logo.addEventListener('pointercancel',cancel);logo.addEventListener('contextmenu',e=>e.preventDefault());
+  let lastTap=0;
+  logo.addEventListener('click',e=>{
+   const now=Date.now();
+   if(now-lastTap>=250&&now-lastTap<=600){e.preventDefault();open();lastTap=0;return;}
+   lastTap=now;
+  });
  }
  setTimeout(bind,500);
  window.addEventListener('hashchange',()=>setTimeout(bind,150));
