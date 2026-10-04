@@ -18,6 +18,7 @@
   };
 
   function password(){
+    if(localStorage.getItem('ssa_17_unlocked')==='1'){showArchiveRecord();return;}
     const o=modal('보존기록 열람 인증',
       '<p class="mystery-lead">해당 기록은 공개 범위가 제한된 초기 작전자료입니다.</p>'+
       '<p class="mystery-muted">문서번호 <b>SSA-O-2005-17</b></p>'+
@@ -28,7 +29,7 @@
     const form=o.querySelector('#mysteryPasswordForm'),input=o.querySelector('#mysteryPassword'),err=o.querySelector('#mysteryPasswordError');
     form.addEventListener('submit',e=>{
       e.preventDefault();
-      if(input.value.trim()===KEY){o.remove();sessionStorage.setItem('ssa_17_unlocked','1');showArchiveRecord();return;}
+      if(input.value.trim()===KEY){o.remove();localStorage.setItem('ssa_17_unlocked','1');showArchiveRecord();return;}
       err.textContent='인증에 실패했습니다. 관련 공개기록을 다시 확인해 주세요.';
       input.value='';input.focus();
     });
@@ -128,7 +129,7 @@
       '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.01 ~ 2005.12</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
       '</div>');
     if(o){
-      sessionStorage.setItem('ssa_17_unlocked','1');
+      localStorage.setItem('ssa_17_unlocked','1');
       const panel=o.querySelector('#archiveYearPanel');
       const bind=()=>{
         o.querySelectorAll('[data-archive-detail]').forEach(btn=>btn.addEventListener('click',()=>{
