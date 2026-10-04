@@ -1890,5 +1890,48 @@ document.addEventListener('click',e=>{
  setTimeout(routeDetail,0);
 })();
 </script>
+<script>
+/* 법령 상세 독립 라우터 */
+(function(){
+ function renderLawFromCard(id){
+  const root=document.getElementById('lawArticle');
+  if(!root)return;
+  const cards=[...document.querySelectorAll('#lawList a.law-card')];
+  const card=cards[Number(id)];
+  if(!card)return;
+  const type=card.querySelector('.law-type')?.textContent?.trim()||'법령';
+  const meta=[...card.querySelectorAll('.law-meta span')].map(x=>x.textContent.trim());
+  const title=card.querySelector('h3')?.textContent?.trim()||'';
+  const summary=card.querySelector('p')?.textContent?.trim()||'';
+  const date=(meta.find(x=>x.includes('시행'))||'').replace('시행 ','');
+  const safe=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  root.innerHTML='<div class="press-article-meta"><span>'+safe(type)+'</span><time>'+safe(date)+'</time></div>'+
+   '<h1>'+safe(title)+'</h1>'+
+   '<div class="press-article-info"><span>소관부서 정책기획과</span><span>시행일 '+safe(date)+'</span></div>'+
+   '<div class="press-article-body">'+
+   '<h3>주요 내용</h3><p>'+safe(summary)+'</p>'+
+   '<h3>법령 안내</h3><p>이 법령은 센티넬안전관리청의 능력안전 및 공공안전 관리 업무에 적용되는 가상 법령입니다. 법령의 목적과 적용 대상에 따라 등록·관리·안전확인 등 관련 행정절차의 기준을 정합니다.</p>'+
+   '<h3>적용 및 시행</h3><p>시행일 이후 해당 법령의 적용 대상이 되는 기관과 관련 업무는 정해진 절차와 기준에 따라 처리됩니다. 세부적인 행정처리 사항은 관련 시행령·시행규칙 및 기관의 행정규칙을 함께 확인할 수 있습니다.</p>'+
+   '<h3>담당 부서</h3><p>센티넬안전관리청 소관 부서에서 법령 관련 문의와 행정절차 안내를 담당합니다.</p>'+
+   '</div>'+
+   '<div class="press-article-footer"><span>법령 유형: '+safe(type)+'</span><span>시행일: '+safe(date)+'</span><span>최종 수정일: '+safe(date)+'</span></div>';
+ }
+ function route(){
+  const m=location.hash.match(/^#law-view\?id=(\d+)/);
+  if(!m)return;
+  const root=document.getElementById('lawArticle');
+  if(root)renderLawFromCard(m[1]);
+  else setTimeout(()=>renderLawFromCard(m[1]),50);
+ }
+ document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#law-view?"]');
+  if(!a)return;
+  const m=a.getAttribute('href').match(/id=(\d+)/);
+  if(m)setTimeout(()=>renderLawFromCard(m[1]),10);
+ });
+ window.addEventListener('hashchange',route);
+ setTimeout(route,100);
+})();
+</script>
 </body>
 </html>
