@@ -63,7 +63,7 @@
     const clue=e.target.closest('[data-mystery-clue]');
     if(clue){
       e.preventDefault();
-      const kind=clue.dataset.mysteryClue;
+      const kind=clue.dataset.mysteryClueKind;
       if(kind==='17') modal('문서 식별정보',
         '<p>初期 보존문서의 문서번호 끝자리는 내부 관측기록 번호로 사용되었다.</p><div class="mystery-code">…-17</div><p class="mystery-muted">동일한 번호가 서로 다른 연도의 자료에서 반복된다.</p>');
       if(kind==='2005') modal('사건 연도 대조',
