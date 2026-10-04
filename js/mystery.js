@@ -104,7 +104,7 @@
         '<div class="archive-log-list">'+detail(item.detail)+'</div>'+
         '</div>');
     };
-    const list=items=>items.map(item=>{
+    const list=items=>items.slice().sort((a,b)=>a.date.localeCompare(b.date)).map(item=>{
       const clickable=!!item.detail;
       return '<button type="button" class="archive-date-row'+(clickable?' is-detail':'')+'" '+(clickable?'data-archive-detail="'+item.date+'"':'')+'>'+
         '<span class="archive-date">'+item.date.slice(5).replace('.','월 ')+'일</span>'+
@@ -117,6 +117,7 @@
       '<div class="mystery-document archive-log-document">'+
       '<div class="mystery-doc-meta"><span>문서번호 SSA-O-2005-17</span><span>대상 백청심</span></div>'+
       '<div class="archive-log-head"><strong>백청심 활동 자료</strong><span>2002.05 ~ 2005.12</span></div>'+
+      '<button type="button" class="archive-back-button" data-archive-back>← 보존기록 목록으로</button>'+
       '<div class="archive-year-tabs" role="tablist" aria-label="연도별 현장자료">'+tabs+'</div>'+
       '<div class="archive-year-panel archive-date-list" id="archiveYearPanel">'+list(years["2005"])+'</div>'+
       '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.01 ~ 2005.12</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
