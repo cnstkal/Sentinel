@@ -60,5 +60,5 @@
 
   window.__ssaLiveCrisis={load,apply};
   document.addEventListener('DOMContentLoaded',load);
-  setInterval(load,60000);
+  setInterval(load,15000);
 })();
