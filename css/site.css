@@ -108,7 +108,7 @@ button{cursor:pointer} img,svg{max-width:100%}
 .press-list article{padding:16px 0;border-bottom:1px solid var(--line2)}
 .press-list time{font-size:11px;color:#738294}
 .press-list b{display:block;font-size:13px;margin-top:4px;color:var(--navy)}
-.press-list span{display:block;color:#738294;font-size:11px;margin-top:3px}
+.press-list span{display:block;color:#738294;font-size:11px;margin-top:3px}.press-list .press-home-link{display:block;color:inherit;text-decoration:none}.press-list .press-home-link:hover b{text-decoration:underline;color:var(--blue)}
 .map-section{margin-top:48px}
 .map-box{border:1px solid var(--line);display:grid;grid-template-columns:1fr 285px;min-height:370px}
 .map-svg{padding:20px;display:grid;place-items:center;background:#fbfcfd}
