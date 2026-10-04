@@ -65,7 +65,7 @@ button{cursor:pointer} img,svg{max-width:100%}
 .mega-links a:hover{background:#f4f7fa;color:var(--blue);font-weight:700}
 .all-menu{margin-left:auto;border:0;border-left:1px solid var(--line2);background:#fff;width:62px;font-size:24px;color:var(--navy)}
 .mobile-menu{display:none}
-.site-main{min-height:500px}
+.site-main{min-height:0}
 /* 외부 페이지(추모공간·보존자료)로 이동했을 때 빈 500px 영역이 남지 않도록 처리 */
 body:has(#memorial.active) .site-main,body:has(#archive2005.active) .site-main{min-height:0}
 .page{display:none}.page.active{display:block}
@@ -286,7 +286,7 @@ button{cursor:pointer} img,svg{max-width:100%}
 .mega-links a:hover{background:#f4f7fa;color:var(--blue);font-weight:700}
 .all-menu{margin-left:auto;border:0;border-left:1px solid var(--line2);background:#fff;width:62px;font-size:24px;color:var(--navy)}
 .mobile-menu{display:none}
-.site-main{min-height:500px}
+.site-main{min-height:0}
 .page{display:none}.page.active{display:block}
 .breadcrumb{border-bottom:1px solid var(--line2);background:#fafbfc}
 .breadcrumb .container{height:46px;display:flex;align-items:center;gap:8px;font-size:12px;color:#718091}
