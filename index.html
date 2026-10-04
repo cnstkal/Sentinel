@@ -476,6 +476,9 @@
    if(id==='briefing-view'&&typeof window.__renderBriefingDetail==='function'){
     const m=(hash||'').match(/id=(\d+)/); if(m) window.__renderBriefingDetail(m[1]);
    }
+   if(id==='rules-view'&&typeof window.__renderRuleDetail==='function'){
+    const m=(hash||'').match(/id=(\d+)/); if(m) window.__renderRuleDetail(m[1]);
+   }
    window.scrollTo({top:0,behavior:'auto'});
  }
  window.addEventListener('hashchange',()=>show(location.hash));
@@ -886,7 +889,8 @@ function renderRuleDetail(id){
  const x=RULE_DATA[Number(id)];if(!x)return;
  document.getElementById('ruleArticle').innerHTML='<div class="press-article-meta"><span>'+x[1]+'</span><time>'+x[2]+'</time></div><h1>'+x[0]+'</h1><div class="press-article-info"><span>발령부서 '+x[4]+'</span><span>발령일 '+x[2]+'</span></div><div class="press-article-body"><h3>주요 내용</h3><p>'+x[3]+'</p><h3>적용 범위</h3><p>센티넬안전관리청 및 관련 지역관리국의 해당 업무 처리에 적용됩니다.</p><h3>담당 부서</h3><p>'+x[4]+'</p></div>';
 }
-document.addEventListener('click',e=>{
+
+window.__renderRuleDetail=renderRuleDetail;document.addEventListener('click',e=>{
  const l=e.target.closest('a[href^="#law-view"]'),r=e.target.closest('a[href^="#rules-view"]');
  if(l){const m=l.getAttribute('href').match(/id=(\d+)/);if(m)setTimeout(()=>renderLawDetail(m[1]),0)}
  if(r){const m=r.getAttribute('href').match(/id=(\d+)/);if(m)setTimeout(()=>renderRuleDetail(m[1]),0)}
