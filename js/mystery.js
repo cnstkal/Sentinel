@@ -201,3 +201,52 @@
 })();
 /* investigation review */
 (function(){function run(){if(location.hash!=='#baek-profile'||document.getElementById('ssaRecordReview'))return;var b=document.querySelector('#baek-profile .content-body');if(!b)return;var n=document.createElement('section');n.id='ssaRecordReview';n.className='ssa-record-review';var done=0;try{done=JSON.parse(localStorage.getItem('ssa_case_clues')||'[]').length}catch(e){}n.innerHTML='<div class="ssa-review-head"><div><span>기록 대조 현황</span><h2>백청심 사건 관련 열람 기록</h2><p>공개 기록과 보존자료를 대조한 결과입니다.</p></div><b>'+done+'/3</b></div><div class="ssa-review-grid"><button class="ssa-review-item" data-r="a"><span>01</span><b>2002.04 · 초기 대응기록</b><small>위원회 설립 시점과 최초 출동 시점을 대조합니다.</small></button><button class="ssa-review-item" data-r="b"><span>02</span><b>2004.11 · 분류 변경기록</b><small>능력 반응과 개체 반응의 관계를 확인합니다.</small></button><button class="ssa-review-item" data-r="c"><span>03</span><b>2011 이후 · 추모기록 표기</b><small>사건을 설명하는 행정용어의 변화를 확인합니다.</small></button></div><div class="ssa-review-next"><span>다음 확인 권고</span><strong>'+(done>=3?'초기 괴수 발생 관련 공개기록과 2002년 연혁을 함께 대조해 주세요.':'CASE 17의 연계기록을 먼저 모두 확인해 주세요.')+'</strong></div>';b.insertBefore(n,b.querySelector('.back-to-list')||null);n.querySelectorAll('[data-r]').forEach(function(x){x.onclick=function(){location.hash=x.dataset.r==='a'?'#archive2005':x.dataset.r==='b'?'#classification':'#memorial'}})}window.addEventListener('hashchange',function(){setTimeout(run,150)});setTimeout(run,400)})();
+
+
+/* ===== PUBLIC CROSS-CHECK / STORY LAYER 01 ===== */
+(function(){
+  const KEY='ssa_story_crosscheck';
+  const get=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}};
+  const save=a=>localStorage.setItem(KEY,JSON.stringify([...new Set(a)]));
+  const mark=id=>{const a=get();if(!a.includes(id)){a.push(id);save(a)}};
+  const esc=s=>String(s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+  const modal=(title,body)=>{
+    document.getElementById('mysteryModal')?.remove();
+    const o=document.createElement('div');o.id='mysteryModal';o.className='mystery-modal';
+    o.innerHTML='<div class="mystery-dialog" role="dialog" aria-modal="true"><div class="mystery-dialog-head"><span class="mystery-classified">RECORD REVIEW</span><button type="button" class="mystery-close">×</button></div><div class="mystery-dialog-body"><h2>'+title+'</h2>'+body+'</div></div>';
+    document.body.appendChild(o);o.querySelector('.mystery-close').onclick=()=>o.remove();o.addEventListener('click',e=>{if(e.target===o)o.remove()});return o;
+  };
+  const add=(selector,id,html)=>{
+    const root=document.querySelector(selector);if(!root||document.getElementById('storyCross_'+id))return;
+    const s=document.createElement('section');s.id='storyCross_'+id;s.className='ssa-story-crosscheck';
+    s.innerHTML=html;root.appendChild(s);
+    s.querySelector('[data-story-open]')?.addEventListener('click',()=>{mark(id);modal(s.dataset.title||'자료 대조 메모',s.querySelector('[data-story-body]').innerHTML);render()});
+  };
+  function render(){
+    const a=get(),done=a.filter(x=>['archive','classification','memorial'].includes(x)).length;
+    const next=document.getElementById('storyProgress');
+    if(next)next.innerHTML='<span>자료 대조 현황</span><b>'+done+'/3</b>';
+    const origin=document.getElementById('storyCross_origin');
+    if(origin)origin.hidden=!(['archive','classification','memorial'].every(x=>a.includes(x)));
+  }
+  function run(){
+    if(location.hash==='#archive2005'){
+      add('#archive2005 .content-body','archive','<div class="ssa-story-cross-head"><span>자료 대조 메모 · 01</span><b>초기 기록의 날짜 순서를 확인할 것</b></div><p>공개 보존자료의 첫 문서는 <b>SSA-H-2002-01 · 2002.04</b>로 분류되어 있습니다. 백청심 현장자료에서 확인되는 최초 출동은 <b>2002.05.06</b>입니다.</p><p>두 날짜는 모두 “초기 괴수 발생”과 연결되어 있지만, 문서의 성격과 작성 시점은 같지 않습니다.</p><button type="button" data-story-open>대조 메모 확인</button><div data-story-body hidden><p><b>확인 포인트</b></p><p>2002.04 문서는 “최초 괴수 발생 관련 초기 대응기록”으로 공개되어 있고, 2002.05.06은 백청심의 “첫 출동”입니다.</p><div class="mystery-note"><strong>질문</strong>“최초”라는 표현은 무엇의 최초를 뜻하는가?</div><p class="mystery-muted">연혁의 2002.04 항목과 이 문서를 함께 확인하면 다음 대조 지점을 좁힐 수 있습니다.</p></div></section>');
+      mark('archive');
+    }
+    if(location.hash==='#classification'){
+      add('#classification .content-body','classification','<div class="ssa-story-cross-head"><span>자료 대조 메모 · 02</span><b>분류표의 동일한 구조를 확인할 것</b></div><p>괴수와 센티넬의 공개 분류에는 모두 <b>A~F</b> 능력 유형이 사용됩니다.</p><p>분류명이 같다는 사실만으로 원인이 같다고 단정할 수는 없습니다. 다만 동일한 분류 체계가 왜 양쪽에 적용되는지는 별도의 질문으로 남습니다.</p><button type="button" data-story-open>대조 메모 확인</button><div data-story-body hidden><p><b>확인 포인트</b></p><p>괴수 분류표와 센티넬 운용 자료를 나란히 놓고 능력 유형의 이름과 순서를 비교하세요.</p><div class="mystery-note"><strong>주의</strong>“같은 분류”와 “같은 현상”은 같은 문장이 아닙니다.</div><p class="mystery-muted">다음 단서는 분류가 처음 정비된 시점의 기록에서 확인할 수 있습니다.</p></div></section>');
+      mark('classification');
+    }
+    if(location.hash==='#memorial'){
+      add('#memorial .pg-wrap','memorial','<div class="ssa-story-crosscheck"><div class="ssa-story-cross-head"><span>자료 대조 메모 · 03</span><b>추모기록의 표현이 언제 달라졌는지 확인할 것</b></div><p>순직 기록을 연도순으로 읽으면 초창기에는 <b>괴수 대응·봉쇄·수색</b> 같은 직접적인 사건 표현이 많지만, 이후에는 <b>안전확인·현장 안정화·구조</b> 같은 행정 표현이 늘어납니다.</p><button type="button" data-story-open>대조 메모 확인</button><div data-story-body hidden><p><b>확인 포인트</b></p><p>2003~2009년 기록과 2011년 이후 기록의 사망 사유 문구를 그대로 비교하세요.</p><div class="mystery-note"><strong>질문</strong>사건 자체가 달라진 것인가, 아니면 사건을 설명하는 방식이 달라진 것인가?</div><p class="mystery-muted">2011년 전후의 용어 변화는 법령·행정 표준용어 자료와 함께 보면 더 선명해집니다.</p></div></div>');
+      mark('memorial');
+    }
+    if(location.hash==='#history'){
+      add('#history .content-body','origin','<div class="ssa-story-crosscheck"><div class="ssa-story-cross-head"><span>자료 대조 메모 · 04</span><b>설립일과 최초 관측일을 분리해서 기록할 것</b></div><p><b>2002.04</b> 국가 초상능력 안전관리위원회 설립 → <b>2002.05</b> 최초 괴수 발생 관련 기록.</p><p>두 사건 사이에는 한 달의 간격이 있습니다. 공개 연혁은 이 사이에 무엇을 했는지 설명하지 않습니다.</p><div class="mystery-note"><strong>다음 확인 대상</strong> SSA-H-2002-01 · 최초 괴수 발생 관련 초기 대응기록</div><p class="mystery-muted">이 기록을 “괴수가 처음 나타난 날”이 아니라 “초기 대응이 시작된 과정”의 문서로 읽어보세요.</p></div>');
+      const a=get();if(['archive','classification','memorial'].every(x=>a.includes(x)))mark('origin');
+    }
+    render();
+  }
+  window.addEventListener('hashchange',()=>setTimeout(run,180));setTimeout(run,650);
+})();
