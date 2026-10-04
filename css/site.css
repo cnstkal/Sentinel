@@ -3002,3 +3002,21 @@ body.photo-admin .guide-admin-bar{display:flex}
  .archive-log-footer{grid-template-columns:1fr}
  .archive-log-footer small{justify-self:start}
 }
+
+
+/* 백청심 날짜 목록형 보존자료 */
+.archive-date-list{padding-top:4px}
+.archive-date-row{width:100%;display:grid;grid-template-columns:110px 1fr 20px;align-items:center;gap:16px;text-align:left;border:0;border-bottom:1px solid #e8ebf0;background:#fff;padding:16px 8px;color:#263246;font:inherit;cursor:default}
+.archive-date-row.is-detail{cursor:pointer}
+.archive-date-row.is-detail:hover{background:#f7f9fb}
+.archive-date{font-size:14px;font-weight:700;color:#263246}
+.archive-date-label{font-size:13px;color:#697487}
+.archive-date-arrow{font-size:22px;line-height:1;color:#8792a2;text-align:right}
+.archive-date-row.is-detail .archive-date-label{color:#344b68;font-weight:600}
+.archive-detail .archive-log-list{padding-top:2px}
+.archive-detail .archive-log-entry{grid-template-columns:62px minmax(0,1fr);gap:16px}
+@media(max-width:640px){
+ .archive-date-row{grid-template-columns:82px 1fr 18px;gap:10px;padding:14px 4px}
+ .archive-date{font-size:13px}
+ .archive-date-label{font-size:12px}
+}
