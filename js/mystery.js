@@ -1,6 +1,6 @@
 /* ===== THE 17TH OBSERVATION / BAek Cheong-sim mystery layer ===== */
 (function(){
-  const KEY=[48,50,48,53,48,54,48,57,52,49].map(n=>String.fromCharCode(n)).join('');
+  const KEY=[48,56,49,55].map(n=>String.fromCharCode(n)).join('');
   const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const modal=(title,body,opts={})=>{
     document.getElementById('mysteryModal')?.remove();
