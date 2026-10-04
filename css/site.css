@@ -2712,3 +2712,10 @@ body.photo-admin .guide-admin-bar{display:flex}
  .map-legend h3{grid-column:1/-1!important;margin-bottom:10px!important}
  .map-legend .region-list{grid-column:1/-1!important}
 }
+
+/* ===== 위기경보 지도 상단 경계 정리 ===== */
+.map-section .map-box{
+  border-radius:0!important;
+  border-top:0!important;
+  margin-top:0!important;
+}
