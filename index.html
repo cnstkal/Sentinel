@@ -77,7 +77,17 @@
 <section class="page active" id="home">
  <h1 class="sr-only">센티넬안전관리청 누리집</h1>
  <div class="home-hero"><div class="container hero-inner"><div class="hero-copy"><span class="hero-kicker">SENTINEL SAFETY ADMINISTRATION</span><h1>능력으로부터 국민을 지키고,<br>국민의 권리를 보호합니다.</h1><p>괴수의 안전한 관리와 공공안전 자율대응장치(ARU)의 운용을 담당합니다.</p></div><aside class="hero-notice"><b>현재 전국 위기경보</b><strong>주의 · 2단계</strong><span>2026.09.30. 01:42 발령<br>지역별 상황에 따라 단계가 조정될 수 있음</span></aside></div></div>
- <section class="quick-services" aria-labelledby="quickTitle"><h2 class="sr-only" id="quickTitle">자주 찾는 서비스</h2><div class="container">
+ 
+ <section class="memorial-anniversary-banner" aria-label="순직 센티넬 추모 안내">
+  <div class="container">
+   <a href="#memorial" class="memorial-anniversary-link">
+    <div class="memorial-anniversary-mark">追慕</div>
+    <div class="memorial-anniversary-copy"><span>순직 센티넬 추모기간</span><strong>故 박재민 센티넬 3주기</strong><p>국민의 안전을 위해 임무를 수행하다 순직한 센티넬을 기억합니다. 추모공간에서 추모글을 남길 수 있습니다.</p></div>
+    <span class="memorial-anniversary-arrow">추모공간 보기&nbsp; →</span>
+   </a>
+  </div>
+ </section>
+<section class="quick-services" aria-labelledby="quickTitle"><h2 class="sr-only" id="quickTitle">자주 찾는 서비스</h2><div class="container">
   <a class="quick" href="#report"><span class="quick-icon">01</span><b>활동 신고</b><span>괴수 활동 및 이상징후 신고</span></a>
   <a class="quick" href="#classification"><span class="quick-icon">02</span><b>등급 확인</b><span>위험도 등급 및 판정 기준</span></a>
   <a class="quick" href="#deployment"><span class="quick-icon">03</span><b>배치현황</b><span>지역별 ARU 배치 정보</span></a>
@@ -454,6 +464,16 @@
  <div class="container pg-wrap memorial-page">
   <div class="content-head"><h1>센티넬 추모공간</h1><p>국민의 안전을 위해 임무를 수행하다 순직한 센티넬을 기억하고 그 뜻을 기리는 공간입니다.</p></div>
   <div class="memorial-intro notice-area"><strong>기억합니다.</strong><br>이곳에 기록된 이름은 모두 센티넬안전관리청의 공식 추모 기록에 따라 게시됩니다. 유가족의 요청과 개인정보 보호를 위해 공개 범위가 제한될 수 있습니다.</div>
+  <section class="memorial-guestbook" aria-labelledby="guestbookTitle">
+   <div class="section-head"><div><h2 id="guestbookTitle">추모의 글</h2><p class="guestbook-subtitle">순직 센티넬을 기억하는 마음을 자유롭게 남겨주세요.</p></div><small>MEMORIAL GUESTBOOK</small></div>
+   <div id="memorialGuestbookList" class="guestbook-list" aria-live="polite"></div>
+   <form id="memorialGuestbookForm" class="guestbook-form">
+    <div class="guestbook-form-head"><strong>추모글 남기기</strong><span>닉네임은 자유롭게 입력할 수 있습니다.</span></div>
+    <div class="guestbook-fields"><label>닉네임<input id="guestbookName" maxlength="20" required placeholder="닉네임"></label><label>추모 대상<select id="guestbookTarget"><option>순직 센티넬 전체</option><option>박재민</option><option>김서현</option><option>한지우</option><option>이도현</option><option>백청심</option></select></label></div>
+    <label class="guestbook-message">추모글<textarea id="guestbookMessage" maxlength="300" required placeholder="추모의 마음을 남겨주세요."></textarea></label>
+    <div class="guestbook-form-foot"><small>작성된 글은 추모공간에 공개됩니다.</small><button type="submit">등록</button></div>
+   </form>
+  </section>
   <div class="memorial-list">
    <article class="memorial-card"><div class="memorial-year">2005</div><div class="memorial-info"><span class="memorial-status">순직 센티넬</span><h2><button type="button" class="memorial-name-trigger" data-baek-profile>백청심</button></h2><dl><div><dt>활동 기간</dt><dd>2002 ~ 2005</dd></div><div><dt>당시 소속</dt><dd>초기 국가능력안전 대응반</dd></div><div><dt>기록</dt><dd><button type="button" class="mystery-record-trigger" data-mystery-unlock>괴수 대응 작전 중 순직</button></dd></div></dl><p>초기 괴수 대응체계가 마련되던 시기 현장 대응 임무를 수행했습니다. 2005년 작전 중 순직했으며 관련 기록은 보존자료로 관리되고 있습니다.</p></div></article>
    <article class="memorial-card"><div class="memorial-year">2003</div><div class="memorial-info"><span class="memorial-status">순직 센티넬</span><h2>윤태성</h2><dl><div><dt>활동 기간</dt><dd>2002 ~ 2003</dd></div><div><dt>당시 소속</dt><dd>국가 초상능력 안전관리위원회 현장반</dd></div><div><dt>기록</dt><dd>최초기 괴수 출현지역 통제 중 순직</dd></div></dl><p>괴수 발생 초기의 불안정한 현장 대응체계 속에서 주민 대피와 위험구역 통제를 담당했습니다. 2003년 현장 임무 중 순직했습니다.</p></div></article>
