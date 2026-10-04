@@ -38,28 +38,48 @@
   function showArchiveRecord(){
     const years={
       "2002":[
-        {date:"2002.04.18",label:"첫 출동",detail:[
+        {date:"2002.05.06",label:"현장 출동"},
+        {date:"2002.05.23",label:"괴수 대응 출동"},
+        {date:"2002.06.11",label:"현장 출동"},
+        {date:"2002.07.03",label:"이상징후 대응"},
+        {date:"2002.07.27",label:"괴수 대응 출동"},
+        {date:"2002.08.09",label:"현장 출동"},
+        {date:"2002.09.14",label:"도심권 출동"},
+        {date:"2002.10.02",label:"현장 출동"},
+        {date:"2002.10.21",label:"괴수 대응 출동"},
+        {date:"2002.11.08",label:"현장 출동"},
+        {date:"2002.11.19",label:"이상징후 대응"},
+        {date:"2002.12.12",label:"연말 현장 출동"},
+        {date:"2002.12.27",label:"괴수 대응 출동"},
+        {date:"2002.05.06",label:"첫 출동",detail:[
           ["09:10","출동","최초 괴수 발생지역 현장 투입","백청심 포함 3명 현장 투입. 주민 대피와 현장 통제를 시작함.","수도권 외곽 / 통제구역 설정"],
           ["11:36","현장 도착","주민 대피 및 위험구역 통제","민간인 대피 완료. 미확인 생체반응이 확인된 건물 주변을 통제구역으로 지정.","추가 피해 없음"],
           ["16:22","귀환","초기 대응반 본부 복귀","현장 수습 후 장비 반납 및 경과보고 제출.","후속 관측 인원으로 지정"]
-        ]},
-        {date:"2002.05.02",label:"현장 대응"},
-        {date:"2002.08.19",label:"정기 관측"}
+        ]}
       ],
       "2003":[
-        {date:"2003.02.07",label:"북부권 이상징후 대응"},
-        {date:"2003.06.21",label:"현장 복귀"},
-        {date:"2003.11.03",label:"정기 관측"}
+        {date:"2003.01.14",label:"현장 출동"},{date:"2003.02.07",label:"괴수 대응 출동"},
+        {date:"2003.03.19",label:"현장 출동"},{date:"2003.04.08",label:"이상징후 대응"},
+        {date:"2003.05.17",label:"현장 출동"},{date:"2003.06.21",label:"괴수 대응 출동"},
+        {date:"2003.07.05",label:"현장 출동"},{date:"2003.08.16",label:"도심권 출동"},
+        {date:"2003.09.03",label:"현장 출동"},{date:"2003.10.12",label:"이상징후 대응"},
+        {date:"2003.11.03",label:"괴수 대응 출동"},{date:"2003.12.18",label:"현장 출동"},
+        {date:"2003.12.27",label:"연말 현장 출동"}
       ],
       "2004":[
-        {date:"2004.03.12",label:"도심 외곽 출현 신고 대응"},
-        {date:"2004.09.04",label:"이상반응 관측"},
-        {date:"2004.12.16",label:"현장 대응"}
+        {date:"2004.01.09",label:"현장 출동"},{date:"2004.02.18",label:"괴수 대응 출동"},
+        {date:"2004.03.12",label:"현장 출동"},{date:"2004.04.06",label:"이상징후 대응"},
+        {date:"2004.05.15",label:"현장 출동"},{date:"2004.06.03",label:"괴수 대응 출동"},
+        {date:"2004.07.22",label:"현장 출동"},{date:"2004.08.11",label:"도심권 출동"},
+        {date:"2004.09.04",label:"현장 출동"},{date:"2004.10.17",label:"이상징후 대응"},
+        {date:"2004.11.06",label:"괴수 대응 출동"},{date:"2004.12.16",label:"현장 출동"},
+        {date:"2004.12.28",label:"연말 현장 출동"}
       ],
       "2005":[
-        {date:"2005.02.11",label:"현장 대응"},
-        {date:"2005.06.28",label:"정기 관측"},
-        {date:"2005.08.17",label:"순직 작전",detail:[
+        {date:"2005.01.13",label:"현장 출동"},{date:"2005.02.11",label:"괴수 대응 출동"},
+        {date:"2005.03.08",label:"현장 출동"},{date:"2005.04.19",label:"이상징후 대응"},
+        {date:"2005.05.07",label:"현장 출동"},{date:"2005.06.28",label:"괴수 대응 출동"},
+        {date:"2005.07.16",label:"현장 출동"},{date:"2005.08.17",label:"순직 작전",detail:[
           ["05:42","출동","수도권 제3현장대응반 출동","미확인 생체반응 신고 접수. 백청심 외 4명 출동.","서울 동부권 외곽 산업단지"],
           ["06:18","현장 도착","1차 안전구역 설정","민간인 대피 완료. 반경 300m 통제선 설정.","통제선 유지 / 추가 인원 요청 없음"],
           ["07:03","현장 확인","미확인 개체 흔적 확인","폐창고 내부에서 비정상적인 열원과 잔류물 발견. 개체는 확인되지 않음.","백청심 담당 / 사진 06매"],
@@ -72,13 +92,17 @@
           ["11:06","수습","현장 수습","개체 제압 완료. 백청심의 장비 일부 확인.","통신기 1점 / 보호장비 일부"],
           ["14:20","귀환","제3현장대응반 본부 복귀","잔여 인원 및 장비 본부 복귀.","수도권 초기대응본부"]
         ]},
-        {date:"2005.08.18",label:"순직 처리"}
+        {date:"2005.08.18",label:"순직 처리"},
+        {date:"2005.09.06",label:"후속 현장 출동"},{date:"2005.10.14",label:"괴수 대응 출동"},
+        {date:"2005.11.09",label:"현장 출동"},{date:"2005.12.03",label:"연말 현장 출동"},
+        {date:"2005.12.21",label:"괴수 대응 출동"}
       ]
     };
 
     const detail=list=>list.map(x=>'<article class="archive-log-entry"><time><b>'+x[0]+'</b></time><div><span class="archive-log-type">'+x[1]+'</span><h4>'+x[2]+'</h4><p>'+x[3]+'</p><small>'+x[4]+'</small></div></article>').join('');
     const openDetail=item=>{
-      modal(item.date.replace(/^\d{4}\./,'').replace('.','월 ')+'일 · '+item.label,
+      const parts=item.date.split('.');
+      modal(parts[1]+'월 '+parts[2]+'일 · '+item.label,
         '<div class="mystery-document archive-detail">'+
         '<div class="mystery-doc-meta"><span>백청심 현장자료</span><span>'+item.date+'</span></div>'+
         '<div class="archive-log-list">'+detail(item.detail)+'</div>'+
@@ -86,8 +110,7 @@
     };
     const list=items=>items.map(item=>{
       const clickable=!!item.detail;
-      const cls='archive-date-row'+(clickable?' is-detail':'');
-      return '<button type="button" class="'+cls+'" '+(clickable?'data-archive-detail="'+item.date+'"':'')+'>'+
+      return '<button type="button" class="archive-date-row'+(clickable?' is-detail':'')+'" '+(clickable?'data-archive-detail="'+item.date+'"':'')+'>'+
         '<span class="archive-date">'+item.date.slice(5).replace('.','월 ')+'일</span>'+
         '<span class="archive-date-label">'+item.label+'</span>'+
         (clickable?'<span class="archive-date-arrow">›</span>':'')+'</button>';
@@ -97,17 +120,18 @@
     const o=modal('SSA-O-2005-17 · 백청심 현장자료',
       '<div class="mystery-document archive-log-document">'+
       '<div class="mystery-doc-meta"><span>문서번호 SSA-O-2005-17</span><span>대상 백청심</span></div>'+
-      '<div class="archive-log-head"><strong>백청심 활동 자료</strong><span>2002 ~ 2005</span></div>'+
+      '<div class="archive-log-head"><strong>백청심 활동 자료</strong><span>2002.05 ~ 2005.12</span></div>'+
       '<div class="archive-year-tabs" role="tablist" aria-label="연도별 현장자료">'+tabs+'</div>'+
       '<div class="archive-year-panel archive-date-list" id="archiveYearPanel">'+list(years["2005"])+'</div>'+
-      '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.04 ~ 2005.08</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
+      '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.05 ~ 2005.12</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
       '</div>');
     if(o){
       sessionStorage.setItem('ssa_17_unlocked','1');
       const panel=o.querySelector('#archiveYearPanel');
       const bind=()=>{
         o.querySelectorAll('[data-archive-detail]').forEach(btn=>btn.addEventListener('click',()=>{
-          const item=(years[btn.closest('.mystery-dialog')?.querySelector('.archive-year-tab.active')?.dataset.archiveYear||'2005']||[]).find(x=>x.date===btn.dataset.archiveDetail);
+          const active=o.querySelector('.archive-year-tab.active')?.dataset.archiveYear||'2005';
+          const item=(years[active]||[]).find(x=>x.date===btn.dataset.archiveDetail);
           if(item?.detail) openDetail(item);
         }));
       };
