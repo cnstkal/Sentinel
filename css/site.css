@@ -2964,3 +2964,41 @@ body.photo-admin .guide-admin-bar{display:flex}
  .archive-log-footer{grid-template-columns:1fr}
  .archive-log-footer small{justify-self:start}
 }
+
+
+/* 백청심 현장자료 연도별 열람 */
+.mystery-dialog{width:min(780px,calc(100vw - 32px));max-height:86vh}
+.mystery-dialog-body{max-height:calc(86vh - 64px);overflow:auto}
+.archive-log-document{padding-bottom:6px}
+.archive-log-head{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:16px 0 14px;border-bottom:1px solid #dce1e8}
+.archive-log-head strong{font-size:17px;color:#182231}
+.archive-log-head span{font-size:12px;color:#687386;white-space:nowrap}
+.archive-year-tabs{display:flex;gap:6px;padding:14px 0;border-bottom:1px solid #e2e6ec;position:sticky;top:0;background:#fff;z-index:2}
+.archive-year-tab{border:1px solid #d8dee7;background:#f7f8fa;color:#5d6878;border-radius:3px;padding:8px 18px;font:inherit;font-size:12px;cursor:pointer}
+.archive-year-tab:hover{background:#eef1f5}
+.archive-year-tab.active{background:#17385f;color:#fff;border-color:#17385f;font-weight:700}
+.archive-year-panel{padding-top:2px}
+.archive-log-entry{display:grid;grid-template-columns:92px minmax(0,1fr);gap:18px;padding:17px 4px;border-bottom:1px solid #edf0f4}
+.archive-log-entry time{font-size:11px;line-height:1.5;color:#697487;text-align:right;padding-top:3px}
+.archive-log-entry time b{font-size:13px;color:#253044}
+.archive-log-entry>div{min-width:0;padding-left:16px;border-left:1px solid #d9dfe7}
+.archive-log-entry h4{margin:5px 0 5px;font-size:15px;line-height:1.45;color:#1b2535;word-break:keep-all}
+.archive-log-entry p{margin:0 0 5px;font-size:13px;line-height:1.65;color:#495568;word-break:keep-all}
+.archive-log-entry small{font-size:11px;line-height:1.5;color:#8993a2;word-break:keep-all}
+.archive-log-type{display:inline-block;font-size:10px;letter-spacing:.02em;color:#5d6879;background:#f1f3f6;border:1px solid #e0e4ea;padding:3px 7px}
+.archive-log-critical{background:#fafbfc}
+.archive-log-footer{display:grid;grid-template-columns:auto auto 1fr;gap:10px 18px;align-items:center;padding:15px 0 3px;color:#697487;font-size:11px}
+.archive-log-footer b{font-size:12px;color:#313b4b}
+.archive-log-footer small{justify-self:end}
+@media(max-width:640px){
+ .mystery-dialog{width:calc(100vw - 18px);max-height:90vh}
+ .mystery-dialog-body{max-height:calc(90vh - 58px)}
+ .archive-year-tabs{gap:4px}
+ .archive-year-tab{flex:1;padding:8px 5px}
+ .archive-log-entry{grid-template-columns:68px minmax(0,1fr);gap:10px;padding:14px 0}
+ .archive-log-entry>div{padding-left:11px}
+ .archive-log-entry h4{font-size:14px}
+ .archive-log-entry p{font-size:12px}
+ .archive-log-footer{grid-template-columns:1fr}
+ .archive-log-footer small{justify-self:start}
+}
