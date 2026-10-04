@@ -3033,3 +3033,9 @@ body.photo-admin .guide-admin-bar{display:flex}
 @media(max-width:640px){
  .archive-date-row{grid-template-columns:82px minmax(0,1fr) 18px!important;padding:13px 4px!important}
 }
+
+
+/* 보존자료 연도 탭은 모달 내부 스크롤 기준으로 상단 고정 */
+.mystery-dialog{overflow:hidden}
+.mystery-dialog-body{overflow-y:auto!important;min-height:0}
+.archive-year-tabs{position:sticky!important;top:0!important;z-index:10!important;background:#fff!important}
