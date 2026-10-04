@@ -283,19 +283,22 @@
   ['푸른별','순직 센티넬 전체','우리가 평범하게 하루를 보낼 수 있었던 건 누군가의 희생이 있었기 때문이라고 생각합니다. 기억하겠습니다.','2026.10.01'],
   ['기억할게요','박재민','3주기입니다. 잊지 않겠습니다. 삼가 고인의 명복을 빕니다.','2026.10.01'],
   ['anonymous','순직 센티넬 전체','삼가 고인의 명복을 빕니다.','2026.10.02'],
-  ['기록을읽는사람','순직 센티넬 전체','추모한다고 하면서 왜 2011년 이후 기록에서는 계속 표현이 달라졌는지 설명은 해주셨으면 합니다. 당시 사람들은 무엇을 알고 있었나요?','2026.10.02'],
-  ['진실을기억하자','이도현','“은폐하려고 했던 기록”까지 공개하지 않는다면 추모라는 말도 공허합니다. 2011년 전후 기록을 비교해 보신 분들은 아실 겁니다.','2026.10.03'],
+  ['의문','이도현','정말 전부 순직한 게 맞습니까? 기록에 적힌 내용만으로는 납득하기 어렵습니다.','2026.10.02'],
+  ['기록을찾는사람','순직 센티넬 전체','왜 사망 경위는 제대로 공개하지 않는 건가요? 단순히 작전 중 순직했다고만 적혀 있는데, 실제로는 다른 일이 있었던 것 아닙니까?','2026.10.02'],
+  ['진실을말해줘','백청심','순직이라고 발표했지만 혹시 누군가에게 살해된 것은 아닌지 의문입니다. 당시 작전 기록을 전부 공개해 주세요.','2026.10.03'],
   ['ㅇㅅㅇ','순직 센티넬 전체','삼가 고인의 명복을 빕니다.','2026.10.03'],
-  ['현장기억','김서현','당시 현장에 있었던 분들의 기록도 언젠가는 제대로 공개되기를 바랍니다. 삼가 고인의 명복을 빕니다.','2026.10.04']
+  ['현장기억','김서현','당시 현장에 있었던 분들의 기록도 언젠가는 제대로 공개되기를 바랍니다. 삼가 고인의 명복을 빕니다.','2026.10.04'],
+  ['익명','백청심','정부에서는 순직이라고 하는데, 왜 정확한 사망 원인은 공개하지 않는 건가요? 사고였다는 설명도 이상합니다.','2026.10.04']
  ];
  const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
  function guestbookHtml(){
-  return '<section class="memorial-guestbook"><div class="section-head"><div><h2>추모의 글</h2><p class="guestbook-subtitle">순직 센티넬을 기억하는 국민들의 글입니다.</p></div><small>MEMORIAL GUESTBOOK</small></div><div class="guestbook-list">'+seed.slice().reverse().map(x=>'<article class="guestbook-entry"><div class="guestbook-entry-meta"><b>'+esc(x[0])+'</b><time>'+x[3]+'</time></div><div class="guestbook-entry-target">추모 대상 · '+esc(x[1])+'</div><p>'+esc(x[2])+'</p></article>').join('')+'</div></section>';
+  return '<section id="memorialGuestbook" class="memorial-guestbook"><div class="section-head"><div><h2>추모의 글</h2><p class="guestbook-subtitle">추모기간 동안 접수된 국민들의 글을 공개합니다.</p></div><small>MEMORIAL GUESTBOOK</small></div><div class="guestbook-list">'+seed.slice().reverse().map(x=>'<article class="guestbook-entry"><div class="guestbook-entry-meta"><b>'+esc(x[0])+'</b><time>'+x[3]+'</time></div><div class="guestbook-entry-target">추모 대상 · '+esc(x[1])+'</div><p>'+esc(x[2])+'</p></article>').join('')+'</div></section>';
  }
  function addGuestbook(){
   if(location.hash!=='#memorial'||document.getElementById('memorialGuestbook'))return;
-  const root=document.querySelector('#memorial .memorial-page'); if(!root)return;
-  const s=document.createElement('section');s.id='memorialGuestbook';s.innerHTML=guestbookHtml();root.appendChild(s.firstElementChild);
+  const root=document.querySelector('#memorial .content-body')||document.querySelector('#memorial .memorial-page')||document.querySelector('#memorial .pg-wrap');
+  if(!root)return;
+  root.insertAdjacentHTML('beforeend',guestbookHtml());
  }
  function homePopup(){
   if(location.hash&&location.hash!=='#home')return;
@@ -305,8 +308,9 @@
   document.body.appendChild(o);
   const close=()=>o.remove();o.querySelector('.mystery-close').onclick=close;
   o.addEventListener('click',e=>{if(e.target===o)close()});
-  o.querySelector('.memorial-popup-go').addEventListener('click',()=>close());
+  o.querySelector('.memorial-popup-go').addEventListener('click',close);
  }
  function run(){addGuestbook();homePopup();}
- window.addEventListener('hashchange',()=>setTimeout(run,120));setTimeout(run,700);
+ window.addEventListener('hashchange',()=>setTimeout(run,120));
+ setTimeout(run,700);
 })();
