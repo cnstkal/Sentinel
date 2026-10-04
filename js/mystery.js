@@ -291,7 +291,7 @@
  ];
  const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
  function guestbookHtml(){
-  return '<section id="memorialGuestbook" class="memorial-guestbook"><div class="section-head"><div><h2>추모의 글</h2><p class="guestbook-subtitle">추모기간 동안 접수된 국민들의 글을 공개합니다.</p></div><small>MEMORIAL GUESTBOOK</small></div><div class="guestbook-list">'+seed.slice().reverse().map(x=>'<article class="guestbook-entry"><div class="guestbook-entry-meta"><b>'+esc(x[0])+'</b><time>'+x[3]+'</time></div><div class="guestbook-entry-target">추모 대상 · '+esc(x[1])+'</div><p>'+esc(x[2])+'</p></article>').join('')+'</div></section>';
+  return '<section id="memorialGuestbook" class="memorial-guestbook"><div class="section-head"><div><h2>추모의 글</h2></div><small>MEMORIAL GUESTBOOK</small></div><div class="guestbook-list">'+seed.slice().reverse().map(x=>'<article class="guestbook-entry"><div class="guestbook-entry-meta"><b>'+esc(x[0])+'</b><time>'+x[3]+'</time></div><div class="guestbook-entry-target">추모 대상 · '+esc(x[1])+'</div><p>'+esc(x[2])+'</p></article>').join('')+'</div></section>';
  }
  function addGuestbook(){
   if(location.hash!=='#memorial'||document.getElementById('memorialGuestbook'))return;
