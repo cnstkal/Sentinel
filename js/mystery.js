@@ -36,27 +36,57 @@
   }
 
   function showArchiveRecord(){
-    const o=modal('SSA-O-2005-17 · 백청심 현장기록',
+    const years={
+      "2002":[
+        ["2002.04.18","09:10","초기 출동","최초 괴수 발생지역 현장 확인","백청심 포함 3명 현장 투입. 주민 대피와 현장 통제를 시작함.","수도권 외곽 / 통제구역 설정"],
+        ["2002.04.18","11:36","현장 도착","주민 대피 및 위험구역 통제","민간인 대피 완료. 미확인 생체반응이 확인된 건물 주변을 통제구역으로 지정.","추가 피해 없음"],
+        ["2002.05.02","16:22","귀환","초기 대응반 본부 복귀","현장 수습 후 장비 반납 및 경과보고 제출.","후속 관측 인원으로 지정"]
+      ],
+      "2003":[
+        ["2003.02.07","07:48","출동","북부권 이상징후 신고 대응","반복되는 진동 신고 접수. 백청심 외 3명 출동.","경기 북부권"],
+        ["2003.02.07","10:15","현장 확인","폐시설 내부 이상반응 확인","비정상적인 열원과 생체조직 잔류물 확인. 개체는 발견되지 않음.","백청심 담당 / 사진자료 04매"],
+        ["2003.06.21","18:40","복귀","현장대응반 귀환","위험요소 제거 확인 후 본부 복귀. 동일 지점 정기 관측 지정.","후속 관측 예정"]
+      ],
+      "2004":[
+        ["2004.03.12","06:35","출동","도심 외곽 출현 신고 대응","출현 신고 접수 후 제2현장대응반과 합류. 주민 대피 및 교통 통제 실시.","출동인원 5명"],
+        ["2004.03.12","08:02","현장 확인","개체 이동경로 추적","개체가 현장을 이탈한 뒤 남은 흔적을 확인. 백청심은 북측 구간 담당.","개체 미확인"],
+        ["2004.09.04","21:17","관측","반복 이상반응 확인","이전 출동지역과 유사한 생체반응 측정. 관측번호 17 부여.","계측기 03호 / 원자료 별도 보존"]
+      ],
+      "2005":[
+        ["2005.08.17","05:42","출동","수도권 제3현장대응반 출동 지시","미확인 생체반응 신고 접수. 백청심 외 4명 출동.","서울 동부권 외곽 산업단지"],
+        ["2005.08.17","06:18","현장 도착","1차 안전구역 설정","민간인 대피 완료. 반경 300m 통제선 설정.","통제선 유지 / 추가 인원 요청 없음"],
+        ["2005.08.17","07:03","현장 확인","미확인 개체 흔적 확인","폐창고 내부에서 비정상적인 열원과 잔류물 발견. 개체는 확인되지 않음.","백청심 담당 / 사진 06매"],
+        ["2005.08.17","08:27","능력 발현","백청심 능력 반응 확인","현장 진입 직후 능력 반응 발생. 기존 자료보다 높은 반응이 측정됨.","계측기 03호 / 원자료 별도 보존"],
+        ["2005.08.17","08:31","괴수 발생","미확인 개체 출현","통제구역 중앙에서 미확인 개체 출현. 대응반 방어대형 전환.","당시 판정 보류 / 주민 피해 없음"],
+        ["2005.08.17","08:46","교전","1차 제압 시도","개체 이동경로 차단 및 억제 시도. 백청심의 위치를 지속적으로 추적하는 양상 확인.","대응반 2명 경상"],
+        ["2005.08.17","09:12","지원 요청","추가 대응인력 요청","현장 상황 악화로 지원반 요청. 백청심은 현장 잔류.","09:11 이후 일부 통신 불안정"],
+        ["2005.08.17","09:28","복귀","현장대응반 일부 귀환","1차 대응인력 복귀 시작. 백청심은 현장 확인을 위해 잔류.","복귀 3명 / 잔류 2명"],
+        ["2005.08.17","09:41","신호 소실","백청심 위치 신호 중단","위치 신호 및 통신 응답이 동시에 중단됨. 재진입 보류.","통제구역 북측 / 응답 없음"],
+        ["2005.08.17","11:06","수습","현장 수습","개체 제압 완료. 백청심의 장비 일부 확인.","통신기 1점 / 보호장비 일부"],
+        ["2005.08.17","14:20","귀환","제3현장대응반 본부 복귀","잔여 인원 및 장비 본부 복귀.","수도권 초기대응본부"],
+        ["2005.08.18","18:04","순직 처리","백청심 순직 처리","전일 작전 중 행방불명된 백청심을 순직 처리.","SSA-C-2005-0818-03"]
+      ]
+    };
+    const entries=list=>list.map(x=>'<article class="archive-log-entry"><time>'+x[0]+'<br><b>'+x[1]+'</b></time><div><span class="archive-log-type">'+x[2]+'</span><h4>'+x[3]+'</h4><p>'+x[4]+'</p><small>'+x[5]+'</small></div></article>').join('');
+    const tabs=Object.keys(years).map(y=>'<button type="button" class="archive-year-tab'+(y==='2005'?' active':'')+'" data-archive-year="'+y+'">'+y+'년</button>').join('');
+    const o=modal('SSA-O-2005-17 · 백청심 현장자료',
       '<div class="mystery-document archive-log-document">'+
-      '<div class="mystery-doc-meta"><span>문서번호 SSA-O-2005-17</span><span>기록대상 백청심</span></div>'+
-      '<div class="archive-log-head"><strong>초기 괴수 대응 현장기록</strong><span>2005.08.17 · 보존본</span></div>'+
-      '<div class="archive-log-list">'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>05:42</b></time><div><span class="archive-log-type">출동 명령</span><h4>수도권 제3현장대응반 출동 지시</h4><p>서울 동부권에서 미확인 생체반응 신고 접수. 백청심 외 4명 출동.</p><small>출동지점 · 서울 동부권 외곽 산업단지</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>06:18</b></time><div><span class="archive-log-type">출정 기록</span><h4>현장 도착 및 1차 안전구역 설정</h4><p>주변 민간인 대피 완료. 현장 반경 300m 통제선 설정. 특이한 진동 및 고주파음 확인.</p><small>현장상태 · 통제선 유지 / 추가 인원 요청 없음</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>07:03</b></time><div><span class="archive-log-type">현장 기록</span><h4>미확인 개체 흔적 확인</h4><p>폐창고 내부에서 비정상적인 열원과 생체조직 잔류물 발견. 개체는 확인되지 않음.</p><small>담당 · 백청심 / 현장 사진 06매 보존</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:27</b></time><div><span class="archive-log-type">능력 발현</span><h4>백청심 능력 반응 기록</h4><p>현장 진입 직후 능력 반응 발생. 기존 안전기록과 비교해 반응 강도가 비정상적으로 높음.</p><small>측정 · 현장 계측기 03호 / 원자료 별도 보존</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:31</b></time><div><span class="archive-log-type">괴수 발생</span><h4>괴수 개체 출현</h4><p>통제구역 중앙에서 미확인 개체 출현. 현장대응반 즉시 방어대형으로 전환.</p><small>개체분류 · 당시 판정 보류 / 주민 피해 없음</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:46</b></time><div><span class="archive-log-type">교전 기록</span><h4>1차 제압 시도</h4><p>개체 이동경로 차단 및 능력 억제 시도. 개체가 백청심의 위치를 지속적으로 추적하는 양상 확인.</p><small>상태 · 현장대응반 2명 경상</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>09:12</b></time><div><span class="archive-log-type">통신 기록</span><h4>지원반 도착 요청</h4><p>현장 상황 악화로 추가 대응인력 요청. 백청심은 현장 잔류 및 후방 대피로 확보를 담당.</p><small>통신상태 · 09:11 이후 일부 기록 불안정</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>09:28</b></time><div><span class="archive-log-type">복귀 기록</span><h4>현장대응반 일부 복귀</h4><p>민간인 대피 완료에 따라 1차 대응인력 복귀 시작. 백청심은 현장 확인을 위해 잔류.</p><small>복귀 인원 · 3명 / 잔류 인원 · 2명</small></div></article>'+
-        '<article class="archive-log-entry archive-log-critical"><time>2005.08.17<br><b>09:41</b></time><div><span class="archive-log-type">마지막 확인</span><h4>백청심 현장 신호 소실</h4><p>백청심의 위치 신호 및 통신 응답이 동시에 중단됨. 현장 재진입은 위험도 상승으로 보류.</p><small>최종 확인 위치 · 통제구역 북측 / 상태 · 응답 없음</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>11:06</b></time><div><span class="archive-log-type">수습 기록</span><h4>현장 수습 및 잔류 개체 확인</h4><p>괴수 개체 제압 완료. 현장 수습 과정에서 백청심의 장비 일부 확인.</p><small>수습품 · 통신기 1점 / 보호장비 일부 / 개인기록물 없음</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.17<br><b>14:20</b></time><div><span class="archive-log-type">복귀 기록</span><h4>제3현장대응반 귀환</h4><p>잔여 인원 및 장비 본부 복귀. 현장 보고서는 당일 18:00까지 제출하도록 지시.</p><small>귀환지 · 수도권 초기대응본부</small></div></article>'+
-        '<article class="archive-log-entry"><time>2005.08.18<br><b>18:04</b></time><div><span class="archive-log-type">사망 기록</span><h4>백청심 순직 처리</h4><p>전일 작전 중 행방불명된 백청심을 순직 처리. 유가족 통보 및 장비 회수 절차 진행.</p><small>처리번호 · SSA-C-2005-0818-03</small></div></article>'+
-      '</div>'+
-      '<div class="archive-log-footer"><span>보존본 열람 기록</span><b>2005.08.17 ~ 2005.08.18</b><small>일부 원자료는 현행 보안기준에 따라 비공개 처리됨.</small></div>'+
+      '<div class="mystery-doc-meta"><span>문서번호 SSA-O-2005-17</span><span>대상 백청심</span></div>'+
+      '<div class="archive-log-head"><strong>초기 괴수 대응 현장자료</strong><span>2002 ~ 2005</span></div>'+
+      '<div class="archive-year-tabs" role="tablist" aria-label="연도별 현장자료">'+tabs+'</div>'+
+      '<div class="archive-year-panel" id="archiveYearPanel">'+entries(years["2005"])+'</div>'+
+      '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.04 ~ 2005.08</b><small>일부 원자료는 현행 보안기준에 따라 비공개 처리됨.</small></div>'+
       '</div>');
-    if(o) sessionStorage.setItem('ssa_17_unlocked','1');
+    if(o){
+      sessionStorage.setItem('ssa_17_unlocked','1');
+      const panel=o.querySelector('#archiveYearPanel');
+      o.querySelectorAll('[data-archive-year]').forEach(tab=>tab.addEventListener('click',()=>{
+        o.querySelectorAll('[data-archive-year]').forEach(x=>x.classList.remove('active'));
+        tab.classList.add('active');
+        panel.innerHTML=entries(years[tab.dataset.archiveYear]);
+        panel.scrollTop=0;
+      }));
+    }
   }
 
   function baekProfile(){
