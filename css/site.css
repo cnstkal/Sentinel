@@ -2898,3 +2898,36 @@ body.photo-admin .guide-admin-bar{display:flex}
  .memorial-info dl{grid-template-columns:1fr 1fr}
  .memorial-footer{flex-direction:column}
 }
+
+/* ===== 17번째 관측 / 백청심 미스터리 UI ===== */
+.memorial-name-trigger,.mystery-record-trigger,.archive-clue-trigger{appearance:none;border:0;background:none;font:inherit;color:inherit;text-align:left;padding:0;margin:0;cursor:pointer}
+.memorial-name-trigger{font-weight:800}.memorial-name-trigger:hover{color:var(--blue);text-decoration:underline;text-underline-offset:4px}
+.mystery-record-trigger{color:#4f6072;border-bottom:1px dotted #8a97a5}.mystery-record-trigger:hover{color:var(--blue)}
+.archive-clue-trigger{display:block;width:100%;color:inherit}.archive-clue-trigger:hover b{text-decoration:underline;color:var(--blue)}
+.archive-clue-trigger small{display:block;margin-top:2px;color:#7b8794;font-size:11px}
+.archive-clue-note{margin-top:18px;padding:12px 15px;border-left:3px solid #aeb9c6;background:#f8f9fb;color:#687687;font-size:12px;line-height:1.8}
+.baek-profile-page .content-body{padding-bottom:50px}
+.baek-profile-card{border:1px solid #dbe2e9;background:#fff}
+.baek-profile-summary{display:grid;grid-template-columns:92px 1fr;gap:24px;padding:30px;border-bottom:1px solid #e4e9ee;background:#fbfcfd}
+.baek-seal{width:78px;height:78px;border:1px solid #b9c5d1;border-radius:50%;display:grid;place-items:center;text-align:center;color:#526273;font-size:11px;line-height:1.35;letter-spacing:.04em}
+.baek-profile-summary h2{margin:7px 0 4px;color:var(--navy);font-size:30px}
+.baek-profile-summary p{margin:0;color:#657486;font-size:14px}
+.baek-profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid #e4e9ee}
+.baek-profile-grid>div{padding:20px 24px;border-bottom:1px solid #edf0f3}.baek-profile-grid>div:nth-child(odd){border-right:1px solid #edf0f3}
+.baek-profile-grid span{display:block;color:#7b8794;font-size:11px;margin-bottom:5px}.baek-profile-grid b{color:#334457;font-size:14px}
+.baek-record-section{padding:28px}
+.baek-record-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 0}
+.baek-record-row p{margin:5px 0 0;color:#667587;font-size:13px}
+.baek-locked-record{min-width:240px;text-align:left;border:1px solid #c7d1db;background:#f8fafc;padding:15px 17px;cursor:pointer;display:flex;flex-direction:column;gap:3px;color:var(--navy)}
+.baek-locked-record:hover{border-color:#6f8dab;background:#f3f7fb}
+.baek-locked-record span{font-size:10px;color:#8a96a3;letter-spacing:.06em}.baek-locked-record strong{font-size:14px}.baek-locked-record small{font-size:10px;color:#84909d}
+.baek-hint-strip{margin:0 28px 28px;padding:15px 18px;border:1px dashed #cbd4dd;background:#fafbfc}.baek-hint-strip span{font-size:10px;color:#7c8996;font-weight:800;letter-spacing:.08em}.baek-hint-strip p{margin:4px 0 0;color:#697788;font-size:12px}
+.mystery-modal{position:fixed;inset:0;z-index:100000;background:rgba(9,23,39,.58);display:flex;align-items:center;justify-content:center;padding:20px}
+.mystery-dialog{width:min(560px,100%);max-height:min(760px,calc(100vh - 40px));overflow:auto;background:#fff;border:1px solid #aebccc;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+.mystery-dialog-head{height:46px;display:flex;align-items:center;padding:0 16px;background:#172d49;color:#fff}.mystery-classified{font-size:10px;letter-spacing:.12em;font-weight:800}.mystery-close{margin-left:auto;border:0;background:transparent;color:#fff;font-size:24px;line-height:1;padding:0 4px;cursor:pointer}
+.mystery-dialog-body{padding:28px}.mystery-dialog-body h2{margin:0 0 18px;color:var(--navy);font-size:23px}.mystery-lead{margin:0 0 10px;color:#3f5063}.mystery-muted{color:#7a8794;font-size:12px}.mystery-password-form{margin-top:22px;padding:18px;background:#f6f8fa;border:1px solid #e0e5ea}.mystery-password-form label{display:block;font-size:11px;color:#667587;margin-bottom:6px}.mystery-password-form input{width:100%;height:44px;border:1px solid #bfcad5;background:#fff;padding:0 12px;outline:none}.mystery-password-form input:focus{border-color:#4f78a2;box-shadow:0 0 0 2px rgba(79,120,162,.12)}.mystery-password-form button{margin-top:9px;width:100%;height:42px;border:0;background:#172d49;color:#fff;font-weight:700;cursor:pointer}.mystery-error{min-height:20px;margin:7px 0 0;color:#b33b3b;font-size:12px}.mystery-hint-line{margin-top:14px;color:#8a96a2;font-size:10px;text-align:center}
+.mystery-code{margin:18px 0;padding:18px;background:#f4f6f8;border:1px solid #d9e0e7;text-align:center;font:700 24px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace;color:#334457;letter-spacing:.12em}
+.mystery-document{font-size:13px;line-height:1.9;color:#435467}.mystery-doc-meta{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #e3e8ed;color:#7b8794;font-size:11px}.mystery-document h3{margin:22px 0 12px;font-size:18px;color:var(--navy)}.mystery-document p{margin:10px 0}.mystery-note{margin:20px 0;padding:16px 18px;border-left:3px solid #596d82;background:#f7f8fa}.mystery-note strong{display:block;margin-bottom:6px;color:#26384d}.mystery-redacted{color:#596979}.mystery-stamp{display:inline-block;margin-top:15px;border:1px solid #9daab7;padding:4px 8px;color:#697888;font-size:10px;letter-spacing:.06em}
+@media(max-width:700px){
+ .baek-profile-summary{grid-template-columns:1fr;padding:22px}.baek-seal{width:64px;height:64px}.baek-profile-grid{grid-template-columns:1fr}.baek-profile-grid>div:nth-child(odd){border-right:0}.baek-record-section{padding:20px}.baek-record-row{flex-direction:column;align-items:stretch}.baek-locked-record{min-width:0}.baek-hint-strip{margin:0 20px 20px}.mystery-dialog-body{padding:22px}.mystery-doc-meta{flex-direction:column;gap:3px}
+}
