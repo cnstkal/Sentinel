@@ -1,6 +1,6 @@
 /* ===== THE 17TH OBSERVATION / BAek Cheong-sim mystery layer ===== */
 (function(){
-  const KEY=[50,48,48,53,49,55].map(n=>String.fromCharCode(n)).join('');
+  const KEY=[48,50,48,53,48,54,48,57,52,49].map(n=>String.fromCharCode(n)).join('');
   const esc=s=>String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const modal=(title,body,opts={})=>{
     document.getElementById('mysteryModal')?.remove();
@@ -24,7 +24,7 @@
       '<form id="mysteryPasswordForm" class="mystery-password-form">'+
       '<label for="mysteryPassword">비밀번호</label><input id="mysteryPassword" type="password" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="비밀번호 입력">'+
       '<button type="submit">열람</button><p id="mysteryPasswordError" class="mystery-error" aria-live="polite"></p></form>'+
-      '<div class="mystery-hint-line">보안상 비밀번호 자체는 이 화면에서 안내하지 않습니다.</div>');
+      '');
     const form=o.querySelector('#mysteryPasswordForm'),input=o.querySelector('#mysteryPassword'),err=o.querySelector('#mysteryPasswordError');
     form.addEventListener('submit',e=>{
       e.preventDefault();
@@ -155,9 +155,9 @@
       e.preventDefault();
       const kind=clue.dataset.mysteryClueKind;
       if(kind==='17') modal('문서 식별정보',
-        '<p>初期 보존문서의 문서번호 끝자리는 내부 관측기록 번호로 사용되었다.</p><div class="mystery-code">…-17</div><p class="mystery-muted">동일한 번호가 서로 다른 연도의 자료에서 반복된다.</p>');
+        '<p>초기 보존문서의 식별번호에는 현장자료를 추적하기 위한 내부 규칙이 적용되어 있다.</p><p class="mystery-muted">공개된 문서번호만으로는 열람 인증정보를 바로 확인할 수 없다.</p>');
       if(kind==='2005') modal('사건 연도 대조',
-        '<p>백청심의 공식 순직기록은 <b>2005년</b>으로 정리되어 있다.</p><p class="mystery-muted">공식 기록과 현장 원본의 날짜를 대조할 필요가 있다는 메모가 남아 있다.</p>');
+        '<p>백청심의 추모기록과 초기 현장자료는 서로 다른 문서 체계로 보존되어 있다.</p><p class="mystery-muted">두 자료의 날짜 표기를 대조하면 인증에 필요한 단서를 좁힐 수 있다.</p>');
       if(kind==='record') modal('기록 항목 안내',
         '<p>추모기록은 인적사항만을 공개하지만, 일부 초기 인물의 <b>기록</b> 항목은 별도 보존문서와 연결된다.</p><p class="mystery-muted">연결 대상은 모든 순직자에게 동일하지 않다.</p>');
     }
