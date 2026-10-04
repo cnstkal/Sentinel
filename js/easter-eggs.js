@@ -23,10 +23,10 @@
     });
   }
   document.addEventListener('DOMContentLoaded',()=>{
-    clicks(document.querySelector('.header-top .brand .emblem'),7,'egg01','보관기록 2002-04-17 · 최초 관측 보고서는 아직 공개되지 않았습니다.');
+    clicks(document.querySelector('.header-top .brand .emblem'),7,'egg01','보관기록 2002-04-17 · 최초 괴수 관측 보고서는 아직 공개되지 않았습니다.');
     const search=document.getElementById('searchInput');
     search?.addEventListener('input',()=>{
-      if(search.value.replace(/\s/g,'')==='2002')found('egg02','검색 색인: 2002년 자료 1건 · 열람 권한이 제한되어 있습니다.');
+      if(search.value.replace(/\s/g,'')==='2002')found('egg02','검색 색인: 2002년 자료 1건 · 열람 권한이 제한되어 있습니다.');\n      if(search.value.replace(/\s/g,'')==='2005')found('egg13','보존자료 색인: 2005년 초기 대응기록 · 일부 작전기록은 현재도 제한 열람입니다.');
     });
     clicks(document.getElementById('siteCurrentDateTime'),5,'egg03','시각 동기화 기록 · 마지막 확인: 정상 · 다음 확인: 자동 처리');
     const copyright=[...document.querySelectorAll('.footer-info')].find(x=>x.textContent.includes('Copyright'));
