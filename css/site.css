@@ -3074,3 +3074,14 @@ body.photo-admin .guide-admin-bar{display:flex}
 
 /* Investigation review panel */
 .ssa-record-review{margin-top:28px;border:1px solid #d8e0e8;background:#fbfcfd;padding:24px}.ssa-review-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;border-bottom:1px solid #e5e9ee;padding-bottom:18px}.ssa-review-head span,.ssa-review-next span,.ssa-review-note>span{display:block;color:#7a8795;font-size:10px;font-weight:800;letter-spacing:.08em;margin-bottom:5px}.ssa-review-head h2{margin:0;color:#24364c;font-size:18px}.ssa-review-head p{margin:6px 0 0;color:#697788;font-size:12px;line-height:1.7}.ssa-review-head>b{font-size:12px;color:#344b68;white-space:nowrap}.ssa-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.ssa-review-item{border:1px solid #dce3ea;background:#fff;padding:15px;text-align:left;cursor:pointer;color:#27384d}.ssa-review-item:hover{background:#f5f8fb;border-color:#b9c7d5}.ssa-review-item span{display:block;font-size:10px;color:#8a96a4;margin-bottom:8px}.ssa-review-item b{display:block;font-size:13px;line-height:1.45}.ssa-review-item small{display:block;margin-top:6px;color:#718092;font-size:11px;line-height:1.55}.ssa-review-next{margin-top:14px;padding-top:14px;border-top:1px solid #e5e9ee}.ssa-review-next strong{font-size:12px;color:#4b5c70;font-weight:600}.ssa-review-note{margin-top:20px;padding:16px 18px;border:1px solid #dce3ea;background:#f8fafc}.ssa-review-note p{margin:5px 0;color:#556578;font-size:12px;line-height:1.8}.ssa-review-note small{color:#8995a2;font-size:10px}@media(max-width:700px){.ssa-record-review{padding:18px}.ssa-review-head{display:block}.ssa-review-head>b{display:block;margin-top:10px}.ssa-review-grid{grid-template-columns:1fr}}
+
+
+/* ===== PUBLIC CROSS-CHECK / STORY LAYER 01 ===== */
+.ssa-story-crosscheck{margin-top:28px;border:1px solid #d8e0e8;background:#fbfcfd;padding:20px 22px;color:#4d5d70}
+.ssa-story-cross-head{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
+.ssa-story-cross-head span{font-size:10px;font-weight:800;letter-spacing:.08em;color:#7d8997}
+.ssa-story-cross-head b{font-size:15px;color:#293b51}
+.ssa-story-crosscheck p{margin:7px 0;font-size:12px;line-height:1.8}
+.ssa-story-crosscheck button{margin-top:8px;border:1px solid #aebbc9;background:#fff;color:#243b57;padding:9px 13px;font-size:11px;font-weight:700;cursor:pointer}
+.ssa-story-crosscheck button:hover{background:#f2f6fa;border-color:#7f93aa}
+@media(max-width:700px){.ssa-story-crosscheck{padding:17px}.ssa-story-cross-head b{font-size:14px}}
