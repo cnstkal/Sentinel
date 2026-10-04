@@ -1,24 +1,41 @@
-name: Sentinel scheduled publication
+name: Sentinel live safety updater
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  publish:
+  refresh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Update scheduler heartbeat
+
+      - name: Refresh live feed timestamp
         run: |
-          mkdir -p .sentinel
-          date -u +"%Y-%m-%dT%H:%M:%SZ" > .sentinel/last-scheduler-run.txt
+          node <<'NODE'
+          const fs=require('fs');
+          const p='data/live-crisis.json';
+          const d=JSON.parse(fs.readFileSync(p,'utf8'));
+          const now=new Date();
+          const parts=new Intl.DateTimeFormat('ko-KR',{
+            timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',
+            hour:'2-digit',minute:'2-digit',hour12:false
+          }).formatToParts(now).reduce((o,x)=>(o[x.type]=x.value,o),{});
+          d.updatedAt=now.toISOString();
+          d.updatedAtDisplay=`${parts.year}.${parts.month}.${parts.day} ${parts.hour}:${parts.minute}`;
+          fs.writeFileSync(p,JSON.stringify(d,null,2)+'\n');
+          fs.mkdirSync('.sentinel',{recursive:true});
+          fs.writeFileSync('.sentinel/last-scheduler-run.txt',now.toISOString()+'\n');
+          NODE
+
+      - name: Commit refresh
+        run: |
           git config user.name "Sentinel Automation"
           git config user.email "actions@users.noreply.github.com"
-          git add .sentinel/last-scheduler-run.txt
-          git diff --cached --quiet || git commit -m "chore: scheduled publication heartbeat"
+          git add data/live-crisis.json .sentinel/last-scheduler-run.txt
+          git diff --cached --quiet || git commit -m "chore: refresh live crisis feed"
           git push
