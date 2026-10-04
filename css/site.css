@@ -2741,3 +2741,23 @@ body.photo-admin .guide-admin-bar{display:flex}
     box-shadow:none;
   }
 }
+
+/* ===== 위기경보 지도 지역 선택 표시 정리 ===== */
+.crisis-map-svg,
+.crisis-map-svg .region,
+.crisis-map-svg .map-status-label{
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.crisis-map-svg .region{
+  outline:none!important;
+}
+.crisis-map-svg .region:focus,
+.crisis-map-svg .region:focus-visible,
+.crisis-map-svg .region:active{
+  outline:none!important;
+}
+.crisis-map-svg .region::-moz-focus-inner{
+  border:0!important;
+}
