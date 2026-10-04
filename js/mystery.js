@@ -236,7 +236,6 @@
       mark('classification');
     }
     if(location.hash==='#memorial'){
-      add('#memorial .pg-wrap','memorial','<div class="ssa-story-crosscheck"><div class="ssa-story-cross-head"><span>자료 대조 메모 · 03</span><b>추모기록의 표현이 언제 달라졌는지 확인할 것</b></div><p>순직 기록을 연도순으로 읽으면 초창기에는 <b>괴수 대응·봉쇄·수색</b> 같은 직접적인 사건 표현이 많지만, 이후에는 <b>안전확인·현장 안정화·구조</b> 같은 행정 표현이 늘어납니다.</p><button type="button" data-story-open>대조 메모 확인</button><div data-story-body hidden><p><b>확인 포인트</b></p><p>2003~2009년 기록과 2011년 이후 기록의 사망 사유 문구를 그대로 비교하세요.</p><div class="mystery-note"><strong>질문</strong>사건 자체가 달라진 것인가, 아니면 사건을 설명하는 방식이 달라진 것인가?</div><p class="mystery-muted">2011년 전후의 용어 변화는 법령·행정 표준용어 자료와 함께 보면 더 선명해집니다.</p></div></div>');
       mark('memorial');
     }
     if(location.hash==='#history'){
