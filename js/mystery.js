@@ -170,6 +170,32 @@
     }
   });
 
+  function caseBoard(){
+    if(localStorage.getItem('ssa_17_unlocked')!=='1'){modal('연계기록 접근 제한','<p class="mystery-lead">공개된 추모기록에서 연결 가능한 보존자료를 먼저 확인해 주세요.</p>');return;}
+    const found=JSON.parse(localStorage.getItem('ssa_case_clues')||'[]'), has=x=>found.includes(x);
+    const card=(id,title,date,desc,locked)=>'<button type="button" class="case-link-card" data-case-id="'+id+'"><span>'+date+'</span><b>'+title+'</b><small>'+desc+'</small><em>'+(has(id)?'확인 완료':locked?'추가 단서 필요':'열람 가능')+'</em></button>';
+    const o=modal('사건 연계 기록 · CASE 17','<div class="mystery-document case-board"><p class="mystery-lead">서로 다른 부서의 기록을 날짜와 문서번호로 대조하세요.</p><div class="case-link-grid">'+card('A','초기 대응반 인사기록','2002.05.06','백청심의 최초 출동 당시 소속 기록.',false)+card('B','괴수 분류 변경기록','2004.11.06','개체 판정 기준이 변경된 흔적.',!has('A'))+card('C','순직 작전 사후보고','2005.08.18','공개 발표와 보존자료 사이의 불일치.',!has('B'))+'</div><div class="case-progress"><b>확보한 연계기록</b><span>'+found.length+' / 3</span></div></div>');
+    o.querySelectorAll('[data-case-id]').forEach(btn=>btn.addEventListener('click',()=>{
+      const id=btn.dataset.caseId,current=JSON.parse(localStorage.getItem('ssa_case_clues')||'[]');
+      if((id==='B'&&!current.includes('A'))||(id==='C'&&!current.includes('B'))){modal('열람 순서 확인','<p>앞선 기록과 날짜를 먼저 대조해야 합니다.</p>');return;}
+      const docs={
+        A:['초기 대응반 인사기록 · 2002.05.06','<p>백청심은 최초 출동 당시 <b>초기 국가능력안전 대응반</b> 소속으로 기재되어 있다.</p><div class="mystery-note"><strong>비고</strong>같은 날짜의 현장기록에는 별도의 관측 인원 지정 문구가 남아 있다.</div>'],
+        B:['괴수 분류 변경기록 · 2004.11.06','<p>내부 분류표의 일부 문구가 수정되었다.</p><div class="mystery-note"><strong>변경 전</strong>“현장 능력 반응과 개체 반응의 상관관계 없음”</div><div class="mystery-note"><strong>변경 후</strong>“상관관계는 개별 사건자료에 따라 재검토할 수 있음”</div><p class="mystery-muted">수정 승인자는 공개 목록에서 확인되지 않는다.</p>'],
+        C:['순직 작전 사후보고 · 2005.08.18','<p>공개 추모기록은 “괴수 대응 작전 중 순직”으로 정리되어 있다.</p><div class="mystery-note"><strong>보존자료와의 차이</strong>08:27 능력 반응이 기존 자료보다 높게 측정되었고, 09:41 위치 신호가 통신과 동시에 끊겼다.</div><p>그러나 사후보고에는 두 항목이 모두 누락되어 있다.</p><p class="mystery-muted">다음 단서는 다른 센티넬의 기록에서 확인할 수 있다.</p>']
+      };
+      if(!current.includes(id)){current.push(id);localStorage.setItem('ssa_case_clues',JSON.stringify(current));}
+      modal(docs[id][0],'<div class="mystery-document">'+docs[id][1]+'<button type="button" class="case-next-button" data-case-next>연계기록으로 돌아가기</button></div>');
+      document.getElementById('mysteryModal')?.querySelector('[data-case-next]')?.addEventListener('click',()=>{document.getElementById('mysteryModal')?.remove();caseBoard();});
+    }));
+  }
+  function injectCaseEntry(){
+    if(document.getElementById('ssaCaseEntry')||localStorage.getItem('ssa_17_unlocked')!=='1')return;
+    const target=document.querySelector('.baek-profile-page .content-body')||document.querySelector('#memorial .container');if(!target)return;
+    const box=document.createElement('section');box.id='ssaCaseEntry';box.className='case-entry-panel';
+    box.innerHTML='<div><span>CASE 17 · 기록 대조</span><h3>백청심 사건에서 확인된 연계기록</h3><p>하나의 사건으로 보였던 기록은 다른 인물과 다른 연도의 자료로 이어집니다.</p></div><button type="button">연계기록 열람 →</button>';
+    target.appendChild(box);box.querySelector('button').onclick=caseBoard;
+  }
+  window.addEventListener('hashchange',injectCaseEntry);setTimeout(injectCaseEntry,250);window.__ssaMysteryCaseBoard=caseBoard;
   window.__ssaMysteryUnlock=password;
   window.__ssaShow17=showArchiveRecord;
 })();
