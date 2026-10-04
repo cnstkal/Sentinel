@@ -314,3 +314,45 @@
  window.addEventListener('hashchange',()=>setTimeout(run,120));
  setTimeout(run,700);
 })();
+
+/* ===== PROGRESSIVE HINTS / LOGO LONG PRESS ===== */
+(function(){
+ const HINTS=[
+  {title:'첫 번째 힌트',text:'추모공간에서 특정 센티넬의 이름을 자세히 살펴보세요. 다른 사람들과 달리 눌러볼 수 있는 기록이 있습니다.',target:'추모공간'},
+  {title:'두 번째 힌트',text:'백청심의 기록을 열었다면 날짜를 눈여겨보세요. 기록에 적힌 날짜는 다음 자료를 열어볼 때 중요한 단서가 됩니다.',target:'백청심 현장자료'},
+  {title:'세 번째 힌트',text:'현장자료를 읽을 때 모든 날짜를 같은 무게로 보지 마세요. 특히 능력 반응과 위치·통신 기록이 함께 나타나는 시각을 비교해 보세요.',target:'2005.08.17 작전기록'},
+  {title:'네 번째 힌트',text:'하나의 기록만 보고 결론을 내리지 마세요. 2002년 초기 기록, 괴수 분류, 순직 센티넬의 추모 기록을 서로 비교하면 표현의 변화가 보입니다.',target:'자료 대조'},
+  {title:'다섯 번째 힌트',text:'2002.04에 설립된 위원회와 2002.05의 최초 괴수 기록 사이를 확인하세요. “최초”라는 표현이 정말 최초를 뜻하는지 생각해 보세요.',target:'청 연혁'},
+  {title:'여섯 번째 힌트',text:'설립 이전 자료의 색인을 찾았다면 문서번호를 보세요. 특히 여러 자료에서 반복되는 숫자와 초기 인물 기록을 함께 대조해 보세요.',target:'보존자료 색인'}
+ ];
+ function progress(){
+  try{
+   const c=JSON.parse(localStorage.getItem('ssa_case_clues')||'[]');
+   const s=JSON.parse(localStorage.getItem('ssa_story_crosscheck')||'[]');
+   if(s.includes('origin')) return 5;
+   if(s.includes('archive')&&s.includes('classification')&&s.includes('memorial')) return 4;
+   if(c.length>=3) return 3;
+   if(c.length>=1) return 2;
+   if(localStorage.getItem('ssa_17_unlocked')==='1') return 1;
+  }catch(e){}
+  return 0;
+ }
+ function open(){
+  document.getElementById('ssaHintModal')?.remove();
+  const page=progress(), hint=HINTS[Math.min(page,HINTS.length-1)];
+  const o=document.createElement('div');o.id='ssaHintModal';o.className='mystery-modal ssa-hint-modal';
+  o.innerHTML='<div class="mystery-dialog ssa-hint-dialog" role="dialog" aria-modal="true"><div class="mystery-dialog-head"><span class="mystery-classified">SSA · 열람 지원</span><button type="button" class="mystery-close" aria-label="닫기">×</button></div><div class="ssa-hint-body"><div class="ssa-hint-label">HINT '+String(page+1).padStart(2,'0')+' / '+String(HINTS.length).padStart(2,'0')+'</div><h2>'+hint.title+'</h2><p>'+hint.text+'</p><div class="ssa-hint-target">확인 대상 · <b>'+hint.target+'</b></div><div class="ssa-hint-pages"><button type="button" data-prev>‹</button><span>1 / 1</span><button type="button" data-next>›</button></div></div></div>';
+  document.body.appendChild(o);
+  const close=()=>o.remove();o.querySelector('.mystery-close').onclick=close;o.addEventListener('click',e=>{if(e.target===o)close()});
+ }
+ function bind(){
+  const logo=document.querySelector('.emblem');if(!logo||logo.dataset.hintBound)return;
+  logo.dataset.hintBound='1';
+  let timer=null;
+  const start=e=>{timer=setTimeout(()=>{timer=null;open()},900)};
+  const cancel=()=>{if(timer){clearTimeout(timer);timer=null}};
+  logo.addEventListener('pointerdown',start);logo.addEventListener('pointerup',cancel);logo.addEventListener('pointerleave',cancel);logo.addEventListener('pointercancel',cancel);logo.addEventListener('contextmenu',e=>e.preventDefault());
+ }
+ setTimeout(bind,500);
+ window.addEventListener('hashchange',()=>setTimeout(bind,150));
+})();
