@@ -3039,3 +3039,19 @@ body.photo-admin .guide-admin-bar{display:flex}
 .mystery-dialog{overflow:hidden}
 .mystery-dialog-body{overflow-y:auto!important;min-height:0}
 .archive-year-tabs{position:sticky!important;top:0!important;z-index:10!important;background:#fff!important}
+
+
+/* 백청심 상세 기록: 중복 세로선과 시간 위 점 제거 */
+.archive-detail .archive-log-list{position:relative!important}
+.archive-detail .archive-log-list:before{display:none!important;content:none!important}
+.archive-detail .archive-log-entry{position:relative!important;grid-template-columns:68px minmax(0,1fr)!important;gap:18px!important}
+.archive-detail .archive-log-entry:before,
+.archive-detail .archive-log-entry:after{display:none!important;content:none!important}
+.archive-detail .archive-log-entry>div{position:relative!important;border-left:1px solid #d9dfe7!important;padding-left:18px!important}
+.archive-detail .archive-log-entry>div:before,
+.archive-detail .archive-log-entry>div:after{display:none!important;content:none!important}
+.archive-detail .archive-log-entry time{position:static!important;display:block!important;text-align:right!important;white-space:nowrap!important;padding:3px 0 0!important}
+@media(max-width:640px){
+ .archive-detail .archive-log-entry{grid-template-columns:56px minmax(0,1fr)!important;gap:12px!important}
+ .archive-detail .archive-log-entry>div{padding-left:12px!important}
+}
