@@ -119,7 +119,7 @@
       '<div class="archive-log-head"><strong>백청심 활동 자료</strong><span>2002.05 ~ 2005.12</span></div>'+
       '<div class="archive-year-tabs" role="tablist" aria-label="연도별 현장자료">'+tabs+'</div>'+
       '<div class="archive-year-panel archive-date-list" id="archiveYearPanel">'+list(years["2005"])+'</div>'+
-      '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.05 ~ 2005.12</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
+      '<div class="archive-log-footer"><span>보존자료 범위</span><b>2002.01 ~ 2005.12</b><small>자세한 현장자료는 일부 날짜만 공개됨.</small></div>'+
       '</div>');
     if(o){
       sessionStorage.setItem('ssa_17_unlocked','1');
