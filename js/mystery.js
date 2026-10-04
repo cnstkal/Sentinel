@@ -250,3 +250,25 @@
   }
   window.addEventListener('hashchange',()=>setTimeout(run,180));setTimeout(run,650);
 })();
+
+/* ===== ACT 1 / PRE-2002 ARCHIVE INDEX ===== */
+(function(){
+ const KEY='ssa_story_crosscheck';
+ const get=()=>{try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){return[]}};
+ const unlocked=()=>['archive','classification','memorial'].every(x=>get().includes(x));
+ const modal=(title,body)=>{document.getElementById('mysteryModal')?.remove();const o=document.createElement('div');o.id='mysteryModal';o.className='mystery-modal';o.innerHTML='<div class="mystery-dialog" role="dialog" aria-modal="true"><div class="mystery-dialog-head"><span class="mystery-classified">ARCHIVE INDEX</span><button type="button" class="mystery-close">×</button></div><div class="mystery-dialog-body"><h2>'+title+'</h2>'+body+'</div></div>';document.body.appendChild(o);o.querySelector('.mystery-close').onclick=()=>o.remove();o.addEventListener('click',e=>{if(e.target===o)o.remove()});return o};
+ function run(){
+  if(location.hash!=='#history'||!unlocked()||document.getElementById('ssaPre2002'))return;
+  const root=document.querySelector('#history .content-body');if(!root)return;
+  const s=document.createElement('section');s.id='ssaPre2002';s.className='ssa-pre2002';
+  s.innerHTML='<div class="ssa-pre-head"><div><span>보존자료 색인 대조</span><h2>설립 이전 자료의 존재 여부</h2></div><b>열람제한</b></div><p>2002.04 설립 이전의 원자료 색인은 일반 공개 목록에서 제외되어 있습니다. 다만 공개된 초기 문서번호와 보존체계의 연속성을 대조하면 별도 자료군의 존재를 확인할 수 있습니다.</p><div class="ssa-index-table"><button type="button" data-pre="public"><span>SSA-H-2002-01</span><b>최초 괴수 발생 관련 초기 대응기록</b><em>공개</em></button><button type="button" data-pre="research"><span>SSA-R-2003-04</span><b>특이능력 보유자 안전관리 연구자료</b><em>부분공개</em></button><button type="button" data-pre="early"><span>SSA-O-2004-17</span><b>초기 괴수 대응 인력 운용기록</b><em>공개</em></button><button type="button" data-pre="redacted"><span>SSA-██-2002-██</span><b>설립 전 관측자료</b><em>열람제한</em></button></div><div class="ssa-pre-note"><strong>색인 비고</strong><p>2002년 이후 생성된 문서만으로는 설명되지 않는 관측자료가 일부 존재한다. 원자료 보존 규칙상 문서번호 일부는 비공개 처리됨.</p></div></section>';
+  root.appendChild(s);
+  s.querySelectorAll('[data-pre]').forEach(btn=>btn.onclick=()=>{
+   const k=btn.dataset.pre;
+   if(k==='redacted'){
+    modal('설립 전 관측자료 · SSA-██-2002-██','<p class="mystery-lead">이 자료는 2002.04 위원회 설립보다 앞선 날짜를 가진 것으로 색인되어 있습니다.</p><div class="mystery-note"><strong>색인 메모</strong>“최초 괴수 발생”이라는 표현은 이 자료의 원문에 사용되지 않았습니다.</div><p>현재 공개된 자료에서 확인할 수 있는 것은 문서군의 존재와 일부 번호뿐입니다.</p><p class="mystery-muted">다음 단계에서는 <b>문서번호의 반복 숫자</b>와 초기 인물 기록을 함께 대조하십시오.</p>');
+   }else modal('자료 색인 확인','<p>문서번호 '+btn.querySelector('span').textContent+'은(는) 공개 보존자료 색인에 등록되어 있습니다.</p><p class="mystery-muted">이 자료 자체보다 다른 자료와의 날짜·번호 관계를 확인하는 것이 중요합니다.</p>');
+  });
+ }
+ window.addEventListener('hashchange',()=>setTimeout(run,180));setTimeout(run,650);
+})();
