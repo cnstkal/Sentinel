@@ -14,28 +14,63 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Refresh live feed timestamp
+      - name: Collect latest official disaster messages
         run: |
           node <<'NODE'
           const fs=require('fs');
-          const p='data/live-crisis.json';
-          const d=JSON.parse(fs.readFileSync(p,'utf8'));
+          const url='https://www.safekorea.go.kr/safekorea-kor/ctim/cmsg/calamitySms.do?firstYn=Y&menuSn=34';
+          const html=await (await fetch(url,{headers:{'user-agent':'Sentinel-Automation/1.0'}})).text();
+
+          const clean=s=>s.replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/\\s+/g,' ').trim();
+          const blocks=[...html.matchAll(/<tr[\\s\\S]*?<\\/tr>/gi)].map(m=>clean(m[0]));
+          const rows=[];
+
+          for(const b of blocks){
+            const m=b.match(/(.+?)\\s+\\d{4}\\/\\d{2}\\/\\d{2}\\s+\\d{2}:\\d{2}:\\d{2}/);
+            const time=b.match(/\\d{4}\\/\\d{2}\\/\\d{2}\\s+\\d{2}:\\d{2}:\\d{2}/)?.[0];
+            const area=b.match(/송출지역\\s*:\\s*([^]+?)(?:\\s+발송일시|$)/)?.[1];
+            const urgency=b.match(/긴급단계\\s*:\\s*([^]+?)(?:\\s+송출지역|$)/)?.[1];
+            if(!time || !area) continue;
+            const title=clean(b.replace(/재해구분[^|]*\\|?/,'').replace(/ㆍ.*$/,''));
+            rows.push({issuedAt:time.replace(/\\//g,'-')+'+09:00',issuedAtDisplay:time.replace(/\\//g,'.'),region:area.trim(),officialUrgency:(urgency||'').trim(),title:title.slice(0,220),source:'국민안전24 재난문자'});
+          }
+
+          const unique=[];
+          const seen=new Set();
+          for(const x of rows){
+            const k=[x.issuedAt,x.region,x.title].join('|');
+            if(!seen.has(k)){seen.add(k);unique.push(x);}
+          }
+
+          const old=JSON.parse(fs.readFileSync('data/live-crisis.json','utf8'));
+          const history=unique.slice(0,100);
+          const regional={};
+          for(const x of history){
+            const province=(x.region.match(/^([^ ]+(?:특별시|광역시|특별자치도|특별자치시|도))/)||[null,x.region])[1];
+            if(!province) continue;
+            if(!regional[province]) regional[province]={
+              region:province,level:'관심',title:x.title,issuedAt:x.issuedAt,issuedAtDisplay:x.issuedAtDisplay,
+              officialUrgency:x.officialUrgency,source:x.source
+            };
+          }
+
           const now=new Date();
-          const parts=new Intl.DateTimeFormat('ko-KR',{
-            timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',
-            hour:'2-digit',minute:'2-digit',hour12:false
-          }).formatToParts(now).reduce((o,x)=>(o[x.type]=x.value,o),{});
-          d.updatedAt=now.toISOString();
-          d.updatedAtDisplay=`${parts.year}.${parts.month}.${parts.day} ${parts.hour}:${parts.minute}`;
-          fs.writeFileSync(p,JSON.stringify(d,null,2)+'\n');
+          const parts=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(now).reduce((o,x)=>(o[x.type]=x.value,o),{});
+          old.updatedAt=now.toISOString();
+          old.updatedAtDisplay=`${parts.year}.${parts.month}.${parts.day} ${parts.hour}:${parts.minute}`;
+          old.source='국민안전24 재난문자 자동 수집';
+          old.regionalAlerts=Object.values(regional);
+          old.history=history;
+
+          fs.writeFileSync('data/live-crisis.json',JSON.stringify(old,null,2)+'\\n');
           fs.mkdirSync('.sentinel',{recursive:true});
-          fs.writeFileSync('.sentinel/last-scheduler-run.txt',now.toISOString()+'\n');
+          fs.writeFileSync('.sentinel/last-scheduler-run.txt',now.toISOString()+'\\n');
           NODE
 
-      - name: Commit refresh
+      - name: Commit refreshed data
         run: |
           git config user.name "Sentinel Automation"
           git config user.email "actions@users.noreply.github.com"
           git add data/live-crisis.json .sentinel/last-scheduler-run.txt
-          git diff --cached --quiet || git commit -m "chore: refresh live crisis feed"
+          git diff --cached --quiet || git commit -m "chore: refresh live disaster messages"
           git push
