@@ -2,6 +2,8 @@
 
 (function(){
  const navTriggers=[...document.querySelectorAll('.nav-trigger')];
+ const brand=document.querySelector('.brand');
+ brand?.addEventListener('click',e=>{ e.preventDefault(); if(location.hash!=='#home'){location.hash='#home';} else {show('#home');} });
  const mobile=document.getElementById('mobileMenu');
  const all=document.getElementById('allMenu');
  function show(hash){
