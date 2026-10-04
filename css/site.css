@@ -3055,3 +3055,11 @@ body.photo-admin .guide-admin-bar{display:flex}
  .archive-detail .archive-log-entry{grid-template-columns:56px minmax(0,1fr)!important;gap:12px!important}
  .archive-detail .archive-log-entry>div{padding-left:12px!important}
 }
+
+
+/* 보존기록 상세 뒤로가기 + 클릭 가능 항목 표시 */
+.archive-back-button{display:inline-flex;align-items:center;border:0;background:transparent;padding:0;margin:0 0 14px;color:#5d6b7d;font:inherit;font-size:12px;cursor:pointer}
+.archive-back-button:hover{text-decoration:underline;color:#243b57}
+.archive-date-row.is-detail .archive-date-label{text-decoration:none}
+.archive-date-row.is-detail:hover .archive-date-label{text-decoration:underline;text-underline-offset:3px}
+.archive-date-row.is-detail:hover .archive-date{color:#17385f}
