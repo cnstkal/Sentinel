@@ -36,17 +36,25 @@
   }
 
   function showArchiveRecord(){
-    const o=modal('SSA-O-2005-17 · 제한 공개 기록',
-      '<div class="mystery-document">'+
-      '<div class="mystery-doc-meta"><span>기록자 백청심</span><span>2005.08 · 관측기록 17</span></div>'+
-      '<h3>제17차 현장 관측기록</h3>'+
-      '<p>기존 관측 01~16에서 반복 확인된 현상이 이번 관측에서도 재현됨.</p>'+
-      '<p>괴수 발생 직전 센티넬 능력 발현 기록이 선행하는 사례가 다시 확인되었다.</p>'+
-      '<p class="mystery-redacted">단순한 상관관계로 판단하기에는 반복 횟수가 지나치게 많음.</p>'+
-      '<p>이번 관측에서는 반대 방향의 반응도 확인됨. <b>괴수가 센티넬의 능력 발현에 반응한 것이 아니라, 능력 발현 이후 괴수 현상이 발생했다.</b></p>'+
-      '<div class="mystery-note"><strong>백청심 메모</strong><br>17번째 기록을 공식 작전보고서에 포함하지 않는다.<br>원본과 공개본의 시각이 일치하지 않는다.<br>다음 관측은 필요하지 않다.</div>'+
-      '<p class="mystery-redacted">사유: ████████████████████████</p>'+
-      '<div class="mystery-stamp">원문 보존 상태 · 일부 복구</div>'+
+    const o=modal('SSA-O-2005-17 · 백청심 현장기록',
+      '<div class="mystery-document archive-log-document">'+
+      '<div class="mystery-doc-meta"><span>문서번호 SSA-O-2005-17</span><span>기록대상 백청심</span></div>'+
+      '<div class="archive-log-head"><strong>초기 괴수 대응 현장기록</strong><span>2005.08.17 · 보존본</span></div>'+
+      '<div class="archive-log-list">'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>05:42</b></time><div><span class="archive-log-type">출동 명령</span><h4>수도권 제3현장대응반 출동 지시</h4><p>서울 동부권에서 미확인 생체반응 신고 접수. 백청심 외 4명 출동.</p><small>출동지점 · 서울 동부권 외곽 산업단지</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>06:18</b></time><div><span class="archive-log-type">출정 기록</span><h4>현장 도착 및 1차 안전구역 설정</h4><p>주변 민간인 대피 완료. 현장 반경 300m 통제선 설정. 특이한 진동 및 고주파음 확인.</p><small>현장상태 · 통제선 유지 / 추가 인원 요청 없음</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>07:03</b></time><div><span class="archive-log-type">현장 기록</span><h4>미확인 개체 흔적 확인</h4><p>폐창고 내부에서 비정상적인 열원과 생체조직 잔류물 발견. 개체는 확인되지 않음.</p><small>담당 · 백청심 / 현장 사진 06매 보존</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:27</b></time><div><span class="archive-log-type">능력 발현</span><h4>백청심 능력 반응 기록</h4><p>현장 진입 직후 능력 반응 발생. 기존 안전기록과 비교해 반응 강도가 비정상적으로 높음.</p><small>측정 · 현장 계측기 03호 / 원자료 별도 보존</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:31</b></time><div><span class="archive-log-type">괴수 발생</span><h4>괴수 개체 출현</h4><p>통제구역 중앙에서 미확인 개체 출현. 현장대응반 즉시 방어대형으로 전환.</p><small>개체분류 · 당시 판정 보류 / 주민 피해 없음</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>08:46</b></time><div><span class="archive-log-type">교전 기록</span><h4>1차 제압 시도</h4><p>개체 이동경로 차단 및 능력 억제 시도. 개체가 백청심의 위치를 지속적으로 추적하는 양상 확인.</p><small>상태 · 현장대응반 2명 경상</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>09:12</b></time><div><span class="archive-log-type">통신 기록</span><h4>지원반 도착 요청</h4><p>현장 상황 악화로 추가 대응인력 요청. 백청심은 현장 잔류 및 후방 대피로 확보를 담당.</p><small>통신상태 · 09:11 이후 일부 기록 불안정</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>09:28</b></time><div><span class="archive-log-type">복귀 기록</span><h4>현장대응반 일부 복귀</h4><p>민간인 대피 완료에 따라 1차 대응인력 복귀 시작. 백청심은 현장 확인을 위해 잔류.</p><small>복귀 인원 · 3명 / 잔류 인원 · 2명</small></div></article>'+
+        '<article class="archive-log-entry archive-log-critical"><time>2005.08.17<br><b>09:41</b></time><div><span class="archive-log-type">마지막 확인</span><h4>백청심 현장 신호 소실</h4><p>백청심의 위치 신호 및 통신 응답이 동시에 중단됨. 현장 재진입은 위험도 상승으로 보류.</p><small>최종 확인 위치 · 통제구역 북측 / 상태 · 응답 없음</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>11:06</b></time><div><span class="archive-log-type">수습 기록</span><h4>현장 수습 및 잔류 개체 확인</h4><p>괴수 개체 제압 완료. 현장 수습 과정에서 백청심의 장비 일부 확인.</p><small>수습품 · 통신기 1점 / 보호장비 일부 / 개인기록물 없음</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.17<br><b>14:20</b></time><div><span class="archive-log-type">복귀 기록</span><h4>제3현장대응반 귀환</h4><p>잔여 인원 및 장비 본부 복귀. 현장 보고서는 당일 18:00까지 제출하도록 지시.</p><small>귀환지 · 수도권 초기대응본부</small></div></article>'+
+        '<article class="archive-log-entry"><time>2005.08.18<br><b>18:04</b></time><div><span class="archive-log-type">사망 기록</span><h4>백청심 순직 처리</h4><p>전일 작전 중 행방불명된 백청심을 순직 처리. 유가족 통보 및 장비 회수 절차 진행.</p><small>처리번호 · SSA-C-2005-0818-03</small></div></article>'+
+      '</div>'+
+      '<div class="archive-log-footer"><span>보존본 열람 기록</span><b>2005.08.17 ~ 2005.08.18</b><small>일부 원자료는 현행 보안기준에 따라 비공개 처리됨.</small></div>'+
       '</div>');
     if(o) sessionStorage.setItem('ssa_17_unlocked','1');
   }
