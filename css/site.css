@@ -2931,3 +2931,36 @@ body.photo-admin .guide-admin-bar{display:flex}
 @media(max-width:700px){
  .baek-profile-summary{grid-template-columns:1fr;padding:22px}.baek-seal{width:64px;height:64px}.baek-profile-grid{grid-template-columns:1fr}.baek-profile-grid>div:nth-child(odd){border-right:0}.baek-record-section{padding:20px}.baek-record-row{flex-direction:column;align-items:stretch}.baek-locked-record{min-width:0}.baek-hint-strip{margin:0 20px 20px}.mystery-dialog-body{padding:22px}.mystery-doc-meta{flex-direction:column;gap:3px}
 }
+
+
+/* 백청심 보존 현장기록 */
+.archive-log-document{padding-bottom:4px}
+.archive-log-head{display:flex;justify-content:space-between;gap:20px;align-items:end;padding:18px 0 14px;border-bottom:1px solid #d9dee7}
+.archive-log-head strong{font-size:18px;color:#182231}
+.archive-log-head span{font-size:12px;color:#687386;white-space:nowrap}
+.archive-log-list{position:relative;margin:0}
+.archive-log-list:before{content:"";position:absolute;left:72px;top:18px;bottom:18px;width:1px;background:#d8dee8}
+.archive-log-entry{position:relative;display:grid;grid-template-columns:72px 1fr;gap:22px;padding:18px 0;border-bottom:1px solid #edf0f4}
+.archive-log-entry time{font-size:11px;line-height:1.55;color:#697487;text-align:right;padding-top:2px}
+.archive-log-entry time b{font-size:13px;color:#253044}
+.archive-log-entry>div{position:relative;padding-left:16px}
+.archive-log-entry>div:before{content:"";position:absolute;left:-27px;top:5px;width:8px;height:8px;border:2px solid #8793a5;border-radius:50%;background:#fff}
+.archive-log-type{display:inline-block;font-size:10px;letter-spacing:.04em;color:#5d6879;background:#f1f3f6;border:1px solid #e0e4ea;padding:3px 7px;margin-bottom:6px}
+.archive-log-entry h4{margin:0 0 5px;font-size:15px;font-weight:700;color:#1b2535}
+.archive-log-entry p{margin:0 0 5px;font-size:13px;line-height:1.65;color:#495568}
+.archive-log-entry small{font-size:11px;color:#8993a2}
+.archive-log-critical{background:#fafbfc}
+.archive-log-critical>div:before{border-color:#4b5565}
+.archive-log-footer{display:grid;grid-template-columns:auto auto 1fr;gap:10px 18px;align-items:center;padding:16px 0 4px;color:#697487;font-size:11px}
+.archive-log-footer b{font-size:12px;color:#313b4b}
+.archive-log-footer small{justify-self:end}
+@media(max-width:640px){
+ .archive-log-head{display:block}
+ .archive-log-head span{display:block;margin-top:5px}
+ .archive-log-list:before{left:58px}
+ .archive-log-entry{grid-template-columns:58px 1fr;gap:14px}
+ .archive-log-entry>div{padding-left:10px}
+ .archive-log-entry>div:before{left:-22px}
+ .archive-log-footer{grid-template-columns:1fr}
+ .archive-log-footer small{justify-self:start}
+}
